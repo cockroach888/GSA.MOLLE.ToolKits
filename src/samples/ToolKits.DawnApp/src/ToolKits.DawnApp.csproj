@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>sys.ico</ApplicationIcon>
+    <AssemblyName>晨曦工具集</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ToolKits.DawnApp.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Product>魂哥实用工具集</Product>
+    <PackageId>DawnTools</PackageId>
+    <Version>5.0.0</Version>
+    <Authors>蟑螂·魂</Authors>
+    <Company>华夏银河空间联盟</Company>
+    <Description>本类库其实是我自己编写的一个EXE应用程序，为了在开发过程中方便使用某些工具处理，如加解密字符串、生成GUID唯一编号、邮件收发测试、数据校验测试等，为了不给您添加麻烦，在您使用本类库时，请建立一个空的项目再添加引用，然后将项目下的“Dist”目录复制到某个位置，打开里面的“晨曦工具集.exe”开始使用。
+
+      NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
+    <PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>ToolKitsIcon.jpg</PackageIcon>
+    <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>魂哥常用工具集 加解密字符串 生成GUID唯一编号 邮件收发测试 数据校验测试</PackageTags>
+    <PackageReleaseNotes>重新定义类库并变更命名空间，面向 .net 5.0 开发；建议重新引用本类库，对此给您造成的不变深表歉意！</PackageReleaseNotes>
+    <Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\..\ToolKitsIcon.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
