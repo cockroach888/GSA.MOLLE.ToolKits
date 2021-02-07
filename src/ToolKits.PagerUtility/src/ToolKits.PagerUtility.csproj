@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net20;net40; net45;net472;netcoreapp3.1;netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net20;net40;net45;net472;netcoreapp3.1;net5.0</TargetFrameworks>
     <ApplicationIcon>Library.ico</ApplicationIcon>
     <AssemblyName>PagerUtility</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -19,11 +19,11 @@
     <Company>华夏银河空间联盟</Company>
     <Description>本类库提供了中文和英文版本的分页展示工具，展示风格多样，同时还封装了基于Bootstrap框架的分页展示形式，对于微软MVC更是无下限的友好支持，欢迎您的使用；简单实用、舒心易用，是您开发中的必备利器。
 
-      内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, netstandard2.1, net5.0）。
+      内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）。
 
       NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
     <PackageTags>魂哥常用工具集 数据分页展示工具集 Bootstrap MVC分页 分页</PackageTags>
-    <PackageReleaseNotes>重新定义类库并变更命名空间，面向 .net 5.0 开发；建议重新引用本类库，对此给您造成的不变深表歉意！内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, netstandard2.1, net5.0）让使用更便捷。</PackageReleaseNotes>
+    <PackageReleaseNotes>重新定义类库并变更命名空间，面向 .net 5.0 开发；建议重新引用本类库，对此给您造成的不变深表歉意！内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）让使用更便捷。</PackageReleaseNotes>
     <Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
     <PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>

@@ -4,5 +4,2375 @@
         <name>DawnUtility</name>
     </assembly>
     <members>
+        <member name="T:DawnXZ.DawnUtility.AesHelper">
+            <summary>
+            AES加解密操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.AesHelper.Encode(System.String,System.String)">
+            <summary>
+            AES 加密字符串
+            </summary>
+            <param name="encryptString">待加密的字符串</param>
+            <param name="encryptKey">加密密钥,要求为8位</param>
+            <returns>加密成功返回加密后的字符串,失败返回源串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.AesHelper.Decode(System.String,System.String)">
+            <summary>
+            AES 解密字符串
+            </summary>
+            <param name="decryptString">待解密的字符串</param>
+            <param name="decryptKey">解密密钥,要求为8位</param>
+            <returns>解密成功返回解密后的字符串,失败返回 null</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.BigInteger">
+            <summary>
+            超级整型
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.BigInteger.maxLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.BigInteger.primesBelow2000">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.BigInteger.data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.BigInteger.dataLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor(System.UInt64)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="radix"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="inData"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="inData"></param>
+            <param name="inLen"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.#ctor(System.UInt32[])">
+            <summary>
+            
+            </summary>
+            <param name="inData"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Implicit(System.Int64)~DawnXZ.DawnUtility.BigInteger">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Implicit(System.UInt64)~DawnXZ.DawnUtility.BigInteger">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Implicit(System.Int32)~DawnXZ.DawnUtility.BigInteger">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Implicit(System.UInt32)~DawnXZ.DawnUtility.BigInteger">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Addition(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Increment(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Subtraction(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Decrement(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Multiply(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_LeftShift(DawnXZ.DawnUtility.BigInteger,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="shiftVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.shiftLeft(System.UInt32[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="shiftVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_RightShift(DawnXZ.DawnUtility.BigInteger,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="shiftVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.shiftRight(System.UInt32[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="shiftVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_OnesComplement(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_UnaryNegation(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Equality(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Inequality(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_GreaterThan(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_LessThan(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_GreaterThanOrEqual(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_LessThanOrEqual(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.multiByteDivide(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <param name="outQuotient"></param>
+            <param name="outRemainder"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.singleByteDivide(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <param name="outQuotient"></param>
+            <param name="outRemainder"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Division(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_Modulus(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_BitwiseAnd(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_BitwiseOr(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.op_ExclusiveOr(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi1"></param>
+            <param name="bi2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.max(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.min(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.abs">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.ToString(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="radix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.ToHexString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.modPow(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="exp"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.BarrettReduction(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="n"></param>
+            <param name="constant"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.gcd(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="bi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.genRandomBits(System.Int32,System.Random)">
+            <summary>
+            
+            </summary>
+            <param name="bits"></param>
+            <param name="rand"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.bitCount">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.FermatLittleTest(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="confidence"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.RabinMillerTest(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="confidence"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.SolovayStrassenTest(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="confidence"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.LucasStrongTest">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.LucasStrongTestHelper(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="thisVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.isProbablePrime(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="confidence"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.isProbablePrime">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.IntValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.LongValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.Jacobi(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.genPseudoPrime(System.Int32,System.Int32,System.Random)">
+            <summary>
+            
+            </summary>
+            <param name="bits"></param>
+            <param name="confidence"></param>
+            <param name="rand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.genCoPrime(System.Int32,System.Random)">
+            <summary>
+            
+            </summary>
+            <param name="bits"></param>
+            <param name="rand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.modInverse(DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="modulus"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.getBytes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.setBit(System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="bitNum"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.unsetBit(System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="bitNum"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.sqrt">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.LucasSequence(DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            
+            </summary>
+            <param name="P"></param>
+            <param name="Q"></param>
+            <param name="k"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.MulDivTest(System.Int32)">
+            <summary>
+            Tests the correct implementation of the /, %, * and + operators
+            </summary>
+            <param name="rounds"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.RSATest(System.Int32)">
+            <summary>
+            Tests the correct implementation of the modulo exponential function
+            <para>using RSA encryption and decryption (using pre-computed encryption and</para>
+            <para>decryption keys).</para>
+            </summary>
+            <param name="rounds"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.RSATest2(System.Int32)">
+            <summary>
+            Tests the correct implementation of the modulo exponential and
+            <para>inverse modulo functions using RSA encryption and decryption.  The two</para>
+            <para>pseudoprimes p and q are fixed, but the two RSA keys are generated</para>
+            <para>for each round of testing.</para>
+            </summary>
+            <param name="rounds"></param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.BigInteger.SqrtTest(System.Int32)">
+            <summary>
+            Tests the correct implementation of sqrt() method.
+            </summary>
+            <param name="rounds"></param>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.CheckCodeHelper">
+            <summary>
+            验证码操作辅助类
+            <para>1、MVC调用方法：File(DawnXZ.Utilities.CheckCodeHelper.CreateToByte(6, 1, out checkCode), @"image/jpeg");</para>
+            <para>2、ASPX调用方法：</para>
+            <para>　　Response.ClearContent();</para>
+            <para>　　Response.ContentType = "image/Jpeg";</para>
+            <para>　　Response.BinaryWrite(DawnXZ.Utilities.CheckCodeHelper.CreateToByte(6, 1, out checkCode));</para>
+            <para>   ASPX页面同时增加如下方法：</para>
+            <para>　　///设置页面不被缓存</para>
+            <para>　　private void SetPageNoCache()</para>
+            <para>　　{</para>
+            <para>　　　　Response.Buffer = true;</para>
+            <para>　　　　Response.ExpiresAbsolute = System.DateTime.Now.AddSeconds(-1);</para>
+            <para>　　　　Response.Expires = 0;</para>
+            <para>　　　　Response.CacheControl = "no-cache";</para>
+            <para>　　　　Response.AppendHeader("Pragma", "No-Cache");</para>
+            <para>　　}</para>
+            <para>页面刷新方式：</para>
+            <para>JavaScript函数：  function refCode(){document.getElementById('Captcha').src='Captcha.aspx?r='+Math.random();}</para>
+            <para>JQuery形式：  $('#Captcha').bind('click',function(){var url='/Auth/Captcha/';url+=(new Date()).getTime();this.src=url;});</para>
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.GetChs(System.Int32)">
+            <summary>
+            获得指定数量的中文
+            <para>默认4位</para>
+            <para>由指定中文字符串随机取数</para>
+            </summary>
+            <param name="chsNum">要生成的中文数量</param>
+            <returns>中文字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.GetChsAt(System.Int32)">
+            <summary>
+            获得指定数量的中文
+            <para>默认4位</para>
+            <para>通过区位码计算</para>
+            </summary>
+            <param name="chsNum">要生成的中文数量</param>
+            <returns>中文字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.GetChsOfZone(System.Int32)">
+            <summary>
+            获得指定数量的中文
+            <para>默认4位</para>
+            <remarks>
+            <para>每循环一次产生一个含两个元素的十六进制字节数组，并将其放入数组中</para>
+            <para>每个汉字有四个区位码组成</para>
+            <para>区位码第1位和区位码第2位作为字节数组第一个元素 </para>
+            <para>区位码第3位和区位码第4位作为字节数组第二个元素</para>
+            </remarks>
+            </summary>
+            <param name="chsNum">要生成的中文数量</param>
+            <returns>中文字符数组对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.GetEng(System.Int32)">
+            <summary>
+            获得指定数量的英文组合
+            <para>默认4位</para>
+            </summary>
+            <param name="engNum">要生成的英文数量</param>
+            <returns>英文字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.GetNumber(System.Int32)">
+            <summary>
+            获得指定数量的数字组合
+            <para>默认6位</para>
+            </summary>
+            <param name="numLength">要生成的数字数量</param>
+            <returns>数字字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.GetEngAndNum(System.Int32)">
+            <summary>
+            获得指定数量的英文及数字组合
+            <para>默认4位</para>
+            </summary>
+            <param name="engNum">要生成的英文及数字数量</param>
+            <returns>英文及数字字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.CreateToByte(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            生成图片底纹式验证码
+            <para>默认非中文</para>
+            </summary>
+            <param name="checkCode">验证码字符串</param>
+            <param name="isChs">是否为中文</param>
+            <param name="codeFlag">验证码生成方式：true 通常型 / false 完美型</param>
+            <returns>验证码字节数组对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.CreateToByte(System.String@,System.Int32,DawnXZ.DawnUtility.CheckCodeHelper.CodeType,System.Boolean)">
+            <summary>
+            生成图片底纹式验证码
+            </summary>
+            <param name="checkCode">验证码字符串</param>
+            <param name="codeNum">验证码数量</param>
+            <param name="codeType">验证码编码类型</param>
+            <param name="codeFlag">验证码生成方式：true 通常型 / false 完美型</param>
+            <returns>验证码字节数组对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.CreateToImage(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            生成图片底纹式验证码
+            <para>默认非中文</para>
+            </summary>
+            <param name="checkCode">验证码字符串</param>
+            <param name="isChs">是否为中文</param>
+            <param name="codeFlag">验证码生成方式：true 通常型 / false 完美型</param>
+            <returns>验证码图片对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.CreateToImage(System.String@,System.Int32,DawnXZ.DawnUtility.CheckCodeHelper.CodeType,System.Boolean)">
+            <summary>
+            生成图片底纹式验证码
+            </summary>
+            <param name="checkCode">验证码字符串</param>
+            <param name="codeNum">验证码数量</param>
+            <param name="codeType">验证码编码类型</param>
+            <param name="codeFlag">验证码生成方式：true 通常型 / false 完美型</param>
+            <returns>验证码图片对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.BuindCode(System.Int32,DawnXZ.DawnUtility.CheckCodeHelper.CodeType,System.String@,System.Boolean@)">
+            <summary>
+            生成验证码字符串
+            </summary>
+            <param name="codeNum">验证码个数</param>
+            <param name="codeType">验证码类型</param>
+            <param name="checkCode">验证码结果</param>
+            <param name="chsFlag">验证码中文标记</param>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.CheckCodeHelper.CodeType">
+            <summary>
+            验证码类型枚举器
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.CheckCodeHelper.CodeType.GetEng">
+            <summary>
+            英文
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.CheckCodeHelper.CodeType.GetNumber">
+            <summary>
+            数字
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.CheckCodeHelper.CodeType.GetEngAndNum">
+            <summary>
+            英文及数字
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.CheckCodeHelper.CodeType.GetChs">
+            <summary>
+            中文定义字符串
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.CheckCodeHelper.CodeType.GetChsAt">
+            <summary>
+            中文区位码
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.CheckCodeHelper.PI1">
+            <summary>
+            PI值
+            <para>单倍</para>
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.CheckCodeHelper.PI2">
+            <summary>
+            PI值
+            <para>双倍</para>
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.WaveformToImage(System.Drawing.Bitmap,System.Boolean,System.Double,System.Double,System.Boolean)">
+            <summary>
+            正弦曲线Wave扭曲图片
+            </summary>
+            <param name="srcBmp">源图像</param>
+            <param name="bXDir">true 高度 / false 宽度，如果扭曲则选择为</param>
+            <param name="dMultValue">波形的幅度倍数，越大扭曲的程度越高，一般为3</param>
+            <param name="dPhase">波形的起始相位，取值区间[0-2*PI)</param>
+            <param name="flgPI">PI值[true 单倍/false 双倍]</param>
+            <returns>正弦曲线Wave扭曲图片结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.CreateToStream(System.String,System.Boolean)">
+            <summary>
+            生成验证码内存流
+            <para>高度固定28</para>
+            </summary>
+            <param name="checkCode">验证码字符串</param>
+            <param name="isChs">是否为中文</param>
+            <returns>验证码内存流</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CheckCodeHelper.CreateToStreamAt(System.String,System.Boolean)">
+            <summary>
+            生成验证码内存流
+            </summary>
+            <param name="checkCode">验证码字符串</param>
+            <param name="isChs">是否为中文</param>
+            <returns>验证码内存流</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.ConvertorHelper">
+            <summary>
+            实体和泛型集合与DataTable数据相互转换帮助类
+            <remarks>
+            <para>default关键字释义：</para>
+            <para>1、此关键字对于引用类型会返回空，对于数值类型会返回零；</para>
+            <para>2、对于结构，此关键字将返回初始化为零或空的每个结构成员，具体取决于这些结构是值类型还是引用类型</para>
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.SetValue``1(``0,System.Reflection.PropertyInfo,System.Object)">
+            <summary>
+            赋予实体对象属性值
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <param name="t">实体对象</param>
+            <param name="pi">实体对象属性</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.DataRowFirstToEntity``1(System.Data.DataTable)">
+            <summary>
+            将DataTable的第一个DataRow数据对象转换为实体对象
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <param name="dt">DataTable数据表对象</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.DataRowToEntity``1(System.Data.DataRow)">
+            <summary>
+            将DataRow数据对象转换为实体对象
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <param name="dr">DataRow数据行对象</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.DataTableToList``1(System.Data.DataTable)">
+            <summary>
+            将DataTable数据对象转换为泛型集合对象
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <param name="dt">DataTable数据表对象</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.DataReaderToEntity``1(System.Data.IDataReader)">
+            <summary>
+            将DataReader数据对象转换为实体对象
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <param name="dr">IDataReader数据对象</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.DataReaderToList``1(System.Data.IDataReader)">
+            <summary>
+            将DataReader数据对象转换为泛型集合对象
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <param name="dr">IDataReader数据对象</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.ListToDataTable``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            将泛型集合对象转换为DataTable数据对象
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <param name="entityList">泛型集合对象</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.ConvertorHelper.CreateTable``1">
+            <summary>
+            根据实体对象创建相应的DataTable数据对象
+            </summary>
+            <typeparam name="T">实体对象</typeparam>
+            <returns>DataTable数据对象</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.DBColumn">
+            <summary>
+            数据库字段对应属性类
+            </summary>
+        </member>
+        <member name="P:DawnXZ.DawnUtility.DBColumn.ColName">
+            <summary>
+            数据库字段
+            </summary>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.CryptoHelper">
+            <summary>
+            加解密操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="Text">待加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.Encrypt(System.String,System.Byte)">
+            <summary>
+            加密
+            <remarks>
+            101-109
+            </remarks>
+            </summary>
+            <param name="Text">待加密字符串1</param>
+            <param name="intFlag">待加密字符串2</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.EncryptUrl(System.String)">
+            <summary>
+            加密 URL 专用
+            </summary>
+            <param name="Text">待加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.Encrypt(System.String,System.String)">
+            <summary> 
+            加密数据 
+            </summary> 
+            <param name="Text">待加密字符串</param> 
+            <param name="sKey">加密密钥</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.Decrypt(System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="Text">待解密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.Decrypt(System.String,System.Byte)">
+            <summary>
+            解密
+            <remarks>
+            101-109
+            </remarks>
+            </summary>
+            <param name="Text">待解密字符串1</param>
+            <param name="intFlag">待解密字符串2</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.DecryptUrl(System.String)">
+            <summary>
+            解密 URL 专用
+            </summary>
+            <param name="Text">待解密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.Decrypt(System.Int32,System.String)">
+            <summary>
+            解密字符串并将多余显示为 * 号
+            </summary>
+            <param name="show">显示位数</param>
+            <param name="Text">待解密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.Decrypt(System.String,System.String)">
+            <summary> 
+            解密数据 
+            </summary> 
+            <param name="Text">待解密字符串</param> 
+            <param name="sKey">解密密钥</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.FileEncryptData(System.String,System.String,System.Byte[],System.Byte[])">
+            <summary>
+            加密文件
+            </summary>
+            <param name="inName">输入文件名</param>
+            <param name="outName">输出文件名</param>
+            <param name="desKey">加密Key</param>
+            <param name="desIV">加密IV</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.FileDecryptData(System.String,System.String,System.Byte[],System.Byte[])">
+            <summary>
+            解密文件
+            </summary>
+            <param name="inName">输入文件名</param>
+            <param name="outName">输出文件名</param>
+            <param name="desKey">加密Key</param>
+            <param name="desIV">加密IV</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.MD5(System.String,System.Boolean)">
+            <summary>
+            MD5函数
+            </summary>
+            <param name="str">原始字符串</param>
+            <param name="isUpper">是否大写形式</param>
+            <returns>MD5结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.SHA256(System.String)">
+            <summary>
+            SHA256函数
+            </summary>
+            /// <param name="str">原始字符串</param>
+            <returns>SHA256结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.GetHashSecurity">
+            <summary>
+            得到随机哈希加密字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.GetHashRandomValue">
+            <summary>
+            得到一个随机数值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.CryptoHelper.GetHashEncoding(System.String)">
+            <summary>
+            哈希加密一个字符串
+            SHA512函数
+            </summary>
+            <param name="Security"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.DateHelper">
+            <summary>
+            日期操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetDate">
+            <summary>
+            返回当前时间的标准日期格式
+            </summary>
+            <returns>yyyy-MM-dd</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetTime">
+            <summary>
+            返回当前时间的标准时间格式string
+            </summary>
+            <returns>HH:mm:ss</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetDateTime">
+            <summary>
+            返回当前时间的标准时间格式string
+            </summary>
+            <returns>yyyy-MM-dd HH:mm:ss</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetDateTimeOfDay(System.Int32)">
+            <summary>
+            返回相对于当前时间的相对天数
+            </summary>
+            <param name="relativeday">增加的天数</param>
+            <returns>相对天数</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetDateTimeOfMinutes(System.Int32)">
+            <summary>
+            返回相对于当前时间的相对分钟数
+            </summary>
+            <param name="relativeday">增加的分钟数</param>
+            <returns>相对分钟数</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetDateTimeF">
+            <summary>
+            返回当前时间的标准时间格式
+            </summary>
+            <returns>yyyy-MM-dd HH:mm:ss:fffffff</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetDate(System.String,System.String)">
+            <summary>
+            返回指定日期格式
+            </summary>
+            <param name="datetimestr">需要转换的时间</param>
+            <param name="replacestr">指定格式</param>
+            <returns>转换后的时间</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.ConvertToUnixTimestamp(System.DateTime)">
+            <summary>
+            转换时间为unix时间戳
+            </summary>
+            <param name="date">需要传递UTC时间,避免时区误差,例:DataTime.UTCNow</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.FormatDate(System.Int32)">
+            <summary>
+            将8位日期型整型数据转换为日期字符串数据
+            默认为英文格式
+            </summary>
+            <param name="date">整型日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.FormatDate(System.Int32,System.Boolean)">
+            <summary>
+            将8位日期型整型数据转换为日期字符串数据
+            </summary>
+            <param name="date">整型日期</param>
+            <param name="chnType">是否以中文年月日输出</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetStandardDateTime(System.String,System.String)">
+            <summary>
+            返回标准时间
+            </summary>
+            <param name="fDateTime">转换时间</param>
+            <param name="formatStr">转换格式</param>
+            <returns>转换后的时间</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetStandardDateTime(System.String)">
+            <summary>
+            返回标准时间 yyyy-MM-dd HH:mm:ss
+            </summary>
+            <param name="fDateTime">转换时间</param>
+            <returns>yyyy-MM-dd HH:mm:ss</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.GetStandardDate(System.String)">
+            <summary>
+            返回标准时间 yyyy-MM-dd
+            </summary>
+            <param name="fDate">转换时间</param>
+            <returns>yyyy-MM-dd</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.DateOfDiffSeconds(System.String,System.Int32)">
+            <summary>
+            返回相差的秒数
+            </summary>
+            <param name="time">时间字符串</param>
+            <param name="Sec">秒数</param>
+            <returns>相差的秒数</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.DateOfDiffMinutes(System.String,System.Int32)">
+            <summary>
+            返回相差的分钟数
+            </summary>
+            <param name="time">时间字符串</param>
+            <param name="minutes">分钟数</param>
+            <returns>相差的分钟数</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.DateOfDiffHours(System.String,System.Int32)">
+            <summary>
+            返回相差的小时数
+            </summary>
+            <param name="time">时间字符串</param>
+            <param name="hours">小时数</param>
+            <returns>相差的小时数</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.IsTime(System.String)">
+            <summary>
+            是否常规时间
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.IsDateString(System.String)">
+            <summary>
+            判断字符串是否是yy-mm-dd字符串
+            </summary>
+            <param name="str">待判断字符串</param>
+            <returns>判断结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.YearIsLeap(System.Int32)">
+            <summary>
+            判断某年是否为闰年
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <returns>是否为闰年</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.YearOfTotalDay(System.Int32)">
+            <summary>
+            计算某年共有多少天
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <returns>共有多少天</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.YearOfFirstDay(System.Int32)">
+            <summary>
+            获得某年第一天的日期
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <returns>第一天日期</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.YearOfLastDay(System.Int32)">
+            <summary>
+            获得某年最后一天的日期
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <returns>最后一天日期</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.MonthOfTotalDay">
+            <summary>
+            获得当前年当前月的总天数
+            </summary>
+            <returns>共有多少天</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.MonthOfTotalDay(System.Int32,System.Int32)">
+            <summary>
+            获得某年某月的总天数
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <param name="month">需要计算的月份</param>
+            <returns>共有多少天</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.MonthOfFirstDay">
+            <summary>
+            获得当前年当前月第一天的日期
+            </summary>
+            <returns>第一天日期</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.MonthOfFirstDay(System.Int32,System.Int32)">
+            <summary>
+            获得某年某月第一天的日期
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <param name="month">需要计算的月份</param>
+            <returns>第一天日期</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.MonthOfLastDay">
+            <summary>
+            获得当前年当前月最后一天的日期
+            </summary>
+            <returns>最后一天日期</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.MonthOfLastDay(System.Int32,System.Int32)">
+            <summary>
+            获得某年某月最后一天的日期
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <param name="month">需要计算的月份</param>
+            <returns>最后一天日期</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.DateHelper.WeekInfo">
+            <summary>
+            周（星期）信息实体类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekInfo.#ctor">
+            <summary>
+            周（星期）信息实体类
+            </summary>
+        </member>
+        <member name="P:DawnXZ.DawnUtility.DateHelper.WeekInfo.Number">
+            <summary>
+            周数
+            </summary>
+        </member>
+        <member name="P:DawnXZ.DawnUtility.DateHelper.WeekInfo.BeginDate">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:DawnXZ.DawnUtility.DateHelper.WeekInfo.EndDate">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekInfo.ToString">
+            <summary>
+            输出第几周和日期间隔
+            <para>默认格式：</para>
+            <para>第几周，从2012年12月21日至2112年12月21日。</para>
+            </summary>
+            <returns>第几周和日期间隔</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekInfo.GetWeekString(System.Boolean)">
+            <summary>
+            输出第几周
+            </summary>
+            <param name="isFill">少于2位时是否补零</param>
+            <returns>第几周</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekInfo.GetDateString(System.String,System.String)">
+            <summary>
+            输出日期间隔
+            </summary>
+            <param name="inputString">输出格式化字符串</param>
+            <param name="dateString">日期格式化字符串</param>
+            <returns>日期间隔</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekOfFirstDay(System.Int32,System.Boolean,System.Int32@)">
+            <summary>
+            获得年度第一个周一的日期
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <param name="jumpYear">年度第一周是否跳过跨年的周数</param>
+            <param name="offset">年度第一个周一偏移量</param>
+            <returns>年度第一个周一的日期</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekOfList(System.Int32,System.Boolean)">
+            <summary>
+            获得年度周（星期）信息实体集合列表
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <param name="jumpYear">年度第一周是否跳过跨年的周数</param>
+            <returns>周（星期）信息实体集合列表对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekOfDate(System.Int32,System.Int32,System.Boolean,System.DateTime@,System.DateTime@)">
+            <summary>
+            获得某年第某周的开始日期和结束日期
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <param name="weekNumber">需要计算的周数</param>
+            <param name="jumpYear">年度第一周是否跳过跨年的周数</param>
+            <param name="weekBeginDate">开始日期</param>
+            <param name="weekEndDate">结束日期</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekOfCurrent(System.DateTime,System.Boolean)">
+            <summary>
+            获得某个日期属于某年的第几周
+            </summary>
+            <param name="currentDate">需要计算的日期</param>
+            <param name="jumpYear">年度第一周是否跳过跨年的周数</param>
+            <returns>某年的第几周</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.WeekOfTotalWeeks(System.DateTime,System.DateTime,System.DayOfWeek)">
+            <summary>
+            统计一段时间内有多少个星期几
+            </summary>
+            <param name="beginDate">开始日期</param>
+            <param name="endDate">结束日期</param>
+            <param name="weekNumber">星期几</param>
+            <returns>多少个星期几</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.QuarterOfCurrent">
+            <summary>
+            计算当前月属于第几季度
+            </summary>
+            <returns>当前年第几季度</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.QuarterOfCurrent(System.Int32)">
+            <summary>
+            计算某个月属于第几季度
+            </summary>
+            <param name="month">需要计算的月份</param>
+            <returns>某年第几季度</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.QuarterOfDate(System.DateTime@,System.DateTime@)">
+            <summary>
+            获得当前年当前季度的开始日期和结束日期
+            </summary>
+            <param name="quarterBeginDate">开始日期</param>
+            <param name="quarterEndDate">结束日期</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.QuarterOfDate(System.DateTime,System.DateTime@,System.DateTime@)">
+            <summary>
+            获得指定日期所在季度的开始日期和结束日期
+            </summary>
+            <param name="fromDate">需要计算的日期</param>
+            <param name="quarterBeginDate">开始日期</param>
+            <param name="quarterEndDate">结束日期</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DateHelper.QuarterOfDate(System.Int32,System.Int32,System.DateTime@,System.DateTime@)">
+            <summary>
+            获得某年第某季度的开始日期和结束日期
+            </summary>
+            <param name="year">需要计算的年份</param>
+            <param name="quarter">需要计算的季度</param>
+            <param name="quarterBeginDate">开始日期</param>
+            <param name="quarterEndDate">结束日期</param>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.DawnHelper">
+            <summary>
+            晨曦常用操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.StatusConvertByObject(System.Object)">
+            <summary>
+            转换目标对象状态表示形式
+            模式：true √、false ×
+            </summary>
+        </member>
+        <member name="P:DawnXZ.DawnUtility.DawnHelper.GetMonthesByEnglish">
+            <summary>
+            根据阿拉伯数字返回月份的名称
+            英文
+            </summary>	
+        </member>
+        <member name="P:DawnXZ.DawnUtility.DawnHelper.GetMonthesByChinese">
+            <summary>
+            根据阿拉伯数字返回月份的名称
+            中文
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.CheckProgramState">
+            <summary>
+            检测应用程序是否已经启动
+            </summary>
+            <returns>是/否</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.JsonFromDataTable(System.Data.DataTable)">
+            <summary>
+            将数据表转换成JSON类型串
+            </summary>
+            <param name="dt">要转换的数据表</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.JsonFromDataTable(System.Data.DataTable,System.Boolean)">
+            <summary>
+            将数据表转换成JSON类型串
+            </summary>
+            <param name="dt">要转换的数据表</param>
+            <param name="dt_dispose">数据表转换结束后是否dispose掉</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.JsonCharFilter(System.String)">
+            <summary>
+            Json特符字符过滤，参见http://www.json.org/
+            </summary>
+            <param name="sourceStr">要过滤的源字符串</param>
+            <returns>返回过滤的字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.CloneTo``1(``0)">
+            <summary>
+            利用序列化与反序列化完成引用对象的复制
+            </summary>
+            <typeparam name="T">泛型对象</typeparam>
+            <param name="RealObject">泛型来源对象</param>
+            <returns>复制后的泛型对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.Clone``1(``0)">
+            <summary>
+            对象克隆
+            </summary>
+            <typeparam name="T">泛型对象</typeparam>
+            <param name="RealObject">克隆对象</param>
+            <returns>克隆后的对象</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DawnHelper.CompareFile(System.String,System.String)">
+            <summary>
+            比较两个文件是否完全相等
+            </summary>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.DesHelper">
+            <summary>
+            DES加解密操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DesHelper.Encode(System.String,System.String)">
+            <summary>
+            DES 加密字符串
+            </summary>
+            <param name="encryptString">待加密的字符串</param>
+            <param name="encryptKey">加密密钥,要求为8位</param>
+            <returns>加密成功返回加密后的字符串,失败返回源串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.DesHelper.Decode(System.String,System.String)">
+            <summary>
+            DES 解密字符串
+            </summary>
+            <param name="decryptString">待解密的字符串</param>
+            <param name="decryptKey">解密密钥,要求为8位,和加密密钥相同</param>
+            <returns>解密成功返回解密后的字符串,失败返 null</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.RMBHelper">
+            <summary>
+            人民币相关操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RMBHelper.CmycurD(System.Decimal)">
+            <summary> 
+            转换人民币大小金额 
+            </summary> 
+            <param name="num">金额</param> 
+            <returns>返回大写形式</returns> 
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RMBHelper.CmycurD(System.String)">
+            <summary> 
+            转换人民币大小金额  (一个重载，将字符串先转换成数字在调用CmycurD)
+            </summary> 
+            <param name="numstr">用户输入的金额，字符串形式未转成decimal</param> 
+            <returns></returns> 
+        </member>
+        <member name="T:DawnXZ.DawnUtility.RSAHelper">
+            <summary>
+            非对称RSA加密类 可以参考
+            <para>http://www.cnblogs.com/hhh/archive/2011/06/03/2070692.html</para>
+            <para>http://blog.csdn.net/zhilunchen/article/details/2943158</para>
+            <para>若是私匙加密 则需公钥解密</para>
+            <para>反之公钥加密 私匙来解密</para>
+            <para>需要BigInteger类来辅助</para>
+            <para>使用方法：</para>
+            <para>RSAHelper.RSAKey keyPair = RSAHelper.GetRASKey();</para>
+            <para>公钥：keyPair.PublicKey、私钥：keyPair.PrivateKey</para>
+            <para>加密：string en = RSAHelper.EncryptString(str, keyPair.PrivateKey);</para>
+            <para>解密：string en = RSAHelper.DecryptString(en, keyPair.PublicKey);</para>
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.RSAHelper.DWKEYSIZE">
+            <summary>
+            RSA的容器 可以解密的源字符串长度为 DWKEYSIZE/8-11 
+            </summary>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.RSAHelper.RSAKey">
+            <summary>
+            RSA加密的密匙结构  公钥和私匙
+            </summary>
+        </member>
+        <member name="P:DawnXZ.DawnUtility.RSAHelper.RSAKey.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="P:DawnXZ.DawnUtility.RSAHelper.RSAKey.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.GetRASKey">
+            <summary>
+            得到RSA的解密的密匙对
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.CheckSourceValidate(System.String)">
+            <summary>
+            检查明文的有效性 DWKEYSIZE/8-11 长度之内为有效 中英文都算一个字符
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.ComponentKey(System.Byte[],System.Byte[])">
+            <summary>
+            组合成密匙字符串
+            </summary>
+            <param name="b1"></param>
+            <param name="b2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.ResolveKey(System.String,System.Byte[]@,System.Byte[]@)">
+            <summary>
+            解析密匙
+            </summary>
+            <param name="key">密匙</param>
+            <param name="b1">RSA的相应参数1</param>
+            <param name="b2">RSA的相应参数2</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.EncryptString(System.String,System.String)">
+            <summary>
+            字符串加密
+            </summary>
+            <param name="source">源字符串 明文</param>
+            <param name="key">密匙</param>
+            <returns>加密遇到错误将会返回原字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.DecryptString(System.String,System.String)">
+            <summary>
+            字符串解密
+            </summary>
+            <param name="encryptString">密文</param>
+            <param name="key">密钥</param>
+            <returns>遇到解密失败将会返回原字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.EncryptString(System.String,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            用指定的密匙加密 
+            </summary>
+            <param name="source">明文</param>
+            <param name="d">可以是RSACryptoServiceProvider生成的D</param>
+            <param name="n">可以是RSACryptoServiceProvider生成的Modulus</param>
+            <returns>返回密文</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.RSAHelper.DecryptString(System.String,DawnXZ.DawnUtility.BigInteger,DawnXZ.DawnUtility.BigInteger)">
+            <summary>
+            用指定的密匙加密 
+            </summary>
+            <param name="encryptString">密文</param>
+            <param name="e">可以是RSACryptoServiceProvider生成的Exponent</param>
+            <param name="n">可以是RSACryptoServiceProvider生成的Modulus</param>
+            <returns>返回明文</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.StringHelper">
+            <summary>
+            字符串操作辅助类
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.StringHelper.RegexBr">
+            <summary>
+            回车、换行符
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetStringLength(System.String)">
+            <summary>
+            返回字符串真实长度, 1个汉字长度为2
+            </summary>
+            <returns>字符串真实长度</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.ClearLastChar(System.String)">
+            <summary>
+            删除最后一个字符
+            </summary>
+            <param name="strValue">清理的字符串</param>
+            <returns>清理后的字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetOccurrenceNumber(System.String,System.String)">
+            <summary>
+            查找一个字符串在另一个字符串中出现的次数
+            </summary>
+            <param name="strSource">源数据</param>
+            <param name="strFind">查找数据</param>
+            <returns>出现次数，默认为 0</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.IsCompriseStr(System.String,System.String,System.String)">
+            <summary>
+            检测字符串中是否存在指定的字符串
+            </summary>
+            <param name="str">要查找的字符串</param>
+            <param name="stringarray">原字符串</param>
+            <param name="strsplit">分隔标记</param>
+            <returns>存在 / 不存在</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetInArrayID(System.String,System.String[],System.Boolean)">
+            <summary>
+            判断指定字符串在指定字符串数组中的位置
+            </summary>
+            <param name="strSearch">字符串</param>
+            <param name="stringArray">字符串数组</param>
+            <param name="caseInsensetive">是否不区分大小写, true为不区分, false为区分</param>
+            <returns>字符串在指定字符串数组中的位置, 如不存在则返回-1</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetInArrayID(System.String,System.String[])">
+            <summary>
+            判断指定字符串在指定字符串数组中的位置
+            </summary>
+            <param name="strSearch">字符串</param>
+            <param name="stringArray">字符串数组</param>
+            <returns>字符串在指定字符串数组中的位置, 如不存在则返回-1</returns>		
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InArray(System.String,System.String[],System.Boolean)">
+            <summary>
+            判断指定字符串是否属于指定字符串数组中的一个元素
+            </summary>
+            <param name="strSearch">字符串</param>
+            <param name="stringArray">字符串数组</param>
+            <param name="caseInsensetive">是否不区分大小写, true为不区分, false为区分</param>
+            <returns>判断结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InArray(System.String,System.String[])">
+            <summary>
+            判断指定字符串是否属于指定字符串数组中的一个元素
+            </summary>
+            <param name="str">字符串</param>
+            <param name="stringarray">字符串数组</param>
+            <returns>判断结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InArray(System.String,System.String)">
+            <summary>
+            判断指定字符串是否属于指定字符串数组中的一个元素
+            </summary>
+            <param name="str">字符串</param>
+            <param name="stringarray">内部以逗号分割单词的字符串</param>
+            <returns>判断结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InArray(System.String,System.String,System.String)">
+            <summary>
+            判断指定字符串是否属于指定字符串数组中的一个元素
+            </summary>
+            <param name="str">字符串</param>
+            <param name="stringarray">内部以逗号分割单词的字符串</param>
+            <param name="strsplit">分割字符串</param>
+            <returns>判断结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InArray(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            判断指定字符串是否属于指定字符串数组中的一个元素
+            </summary>
+            <param name="str">字符串</param>
+            <param name="stringarray">内部以逗号分割单词的字符串</param>
+            <param name="strsplit">分割字符串</param>
+            <param name="caseInsensetive">是否不区分大小写, true为不区分, false为区分</param>
+            <returns>判断结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetNumber(System.String)">
+            <summary>
+            获取字符串中的数字
+            </summary>
+            <param name="strString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetChinese(System.String)">
+            <summary>
+            获取字符串中的汉字
+            </summary>
+            <param name="strString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetSpellingOfAcronymAll(System.String)">
+            <summary>
+            获取汉字第一个拼音
+            所有汉字
+            </summary>
+            <param name="strChinese">汉字</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetSpellingOfAcronymFirst(System.String)">
+            <summary>
+            获取汉字第一个拼音
+            仅第一个
+            </summary>
+            <param name="strChinese">汉字</param>
+            <returns></returns>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.StringHelper.SpellingValue">
+            <summary>
+            定义拼音区编码数组
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.StringHelper.SpellingName">
+            <summary>
+            定义拼音数组
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetSpelling(System.String)">
+            <summary>
+            汉字转换成全拼的拼音
+            </summary>
+            <param name="strChinese">汉字字符串</param>
+            <returns>转换后的拼音字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.RTrim(System.String)">
+            <summary>
+            删除字符串尾部的回车/换行/空格
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.ClearBR(System.String)">
+            <summary>
+            清除给定字符串中的回车及换行符
+            </summary>
+            <param name="str">要清除的字符串</param>
+            <returns>清除后返回的字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.SplitString(System.String,System.String)">
+            <summary>
+            分割字符串
+            </summary>
+            <param name="strContent">要分割的字符串</param>
+            <param name="strSplit">分割标识</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.SplitString(System.String,System.String,System.Int32)">
+            <summary>
+            分割字符串
+            </summary>
+            <param name="strContent">要分割的字符串</param>
+            <param name="strSplit">分割标识</param>
+            <param name="count">数组大小</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.SplitString(System.String,System.String,System.Boolean)">
+            <summary>
+            分割字符串
+            </summary>
+            <param name="strContent">被分割的字符串</param>
+            <param name="strSplit">分割符</param>
+            <param name="ignoreRepeatItem">忽略重复项</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.SplitString(System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            分割字符串
+            </summary>
+            <param name="strContent">被分割的字符串</param>
+            <param name="strSplit">分割符</param>
+            <param name="ignoreRepeatItem">忽略重复项</param>
+            <param name="maxElementLength">单个元素最大长度</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.SplitString(System.String,System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分割字符串
+            </summary>
+            <param name="strContent">被分割的字符串</param>
+            <param name="strSplit">分割符</param>
+            <param name="ignoreRepeatItem">忽略重复项</param>
+            <param name="minElementLength">单个元素最小长度</param>
+            <param name="maxElementLength">单个元素最大长度</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.ReplaceString(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            自定义的替换字符串函数
+            </summary>
+            <param name="SourceString">源字符串</param>
+            <param name="SearchString">要查找的值</param>
+            <param name="ReplaceString">替换字符串</param>
+            <param name="IsCaseInsensetive">是否忽略大小写</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.DistinctStringArray(System.String[])">
+            <summary>
+            清除字符串数组中的重复项
+            </summary>
+            <param name="strArray">字符串数组</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.DistinctStringArray(System.String[],System.Int32)">
+            <summary>
+            清除字符串数组中的重复项
+            </summary>
+            <param name="strArray">字符串数组</param>
+            <param name="maxElementLength">字符串数组中单个元素的最大长度</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.PadStringArray(System.String[],System.Int32,System.Int32)">
+            <summary>
+            过滤字符串数组中每个元素为合适的大小
+            当长度小于minLength时，忽略掉,-1为不限制最小长度
+            当长度大于maxLength时，取其前maxLength位
+            如果数组中有null元素，会被忽略掉
+            </summary>
+            <param name="strArray">原始数组</param>
+            <param name="minLength">单个元素最小长度</param>
+            <param name="maxLength">单个元素最大长度</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InterceptGetSubString(System.String,System.Int32,System.String)">
+            <summary>
+            字符串如果操过指定长度则将超出的部分用指定字符串代替
+            </summary>
+            <param name="p_SrcString">要检查的字符串</param>
+            <param name="p_Length">指定长度</param>
+            <param name="p_TailString">用于替换的字符串</param>
+            <returns>截取后的字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InterceptGetSubString(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            取指定长度的字符串超出的部分用指定字符串代替
+            </summary>
+            <param name="p_SrcString">要检查的字符串</param>
+            <param name="p_StartIndex">起始位置</param>
+            <param name="p_Length">指定长度</param>
+            <param name="p_TailString">用于替换的字符串</param>
+            <returns>截取后的字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.GetUnicodeSubString(System.String,System.Int32,System.String)">
+            <summary>
+            取指定长度的字符串超出的部分用指定字符串代替
+            Unicode 字符集
+            </summary>
+            <param name="str">要检查的字符串</param>
+            <param name="len">指定长度</param>
+            <param name="p_TailString">用于替换的字符串</param>
+            <returns>截取后的 Unicode 字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InterceptByTitles(System.String,System.Int32)">
+            <summary>
+            截断过长标题，中英文通用
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InterceptByTitle(System.String,System.Int32)">
+            <summary>
+            截断过长标题，默认以“...”代替
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InterceptByTitle(System.String,System.Int32,System.String)">
+            <summary>
+            截断过长标题，并以指定字符串替换
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InterceptCutString(System.String,System.Int32)">
+            <summary>
+            从字符串的指定位置开始截取到字符串的结尾
+            </summary>
+            <param name="strValue">原字符串</param>
+            <param name="startIndex">子字符串的起始位置</param>
+            <returns>子字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.InterceptCutString(System.String,System.Int32,System.Int32)">
+            <summary>
+            从字符串的指定位置截取指定长度的子字符串
+            </summary>
+            <param name="strValue">原字符串</param>
+            <param name="startIndex">子字符串的起始位置</param>
+            <param name="length">子字符串的长度</param>
+            <returns>子字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.StringToIntArray(System.String)">
+            <summary>
+            字符串转成整型数组
+            </summary>
+            <param name="idList">要转换的字符串</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.StringToIntArray(System.String,System.Int32)">
+            <summary>
+            字符串转成整型数组
+            </summary>
+            <param name="idList">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.SqlMash(System.String)">
+            <summary>
+            改正sql语句中的转义字符
+            </summary>
+            <param name="strvalues">输入值</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.SqlSwitch(System.String)">
+            <summary>
+            替换sql语句中的有问题符号
+            </summary>
+            <param name="strvalues">输入值</param>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.BytesEquals(System.Byte[],System.Byte[])">
+            <summary>
+            比较两个字节数组是否相等
+            </summary>
+            <param name="b1">byte数组1</param>
+            <param name="b2">byte数组2</param>
+            <returns>是否相等</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.RemoveNumber(System.String)">
+            <summary>
+            去掉字符串中的数字
+            </summary>
+            <param name="strValue">需要排除的字符串</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringHelper.RemoveNotNumber(System.String)">
+            <summary>
+            去掉字符串中的非数字
+            </summary>
+            <param name="strValue">需要排除的字符串</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.StringJoiner">
+            <summary>
+            字符串拼装操作辅助类
+            </summary>
+        </member>
+        <member name="F:DawnXZ.DawnUtility.StringJoiner.FBuilder">
+            <summary>
+            字符串操作类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringJoiner.#ctor">
+            <summary>
+            字符串拼装操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringJoiner.op_Implicit(System.String)~DawnXZ.DawnUtility.StringJoiner">
+            <summary>
+            字符串拼装操作
+            </summary>
+            <param name="value">需要拼装的值</param>
+            <returns>拼装后的值</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringJoiner.op_Addition(DawnXZ.DawnUtility.StringJoiner,System.String)">
+            <summary>
+            字符串拼装操作
+            <para>重载加号运算符</para>
+            </summary>
+            <param name="self">拼装操作本身</param>
+            <param name="value">需要拼装的值</param>
+            <returns>拼装后的值</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringJoiner.op_Addition(DawnXZ.DawnUtility.StringJoiner,System.Object)">
+            <summary>
+            字符串拼装操作
+            <para>重载加号运算符</para>
+            </summary>
+            <param name="self">拼装操作本身</param>
+            <param name="value">需要拼装的对象</param>
+            <returns>拼装后的值</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringJoiner.op_Implicit(DawnXZ.DawnUtility.StringJoiner)~System.String">
+            <summary>
+            转换为字符串
+            </summary>
+            <param name="value">需要转换的拼装对象</param>
+            <returns>转换后的字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.StringJoiner.ToString">
+            <summary>
+            重载字符串转换
+            </summary>
+            <returns>转换后的字符串</returns>
+        </member>
+        <member name="T:DawnXZ.DawnUtility.TypeHelper">
+            <summary>
+            数据类型转换操作辅助类
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToBoolean(System.Object,System.Boolean)">
+            <summary>
+            将对象转换为 Boolean 类型
+            <para>1 | true, 0 | false</para>
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Boolean 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToTinyInt(System.Object)">
+            <summary>
+            将对象转换为 TinyInt 类型
+            默认返回 0
+            范围：0 — 255
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 TinyInt 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToTinyInt(System.Object,System.Byte)">
+            <summary>
+            将对象转换为 TinyInt 类型
+            范围：0 — 255
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 TinyInt 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToTinyInt(System.String)">
+            <summary>
+            将对象转换为 TinyInt 类型
+            默认返回 0
+            范围：0 — 255
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 TinyInt 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToTinyInt(System.String,System.Byte)">
+            <summary>
+            将对象转换为 TinyInt 类型
+            范围：0 — 255
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 TinyInt 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.NumIsByteTinyint(System.Object)">
+            <summary>
+            判断对象是否为0-255数据
+            </summary>
+            <param name="objVerify">需要验证的对象</param>
+            <returns>True/False，是/否</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt16(System.Object)">
+            <summary>
+            将对象转换为 Int16 类型
+            默认返回 0
+            范围：-32,768 — 32,767
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 Int16 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt16(System.Object,System.Int16)">
+            <summary>
+            将对象转换为 Int16 类型
+            范围：-32,768 — 32,767
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Int16 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt16(System.String)">
+            <summary>
+            将对象转换为 Int16 类型
+            默认返回 0
+            范围：-32,768 — 32,767
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 Int16 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt16(System.String,System.Int16)">
+            <summary>
+            将对象转换为 Int16 类型
+            范围：-32,768 — 32,767
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Int16 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt32(System.Object)">
+            <summary>
+            将对象转换为 Int32 类型
+            默认返回 0
+            范围：-2,147,483,648 — 2,147,483,647
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 Int32 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt32(System.Object,System.Int32)">
+            <summary>
+            将对象转换为 Int32 类型
+            范围：-2,147,483,648 — 2,147,483,647
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Int32 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt32(System.String)">
+            <summary>
+            将对象转换为 Int32 类型
+            默认返回 0
+            范围：-2,147,483,648 — 2,147,483,647
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 Int32 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt32(System.String,System.Int32)">
+            <summary>
+            将对象转换为 Int32 类型
+            范围：-2,147,483,648 — 2,147,483,647
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Int32 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt64(System.Object)">
+            <summary>
+            将对象转换为 Int64 类型
+            默认返回 0
+            范围：-9,223,372,036,854,775,808 — 9,223,372,036,854,775,807
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 Int64 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt64(System.Object,System.Int64)">
+            <summary>
+            将对象转换为 Int64 类型
+            范围：-9,223,372,036,854,775,808 — 9,223,372,036,854,775,807
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Int64 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt64(System.String)">
+            <summary>
+            将对象转换为 Int64 类型
+            默认返回 0
+            范围：-9,223,372,036,854,775,808 — 9,223,372,036,854,775,807
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 Int64 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToInt64(System.String,System.Int64)">
+            <summary>
+            将对象转换为 Int64 类型
+            范围：-9,223,372,036,854,775,808 — 9,223,372,036,854,775,807
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Int64 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToFloat(System.Object,System.Single)">
+            <summary>
+            将对象转换为 Float 类型
+            范围：- 1.79E+308 to -2.23E-308, 0 and 2.23E-308 to 1.79E+308
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Float 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToFloat(System.Object)">
+            <summary>
+            将对象转换为 Float 类型
+            默认返回 0
+            范围：- 1.79E+308 to -2.23E-308, 0 and 2.23E-308 to 1.79E+308
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 Float 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToFloat(System.String)">
+            <summary>
+            将对象转换为 Float 类型
+            默认返回 0
+            范围：- 1.79E+308 to -2.23E-308, 0 and 2.23E-308 to 1.79E+308
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 Float 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToFloat(System.String,System.Single)">
+            <summary>
+            将对象转换为 Float 类型
+            范围：- 1.79E+308 to -2.23E-308, 0 and 2.23E-308 to 1.79E+308
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Float 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDouble(System.Object,System.Double)">
+            <summary>
+            将对象转换为 Double 类型
+            <para>范围：±5.0 × 10−324 到 ±1.7 × 10308</para>
+            <para>15 到 16 位</para>
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Double 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDouble(System.Object)">
+            <summary>
+            将对象转换为 Double 类型
+            默认返回 0
+            <para>范围：±5.0 × 10−324 到 ±1.7 × 10308</para>
+            <para>15 到 16 位</para>
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 Double 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDouble(System.String)">
+            <summary>
+            将对象转换为 Double 类型
+            默认返回 0
+            <para>范围：±5.0 × 10−324 到 ±1.7 × 10308</para>
+            <para>15 到 16 位</para>
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 Double 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDouble(System.String,System.Double)">
+            <summary>
+            将对象转换为 Double 类型
+            <para>范围：±5.0 × 10−324 到 ±1.7 × 10308</para>
+            <para>15 到 16 位</para>
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Double 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDecimal(System.Object,System.Decimal)">
+            <summary>
+            将对象转换为 Decimal 类型
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Decimal 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDecimal(System.Object)">
+            <summary>
+            将对象转换为 Decimal 类型
+            <remarks>
+            默认返回 0
+            </remarks>
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 Decimal 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDecimal(System.String)">
+            <summary>
+            将对象转换为 Decimal 类型
+            <remarks>
+            默认返回 0
+            </remarks>
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 Decimal 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TypeToDecimal(System.String,System.Decimal)">
+            <summary>
+            将对象转换为 Decimal 类型
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 Decimal 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.StrToDateTime(System.Int32)">
+            <summary>
+            将对象转换为 DateTime 类型
+            </summary>
+            <param name="year">年份</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.StrToDateTime(System.Int32,System.Int32)">
+            <summary>
+            将对象转换为 DateTime 类型
+            </summary>
+            <param name="year">年份</param>
+            <param name="month">月份</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.StrToDateTime(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            将对象转换为 DateTime 类型
+            </summary>
+            <param name="year">年份</param>
+            <param name="month">月份</param>
+            <param name="day">日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.StrToDateTime(System.String,System.DateTime)">
+            <summary>
+            将对象转换为 DateTime 类型
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 DateTime 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.StrToDateTime(System.String)">
+            <summary>
+            将对象转换为 DateTime 类型
+            默认返回 当前时间
+            </summary>
+            <param name="strValue">要转换的值</param>
+            <returns>转换后的 DateTime 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ObjectToDateTime(System.Object)">
+            <summary>
+            将对象转换为 DateTime 类型
+            默认返回 当前时间
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <returns>转换后的 DateTime 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ObjectToDateTime(System.Object,System.DateTime)">
+            <summary>
+            将对象转换为 DateTime 类型
+            </summary>
+            <param name="objValue">要转换的值</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的 DateTime 类型结果</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ToColor(System.String)">
+            <summary>
+            将字符串转换为Color
+            </summary>
+            <param name="strColor">颜色字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.SafeInt32(System.Object)">
+            <summary>
+            将long型数值转换为Int32类型
+            </summary>
+            <param name="objNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.SBCCaseToNumberic(System.String)">
+            <summary>
+            将全角数字转换为数字
+            </summary>
+            <param name="SBCCase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.FormatBytesStr(System.Int32)">
+            <summary>
+            格式化字节数字符串
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.NumIsNumeric(System.Object)">
+            <summary>
+            判断对象是否为Int32类型
+            </summary>
+            <param name="objVerify">需要验证的对象</param>
+            <returns>True/False，是/否</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ToSChinese(System.String)">
+            <summary>
+            转换为简体中文
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ToTChinese(System.String)">
+            <summary>
+            转换为繁体中文
+            </summary>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ToBase64Encode(System.String)">
+            <summary>
+            将普通字符串转换为Base64字符串
+            </summary>
+            <param name="theStr">待转换字符串</param>
+            <returns>Base64字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ToBase64Decode(System.String)">
+            <summary>
+            将Base64字符串转换为普通字符串
+            </summary>
+            <param name="theStr">待转换字符串</param>
+            <returns>普通字符串</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ToHexOfEncode(System.String)">
+            <summary>
+            <para>将字符串内容转化为16进制数据编码，其逆过程是Decode</para>
+            <para>参数说明：</para>
+            <para>strEncode 需要转化的原始字符串</para>
+            <para>转换的过程是直接把字符转换成Unicode字符,比如数字"3"-->0033,汉字"我"-->U+6211</para>
+            <para>函数decode的过程是encode的逆过程.</para>
+            </summary>
+            <param name="strEncode">待转换字符串</param>
+            <returns>十六进制</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ToHexOfDecode(System.String)">
+            <summary>
+            作用：将16进制数据编码转化为字符串，是Encode的逆过程
+            </summary>
+            <param name="strDecode">待转换字符串</param>
+            <returns>十六进制</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.TakeTheTime(System.DateTime,System.Int32,System.Byte)">
+            <summary>
+            时间分钟数取整
+            </summary>
+            <param name="takeTime">需要取整的时间</param>
+            <param name="interval">时间间隔</param>
+            <param name="takeFlag">
+            取整标记
+            <para>1 向上取整[1.2 -> 2]</para>
+            <para>2 向下取整[1.2 -> 1]</para>
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ValToDate(System.String)">
+            <summary>
+            时间转换器
+            <para>字符串拆分法</para>
+            <para>20140705102000</para>
+            </summary>
+            <param name="times">需要转换的时间</param>
+            <returns>时间</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ValToDateTry(System.String)">
+            <summary>
+            时间转换器
+            <para>DateTime.TryParse</para>
+            <para>2014-07-05 10:20:00</para>
+            </summary>
+            <param name="dateString">需要转换的时间</param>
+            <returns>时间</returns>
+        </member>
+        <member name="M:DawnXZ.DawnUtility.TypeHelper.ValToDateAt(System.String)">
+            <summary>
+            时间转换器
+            <para>DateTime.ParseExact</para>
+            <para>20140705102000</para>
+            </summary>
+            <param name="dateString">需要转换的时间</param>
+            <returns>时间</returns>
+        </member>
     </members>
 </doc>
