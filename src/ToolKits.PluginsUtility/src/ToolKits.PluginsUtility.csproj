@@ -31,11 +31,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.PluginsUtility\src\PluginsUtility.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.PluginsUtility\src\bin\PluginsUtility.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.PluginsUtility\src\PluginsUtility.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.PluginsUtility\src\bin\PluginsUtility.xml</DocumentationFile>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>

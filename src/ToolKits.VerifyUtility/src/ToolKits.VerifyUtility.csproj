@@ -31,11 +31,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.VerifyUtility\src\VerifyUtility.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.VerifyUtility\src\bin\VerifyUtility.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.VerifyUtility\src\VerifyUtility.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.VerifyUtility\src\bin\VerifyUtility.xml</DocumentationFile>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>

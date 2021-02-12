@@ -32,11 +32,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.MongoDB\src\DBUtility.MongoDB.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.MongoDB\src\bin\DBUtility.MongoDB.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.MongoDB\src\DBUtility.MongoDB.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.MongoDB\src\bin\DBUtility.MongoDB.xml</DocumentationFile>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
