@@ -41,6 +41,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="PagerHelper.css" />
+    <None Remove="PagerHelper.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="PagerHelper.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PagerHelper.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
