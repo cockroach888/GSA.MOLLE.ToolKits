@@ -24,11 +24,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Serialization;
-
-#if NET40
+#if (!NET35 && !NET20)
 using System.Linq;
 #endif
-
 using System.Runtime.Serialization;
 
 namespace DawnXZ.DawnUtility
@@ -229,7 +227,7 @@ namespace DawnXZ.DawnUtility
             }
         }
 
-#if NET40
+#if (!NET35 && !NET20)
         /// <summary>
         /// List克隆
         /// </summary>

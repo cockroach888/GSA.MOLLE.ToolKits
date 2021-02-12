@@ -17,7 +17,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-#if NET40
+#if (NET48 || NET472 || NET471 || NET47 || NET462 || NET461 || NET46 || NET452 || NET451 || NET45 || NET40)
 using System;
 using System.Collections.Generic;
 using System.Linq;
