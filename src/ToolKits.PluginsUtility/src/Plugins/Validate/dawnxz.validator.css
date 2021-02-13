@@ -1,0 +1,117 @@
+﻿/*  验证规则 Validator
+----------------------------------------*/
+.validator-tip {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 240px;
+    border: 1px solid #40B3FF;
+    background: #E5F5FF url(images/msg_bg.png) 5px -143px no-repeat;
+    font-size: 12px;
+    color: #666;
+    padding: 5px 5px 5px 26px;
+    line-height: 20px;
+    text-align: left;
+    overflow: hidden;
+}
+    .validator-tip a {
+        font-weight: bold;
+        padding: 0 5px;
+        cursor: pointer;
+        color: #039;
+    }
+.validator-pass {
+    background: #E6FFE6 !important;
+    border: 1px solid #00BE00 !important;
+}
+.validator-ico-pass {
+    background: transparent url(images/msg_bg.png) 5px -243px no-repeat;
+    border: none;
+    text-indent: -99999px;
+    width: 50px;
+}
+.validator-error {
+    background: #FFF2E9 !important;
+    border: 1px solid #F60 !important;
+}
+.validator-ico-error {
+    background: transparent url(../images/msg_bg.png) 5px 7px no-repeat;    
+    border: none;
+    text-indent: -99999px;
+    width: 50px;
+}
+span.security-level0 {
+    float: left !important;
+    margin-top: 8px !important;
+    width: 220px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    background: transparent url(../images/levels.gif) left 0% no-repeat !important;
+    overflow: hidden !important;
+}
+span.security-level1 {
+    float: left !important;
+    margin-top: 8px !important;
+    width: 220px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    background: transparent url(../images/levels.gif) left 25% no-repeat !important;
+    overflow: hidden !important;
+}
+span.security-level2 {
+    float: left !important;
+    margin-top: 8px !important;
+    width: 220px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    background: transparent url(../images/levels.gif) left 50% no-repeat !important;
+    overflow: hidden !important;
+}
+span.security-level3 {
+    float: left !important;
+    margin-top: 8px !important;
+    width: 220px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    background: transparent url(../images/levels.gif) left 75% no-repeat !important;
+    overflow: hidden !important;
+}
+span.security-level4 {
+    float: left !important;
+    margin-top: 8px !important;
+    width: 220px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    background: transparent url(../images/levels.gif) left 100% no-repeat !important;
+    overflow: hidden !important;
+}
+/* 蓝色 Blue
+----------------------------------------*/
+.color-blue {
+    color: #0000ff;
+}
+a.color-blue {    
+    background: none;
+    color: #0000ff;
+    text-decoration: none;
+}
+    a.color-blue:hover {
+        background-color: #c7d1d6;
+        color: #0000ff;
+        text-decoration: none;
+    }
+/* 红色 Red
+----------------------------------------*/
+.color-red {
+    color: #ff0000;
+}
+a.color-red {    
+    background: none;
+    color: #ff0000;
+    text-decoration: none;
+}
+    a.color-red:hover {
+        background-color: #c7d1d6;
+        color: #ff0000;
+        text-decoration: none;
+    }

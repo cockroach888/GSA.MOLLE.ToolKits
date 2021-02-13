@@ -1,0 +1,158 @@
+﻿html,body{width:100%;height:100%;overflow:hidden;margin:0;}
+html{_height:auto;_padding:100px 0 50px;}
+/* 全局元素样式 Elements styling
+--------------------------------------------------------------------------------*/
+h1{font-size:32px;}
+h2{font-size:26px;}
+h3{font-size:17px;}
+h4{font-size:16px;}
+h5{font-size:14px;}
+h6{font-size:12px;}
+/* 颜色样式 Colors
+--------------------------------------------------------------------------------*/
+/* 黑色 Black
+----------------------------------------*/
+.f-c-black {
+    color: #000000;
+}
+a.f-c-black {    
+    background: none;
+    color: #000000;
+    text-decoration: none;
+}
+    a.f-c-black:hover {
+        background-color: #c7d1d6;
+        color: #000000;
+        text-decoration: none;
+    }
+/* 白色 White
+----------------------------------------*/
+.f-c-white {
+	color: #ffffff;
+}
+a.f-c-white {    
+    background: none;
+    color: #ffffff;
+    text-decoration: none;
+}
+    a.f-c-white:hover {
+        background-color: #c7d1d6;
+        color: #ffffff;
+        text-decoration: none;
+    }
+/* 蓝色 Blue
+----------------------------------------*/
+.f-c-blue {
+    color: #0000ff;
+}
+a.f-c-blue {    
+    background: none;
+    color: #0000ff;
+    text-decoration: none;
+}
+    a.f-c-blue:hover {
+        background-color: #c7d1d6;
+        color: #0000ff;
+        text-decoration: none;
+    }
+/* 红色 Red
+----------------------------------------*/
+.f-c-red {
+    color: #ff0000;
+}
+a.f-c-red {    
+    background: none;
+    color: #ff0000;
+    text-decoration: none;
+}
+    a.f-c-red:hover {
+        background-color: #c7d1d6;
+        color: #ff0000;
+        text-decoration: none;
+    }
+/* 绿色 Green
+----------------------------------------*/
+.f-c-green {
+    color: #eaf7da;
+}
+a.f-c-green {    
+    background: none;
+    color: #eaf7da;
+    text-decoration: none;
+}
+    a.f-c-green:hover {
+        background-color: #c7d1d6;
+        color: #eaf7da;
+        text-decoration: none;
+    }
+/* 橙色 Orangered
+----------------------------------------*/
+.f-c-orangered {
+    color: #ff6a00;
+}
+a.f-c-orangered {    
+    background: none;
+    color: #ff6a00;
+    text-decoration: none;
+}
+    a.f-c-orangered:hover {
+        background-color: #c7d1d6;
+        color: #ff6a00;
+        text-decoration: none;
+    }
+/* 灰色 Gray
+----------------------------------------*/
+.f-c-gray {
+    color: #808080;
+}
+a.f-c-gray {    
+    background: none;
+    color: #808080;
+    text-decoration: none;
+}
+    a.f-c-gray:hover {
+        background-color: #c7d1d6;
+        color: #808080;
+        text-decoration: none;
+    }
+/* 洋红 Fuchsia
+----------------------------------------*/
+.f-c-fuchsia {
+    color: #FF00FF;
+}
+a.f-c-fuchsia {    
+    background: none;
+    color: #FF00FF;
+    text-decoration: none;
+}
+    a.f-c-fuchsia:hover {
+        background-color: #fbfbfb;
+        color: #FF00FF;
+        text-decoration: none;
+    }
+/* 自定义颜色1
+----------------------------------------*/
+.f-c-cutm1 {
+	color: #307fb1;
+}
+a.f-c-cutm1 {    
+    background: none;
+    color: #307fb1;
+    text-decoration: none;
+}
+    a.f-c-cutm1:hover {
+        color: #307fb1;
+        text-decoration: none;
+    }
+/* 纯DIV+CSS返回顶部和返回底部特效
+----------------------------------------*/
+.m-go{width:47px;height:106px;background-color:#FFF;position:fixed;_position:absolute;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||200)-(parseInt(this.currentStyle.marginBottom,10)||0)));right:12px;bottom:25%;border-radius:5px;box-shadow:0 0 2px #6E6E6E;*border:solid 1px #ddd;}
+.m-go a{background:url(../images/retop.png) no-repeat;display:block;text-indent:999em;width:37px;margin:5px;border:0;overflow:hidden;float:left}
+.m-go .top{background-position:4px 7px;height:22px}
+.m-go .top:hover{background-position:-34px 7px;}
+.m-go .feedback{background-position:4px -18px;height:32px}
+.m-go .feedback:hover{background-position:-34px -18px}
+.m-go .bottom{background-position:4px -56px;height:22px}
+.m-go .bottom:hover{background-position:-34px -56px}
+/* 说明
+----------------------------------------*/

@@ -1,0 +1,200 @@
+﻿/* 主内容区域 Main Content
+--------------------------------------------------------------------------------*/
+header {
+    background-color: inherit;
+    height: inherit;
+    overflow: inherit;
+}
+footer {
+    text-align: center;
+    padding: 0 10px;
+    background-color: #fff;
+    color: #000;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+/* 登录页面通知
+Notification for login page
+----------------------------------------*/
+#login-wrapper #login-content .notification {
+    border: 0;
+    margin: 0 20px 10px 20px !important;
+    background-color: #141414;
+    color: #fff !important;
+}
+/* 登录页面 Login Page
+--------------------------------------------------------------------------------*/
+body#login {
+    background: url('../images/login/bg.gif');
+    background-repeat: repeat-x;
+}
+#login-wrapper {
+    background: url('../images/login/lbg.gif') top left repeat-x;
+    color: #000;
+}
+#login-top {
+    background: url('../images/login/login01.png') 50% 50% no-repeat;
+    width: 940px;
+    padding: 238px 0 0 0;
+    margin: 0 auto;
+}
+    #login-top h1 {
+        padding: 0;
+    }
+/* 内容
+----------------------------------------*/
+#login-entry {
+    width: 95px;
+    height: 34px;
+    cursor: pointer;
+}
+#login-content {
+    font-size: 14px;
+    text-align: left;
+    width: 940px;
+    margin: 0 auto;
+}
+    #login-content .content-left {
+        background: url('../images/login/login02.png');
+        background-repeat: no-repeat;
+        width: 208px;
+        min-height: 330px;
+    }
+    #login-content .content-center {
+        background: url('../images/login/login03.png');
+        background-repeat: no-repeat;
+        width: 518px;
+        min-height: 330px;
+    }
+        #login-content .content-center .content-center-body {
+            padding-left: 40px;
+        }
+    #login-content .content-right {
+        background: url('../images/login/login04.png');
+        background-repeat: no-repeat;
+        width: 214px;
+        min-height: 330px;
+    }
+    #login-content .content-footer {
+        background: url('../images/login/login05.png');
+        background-repeat: no-repeat;
+        min-height: 131px;
+        margin: 0 auto;
+    }    
+/* 标签
+----------------------------------------*/
+.content-center img,
+.content-center label,
+.content-center input {
+    float: left;
+    margin-right: 5px;
+    display: inline;
+}
+.content-center img {
+    margin-right: 0;
+}
+.content-center .limit {
+    width: 30px;
+}
+.content-center label {
+    height: 32px;
+    line-height: 32px;
+    width: 60px;
+    text-align: right;
+    overflow: hidden;
+}
+.content-center span {
+    float: left;
+    height: 32px;
+    line-height: 32px;
+    display: inline;
+    overflow: hidden;
+}
+.field-item {
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 5px 0 5px 50px;
+    width: 98%;
+    min-height: 26px;
+    line-height: 26px;
+    clear: both;
+}
+.field-code {
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 5px 0 0 50px;
+    width: 98%;
+    min-height: 26px;
+    line-height: 26px;
+    clear: both;
+}
+    .field-code label {
+        height: 26px;
+        line-height: 26px;
+        width: 60px;
+        text-align: right;
+        overflow: hidden;
+    }
+    .field-code span {
+        float: left;
+        height: 26px;
+        line-height: 26px;
+        display: inline;
+        overflow: hidden;
+    }
+.field-check {
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 0 0 5px 50px;
+    width: 98%;
+    min-height: 26px;
+    line-height: 26px;
+    clear: both;
+}
+.field-remember {
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 0 0 0 50px;
+    width: 98%;
+    min-height: 26px;
+    line-height: 26px;
+    clear: both;
+}
+    .field-remember label {
+        height: 26px;
+        line-height: 26px;
+        width: 60px;
+        text-align: right;
+        overflow: hidden;
+    }
+    .field-remember span {
+        float: left;
+        height: 26px;
+        line-height: 26px;
+        display: inline;
+        overflow: hidden;
+    }
+/* 表单
+----------------------------------------*/
+div .content-center label {
+    display: block;
+    padding: 0 0 10px;
+}
+div .content-center input.input-text {
+    width: 200px;
+    padding: 6px;
+    font-size: 13px;
+    background: #fff url('../images/bg-form-field.gif') top left repeat-x;
+    border: 1px solid #aaaaaa;
+    color: #333;
+}
+div .content-center input[type="checkbox"] {
+    cursor: pointer;
+    padding: 6px 0 0 0;
+    background: none;
+    border: 0;
+    vertical-align: middle;
+    width: 30px;
+    height: 20px;
+}

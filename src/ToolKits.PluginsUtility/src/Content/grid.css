@@ -1,0 +1,63 @@
+﻿/* 全屏自适应布局  */
+html,body{width:100%;height:100%;overflow:hidden;margin:0;}
+html{_height:auto;_padding:100px 0 50px;}
+.g-hd,.g-sd,.g-mn,.g-ft{position:absolute;left:0;}
+.g-hd,.g-ft{width:100%;}
+.g-sd,.g-mn{top:100px;bottom:50px;_height:100%;overflow:auto;}
+.g-hd{top:0;height:100px;}
+.g-sd{width:300px;}
+.g-mn{_position:relative;left:300px;right:0;_top:0;_left:0;_margin-left:300px;}
+.g-ft{bottom:0;height:50px;}
+/* 两栏三栏自适应布局  */
+/* 两栏布局  主栏左 侧栏右 */
+.g-mn11{float:left;width:100%;margin-right:-200px;}
+.g-mnc11{margin-right:210px;}
+.g-sd11{float:right;width:200px;}
+/* 两栏布局  主栏右 侧栏左*/
+.g-mn12{float:right;width:100%;margin-left:-200px;}
+.g-mnc12{margin-left:210px;}
+.g-sd12{float:left;width:200px;}
+/* 三栏布局  主栏右 两侧栏左*/
+.g-mn13{float:right;width:100%;margin-left:-520px;}
+.g-mnc13{margin-left:520px;}
+.g-sd13a{float:left;width:300px;margin-right:10px;}
+.g-sd13b{float:left;width:200px;}
+/* 三栏布局  主栏中 两侧栏分居左右*/
+.g-mn14{float:right;width:100%;margin-left:-200px;}
+.g-mnc14{margin-left:210px;}
+.g-sd14{float:left;width:200px;}
+.g-mn15{float:left;width:100%;margin-right:-200px;}
+.g-mnc15{margin-right:210px;}
+.g-sd15{float:right;width:200px;}
+/* 两列定宽布局 */
+.g-bd0{width:950px;margin:0 auto;}
+.g-sd0{float:right;width:230px;}
+.g-mn0{float:left;width:710px;}
+/* 两列右侧自适应布局 */
+.g-bd1{margin:0 0 10px;}
+.g-sd1{position:relative;float:left;width:190px;margin-right:-190px;}
+.g-mn1{float:right;width:100%;}
+.g-mn1c{margin-left:200px;}
+/* 两列左侧自适应布局 */
+.g-bd2{margin:0 0 10px;}
+.g-sd2{position:relative;float:right;width:230px;margin-left:-230px}
+.g-mn2{float:left;width:100%;}
+.g-mn2c{margin-right:240px;}
+/* 三列右侧自适应布局 */
+.g-bd3{margin:0 0 10px;}
+.g-sd31,.g-sd32{position:relative;float:left;width:230px;}
+.g-sd31{width:190px;margin-right:10px;}
+.g-mn3{float:right;width:100%;margin-left:-430px;}
+.g-mn3c{margin-left:440px;}
+/* 三列左侧自适应布局 */
+.g-bd4{margin:0 0 10px;}
+.g-sd41,.g-sd42{position:relative;float:right;width:190px;}
+.g-sd41{width:230px;margin-left:10px;}
+.g-mn4{float:left;width:100%;margin-right:-430px;}
+.g-mn4c{margin-right:440px;}
+/* 三列中间自适应布局 */
+.g-bd5{margin:0 0 10px;}
+.g-sd51,.g-sd52{position:relative;float:left;width:230px;margin:0 -230px 0 0;}
+.g-sd52{float:right;width:190px;margin:0 0 0 -190px;}
+.g-mn5{float:left;width:100%;}
+.g-mn5c{margin:0 200px 0 240px;}

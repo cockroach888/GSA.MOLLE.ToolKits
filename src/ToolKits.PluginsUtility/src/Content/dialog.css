@@ -1,0 +1,5 @@
+﻿/* 全屏自适应布局  */
+.g-hd,.g-bd{width:100%;position:absolute;left:0;}
+.g-bd{top:35px;bottom:0;_height:100%;overflow:auto;}
+.g-hd{top:0;height:35px;padding-top:5px;text-align:right;}
+.g-bd{_position:relative;left:0;right:0;_top:0;_left:0;_margin-left:0px;padding:3px;}
