@@ -7,7 +7,7 @@
 //**   Copyright © 蟑螂·魂 2014 -- Support 文雀
 //=========================================================================
 // 文件名称：ActionHelper.cs
-// 项目名称：窗体常用操作工具集
+// 项目名称：物理操作实用工具集
 // 创建时间：2014-10-20 15:39:03
 // 创建人员：宋杰军
 // 负责人员：宋杰军
@@ -20,7 +20,7 @@
 #if (NET20 || NET35)
 using System;
 
-namespace DawnXZ.FormUtility
+namespace ToolKits.PHYUtility
 {
     /// <summary>
     /// Action
