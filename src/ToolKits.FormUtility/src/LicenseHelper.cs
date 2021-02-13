@@ -21,7 +21,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 
-namespace DawnXZ.FormUtility
+namespace ToolKits.FormUtility
 {
     /// <summary>
     /// 许可证管理辅助类

@@ -33,7 +33,7 @@ using System;
 using System.Text;
 using System.ComponentModel;
 
-namespace DawnXZ.PagerUtility
+namespace ToolKits.PagerUtility
 {
     /// <summary>
     /// 数据分页[HTML标签模式]

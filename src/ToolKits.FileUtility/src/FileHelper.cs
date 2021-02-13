@@ -20,7 +20,7 @@
 using System;
 using System.IO;
 
-namespace DawnXZ.FileUtility
+namespace ToolKits.FileUtility
 {
     /// <summary>
     /// 文件操作辅助类

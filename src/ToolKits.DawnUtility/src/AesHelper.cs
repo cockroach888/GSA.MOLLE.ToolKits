@@ -21,7 +21,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DawnXZ.DawnUtility
+namespace ToolKits.DawnUtility
 {
     /// <summary>
     /// AES加解密操作辅助类

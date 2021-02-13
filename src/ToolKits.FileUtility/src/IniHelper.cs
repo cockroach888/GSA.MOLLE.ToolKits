@@ -21,7 +21,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace DawnXZ.FileUtility
+namespace ToolKits.FileUtility
 {
     /// <summary>
     /// 配置文件操作辅助类
@@ -59,7 +59,7 @@ namespace DawnXZ.FileUtility
         /// <param name="lpFileName">配置文件绝对路径</param>
         /// <returns>写入是否成功</returns>
         [DllImport("kernel32")]
-        private static extern bool WritePrivateProfileString(string lpAppName, string lpKeyName, string lpString, string lpFileName);                
+        private static extern bool WritePrivateProfileString(string lpAppName, string lpKeyName, string lpString, string lpFileName);
         /// <summary>
         /// 读取 int 型数据
         /// </summary>

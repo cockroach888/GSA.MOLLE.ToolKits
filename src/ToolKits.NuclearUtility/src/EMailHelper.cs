@@ -23,7 +23,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace DawnXZ.NuclearUtility
+namespace ToolKits.NuclearUtility
 {
     /// <summary>
     /// 电子邮件操作帮助类

@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace DawnXZ.DawnUtility
+namespace ToolKits.DawnUtility
 {
     /// <summary>
     /// 人民币相关操作辅助类

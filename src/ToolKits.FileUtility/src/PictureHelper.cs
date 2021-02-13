@@ -22,7 +22,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace DawnXZ.FileUtility
+namespace ToolKits.FileUtility
 {
     /// <summary>
     /// 图片操作辅助类
@@ -56,7 +56,7 @@ namespace DawnXZ.FileUtility
                 }
             }
         }
-        
+
         #region 成员方法
 
         #region 调整图片光暗

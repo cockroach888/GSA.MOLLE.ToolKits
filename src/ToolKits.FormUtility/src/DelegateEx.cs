@@ -20,7 +20,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace DawnXZ.FormUtility
+namespace ToolKits.FormUtility
 {
     /// <summary>
     /// 委托操作类

@@ -22,7 +22,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace DawnXZ.FormUtility
+namespace ToolKits.FormUtility
 {
     /// <summary>
     /// 消息提示窗体

@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace DawnXZ.FormUtility
+namespace ToolKits.FormUtility
 {
     /// <summary>
     /// 下载线程队列举例
@@ -178,7 +178,7 @@ namespace DawnXZ.FormUtility
         }
 
         #endregion
-        
+
         #region 主体
 
         /// <summary>

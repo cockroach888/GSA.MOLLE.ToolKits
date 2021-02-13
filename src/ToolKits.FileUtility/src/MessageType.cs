@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace DawnXZ.FileUtility
+namespace ToolKits.FileUtility
 {
     /// <summary> 
     /// 日志消息类型枚举

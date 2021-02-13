@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace DawnXZ.FormUtility
+namespace ToolKits.FormUtility
 {
     /// <summary>
     /// 窗体特效

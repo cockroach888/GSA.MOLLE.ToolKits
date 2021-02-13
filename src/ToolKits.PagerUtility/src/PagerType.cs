@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace DawnXZ.PagerUtility
+namespace ToolKits.PagerUtility
 {
     /// <summary>
     /// 数据分页模式
@@ -38,14 +38,14 @@ namespace DawnXZ.PagerUtility
         /// URL 链接传参，URL必须静态化
         /// </summary>
         Url,
-		/// <summary>
-		/// 自定义前端函数模式
-		/// <para>未使用</para>
-		/// </summary>
-		Custom,
-		/// <summary>
-		/// 无分页模式
-		/// </summary>
-		None
+        /// <summary>
+        /// 自定义前端函数模式
+        /// <para>未使用</para>
+        /// </summary>
+        Custom,
+        /// <summary>
+        /// 无分页模式
+        /// </summary>
+        None
     }
 }

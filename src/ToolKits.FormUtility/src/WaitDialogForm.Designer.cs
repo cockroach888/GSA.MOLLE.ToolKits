@@ -1,4 +1,4 @@
-﻿namespace DawnXZ.FormUtility
+﻿namespace ToolKits.FormUtility
 {
     partial class WaitDialogForm
     {

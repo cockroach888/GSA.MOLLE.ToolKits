@@ -20,7 +20,7 @@
 using System;
 using System.Globalization;
 
-namespace DawnXZ.FileUtility
+namespace ToolKits.FileUtility
 {
     /// <summary> 
     /// 日志消息类
@@ -64,7 +64,7 @@ namespace DawnXZ.FileUtility
         /// <summary> 
         /// 获取或设置消息的日期时间
         /// </summary> 
-        public DateTime MsgDatetime{get;set;}
+        public DateTime MsgDatetime { get; set; }
         /// <summary> 
         /// 获取或设置消息内容
         /// </summary> 

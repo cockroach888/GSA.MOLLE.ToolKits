@@ -22,7 +22,7 @@ using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DawnXZ.DawnUtility
+namespace ToolKits.DawnUtility
 {
     /// <summary>
     /// 字符串操作辅助类
@@ -238,7 +238,7 @@ namespace DawnXZ.DawnUtility
             string reVal = null;
             for (int i = 0; i < len; i++)
             {
-				reVal += GetSpellingOfAcronymFirst(strChinese.Substring(i, 1));
+                reVal += GetSpellingOfAcronymFirst(strChinese.Substring(i, 1));
             }
             return reVal;
         }
@@ -274,12 +274,12 @@ namespace DawnXZ.DawnUtility
             }
         }
 
-		#region 汉字转拼音
+        #region 汉字转拼音
 
-		/// <summary>
-		/// 定义拼音区编码数组
-		/// </summary>
-		private static int[] SpellingValue = new int[]
+        /// <summary>
+        /// 定义拼音区编码数组
+        /// </summary>
+        private static int[] SpellingValue = new int[]
             {
                 -20319,-20317,-20304,-20295,-20292,-20283,-20265,-20257,-20242,-20230,-20051,-20036,
                 -20032,-20026,-20002,-19990,-19986,-19982,-19976,-19805,-19784,-19775,-19774,-19763,
@@ -315,10 +315,10 @@ namespace DawnXZ.DawnUtility
                 -10815,-10800,-10790,-10780,-10764,-10587,-10544,-10533,-10519,-10331,-10329,-10328,
                 -10322,-10315,-10309,-10307,-10296,-10281,-10274,-10270,-10262,-10260,-10256,-10254
             };
-		/// <summary>
-		/// 定义拼音数组
-		/// </summary>
-		private static string[] SpellingName = new string[]
+        /// <summary>
+        /// 定义拼音数组
+        /// </summary>
+        private static string[] SpellingName = new string[]
             {
                 "A","Ai","An","Ang","Ao","Ba","Bai","Ban","Bang","Bao","Bei","Ben",
                 "Beng","Bi","Bian","Biao","Bie","Bin","Bing","Bo","Bu","Ba","Cai","Can",
@@ -354,78 +354,85 @@ namespace DawnXZ.DawnUtility
                 "Zhang","Zhao","Zhe","Zhen","Zheng","Zhi","Zhong","Zhou","Zhu","Zhua","Zhuai","Zhuan",
                 "Zhuang","Zhui","Zhun","Zhuo","Zi","Zong","Zou","Zu","Zuan","Zui","Zun","Zuo"
            };
-		/// <summary>
-		/// 汉字转换成全拼的拼音
-		/// </summary>
-		/// <param name="strChinese">汉字字符串</param>
-		/// <returns>转换后的拼音字符串</returns>
-		public static string GetSpelling(string strChinese) {
-			Regex reg = new Regex("^[\u4e00-\u9fa5]$");//验证是否输入汉字
-			byte[] arr = new byte[2];
-			string pystr = "";
-			int asc = 0, M1 = 0, M2 = 0;
-			char[] mChar = strChinese.ToCharArray();//获取汉字对应的字符数组
-			for (int j = 0; j < mChar.Length; j++) {
-				//如果输入的是汉字
-				if (reg.IsMatch(mChar[j].ToString())) {
-					arr = System.Text.Encoding.Default.GetBytes(mChar[j].ToString());
-					M1 = (short)(arr[0]);
-					M2 = (short)(arr[1]);
-					asc = M1 * 256 + M2 - 65536;
-					if (asc > 0 && asc < 160) {
-						pystr += mChar[j];
-					}
-					else {
-						switch (asc) {
-							case -9254:
-								pystr += "Zhen"; break;
-							case -8985:
-								pystr += "Qian"; break;
-							case -5463:
-								pystr += "Jia"; break;
-							case -8274:
-								pystr += "Ge"; break;
-							case -5448:
-								pystr += "Ga"; break;
-							case -5447:
-								pystr += "La"; break;
-							case -4649:
-								pystr += "Chen"; break;
-							case -5436:
-								pystr += "Mao"; break;
-							case -5213:
-								pystr += "Mao"; break;
-							case -3597:
-								pystr += "Die"; break;
-							case -5659:
-								pystr += "Tian"; break;
-							default:
-								for (int i = (SpellingValue.Length - 1); i >= 0; i--) {
-									if (SpellingValue[i] <= asc) //判断汉字的拼音区编码是否在指定范围内
-                                    {
-										pystr += SpellingName[i];//如果不超出范围则获取对应的拼音
-										break;
-									}
-								}
-								break;
-						}
-					}
-				}
-				else//如果不是汉字
+        /// <summary>
+        /// 汉字转换成全拼的拼音
+        /// </summary>
+        /// <param name="strChinese">汉字字符串</param>
+        /// <returns>转换后的拼音字符串</returns>
+        public static string GetSpelling(string strChinese)
+        {
+            Regex reg = new Regex("^[\u4e00-\u9fa5]$");//验证是否输入汉字
+            byte[] arr = new byte[2];
+            string pystr = "";
+            int asc = 0, M1 = 0, M2 = 0;
+            char[] mChar = strChinese.ToCharArray();//获取汉字对应的字符数组
+            for (int j = 0; j < mChar.Length; j++)
+            {
+                //如果输入的是汉字
+                if (reg.IsMatch(mChar[j].ToString()))
                 {
-					pystr += mChar[j].ToString();//如果不是汉字则返回
-				}
-			}
-			return pystr;//返回获取到的汉字拼音
-		}
+                    arr = System.Text.Encoding.Default.GetBytes(mChar[j].ToString());
+                    M1 = (short)(arr[0]);
+                    M2 = (short)(arr[1]);
+                    asc = M1 * 256 + M2 - 65536;
+                    if (asc > 0 && asc < 160)
+                    {
+                        pystr += mChar[j];
+                    }
+                    else
+                    {
+                        switch (asc)
+                        {
+                            case -9254:
+                                pystr += "Zhen"; break;
+                            case -8985:
+                                pystr += "Qian"; break;
+                            case -5463:
+                                pystr += "Jia"; break;
+                            case -8274:
+                                pystr += "Ge"; break;
+                            case -5448:
+                                pystr += "Ga"; break;
+                            case -5447:
+                                pystr += "La"; break;
+                            case -4649:
+                                pystr += "Chen"; break;
+                            case -5436:
+                                pystr += "Mao"; break;
+                            case -5213:
+                                pystr += "Mao"; break;
+                            case -3597:
+                                pystr += "Die"; break;
+                            case -5659:
+                                pystr += "Tian"; break;
+                            default:
+                                for (int i = (SpellingValue.Length - 1); i >= 0; i--)
+                                {
+                                    if (SpellingValue[i] <= asc) //判断汉字的拼音区编码是否在指定范围内
+                                    {
+                                        pystr += SpellingName[i];//如果不超出范围则获取对应的拼音
+                                        break;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                }
+                else//如果不是汉字
+                {
+                    pystr += mChar[j].ToString();//如果不是汉字则返回
+                }
+            }
+            return pystr;//返回获取到的汉字拼音
+        }
 
-		#endregion
+        #endregion
 
-		#endregion
+        #endregion
 
-		#region 清除回车、换行、空格
+        #region 清除回车、换行、空格
 
-		/// <summary>
+        /// <summary>
         /// 删除字符串尾部的回车/换行/空格
         /// </summary>
         /// <param name="str"></param>
@@ -954,26 +961,28 @@ namespace DawnXZ.DawnUtility
 
         #endregion
 
-		#region 去掉字符串中的数字或非数字
+        #region 去掉字符串中的数字或非数字
 
-		/// <summary>
-		/// 去掉字符串中的数字
-		/// </summary>
-		/// <param name="strValue">需要排除的字符串</param>
-		/// <returns>执行结果</returns>
-		public static string RemoveNumber(string strValue) {
-			return Regex.Replace(strValue, @"\d", "");
-		}
-		/// <summary>
-		/// 去掉字符串中的非数字
-		/// </summary>
-		/// <param name="strValue">需要排除的字符串</param>
-		/// <returns>执行结果</returns>
-		public static string RemoveNotNumber(string strValue) {
-			return Regex.Replace(strValue, @"[^\d]*", "");
-		}
+        /// <summary>
+        /// 去掉字符串中的数字
+        /// </summary>
+        /// <param name="strValue">需要排除的字符串</param>
+        /// <returns>执行结果</returns>
+        public static string RemoveNumber(string strValue)
+        {
+            return Regex.Replace(strValue, @"\d", "");
+        }
+        /// <summary>
+        /// 去掉字符串中的非数字
+        /// </summary>
+        /// <param name="strValue">需要排除的字符串</param>
+        /// <returns>执行结果</returns>
+        public static string RemoveNotNumber(string strValue)
+        {
+            return Regex.Replace(strValue, @"[^\d]*", "");
+        }
 
-		#endregion
+        #endregion
 
-	}
+    }
 }

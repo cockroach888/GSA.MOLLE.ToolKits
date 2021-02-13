@@ -20,7 +20,7 @@
 using System;
 using System.Text;
 
-namespace DawnXZ.DawnUtility
+namespace ToolKits.DawnUtility
 {
     /// <summary>
     /// 字符串拼装操作辅助类

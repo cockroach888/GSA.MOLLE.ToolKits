@@ -22,7 +22,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DawnXZ.DawnUtility
+namespace ToolKits.DawnUtility
 {
     /// <summary>
     /// 加解密操作辅助类

@@ -20,11 +20,11 @@
 using System;
 using System.Xml;
 
-namespace DawnXZ.FileUtility
+namespace ToolKits.FileUtility
 {
 
     #region 使用例子
-   
+
     /* 创建xml文档
     XmlParameter[] paras ={
       new XmlParameter("name","首页对话框"),

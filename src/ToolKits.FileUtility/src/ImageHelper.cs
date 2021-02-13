@@ -23,7 +23,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace DawnXZ.FileUtility
+namespace ToolKits.FileUtility
 {
     /// <summary>
     /// 图片操作辅助类
@@ -545,7 +545,7 @@ namespace DawnXZ.FileUtility
                                 colorMap.NewColor = Color.FromArgb(0, 0, 0, 0);
                                 ColorMap[] remapTable = { colorMap };
                                 imgAttributes.SetRemapTable(remapTable, ColorAdjustType.Bitmap);
-                                float[][] colorMatrixElements = { 
+                                float[][] colorMatrixElements = {
                                    new float[] {1.0f,  0.0f,  0.0f,  0.0f, 0.0f},
                                    new float[] {0.0f,  1.0f,  0.0f,  0.0f, 0.0f},
                                    new float[] {0.0f,  0.0f,  1.0f,  0.0f, 0.0f},
@@ -633,7 +633,7 @@ namespace DawnXZ.FileUtility
                                 colorMap.NewColor = Color.FromArgb(0, 0, 0, 0);
                                 ColorMap[] remapTable = { colorMap };
                                 imgAttributes.SetRemapTable(remapTable, ColorAdjustType.Bitmap);
-                                float[][] colorMatrixElements = { 
+                                float[][] colorMatrixElements = {
                                    new float[] {1.0f,  0.0f,  0.0f,  0.0f, 0.0f},
                                    new float[] {0.0f,  1.0f,  0.0f,  0.0f, 0.0f},
                                    new float[] {0.0f,  0.0f,  1.0f,  0.0f, 0.0f},

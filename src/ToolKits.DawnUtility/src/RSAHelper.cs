@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DawnXZ.DawnUtility
+namespace ToolKits.DawnUtility
 {
     /// <summary>
     /// 非对称RSA加密类 可以参考
@@ -59,9 +59,9 @@ namespace DawnXZ.DawnUtility
             public string PrivateKey { get; set; }
         }
 
-		#region 得到RSA的解密的密匙对
-		/// <summary>
-		/// 得到RSA的解密的密匙对
+        #region 得到RSA的解密的密匙对
+        /// <summary>
+        /// 得到RSA的解密的密匙对
         /// </summary>
         /// <returns></returns>
         public static RSAKey GetRASKey()
