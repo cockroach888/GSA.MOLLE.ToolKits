@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ToolKits.FormUtility
+namespace GSA.ToolKits.FormUtility
 {
     /// <summary>
     /// 加载提示窗口

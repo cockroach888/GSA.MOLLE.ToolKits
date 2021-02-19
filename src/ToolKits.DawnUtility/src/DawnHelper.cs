@@ -29,7 +29,7 @@ using System.Linq;
 #endif
 using System.Runtime.Serialization;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 晨曦常用操作辅助类

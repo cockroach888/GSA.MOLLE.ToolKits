@@ -20,7 +20,7 @@
 using System;
 using System.Globalization;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
     /// <summary> 
     /// 日志消息类

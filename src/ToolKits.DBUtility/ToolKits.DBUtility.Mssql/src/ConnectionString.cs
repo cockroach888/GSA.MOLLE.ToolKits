@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2014 -- Support 文雀
 //=========================================================================
-// 文件名称：CpuHelper.cs
-// 项目名称：物理操作实用工具集
-// 创建时间：2014年2月25日11时24分
+// 文件名称：ConnectionString.cs
+// 项目名称：数据库操作实用工具集
+// 创建时间：2014年2月26日11时30分
 // 创建人员：宋杰军
 // 负责人员：宋杰军
 // 参与人员：宋杰军
@@ -18,21 +18,33 @@
 // 修改内容：
 // ========================================================================
 using System;
+using System.Configuration;
 
-namespace GSA.ToolKits.PHYUtility
+namespace GSA.ToolKits.DBUtility
 {
     /// <summary>
-    /// CPU相关操作辅助类
+    /// 数据库连接字符串
     /// </summary>
-    public static class CpuHelper
+    public sealed class MssqlConnectionString
     {
         /// <summary>
-        /// 获得Cpu使用率
+        /// 数据库连接字符串
+        /// <para>默认名称：ConnectionString</para>
         /// </summary>
-        /// <returns>返回使用率</returns>
-        public static int GetCpuUsage()
+        /// <param name="KeyName">键值名称</param>
+        /// <returns>数据库连接字符串</returns>
+        public static string ConnectionString(string KeyName)
         {
-            return CpuUsage.Create().Query();
+            string result = null;
+            if (!string.IsNullOrEmpty(KeyName))
+            {
+                result = ConfigurationManager.ConnectionStrings[KeyName].ConnectionString;
+            }
+            else
+            {
+                result = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            }
+            return result;
         }
     }
 }

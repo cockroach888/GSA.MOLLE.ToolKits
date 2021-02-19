@@ -1,4 +1,4 @@
-﻿namespace ToolKits.FormUtility
+﻿namespace GSA.ToolKits.FormUtility
 {
     partial class WaitDialogForm
     {

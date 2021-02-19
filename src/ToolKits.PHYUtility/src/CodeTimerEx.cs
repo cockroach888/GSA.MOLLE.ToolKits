@@ -22,7 +22,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace ToolKits.PHYUtility
+namespace GSA.ToolKits.PHYUtility
 {
     /// <summary>
     /// 

@@ -20,7 +20,7 @@
 using System;
 using System.Xml;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
 
     #region 使用例子

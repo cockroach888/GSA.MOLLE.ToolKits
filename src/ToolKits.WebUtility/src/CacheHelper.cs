@@ -23,7 +23,7 @@ using System.Collections;
 using System.Web;
 using System.Web.Caching;
 
-namespace ToolKits.WebUtility
+namespace GSA.ToolKits.WebUtility
 {
     /// <summary>
     /// 缓存操作辅助类

@@ -23,7 +23,7 @@ using System.Configuration;
 using System.Globalization;
 using System.Web;
 
-namespace ToolKits.SafeUtility
+namespace GSA.ToolKits.SafeUtility
 {
     /// <summary>
     /// Web请求进程安全检测处理类

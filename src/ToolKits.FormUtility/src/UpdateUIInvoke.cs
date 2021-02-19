@@ -22,7 +22,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Collections.Generic;
 
-namespace ToolKits.FormUtility
+namespace GSA.ToolKits.FormUtility
 {
     /// <summary>
     /// 线程调用项

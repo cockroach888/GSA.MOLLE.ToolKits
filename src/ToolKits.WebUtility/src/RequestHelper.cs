@@ -25,7 +25,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace ToolKits.WebUtility
+namespace GSA.ToolKits.WebUtility
 {
     /// <summary>
     /// 请求对象操作辅助类

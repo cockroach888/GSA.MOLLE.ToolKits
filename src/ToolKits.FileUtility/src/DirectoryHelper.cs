@@ -22,7 +22,7 @@ using System.IO;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
     /// <summary>
     /// 文件或目录遍历处理器

@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 非对称RSA加密类 可以参考

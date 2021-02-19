@@ -21,7 +21,7 @@
 using System;
 using System.Web;
 
-namespace ToolKits.WebUtility
+namespace GSA.ToolKits.WebUtility
 {
     /// <summary>
     /// 页面运行时间辅助类

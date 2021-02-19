@@ -24,7 +24,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace ToolKits.NuclearUtility
+namespace GSA.ToolKits.NuclearUtility
 {
     /// <summary>
     /// FTP操作帮助类

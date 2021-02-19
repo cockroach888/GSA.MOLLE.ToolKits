@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.PHYUtility
+namespace GSA.ToolKits.PHYUtility
 {
     /// <summary>
     /// 软件注册码辅助类

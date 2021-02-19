@@ -22,7 +22,7 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 数据类型转换操作辅助类

@@ -23,7 +23,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
     /// <summary>
     /// 图片操作辅助类

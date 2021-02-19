@@ -21,7 +21,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
     /// <summary>
     /// 配置文件操作辅助类

@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.VerifyUtility
+namespace GSA.ToolKits.VerifyUtility
 {
     /// <summary>
     /// 数据校验警告信息

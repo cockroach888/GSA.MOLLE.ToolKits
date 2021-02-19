@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Security.Principal;
 
-namespace ToolKits.FileUtility {
+namespace GSA.ToolKits.FileUtility {
 	/// <summary>
 	/// 文件及目录遍历扫描处理器扩展类
 	/// <para>DriveInfo</para>

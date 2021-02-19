@@ -28,6 +28,7 @@
     <PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RootNamespace>GSA.ToolKits.PHYUtility</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

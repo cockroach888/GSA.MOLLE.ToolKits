@@ -20,7 +20,7 @@
 #if NETFRAMEWORK
 using System;
 
-namespace ToolKits.WebUtility
+namespace GSA.ToolKits.WebUtility
 {
     /// <summary>
     /// WebService动态调用操作辅助类

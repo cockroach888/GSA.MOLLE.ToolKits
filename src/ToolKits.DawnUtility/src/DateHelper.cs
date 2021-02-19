@@ -29,7 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 日期操作辅助类

@@ -1,0 +1,41 @@
+﻿MongoDB优化的几点原则：
+
+1.查询优化
+确认你的查询是否充分利用到了索引，用explain命令查看一下查询执行的情况，添加必要的索引，避免扫表操作。
+
+2.搞清你的热数据大小
+可能你的数据集非常大，但是这并不那么重要，重要的是你的热数据集有多大，你经常访问的数据有多大(包括经常访问的数据
+和所有索引数据)。使用MongoDB，你最好保证你的热数据在你机器的内存大小之下，保证内存能容纳所有热数据。
+
+3.选择正确的文件系统
+MongoDB的数据文件是采用的预分配模式，并且在Replication里面，Master和Replica Sets的非Arbiter节点都是会预先创建足够
+的空文件用以存储操作日志。这些文件分配操作在一些文件系统上可能会非常慢，导致进程被Block。所以我们应该选择那些空间
+分配快速的文件系统。这里的结论是尽量不要用ext3，用ext4或者xfs。
+
+4.选择合适的硬盘
+这里的选择包括了对磁盘RAID的选择，也包括了磁盘与SSD的对比选择。
+
+5.尽量少用in的方式查询，尤其是在shard上，他会让你的查询去被一个shand上跑一次，
+如果逼不得已要用的话再每个shard上建索引。
+优化in的方式是把in分解成一个一个的单一查询。速度会提高40-50倍
+
+6.合理设计sharding key
+increamenting sharding key（增量sharding-key）适合于可划分范围的字段，比如integer、float、date类型的，查询时比较快
+random sharding key（随机sharding-key）适用于写操作频繁的场景，而这种情况下如果在一个shard上进行会使得这个shard负载
+比其他高，不够均衡，故而希望能hash查询key，将写分布在多个shard上进行
+考虑复合key作为sharding key， 总的原则是查询快，尽量减少跨shard查询，balance均衡次数少。
+mongodb默认是单条记录16M，尤其在使用GFS的时候，一定要注意shrading-key的设计。
+不合理的sharding-key会出现，多个文档，在一个chunks上，同时，因为GFS中存贮的往往是大文件，导致mongodb在做balance的时候
+无法通过sharding-key来把这多个文档分开到不同的shard上，
+这时候mongodb会不断报错
+[conn27669] Uncaught std::exception: St9bad_alloc, terminating。最后导致mongodb倒掉。
+解决办法：加大chunks大小（治标），设计合理的sharding-key（治本）。
+
+7.mongodb可以通过profile来监控数据，进行优化。
+查看当前是否开启profile功能
+用命令db.getProfilingLevel() 返回level等级，值为0|1|2，分别代表意思：0代表关闭，1代表记录慢命令，2代表全部
+开启profile功能命令为
+db.setProfilingLevel(level); #level等级，值同上
+level为1的时候，慢命令默认值为100ms，更改为db.setProfilingLevel(level,slowms)如db.setProfilingLevel(1,50)这样就更改为50毫秒
+通过db.system.profile.find() 查看当前的监控日志。
+

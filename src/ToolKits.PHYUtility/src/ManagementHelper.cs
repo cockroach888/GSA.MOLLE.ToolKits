@@ -20,7 +20,7 @@
 using System;
 using System.Management;
 
-namespace ToolKits.PHYUtility
+namespace GSA.ToolKits.PHYUtility
 {
     /// <summary>
     /// 物理硬件相关操作辅助类

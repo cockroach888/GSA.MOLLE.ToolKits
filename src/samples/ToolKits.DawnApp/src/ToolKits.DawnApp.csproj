@@ -27,6 +27,7 @@
     <PackageTags>魂哥常用工具集 加解密字符串 生成GUID唯一编号 邮件收发测试 数据校验测试</PackageTags>
     <PackageReleaseNotes>重新定义类库并变更命名空间，面向 .net 5.0 开发；建议重新引用本类库，对此给您造成的不变深表歉意！</PackageReleaseNotes>
     <Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
+    <RootNamespace>GSA.ToolKits.DawnApp</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

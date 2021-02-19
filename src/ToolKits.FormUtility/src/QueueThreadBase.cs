@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace ToolKits.FormUtility
+namespace GSA.ToolKits.FormUtility
 {
     /// <summary>
     /// 下载线程队列举例

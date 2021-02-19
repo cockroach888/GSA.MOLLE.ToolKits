@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.PHYUtility
+namespace GSA.ToolKits.PHYUtility
 {
     /// <summary>
     /// 定义 CPU 使用情况计数器实现的抽象的基类。

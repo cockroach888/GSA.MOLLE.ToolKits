@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 超级整型

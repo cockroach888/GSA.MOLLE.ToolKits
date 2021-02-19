@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.VerifyUtility
+namespace GSA.ToolKits.VerifyUtility
 {
     /// <summary>
     /// 为元素添加验证信息的特性类

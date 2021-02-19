@@ -20,7 +20,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace ToolKits.PHYUtility
+namespace GSA.ToolKits.PHYUtility
 {
     /// <summary>
     /// 继承 CPUUsage 类并实现 Windows NT 系统的查询方法。

@@ -21,7 +21,7 @@
 using System;
 using System.Web;
 
-namespace ToolKits.WebUtility
+namespace GSA.ToolKits.WebUtility
 {
     /// <summary>
     /// Cookies操作辅助类

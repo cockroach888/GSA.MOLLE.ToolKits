@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.PagerUtility
+namespace GSA.ToolKits.PagerUtility
 {
     /// <summary>
     /// 数据分页模式

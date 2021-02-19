@@ -24,7 +24,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
     /// <summary>
     /// XML文件操作辅助类

@@ -21,7 +21,7 @@
 using System;
 using System.Web;
 
-namespace ToolKits.SafeUtility
+namespace GSA.ToolKits.SafeUtility
 {
     /// <summary>
     /// SQL注入安全检测处理类

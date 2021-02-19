@@ -19,7 +19,7 @@
 // ========================================================================
 using System.Text;
 
-namespace ToolKits.PagerUtility
+namespace GSA.ToolKits.PagerUtility
 {
     /// <summary>
     /// 数据分页[HTML标签模式]

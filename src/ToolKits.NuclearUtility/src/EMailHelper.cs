@@ -23,7 +23,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace ToolKits.NuclearUtility
+namespace GSA.ToolKits.NuclearUtility
 {
     /// <summary>
     /// 电子邮件操作帮助类

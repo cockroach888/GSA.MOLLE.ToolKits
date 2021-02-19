@@ -21,7 +21,7 @@ using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace ToolKits.VerifyUtility
+namespace GSA.ToolKits.VerifyUtility
 {
     /// <summary>
     /// 实体对象数据验证处理器

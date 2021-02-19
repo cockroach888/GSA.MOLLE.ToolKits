@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.FormUtility
+namespace GSA.ToolKits.FormUtility
 {
     /// <summary>
     /// 窗体特效

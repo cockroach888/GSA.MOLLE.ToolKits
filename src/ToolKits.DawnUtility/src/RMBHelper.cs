@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 人民币相关操作辅助类

@@ -22,7 +22,7 @@ using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 字符串操作辅助类

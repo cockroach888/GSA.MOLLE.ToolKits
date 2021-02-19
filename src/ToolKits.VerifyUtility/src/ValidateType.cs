@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.VerifyUtility
+namespace GSA.ToolKits.VerifyUtility
 {
     /// <summary>
     /// 验证类型

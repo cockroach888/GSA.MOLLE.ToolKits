@@ -24,7 +24,7 @@ using System.CodeDom.Compiler;
 using System.Net;
 using System.Web.Services.Description;
 
-namespace ToolKits.WebUtility
+namespace GSA.ToolKits.WebUtility
 {
     /// <summary>
     /// WebService代理操作辅助类

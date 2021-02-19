@@ -20,7 +20,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace ToolKits.VerifyUtility
+namespace GSA.ToolKits.VerifyUtility
 {
     /// <summary>
     /// 数据校验操作辅助类

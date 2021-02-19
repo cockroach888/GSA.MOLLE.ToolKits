@@ -21,7 +21,7 @@
 using System;
 using Microsoft.Win32;
 
-namespace ToolKits.PHYUtility
+namespace GSA.ToolKits.PHYUtility
 {
     /// <summary>
     /// 继承 CPUUsage 类并实现 Windows 9x 系统的查询方法。

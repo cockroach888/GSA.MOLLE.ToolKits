@@ -20,7 +20,7 @@
 #if (NET20 || NET35)
 using System;
 
-namespace ToolKits.PHYUtility
+namespace GSA.ToolKits.PHYUtility
 {
     /// <summary>
     /// Action

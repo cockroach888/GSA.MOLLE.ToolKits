@@ -1,4 +1,4 @@
-﻿namespace ToolKits.DawnApp
+﻿namespace GSA.ToolKits.DawnApp
 {
     partial class MainForm
     {

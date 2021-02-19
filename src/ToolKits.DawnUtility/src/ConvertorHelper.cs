@@ -24,7 +24,7 @@ using System.Data;
 using System.Reflection;
 using System.ComponentModel;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 实体和泛型集合与DataTable数据相互转换帮助类

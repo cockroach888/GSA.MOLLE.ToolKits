@@ -22,7 +22,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// DES加解密操作辅助类

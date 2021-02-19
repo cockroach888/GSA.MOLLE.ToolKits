@@ -24,7 +24,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
     /// <summary>
     /// 日志操作辅助类

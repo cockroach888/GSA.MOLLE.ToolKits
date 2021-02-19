@@ -20,7 +20,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace ToolKits.FormUtility
+namespace GSA.ToolKits.FormUtility
 {
     /// <summary>
     /// 委托操作类

@@ -24,7 +24,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 
-namespace ToolKits.DawnUtility
+namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 验证码操作辅助类

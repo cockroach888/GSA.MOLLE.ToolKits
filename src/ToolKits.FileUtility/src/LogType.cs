@@ -19,7 +19,7 @@
 // ========================================================================
 using System;
 
-namespace ToolKits.FileUtility
+namespace GSA.ToolKits.FileUtility
 {
     /// <summary> 
     /// 日志类型类
