@@ -32,7 +32,7 @@ using System.Runtime.Serialization;
 namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
-    /// 晨曦常用操作辅助类
+    /// 魂哥常用操作辅助类
     /// </summary>
     public static class DawnHelper
     {

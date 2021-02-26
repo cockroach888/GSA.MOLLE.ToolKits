@@ -39,7 +39,7 @@ namespace GSA.ToolKits.DawnUtility
         /// <returns></returns>
         public static string Encrypt(string Text)
         {
-            return Encrypt(Text, "*DawnXZ..com*");
+            return Encrypt(Text, "*Huaxia, Galactic Space Alliance*");
         }
         /// <summary>
         /// 加密
@@ -83,7 +83,7 @@ namespace GSA.ToolKits.DawnUtility
                     tempEncrypt = Encrypt(Text, "ujP341Ae27dsOXNh9wB");
                     break;
                 default:
-                    tempEncrypt = Encrypt(Text, "*DawnXZ..com*");
+                    tempEncrypt = Encrypt(Text, "*Huaxia, Galactic Space Alliance*");
                     break;
             }
             return tempEncrypt;
@@ -140,7 +140,7 @@ namespace GSA.ToolKits.DawnUtility
         /// <returns></returns>
         public static string Decrypt(string Text)
         {
-            return Decrypt(Text, "*DawnXZ..com*");
+            return Decrypt(Text, "*Huaxia, Galactic Space Alliance*");
         }
         /// <summary>
         /// 解密
@@ -184,7 +184,7 @@ namespace GSA.ToolKits.DawnUtility
                     tempDecrypt = Decrypt(Text, "ujP341Ae27dsOXNh9wB");
                     break;
                 default:
-                    tempDecrypt = Decrypt(Text, "*DawnXZ..com*");
+                    tempDecrypt = Decrypt(Text, "*Huaxia, Galactic Space Alliance*");
                     break;
             }
             return tempDecrypt;
@@ -207,7 +207,7 @@ namespace GSA.ToolKits.DawnUtility
         public static string Decrypt(int show, string Text)
         {
             string strReplace = null;
-            string strTemp = Decrypt(Text, "*DawnXZ..com*");
+            string strTemp = Decrypt(Text, "*Huaxia, Galactic Space Alliance*");
             if (string.IsNullOrEmpty(strTemp)) return null;
             for (int intCount = 0; intCount < strTemp.Length - show; intCount++)
             {

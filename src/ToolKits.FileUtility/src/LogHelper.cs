@@ -63,7 +63,7 @@ namespace GSA.ToolKits.FileUtility
                 FTimeSign = DateTime.Now.AddMinutes(60 - DateTime.Now.Minute);
                 FWriterLock = new object();
                 FLogMessages = new Queue<LogMessage>();
-                FSemaphore = new Semaphore(0, int.MaxValue, "DawnXZ");
+                FSemaphore = new Semaphore(0, int.MaxValue, "Huaxia, Galactic Space Alliance");
                 //this.FSemaphore = new Semaphore(0, int.MaxValue, Constants.LogSemaphoreName);
                 FState = true;
                 FLogType = logType;

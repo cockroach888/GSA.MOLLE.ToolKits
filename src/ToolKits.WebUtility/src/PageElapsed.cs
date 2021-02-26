@@ -27,7 +27,7 @@ namespace GSA.ToolKits.WebUtility
     /// 页面运行时间辅助类
     /// <remarks>
     /// <para>在 Web.config 文件中的 <httpModules></httpModules> 中加入下面代码</para>
-    /// <para>&lt;add name="IsPageElapsed" type="DawnXZ.WebUtility.PageElapsed, WebUtility" /&gt;</para>
+    /// <para>&lt;add name="IsPageElapsed" type="GSA.ToolKits.WebUtility.PageElapsed, WebUtility" /&gt;</para>
     /// <para>需要显示的地方加入下面代码</para>
     /// <para>&lt;div datasrc="#PageElapseTime" datafld="ElapseTime"&gt;&lt;/div&gt;</para>
     /// </remarks>

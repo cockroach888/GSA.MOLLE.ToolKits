@@ -28,11 +28,11 @@ namespace GSA.ToolKits.DawnUtility
 {
     /// <summary>
     /// 验证码操作辅助类
-    /// <para>1、MVC调用方法：File(DawnXZ.Utilities.CheckCodeHelper.CreateToByte(6, 1, out checkCode), @"image/jpeg");</para>
+    /// <para>1、MVC调用方法：File(GSA.ToolKits.DawnUtility.CheckCodeHelper.CreateToByte(6, 1, out checkCode), @"image/jpeg");</para>
     /// <para>2、ASPX调用方法：</para>
     /// <para>　　Response.ClearContent();</para>
     /// <para>　　Response.ContentType = "image/Jpeg";</para>
-    /// <para>　　Response.BinaryWrite(DawnXZ.Utilities.CheckCodeHelper.CreateToByte(6, 1, out checkCode));</para>
+    /// <para>　　Response.BinaryWrite(GSA.ToolKits.DawnUtility.CheckCodeHelper.CreateToByte(6, 1, out checkCode));</para>
     /// <para>   ASPX页面同时增加如下方法：</para>
     /// <para>　　///设置页面不被缓存</para>
     /// <para>　　private void SetPageNoCache()</para>
