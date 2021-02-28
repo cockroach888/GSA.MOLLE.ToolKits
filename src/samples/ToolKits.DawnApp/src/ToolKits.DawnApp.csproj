@@ -63,6 +63,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ToolKits.CockroachContainer\src\ToolKits.CockroachContainer.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.DawnUtility\src\ToolKits.DawnUtility.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.MongoDB\src\ToolKits.DBUtility.MongoDB.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.Mssql\src\ToolKits.DBUtility.Mssql.csproj" />

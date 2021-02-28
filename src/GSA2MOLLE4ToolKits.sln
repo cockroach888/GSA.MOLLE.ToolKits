@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKits.DBUtility.SQLite",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.GoesUtility", "ToolKits.GoesUtility\src\ToolKits.GoesUtility.csproj", "{4D93EF95-EE82-4204-B7D3-41DD582013A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.CockroachContainer", "ToolKits.CockroachContainer\src\ToolKits.CockroachContainer.csproj", "{6BE83CB4-5593-4762-B0D1-997F60C286F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,10 @@ Global
 		{4D93EF95-EE82-4204-B7D3-41DD582013A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D93EF95-EE82-4204-B7D3-41DD582013A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D93EF95-EE82-4204-B7D3-41DD582013A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE83CB4-5593-4762-B0D1-997F60C286F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE83CB4-5593-4762-B0D1-997F60C286F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE83CB4-5593-4762-B0D1-997F60C286F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE83CB4-5593-4762-B0D1-997F60C286F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

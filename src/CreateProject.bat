@@ -27,6 +27,9 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s samples samples/ToolKits.DawnApp/src
 @echo.
 @echo.
 @echo\&echo  ---------- 各类常用工具集 ----------
+dotnet new classlib -lang "C#" -f net5.0 -n ToolKits.CockroachContainer -o ToolKits.CockroachContainer/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.CockroachContainer/src
+
 dotnet new classlib -lang "C#" -f net5.0 -n ToolKits.DawnUtility -o ToolKits.DawnUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.DawnUtility/src
 
