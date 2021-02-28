@@ -15,7 +15,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>ToolKits.WebUtility.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <PackageId>WebUtility</PackageId>
+    <PackageId>WebUtilitys</PackageId>
     <Product>网页网站实用工具集</Product>
     <Authors>蟑螂·魂</Authors>
     <Company>华夏银河空间联盟</Company>

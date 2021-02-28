@@ -10,7 +10,7 @@
     <AssemblyOriginatorKeyFile>ToolKits.DawnApp.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Product>魂哥实用工具集</Product>
     <PackageId>DawnTools</PackageId>
     <Version>5.0.0</Version>
