@@ -1,7 +1,59 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net20;net40;net45;net472;netcoreapp3.1;net5.0</TargetFrameworks>
+    <ApplicationIcon>Library.ico</ApplicationIcon>
+    <AssemblyName>GoesUtility</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>5.0.0</Version>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>ToolKitsIcon.jpg</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ToolKits.GoesUtility.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <PackageId>GoesUtility</PackageId>
+    <Product>静止环境观测操作工具集</Product>
+    <Authors>蟑螂·魂</Authors>
+    <Company>华夏银河空间联盟</Company>
+    <Description>本类库提供了基于XML和JSON作为配置信息的相关操作方法，今后还将继续对相关操作进行集成和扩展，可无缝加载XML配置文件为实体对象；简单实用、舒心易用，是您开发中的必备利器。
+
+      内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）。
+
+      NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
+    <PackageTags>魂哥常用工具集 静止环境观测操作工具集 XML配置转换 JSON配置转换</PackageTags>
+    <PackageReleaseNotes>新增静止环境观测操作工具集，面向 .net 5.0 开发；内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）让使用更便捷。</PackageReleaseNotes>
+    <Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
+    <PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RootNamespace>GSA.ToolKits.GoesUtility</RootNamespace>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.GoesUtility\src\bin\GoesUtility.xml</DocumentationFile>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.GoesUtility\src\bin\GoesUtility.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\ToolKitsIcon.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
 
 </Project>

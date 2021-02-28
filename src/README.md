@@ -123,6 +123,10 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/T
 本类库提供了许可证管理辅助类、线程调用更新界面UI数据、后台执行事件、委托操作类、窗体特效、下载线程队列等辅助工具类，如果您是做WinForm开发，那更合适不过了。
 
 
+### GoesUtility
+本类库提供了基于XML和JSON作为配置信息的相关操作方法，今后还将继续对相关操作进行集成和扩展，可无缝加载XML配置文件为实体对象；简单实用、舒心易用，是您开发中的必备利器。
+
+
 ### WebUtilitys
 
 本类库提供了缓存操作辅助类、Cookies操作辅助类、页面运行时间辅助类、请求对象操作辅助类、WebService动态调用操作辅助类、WebService代理操作辅助类等；简单实用、舒心易用，是您开发中的必备利器。

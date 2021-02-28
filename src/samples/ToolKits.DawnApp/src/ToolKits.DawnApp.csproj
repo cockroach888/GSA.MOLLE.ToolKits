@@ -72,6 +72,7 @@
     <ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.SQLite\src\ToolKits.DBUtility.SQLite.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.FileUtility\src\ToolKits.FileUtility.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.FormUtility\src\ToolKits.FormUtility.csproj" />
+    <ProjectReference Include="..\..\..\ToolKits.GoesUtility\src\ToolKits.GoesUtility.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.NuclearUtility\src\ToolKits.NuclearUtility.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.PagerUtility\src\ToolKits.PagerUtility.csproj" />
     <ProjectReference Include="..\..\..\ToolKits.PHYUtility\src\ToolKits.PHYUtility.csproj" />
