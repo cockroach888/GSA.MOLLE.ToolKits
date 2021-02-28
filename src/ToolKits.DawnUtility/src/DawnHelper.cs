@@ -24,6 +24,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Serialization;
+using System.Security.Cryptography;
 #if (!NET35 && !NET20)
 using System.Linq;
 #endif
@@ -210,20 +211,35 @@ namespace GSA.ToolKits.DawnUtility
         #region 数据对象克隆
 
         /// <summary>
-        /// 利用序列化与反序列化完成引用对象的复制
+        /// 利用序列化与反序列化完成引用对象的克隆
         /// </summary>
         /// <typeparam name="T">泛型对象</typeparam>
-        /// <param name="RealObject">泛型来源对象</param>
-        /// <returns>复制后的泛型对象</returns>
-        [Obsolete]
-        public static T CloneTo<T>(T RealObject)
+        /// <param name="objSource">源对象</param>
+        /// <param name="useMode">
+        /// 采用模式
+        /// <para>1 BinaryFormatter</para>
+        /// <para>2 XmlSerializer</para>
+        /// </param>
+        /// <returns>克隆对象</returns>
+        public static T CloneTo<T>(T objSource, byte useMode = 1)
         {
-            using (Stream objectStream = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
-                IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(objectStream, RealObject);
-                objectStream.Seek(0, SeekOrigin.Begin);
-                return (T)formatter.Deserialize(objectStream);
+                if (1 == useMode)
+                {
+                    var formatter = new BinaryFormatter();
+                    formatter.Serialize(ms, objSource);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    return (T)formatter.Deserialize(ms);
+                }
+                else if (2 == useMode)
+                {
+                    var serializer = new XmlSerializer(typeof(T));
+                    serializer.Serialize(ms, objSource);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    return (T)serializer.Deserialize(ms);
+                }
+                return default;
             }
         }
 
@@ -239,44 +255,37 @@ namespace GSA.ToolKits.DawnUtility
 		}
 #endif
 
-        /// <summary>
-        /// 对象克隆
-        /// </summary>
-        /// <typeparam name="T">泛型对象</typeparam>
-        /// <param name="RealObject">克隆对象</param>
-        /// <returns>克隆后的对象</returns>
-        public static T Clone<T>(T RealObject)
-        {
-            using (Stream stream = new MemoryStream())
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
-                serializer.Serialize(stream, RealObject);
-                stream.Seek(0, SeekOrigin.Begin);
-                return (T)serializer.Deserialize(stream);
-            }
-        }
-
         #endregion
 
         #region 文件哈希值比较
 
         /// <summary>
-        /// 比较两个文件是否完全相等
+        /// 通过哈希值比较两个文件是否完全相等
         /// </summary>
-        [Obsolete]
-        public static bool CompareFile(string filePath1, string filePath2)
+        /// <param name="filePath1">文件1</param>
+        /// <param name="filePath2">文件2</param>
+        /// <returns>比较结果： true 相等，false 不相等。</returns>
+        public static bool CompareFileHash(string filePath1, string filePath2)
         {
-            //计算第一个文件的哈希值
-            var hash = System.Security.Cryptography.HashAlgorithm.Create();
-            var stream_1 = new System.IO.FileStream(filePath1, System.IO.FileMode.Open);
-            byte[] hashByte_1 = hash.ComputeHash(stream_1);
-            stream_1.Close();
-            //计算第二个文件的
-            var stream_2 = new System.IO.FileStream(filePath2, System.IO.FileMode.Open);
-            byte[] hashByte_2 = hash.ComputeHash(stream_2);
-            stream_2.Close();
-            //比较两个哈希值
-            return BitConverter.ToString(hashByte_1) == BitConverter.ToString(hashByte_2) ? true : false;
+
+            using (var hash = HashAlgorithm.Create())
+            {
+                byte[] buffer1, buffer2;
+                //计算第一个文件的哈希值
+                using (var fs1 = new FileStream(filePath1, FileMode.Open, FileAccess.Read))
+                {
+                    buffer1 = hash.ComputeHash(fs1);
+                    fs1.Close();
+                }
+                //计算第二个文件的哈希值
+                using (var fs2 = new FileStream(filePath2, FileMode.Open, FileAccess.Read))
+                {
+                    buffer2 = hash.ComputeHash(fs2);
+                    fs2.Close();
+                }
+                //比较两个哈希值
+                return BitConverter.ToString(buffer1) == BitConverter.ToString(buffer2) ? true : false;
+            }
         }
 
         #endregion

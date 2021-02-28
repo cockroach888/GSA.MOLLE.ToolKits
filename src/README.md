@@ -30,6 +30,9 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.FileUtility/src
 dotnet new classlib -lang "C#" -f net5.0 -n ToolKits.FormUtility -o ToolKits.FormUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.FormUtility/src
 
+dotnet new classlib -lang "C#" -f net5.0 -n ToolKits.GoesUtility -o ToolKits.GoesUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.GoesUtility/src
+
 dotnet new classlib -lang "C#" -f net5.0 -n ToolKits.NuclearUtility -o ToolKits.NuclearUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.NuclearUtility/src
 

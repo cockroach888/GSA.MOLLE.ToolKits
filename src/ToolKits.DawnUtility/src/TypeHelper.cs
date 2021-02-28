@@ -17,10 +17,11 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using Microsoft.VisualBasic;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.Text.RegularExpressions;
-using Microsoft.VisualBasic;
 
 namespace GSA.ToolKits.DawnUtility
 {
@@ -498,7 +499,7 @@ namespace GSA.ToolKits.DawnUtility
         /// <returns></returns>
         public static DateTime StrToDateTime(int year)
         {
-            return new DateTime(year, 1, 1);
+            return StrToDateTime(year, 1, 1);
         }
         /// <summary>
         /// 将对象转换为 DateTime 类型
@@ -508,7 +509,7 @@ namespace GSA.ToolKits.DawnUtility
         /// <returns></returns>
         public static DateTime StrToDateTime(int year, int month)
         {
-            return new DateTime(year, month, 1);
+            return StrToDateTime(year, month, 1);
         }
         /// <summary>
         /// 将对象转换为 DateTime 类型
@@ -522,23 +523,7 @@ namespace GSA.ToolKits.DawnUtility
             return new DateTime(year, month, day);
         }
         /// <summary>
-        /// 将对象转换为 DateTime 类型
-        /// </summary>
-        /// <param name="strValue">要转换的值</param>
-        /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的 DateTime 类型结果</returns>
-        public static DateTime StrToDateTime(string strValue, DateTime defValue)
-        {
-            if (!string.IsNullOrEmpty(strValue))
-            {
-                DateTime dateTime;
-                if (DateTime.TryParse(strValue, out dateTime)) return dateTime;
-            }
-            return defValue;
-        }
-        /// <summary>
-        /// 将对象转换为 DateTime 类型
-        /// 默认返回 当前时间
+        /// 将对象转换为 DateTime 类型，默认返回当前时间。
         /// </summary>
         /// <param name="strValue">要转换的值</param>
         /// <returns>转换后的 DateTime 类型结果</returns>
@@ -548,23 +533,70 @@ namespace GSA.ToolKits.DawnUtility
         }
         /// <summary>
         /// 将对象转换为 DateTime 类型
-        /// 默认返回 当前时间
+        /// <para>DateTime.TryParse</para>
         /// </summary>
-        /// <param name="objValue">要转换的值</param>
-        /// <returns>转换后的 DateTime 类型结果</returns>
-        public static DateTime ObjectToDateTime(object objValue)
-        {
-            return StrToDateTime(objValue.ToString());
-        }
-        /// <summary>
-        /// 将对象转换为 DateTime 类型
-        /// </summary>
-        /// <param name="objValue">要转换的值</param>
+        /// <param name="strValue">要转换的值</param>
         /// <param name="defValue">缺省值</param>
         /// <returns>转换后的 DateTime 类型结果</returns>
-        public static DateTime ObjectToDateTime(object objValue, DateTime defValue)
+        public static DateTime StrToDateTime(string strValue, DateTime defValue)
         {
-            return StrToDateTime(objValue.ToString(), defValue);
+            if (!string.IsNullOrEmpty(strValue))
+            {
+                if (DateTime.TryParse(strValue, out DateTime dateTime))
+                {
+                    return dateTime;
+                }
+            }
+            return defValue;
+        }
+
+        #endregion
+
+        #region DateTime Convert
+
+        /// <summary>
+        /// 将指定的数据转换为时间（默认:DateTime.MinValue）
+        /// <para>yyMMddHH</para>
+        /// <para>yyyyMMddHH</para>
+        /// <para>yyyyMMddHHmm</para>
+        /// <para>yyyyMMddHHmmss</para>
+        /// <para>yyyyMMddHHmmssfff</para>
+        /// </summary>
+        /// <param name="dateString">需要转换的时间</param>
+        /// <returns>转换后的时间</returns>
+        public static DateTime ValueToDateTime(string dateString)
+        {
+            if (string.IsNullOrEmpty(dateString))
+            {
+                return DateTime.MinValue;
+            }
+            try
+            {
+                var timeFormat = "yyyyMMddHHmmss";
+                switch (dateString.Length)
+                {
+                    case 8:
+                        timeFormat = "yyMMddHH";
+                        break;
+                    case 10:
+                        timeFormat = "yyyyMMddHH";
+                        break;
+                    case 12:
+                        timeFormat = "yyyyMMddHHmm";
+                        break;
+                    case 14:
+                        timeFormat = "yyyyMMddHHmmss";
+                        break;
+                    case 17:
+                        timeFormat = "yyyyMMddHHmmssfff";
+                        break;
+                }
+                return DateTime.ParseExact(dateString, timeFormat, CultureInfo.CurrentCulture);
+            }
+            catch
+            {
+                return DateTime.MinValue;
+            }
         }
 
         #endregion
@@ -599,6 +631,36 @@ namespace GSA.ToolKits.DawnUtility
                 default:
                     return Color.FromName(strColor);
             }
+        }
+        /// <summary>
+        /// 将字符串转换为Color
+        /// <para>默认返回透明</para>
+        /// <para>格式：255,255,255,255</para>
+        /// </summary>
+        /// <param name="colorString">颜色字符串</param>
+        /// <param name="isARGBorRGBA">true ARGB, false RGBA.</param>
+        /// <returns>转换后的颜色</returns>
+        public static Color ToColor(string colorString, bool isARGBorRGBA)
+        {
+            if (string.IsNullOrEmpty(colorString)) return Color.Transparent;
+            string[] colorArray = colorString.Split(',');
+            if (colorArray.Length != 4) return Color.Transparent;
+            int alpha, red, green, blue;
+            if (isARGBorRGBA)
+            {
+                int.TryParse(colorArray[0], out alpha);
+                int.TryParse(colorArray[1], out red);
+                int.TryParse(colorArray[2], out green);
+                int.TryParse(colorArray[3], out blue);
+            }
+            else
+            {
+                int.TryParse(colorArray[0], out red);
+                int.TryParse(colorArray[1], out green);
+                int.TryParse(colorArray[2], out blue);
+                int.TryParse(colorArray[3], out alpha);
+            }
+            return Color.FromArgb(alpha, red, green, blue);
         }
 
         #endregion
@@ -781,11 +843,14 @@ namespace GSA.ToolKits.DawnUtility
         /// <para>1 向上取整[1.2 -> 2]</para>
         /// <para>2 向下取整[1.2 -> 1]</para>
         /// </param>
-        /// <returns></returns>
-        public static DateTime TakeTheTime(DateTime takeTime, int interval, byte takeFlag = 2)
+        /// <param name="keepSecond">保留秒部分</param>
+        /// <returns>取整后的时间</returns>
+        public static DateTime TakeTime(DateTime takeTime, int interval, byte takeFlag = 2, bool keepSecond = true)
         {
             if (takeTime == DateTime.MinValue || takeTime == DateTime.MaxValue) return takeTime;
+            if (0 == interval) return takeTime;
             var min = takeTime.Minute;
+            if (0 == min % interval) return takeTime;
             if (min > interval) min = min % interval;
             switch (takeFlag)
             {
@@ -797,94 +862,8 @@ namespace GSA.ToolKits.DawnUtility
                     takeTime = takeTime.AddMinutes(-min);
                     break;
             }
+            if (!keepSecond) takeTime = takeTime.AddSeconds(-takeTime.Second);
             return takeTime;
-        }
-
-        #endregion
-
-        #region DateTime Convert
-
-        /// <summary>
-        /// 时间转换器
-        /// <para>字符串拆分法</para>
-        /// <para>20140705102000</para>
-        /// </summary>
-        /// <param name="times">需要转换的时间</param>
-        /// <returns>时间</returns>
-        public static DateTime ValToDate(string times)
-        {
-            if (string.IsNullOrEmpty(times)) return DateTime.MinValue;
-            DateTime result = DateTime.MinValue;
-            if (times.Length >= 12)
-            {
-                try
-                {
-                    int year = int.Parse(times.Substring(0, 4));
-                    int month = int.Parse(times.Substring(4, 2));
-                    int day = int.Parse(times.Substring(6, 2));
-                    int hour = int.Parse(times.Substring(8, 2));
-                    int min = int.Parse(times.Substring(10, 2));
-                    result = new DateTime(year, month, day, hour, min, 0);
-                }
-                catch { }
-            }
-            return result;
-        }
-        /// <summary>
-        /// 时间转换器
-        /// <para>DateTime.TryParse</para>
-        /// <para>2014-07-05 10:20:00</para>
-        /// </summary>
-        /// <param name="dateString">需要转换的时间</param>
-        /// <returns>时间</returns>
-        public static DateTime ValToDateTry(string dateString)
-        {
-            if (string.IsNullOrEmpty(dateString)) return DateTime.MinValue;
-            var date = DateTime.MinValue;
-            try
-            {
-                DateTime.TryParse(dateString, out date);
-            }
-            catch {; }
-            return date;
-        }
-        /// <summary>
-        /// 时间转换器
-        /// <para>DateTime.ParseExact</para>
-        /// <para>20140705102000</para>
-        /// </summary>
-        /// <param name="dateString">需要转换的时间</param>
-        /// <returns>时间</returns>
-        public static DateTime ValToDateAt(string dateString)
-        {
-            if (string.IsNullOrEmpty(dateString)) return DateTime.MinValue;
-            try
-            {
-                var timeFormat = "yyyyMMddHHmmss";
-                switch (dateString.Length)
-                {
-                    case 8:
-                        timeFormat = "yyyyMMdd";
-                        break;
-                    case 10:
-                        timeFormat = "yyyyMMddHH";
-                        break;
-                    case 12:
-                        timeFormat = "yyyyMMddHHmm";
-                        break;
-                    case 16:
-                        timeFormat = "yyyyMMddHHmmss";
-                        break;
-                    case 19:
-                        timeFormat = "yyyyMMddHHmmssfff";
-                        break;
-                }
-                return DateTime.ParseExact(dateString, timeFormat, System.Globalization.CultureInfo.CurrentCulture);
-            }
-            catch
-            {
-                return DateTime.MinValue;
-            }
         }
 
         #endregion
