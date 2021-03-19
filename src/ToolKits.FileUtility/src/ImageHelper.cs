@@ -20,6 +20,7 @@
 using System;
 using System.Collections;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 
@@ -43,10 +44,7 @@ namespace GSA.ToolKits.FileUtility
             {
                 return string.Empty;
             }
-            else
-            {
-                return File.Exists(filePath) ? filePath : defPath;
-            }
+            return File.Exists(filePath) ? filePath : defPath;
         }
         /// <summary>
         /// 判断文件类型是否为WEB格式图片
@@ -56,14 +54,15 @@ namespace GSA.ToolKits.FileUtility
         /// <returns></returns>
         public static bool IsWebImage(string contentType)
         {
-            if (contentType == "image/pjpeg" || contentType == "image/jpeg" || contentType == "image/gif" || contentType == "image/bmp" || contentType == "image/png")
+            if (contentType == "image/pjpeg"
+                || contentType == "image/jpeg"
+                || contentType == "image/gif"
+                || contentType == "image/bmp"
+                || contentType == "image/png")
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         #region 普通缩略图生成模式
@@ -82,128 +81,121 @@ namespace GSA.ToolKits.FileUtility
         /// <para>"H" 指定高，宽按比例</para>
         /// <para>"Cut" 指定高宽裁减（不变形）</para>
         /// </param>
-        public static void Thumbnail(string originalImagePath, string thumbnailPath, int width, int height, string mode)
+        public static void ThumbnailsOfGeneral(string originalImagePath, string thumbnailPath, int width, int height, string mode)
         {
-            Image originalImage = Image.FromFile(originalImagePath);
-            int towidth = width;
-            int toheight = height;
-            int x = 0;
-            int y = 0;
-            int ow = originalImage.Width;
-            int oh = originalImage.Height;
-            switch (mode)
+            using (var originalImage = Image.FromFile(originalImagePath))
             {
-                case "HW"://指定高宽缩放（可能变形）
-                    break;
-                case "W"://指定宽，高按比例
-                    toheight = originalImage.Height * width / originalImage.Width;
-                    break;
-                case "H"://指定高，宽按比例
-                    towidth = originalImage.Width * height / originalImage.Height;
-                    break;
-                case "Cut"://指定高宽裁减（不变形）
-                    if ((double)originalImage.Width / (double)originalImage.Height > (double)towidth / (double)toheight)
-                    {
-                        oh = originalImage.Height;
-                        ow = originalImage.Height * towidth / toheight;
-                        y = 0;
-                        x = (originalImage.Width - ow) / 2;
-                    }
-                    else
-                    {
-                        ow = originalImage.Width;
-                        oh = originalImage.Width * height / towidth;
-                        x = 0;
-                        y = (originalImage.Height - oh) / 2;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            //新建一个bmp图片
-            Image bitmap = new Bitmap(towidth, toheight);
-            //新建一个画板
-            Graphics g = Graphics.FromImage(bitmap);
-            //设置高质量插值法
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-            //设置高质量,低速度呈现平滑程度
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            //清空画布并以透明背景色填充
-            g.Clear(Color.Transparent);
-            //在指定位置并且按指定大小绘制原图片的指定部分
-            g.DrawImage(originalImage, new Rectangle(0, 0, towidth, toheight), new Rectangle(x, y, ow, oh), GraphicsUnit.Pixel);
-            try
-            {
-                //以jpg格式保存缩略图
-                bitmap.Save(thumbnailPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                originalImage.Dispose();
-                bitmap.Dispose();
-                g.Dispose();
+                int towidth = width;
+                int toheight = height;
+                int x = 0;
+                int y = 0;
+                int ow = originalImage.Width;
+                int oh = originalImage.Height;
+                switch (mode)
+                {
+                    case "HW"://指定高宽缩放（可能变形）
+                        break;
+                    case "W"://指定宽，高按比例
+                        toheight = originalImage.Height * width / originalImage.Width;
+                        break;
+                    case "H"://指定高，宽按比例
+                        towidth = originalImage.Width * height / originalImage.Height;
+                        break;
+                    case "Cut"://指定高宽裁减（不变形）
+                        if ((double)originalImage.Width / (double)originalImage.Height > (double)towidth / (double)toheight)
+                        {
+                            oh = originalImage.Height;
+                            ow = originalImage.Height * towidth / toheight;
+                            y = 0;
+                            x = (originalImage.Width - ow) / 2;
+                        }
+                        else
+                        {
+                            ow = originalImage.Width;
+                            oh = originalImage.Width * height / towidth;
+                            x = 0;
+                            y = (originalImage.Height - oh) / 2;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                //新建一个bmp图片
+                using (var bitmap = new Bitmap(towidth, toheight))
+                //新建一个画板
+                using (var g = Graphics.FromImage(bitmap))
+                {
+                    //设置合成图像的渲染质量
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+                    //设置高质量插值法
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    //设置高质量,低速度呈现平滑程度
+                    g.SmoothingMode = SmoothingMode.HighQuality;
+                    //清空画布并以透明背景色填充
+                    g.Clear(Color.Transparent);
+                    //在指定位置并且按指定大小绘制原图片的指定部分
+                    g.DrawImage(originalImage, new Rectangle(0, 0, towidth, toheight), new Rectangle(x, y, ow, oh), GraphicsUnit.Pixel);
+
+                    //以jpg格式保存缩略图
+                    bitmap.Save(thumbnailPath, ImageFormat.Jpeg);
+                }
             }
         }
 
         #endregion
-
-#if NETFRAMEWORK
 
         #region 正方型裁剪并缩放
 
         /// <summary>
-        /// 正方型裁剪
-        /// 以图片中心为轴心，截取正方型，然后等比缩放
-        /// 用于头像处理
+        /// 正方型裁剪（可用于头像处理）
+        /// <para>以图片中心为轴心，截取正方型，然后等比缩放</para>
         /// </summary>
-        /// <remarks>吴剑 2010-11-23</remarks>
-        /// <param name="postedFile">原图HttpPostedFile对象</param>
-        /// <param name="fileSaveUrl">缩略图存放地址</param>
+        /// <param name="originImage">原图对象</param>
+        /// <param name="saveDirectory">缩略图保存目录</param>
+        /// <param name="saveFileName">缩略图保存名称</param>
         /// <param name="side">指定的边长（正方型）</param>
         /// <param name="quality">质量（范围0-100）</param>
-        public static void CutForSquare(System.Web.HttpPostedFile postedFile, string fileSaveUrl, int side, int quality)
+        public static void ThumbnailsOfSquareCut(Image originImage, string saveDirectory, string saveFileName, int side, int quality)
         {
-            //创建目录
-            string dir = Path.GetDirectoryName(fileSaveUrl);
-            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
-            //原始图片（获取原始图片创建对象，并使用流中嵌入的颜色管理信息）
-            System.Drawing.Image initImage = System.Drawing.Image.FromStream(postedFile.InputStream, true);
-            //原图宽高均小于模版，不作处理，直接保存
-            if (initImage.Width <= side && initImage.Height <= side)
+            // 创建目录
+            if (!Directory.Exists(saveDirectory))
             {
-                initImage.Save(fileSaveUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
+                Directory.CreateDirectory(saveDirectory);
+            }
+            var filePath = Path.Combine(saveDirectory, saveFileName);
+
+            //原图宽高均小于模版，不作处理，直接保存
+            if (originImage.Width <= side && originImage.Height <= side)
+            {
+                originImage.Save(filePath, ImageFormat.Jpeg);
             }
             else
             {
                 //原始图片的宽、高
-                int initWidth = initImage.Width;
-                int initHeight = initImage.Height;
+                int initWidth = originImage.Width;
+                int initHeight = originImage.Height;
 
                 //非正方型先裁剪为正方型
                 if (initWidth != initHeight)
                 {
-                    //截图对象
-                    System.Drawing.Image pickedImage = null;
-                    System.Drawing.Graphics pickedG = null;
+                    Graphics pickedG;
+                    Image pickedImage;
 
                     //宽大于高的横图
                     if (initWidth > initHeight)
                     {
                         //对象实例化
-                        pickedImage = new System.Drawing.Bitmap(initHeight, initHeight);
-                        pickedG = System.Drawing.Graphics.FromImage(pickedImage);
+                        pickedImage = new Bitmap(initHeight, initHeight);
+                        pickedG = Graphics.FromImage(pickedImage);
                         //设置质量
-                        pickedG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        pickedG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                        pickedG.CompositingQuality = CompositingQuality.HighQuality;
+                        pickedG.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        pickedG.SmoothingMode = SmoothingMode.HighQuality;
                         //定位
                         Rectangle fromR = new Rectangle((initWidth - initHeight) / 2, 0, initHeight, initHeight);
                         Rectangle toR = new Rectangle(0, 0, initHeight, initHeight);
                         //画图
-                        pickedG.DrawImage(initImage, toR, fromR, System.Drawing.GraphicsUnit.Pixel);
+                        pickedG.DrawImage(originImage, toR, fromR, GraphicsUnit.Pixel);
                         //重置宽
                         initWidth = initHeight;
                     }
@@ -211,260 +203,39 @@ namespace GSA.ToolKits.FileUtility
                     else
                     {
                         //对象实例化
-                        pickedImage = new System.Drawing.Bitmap(initWidth, initWidth);
-                        pickedG = System.Drawing.Graphics.FromImage(pickedImage);
+                        pickedImage = new Bitmap(initWidth, initWidth);
+                        pickedG = Graphics.FromImage(pickedImage);
                         //设置质量
-                        pickedG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        pickedG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                        pickedG.CompositingQuality = CompositingQuality.HighQuality;
+                        pickedG.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        pickedG.SmoothingMode = SmoothingMode.HighQuality;
                         //定位
                         Rectangle fromR = new Rectangle(0, (initHeight - initWidth) / 2, initWidth, initWidth);
                         Rectangle toR = new Rectangle(0, 0, initWidth, initWidth);
                         //画图
-                        pickedG.DrawImage(initImage, toR, fromR, System.Drawing.GraphicsUnit.Pixel);
+                        pickedG.DrawImage(originImage, toR, fromR, GraphicsUnit.Pixel);
                         //重置高
                         initHeight = initWidth;
                     }
                     //将截图对象赋给原图
-                    initImage = (System.Drawing.Image)pickedImage.Clone();
+                    originImage = (Image)pickedImage.Clone();
                     //释放截图资源
                     pickedG.Dispose();
                     pickedImage.Dispose();
                 }
+
                 //缩略图对象
-                System.Drawing.Image resultImage = new System.Drawing.Bitmap(side, side);
-                System.Drawing.Graphics resultG = System.Drawing.Graphics.FromImage(resultImage);
-                //设置质量
-                resultG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                resultG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                //用指定背景色清空画布
-                resultG.Clear(Color.White);
-                //绘制缩略图
-                resultG.DrawImage(initImage, new System.Drawing.Rectangle(0, 0, side, side), new System.Drawing.Rectangle(0, 0, initWidth, initHeight), System.Drawing.GraphicsUnit.Pixel);
-                //关键质量控制
-                //获取系统编码类型数组,包含了jpeg,bmp,png,gif,tiff
-                ImageCodecInfo[] icis = ImageCodecInfo.GetImageEncoders();
-                ImageCodecInfo ici = null;
-                foreach (ImageCodecInfo i in icis)
+                using (var resultImage = new Bitmap(side, side))
+                using (var resultG = Graphics.FromImage(resultImage))
                 {
-                    if (i.MimeType == "image/jpeg" || i.MimeType == "image/bmp" || i.MimeType == "image/png" || i.MimeType == "image/gif")
-                    {
-                        ici = i;
-                    }
-                }
-                EncoderParameters ep = new EncoderParameters(1);
-                ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)quality);
-                //保存缩略图
-                resultImage.Save(fileSaveUrl, ici, ep);
-                //释放关键质量控制所用资源
-                ep.Dispose();
-                //释放缩略图资源
-                resultG.Dispose();
-                resultImage.Dispose();
-                //释放原始图片资源
-                initImage.Dispose();
-            }
-        }
-        /// <summary>
-        /// 正方型裁剪
-        /// 以图片中心为轴心，截取正方型，然后等比缩放
-        /// 用于头像处理
-        /// </summary>
-        /// <remarks>吴剑 2010-11-23</remarks>
-        /// <param name="fromFile">原图HttpPostedFile对象</param>
-        /// <param name="fileSaveUrl">缩略图存放地址</param>
-        /// <param name="side">指定的边长（正方型）</param>
-        /// <param name="quality">质量（范围0-100）</param>
-        public static void CutForSquare(System.IO.Stream fromFile, string fileSaveUrl, int side, int quality)
-        {
-            //创建目录
-            string dir = Path.GetDirectoryName(fileSaveUrl);
-            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
-            //原始图片（获取原始图片创建对象，并使用流中嵌入的颜色管理信息）
-            System.Drawing.Image initImage = System.Drawing.Image.FromStream(fromFile, true);
-            //原图宽高均小于模版，不作处理，直接保存
-            if (initImage.Width <= side && initImage.Height <= side)
-            {
-                initImage.Save(fileSaveUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
-            }
-            else
-            {
-                //原始图片的宽、高
-                int initWidth = initImage.Width;
-                int initHeight = initImage.Height;
-                //非正方型先裁剪为正方型
-                if (initWidth != initHeight)
-                {
-                    //截图对象
-                    System.Drawing.Image pickedImage = null;
-                    System.Drawing.Graphics pickedG = null;
-                    //宽大于高的横图
-                    if (initWidth > initHeight)
-                    {
-                        //对象实例化
-                        pickedImage = new System.Drawing.Bitmap(initHeight, initHeight);
-                        pickedG = System.Drawing.Graphics.FromImage(pickedImage);
-                        //设置质量
-                        pickedG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        pickedG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                        //定位
-                        Rectangle fromR = new Rectangle((initWidth - initHeight) / 2, 0, initHeight, initHeight);
-                        Rectangle toR = new Rectangle(0, 0, initHeight, initHeight);
-                        //画图
-                        pickedG.DrawImage(initImage, toR, fromR, System.Drawing.GraphicsUnit.Pixel);
-                        //重置宽
-                        initWidth = initHeight;
-                    }
-                    //高大于宽的竖图
-                    else
-                    {
-                        //对象实例化
-                        pickedImage = new System.Drawing.Bitmap(initWidth, initWidth);
-                        pickedG = System.Drawing.Graphics.FromImage(pickedImage);
-                        //设置质量
-                        pickedG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        pickedG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                        //定位
-                        Rectangle fromR = new Rectangle(0, (initHeight - initWidth) / 2, initWidth, initWidth);
-                        Rectangle toR = new Rectangle(0, 0, initWidth, initWidth);
-                        //画图
-                        pickedG.DrawImage(initImage, toR, fromR, System.Drawing.GraphicsUnit.Pixel);
-                        //重置高
-                        initHeight = initWidth;
-                    }
-                    //将截图对象赋给原图
-                    initImage = (System.Drawing.Image)pickedImage.Clone();
-                    //释放截图资源
-                    pickedG.Dispose();
-                    pickedImage.Dispose();
-                }
-                //缩略图对象
-                System.Drawing.Image resultImage = new System.Drawing.Bitmap(side, side);
-                System.Drawing.Graphics resultG = System.Drawing.Graphics.FromImage(resultImage);
-                //设置质量
-                resultG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                resultG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                //用指定背景色清空画布
-                resultG.Clear(Color.White);
-                //绘制缩略图
-                resultG.DrawImage(initImage, new System.Drawing.Rectangle(0, 0, side, side), new System.Drawing.Rectangle(0, 0, initWidth, initHeight), System.Drawing.GraphicsUnit.Pixel);
-                //关键质量控制
-                //获取系统编码类型数组,包含了jpeg,bmp,png,gif,tiff
-                ImageCodecInfo[] icis = ImageCodecInfo.GetImageEncoders();
-                ImageCodecInfo ici = null;
-                foreach (ImageCodecInfo i in icis)
-                {
-                    if (i.MimeType == "image/jpeg" || i.MimeType == "image/bmp" || i.MimeType == "image/png" || i.MimeType == "image/gif")
-                    {
-                        ici = i;
-                    }
-                }
-                EncoderParameters ep = new EncoderParameters(1);
-                ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)quality);
-                //保存缩略图
-                resultImage.Save(fileSaveUrl, ici, ep);
-                //释放关键质量控制所用资源
-                ep.Dispose();
-                //释放缩略图资源
-                resultG.Dispose();
-                resultImage.Dispose();
-                //释放原始图片资源
-                initImage.Dispose();
-            }
-        }
-
-        #endregion
-
-        #region 固定模版裁剪并缩放
-
-        /// <summary>
-        /// 指定长宽裁剪
-        /// 按模版比例最大范围的裁剪图片并缩放至模版尺寸
-        /// </summary>
-        /// <remarks>吴剑 2010-11-15</remarks>
-        /// <param name="postedFile">原图HttpPostedFile对象</param>
-        /// <param name="fileSaveUrl">保存路径</param>
-        /// <param name="maxWidth">最大宽(单位:px)</param>
-        /// <param name="maxHeight">最大高(单位:px)</param>
-        /// <param name="quality">质量（范围0-100）</param>
-        public static void CutForCustom(System.Web.HttpPostedFile postedFile, string fileSaveUrl, int maxWidth, int maxHeight, int quality)
-        {
-            //从文件获取原始图片，并使用流中嵌入的颜色管理信息
-            System.Drawing.Image initImage = System.Drawing.Image.FromStream(postedFile.InputStream, true);
-            //原图宽高均小于模版，不作处理，直接保存
-            if (initImage.Width <= maxWidth && initImage.Height <= maxHeight)
-            {
-                initImage.Save(fileSaveUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
-            }
-            else
-            {
-                //模版的宽高比例
-                double templateRate = (double)maxWidth / maxHeight;
-                //原图片的宽高比例
-                double initRate = (double)initImage.Width / initImage.Height;
-                //原图与模版比例相等，直接缩放
-                if (templateRate == initRate)
-                {
-                    //按模版大小生成最终图片
-                    System.Drawing.Image templateImage = new System.Drawing.Bitmap(maxWidth, maxHeight);
-                    System.Drawing.Graphics templateG = System.Drawing.Graphics.FromImage(templateImage);
-                    templateG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-                    templateG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    templateG.Clear(Color.White);
-                    templateG.DrawImage(initImage, new System.Drawing.Rectangle(0, 0, maxWidth, maxHeight), new System.Drawing.Rectangle(0, 0, initImage.Width, initImage.Height), System.Drawing.GraphicsUnit.Pixel);
-                    templateImage.Save(fileSaveUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
-                }
-                //原图与模版比例不等，裁剪后缩放
-                else
-                {
-                    //裁剪对象
-                    System.Drawing.Image pickedImage = null;
-                    System.Drawing.Graphics pickedG = null;
-                    //定位
-                    Rectangle fromR = new Rectangle(0, 0, 0, 0);//原图裁剪定位
-                    Rectangle toR = new Rectangle(0, 0, 0, 0);//目标定位
-                    //宽为标准进行裁剪
-                    if (templateRate > initRate)
-                    {
-                        //裁剪对象实例化
-                        pickedImage = new System.Drawing.Bitmap(initImage.Width, (int)Math.Floor(initImage.Width / templateRate));
-                        pickedG = System.Drawing.Graphics.FromImage(pickedImage);
-                        //裁剪源定位
-                        fromR.X = 0;
-                        fromR.Y = (int)Math.Floor((initImage.Height - initImage.Width / templateRate) / 2);
-                        fromR.Width = initImage.Width;
-                        fromR.Height = (int)Math.Floor(initImage.Width / templateRate);
-                        //裁剪目标定位
-                        toR.X = 0;
-                        toR.Y = 0;
-                        toR.Width = initImage.Width;
-                        toR.Height = (int)Math.Floor(initImage.Width / templateRate);
-                    }
-                    //高为标准进行裁剪
-                    else
-                    {
-                        pickedImage = new System.Drawing.Bitmap((int)Math.Floor(initImage.Height * templateRate), initImage.Height);
-                        pickedG = System.Drawing.Graphics.FromImage(pickedImage);
-                        fromR.X = (int)Math.Floor((initImage.Width - initImage.Height * templateRate) / 2);
-                        fromR.Y = 0;
-                        fromR.Width = (int)Math.Floor(initImage.Height * templateRate);
-                        fromR.Height = initImage.Height;
-                        toR.X = 0;
-                        toR.Y = 0;
-                        toR.Width = (int)Math.Floor(initImage.Height * templateRate);
-                        toR.Height = initImage.Height;
-                    }
                     //设置质量
-                    pickedG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    pickedG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    //裁剪
-                    pickedG.DrawImage(initImage, toR, fromR, System.Drawing.GraphicsUnit.Pixel);
-                    //按模版大小生成最终图片
-                    System.Drawing.Image templateImage = new System.Drawing.Bitmap(maxWidth, maxHeight);
-                    System.Drawing.Graphics templateG = System.Drawing.Graphics.FromImage(templateImage);
-                    templateG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-                    templateG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    templateG.Clear(Color.White);
-                    templateG.DrawImage(pickedImage, new System.Drawing.Rectangle(0, 0, maxWidth, maxHeight), new System.Drawing.Rectangle(0, 0, pickedImage.Width, pickedImage.Height), System.Drawing.GraphicsUnit.Pixel);
+                    resultG.CompositingQuality = CompositingQuality.HighQuality;
+                    resultG.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    resultG.SmoothingMode = SmoothingMode.HighQuality;
+                    //用指定背景色清空画布
+                    resultG.Clear(Color.White);
+                    //绘制缩略图
+                    resultG.DrawImage(originImage, new Rectangle(0, 0, side, side), new Rectangle(0, 0, initWidth, initHeight), GraphicsUnit.Pixel);
                     //关键质量控制
                     //获取系统编码类型数组,包含了jpeg,bmp,png,gif,tiff
                     ImageCodecInfo[] icis = ImageCodecInfo.GetImageEncoders();
@@ -477,19 +248,150 @@ namespace GSA.ToolKits.FileUtility
                         }
                     }
                     EncoderParameters ep = new EncoderParameters(1);
-                    ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)quality);
+                    ep.Param[0] = new EncoderParameter(Encoder.Quality, (long)quality);
                     //保存缩略图
-                    templateImage.Save(fileSaveUrl, ici, ep);
-                    //templateImage.Save(fileSaveUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    //释放资源
-                    templateG.Dispose();
-                    templateImage.Dispose();
-                    pickedG.Dispose();
-                    pickedImage.Dispose();
+                    resultImage.Save(filePath, ici, ep);
+                    //释放关键质量控制所用资源
+                    ep.Dispose();
+                    //释放缩略图资源
+                    resultG.Dispose();
+                    resultImage.Dispose();
+                    //释放原始图片资源
+                    originImage.Dispose();
+                }
+            }
+        }
+
+        #endregion
+
+        #region 固定模版裁剪并缩放
+
+        /// <summary>
+        /// 指定长宽裁剪
+        /// <para>按模版比例最大范围的裁剪图片并缩放至模版尺寸</para>
+        /// </summary>
+        /// <param name="originImage">原图对象</param>
+        /// <param name="saveDirectory">缩略图保存目录</param>
+        /// <param name="saveFileName">缩略图保存名称</param>
+        /// <param name="maxWidth">最大宽(单位:px)</param>
+        /// <param name="maxHeight">最大高(单位:px)</param>
+        /// <param name="quality">质量（范围0-100）</param>
+        public static void ThumbnailsOfCustomSize(Image originImage, string saveDirectory, string saveFileName, int maxWidth, int maxHeight, int quality)
+        {
+            // 创建目录
+            if (!Directory.Exists(saveDirectory))
+            {
+                Directory.CreateDirectory(saveDirectory);
+            }
+            var filePath = Path.Combine(saveDirectory, saveFileName);
+
+            //原图宽高均小于模版，不作处理，直接保存
+            if (originImage.Width <= maxWidth && originImage.Height <= maxHeight)
+            {
+                originImage.Save(filePath, ImageFormat.Jpeg);
+            }
+            else
+            {
+                //模版的宽高比例
+                double templateRate = (double)maxWidth / maxHeight;
+                //原图片的宽高比例
+                double initRate = (double)originImage.Width / originImage.Height;
+                //原图与模版比例相等，直接缩放
+                if (templateRate == initRate)
+                {
+                    //按模版大小生成最终图片
+                    using (var templateImage = new Bitmap(maxWidth, maxHeight))
+                    using (var templateG = Graphics.FromImage(templateImage))
+                    {
+                        templateG.CompositingQuality = CompositingQuality.HighQuality;
+                        templateG.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        templateG.SmoothingMode = SmoothingMode.HighQuality;
+                        templateG.Clear(Color.White);
+                        templateG.DrawImage(originImage, new Rectangle(0, 0, maxWidth, maxHeight), new Rectangle(0, 0, originImage.Width, originImage.Height), GraphicsUnit.Pixel);
+                        templateImage.Save(filePath, ImageFormat.Jpeg);
+                    }
+                }
+                //原图与模版比例不等，裁剪后缩放
+                else
+                {
+                    //定位
+                    Rectangle fromR = new Rectangle(0, 0, 0, 0);//原图裁剪定位
+                    Rectangle toR = new Rectangle(0, 0, 0, 0);//目标定位
+                    Graphics pickedG;
+                    Image pickedImage;
+
+                    //宽为标准进行裁剪
+                    if (templateRate > initRate)
+                    {
+                        //裁剪对象实例化
+                        pickedImage = new Bitmap(originImage.Width, (int)Math.Floor(originImage.Width / templateRate));
+                        pickedG = Graphics.FromImage(pickedImage);
+                        //裁剪源定位
+                        fromR.X = 0;
+                        fromR.Y = (int)Math.Floor((originImage.Height - originImage.Width / templateRate) / 2);
+                        fromR.Width = originImage.Width;
+                        fromR.Height = (int)Math.Floor(originImage.Width / templateRate);
+                        //裁剪目标定位
+                        toR.X = 0;
+                        toR.Y = 0;
+                        toR.Width = originImage.Width;
+                        toR.Height = (int)Math.Floor(originImage.Width / templateRate);
+                    }
+                    //高为标准进行裁剪
+                    else
+                    {
+                        pickedImage = new Bitmap((int)Math.Floor(originImage.Height * templateRate), originImage.Height);
+                        pickedG = Graphics.FromImage(pickedImage);
+                        fromR.X = (int)Math.Floor((originImage.Width - originImage.Height * templateRate) / 2);
+                        fromR.Y = 0;
+                        fromR.Width = (int)Math.Floor(originImage.Height * templateRate);
+                        fromR.Height = originImage.Height;
+                        toR.X = 0;
+                        toR.Y = 0;
+                        toR.Width = (int)Math.Floor(originImage.Height * templateRate);
+                        toR.Height = originImage.Height;
+                    }
+                    //设置质量
+                    pickedG.CompositingQuality = CompositingQuality.HighQuality;
+                    pickedG.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    pickedG.SmoothingMode = SmoothingMode.HighQuality;
+                    //裁剪
+                    pickedG.DrawImage(originImage, toR, fromR, GraphicsUnit.Pixel);
+                    //按模版大小生成最终图片
+                    using (var templateImage = new Bitmap(maxWidth, maxHeight))
+                    using (var templateG = Graphics.FromImage(templateImage))
+                    {
+                        templateG.CompositingQuality = CompositingQuality.HighQuality;
+                        templateG.InterpolationMode = InterpolationMode.High;
+                        templateG.SmoothingMode = SmoothingMode.HighQuality;
+                        templateG.Clear(Color.White);
+                        templateG.DrawImage(pickedImage, new Rectangle(0, 0, maxWidth, maxHeight), new Rectangle(0, 0, pickedImage.Width, pickedImage.Height), GraphicsUnit.Pixel);
+                        //关键质量控制
+                        //获取系统编码类型数组,包含了jpeg,bmp,png,gif,tiff
+                        ImageCodecInfo[] icis = ImageCodecInfo.GetImageEncoders();
+                        ImageCodecInfo ici = null;
+                        foreach (ImageCodecInfo i in icis)
+                        {
+                            if (i.MimeType == "image/jpeg" || i.MimeType == "image/bmp" || i.MimeType == "image/png" || i.MimeType == "image/gif")
+                            {
+                                ici = i;
+                            }
+                        }
+                        EncoderParameters ep = new EncoderParameters(1);
+                        ep.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+                        //保存缩略图
+                        templateImage.Save(filePath, ici, ep);
+                        //templateImage.Save(fileSaveUrl, ImageFormat.Jpeg);
+                        //释放资源
+                        templateG.Dispose();
+                        templateImage.Dispose();
+                        pickedG.Dispose();
+                        pickedImage.Dispose();
+                    }
                 }
             }
             //释放资源
-            initImage.Dispose();
+            originImage.Dispose();
         }
         #endregion
 
@@ -498,30 +400,32 @@ namespace GSA.ToolKits.FileUtility
         /// <summary>
         /// 图片按等比缩放生成缩略图
         /// </summary>
-        /// <remarks>吴剑 2011-01-21</remarks>
-        /// <param name="postedFile">原图HttpPostedFile对象</param>
-        /// <param name="savePath">缩略图存放地址</param>
+        /// <param name="originImage">原图对象</param>
+        /// <param name="saveDirectory">缩略图保存目录</param>
+        /// <param name="saveFileName">缩略图保存名称</param>
         /// <param name="targetWidth">指定的最大宽度</param>
         /// <param name="targetHeight">指定的最大高度</param>
-        /// <param name="watermarkText">水印文字(为""表示不使用水印)</param>
-        /// <param name="watermarkImage">水印图片路径(为""表示不使用水印)</param>
-        public static void ZoomAuto(System.Web.HttpPostedFile postedFile, string savePath, System.Double targetWidth, System.Double targetHeight, string watermarkText, string watermarkImage)
+        /// <param name="watermarkText">水印文字(为空表示不使用水印)</param>
+        /// <param name="watermarkImage">水印图片路径(为空表示不使用水印)</param>
+        public static void ThumbnailsOfIsometricZoom(Image originImage, string saveDirectory, string saveFileName, double targetWidth, double targetHeight, string watermarkText, string watermarkImage)
         {
-            //创建目录
-            string dir = Path.GetDirectoryName(savePath);
-            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
-            //原始图片（获取原始图片创建对象，并使用流中嵌入的颜色管理信息）
-            System.Drawing.Image initImage = System.Drawing.Image.FromStream(postedFile.InputStream, true);
+            // 创建目录
+            if (!Directory.Exists(saveDirectory))
+            {
+                Directory.CreateDirectory(saveDirectory);
+            }
+            var filePath = Path.Combine(saveDirectory, saveFileName);
+
             //原图宽高均小于模版，不作处理，直接保存
-            if (initImage.Width <= targetWidth && initImage.Height <= targetHeight)
+            if (originImage.Width <= targetWidth && originImage.Height <= targetHeight)
             {
                 //文字水印
                 if (watermarkText != "")
                 {
-                    using (System.Drawing.Graphics gWater = System.Drawing.Graphics.FromImage(initImage))
+                    using (Graphics gWater = Graphics.FromImage(originImage))
                     {
-                        System.Drawing.Font fontWater = new Font("黑体", 10);
-                        System.Drawing.Brush brushWater = new SolidBrush(Color.White);
+                        Font fontWater = new Font("黑体", 10);
+                        Brush brushWater = new SolidBrush(Color.White);
                         gWater.DrawString(watermarkText, fontWater, brushWater, 10, 10);
                         gWater.Dispose();
                     }
@@ -532,135 +436,138 @@ namespace GSA.ToolKits.FileUtility
                     if (File.Exists(watermarkImage))
                     {
                         //获取水印图片
-                        using (System.Drawing.Image wrImage = System.Drawing.Image.FromFile(watermarkImage))
+                        using (Image wrImage = Image.FromFile(watermarkImage))
                         {
                             //水印绘制条件：原始图片宽高均大于或等于水印图片
-                            if (initImage.Width >= wrImage.Width && initImage.Height >= wrImage.Height)
+                            if (originImage.Width >= wrImage.Width && originImage.Height >= wrImage.Height)
                             {
-                                Graphics gWater = Graphics.FromImage(initImage);
-                                //透明属性
-                                ImageAttributes imgAttributes = new ImageAttributes();
-                                ColorMap colorMap = new ColorMap();
-                                colorMap.OldColor = Color.FromArgb(255, 0, 255, 0);
-                                colorMap.NewColor = Color.FromArgb(0, 0, 0, 0);
-                                ColorMap[] remapTable = { colorMap };
-                                imgAttributes.SetRemapTable(remapTable, ColorAdjustType.Bitmap);
-                                float[][] colorMatrixElements = {
+                                using (var gWater = Graphics.FromImage(originImage))
+                                {
+                                    //透明属性
+                                    ImageAttributes imgAttributes = new ImageAttributes();
+                                    ColorMap colorMap = new ColorMap();
+                                    colorMap.OldColor = Color.FromArgb(255, 0, 255, 0);
+                                    colorMap.NewColor = Color.FromArgb(0, 0, 0, 0);
+                                    ColorMap[] remapTable = { colorMap };
+                                    imgAttributes.SetRemapTable(remapTable, ColorAdjustType.Bitmap);
+                                    float[][] colorMatrixElements = {
                                    new float[] {1.0f,  0.0f,  0.0f,  0.0f, 0.0f},
                                    new float[] {0.0f,  1.0f,  0.0f,  0.0f, 0.0f},
                                    new float[] {0.0f,  0.0f,  1.0f,  0.0f, 0.0f},
                                    new float[] {0.0f,  0.0f,  0.0f,  0.5f, 0.0f},//透明度:0.5
                                    new float[] {0.0f,  0.0f,  0.0f,  0.0f, 1.0f}
                                 };
-                                ColorMatrix wmColorMatrix = new ColorMatrix(colorMatrixElements);
-                                imgAttributes.SetColorMatrix(wmColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-                                gWater.DrawImage(wrImage, new Rectangle(initImage.Width - wrImage.Width, initImage.Height - wrImage.Height, wrImage.Width, wrImage.Height), 0, 0, wrImage.Width, wrImage.Height, GraphicsUnit.Pixel, imgAttributes);
-                                gWater.Dispose();
+                                    ColorMatrix wmColorMatrix = new ColorMatrix(colorMatrixElements);
+                                    imgAttributes.SetColorMatrix(wmColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                                    gWater.DrawImage(wrImage, new Rectangle(originImage.Width - wrImage.Width, originImage.Height - wrImage.Height, wrImage.Width, wrImage.Height), 0, 0, wrImage.Width, wrImage.Height, GraphicsUnit.Pixel, imgAttributes);
+                                    gWater.Dispose();
+                                }
                             }
                             wrImage.Dispose();
                         }
                     }
                 }
                 //保存
-                initImage.Save(savePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                originImage.Save(filePath, ImageFormat.Jpeg);
             }
             else
             {
                 //缩略图宽、高计算
-                double newWidth = initImage.Width;
-                double newHeight = initImage.Height;
+                double newWidth = originImage.Width;
+                double newHeight = originImage.Height;
                 //宽大于高或宽等于高（横图或正方）
-                if (initImage.Width > initImage.Height || initImage.Width == initImage.Height)
+                if (originImage.Width > originImage.Height || originImage.Width == originImage.Height)
                 {
                     //如果宽大于模版
-                    if (initImage.Width > targetWidth)
+                    if (originImage.Width > targetWidth)
                     {
                         //宽按模版，高按比例缩放
                         newWidth = targetWidth;
-                        newHeight = initImage.Height * (targetWidth / initImage.Width);
+                        newHeight = originImage.Height * (targetWidth / originImage.Width);
                     }
                 }
                 //高大于宽（竖图）
                 else
                 {
                     //如果高大于模版
-                    if (initImage.Height > targetHeight)
+                    if (originImage.Height > targetHeight)
                     {
                         //高按模版，宽按比例缩放
                         newHeight = targetHeight;
-                        newWidth = initImage.Width * (targetHeight / initImage.Height);
+                        newWidth = originImage.Width * (targetHeight / originImage.Height);
                     }
                 }
                 //生成新图
-                //新建一个bmp图片
-                System.Drawing.Image newImage = new System.Drawing.Bitmap((int)newWidth, (int)newHeight);
-                //新建一个画板
-                System.Drawing.Graphics newG = System.Drawing.Graphics.FromImage(newImage);
-                //设置质量
-                newG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                newG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                //置背景色
-                newG.Clear(Color.White);
-                //画图
-                newG.DrawImage(initImage, new System.Drawing.Rectangle(0, 0, newImage.Width, newImage.Height), new System.Drawing.Rectangle(0, 0, initImage.Width, initImage.Height), System.Drawing.GraphicsUnit.Pixel);
-                //文字水印
-                if (watermarkText != "")
+                using (var newImage = new Bitmap((int)newWidth, (int)newHeight))
+                using (var newG = Graphics.FromImage(newImage))
                 {
-                    using (System.Drawing.Graphics gWater = System.Drawing.Graphics.FromImage(newImage))
+                    //设置质量
+                    newG.CompositingQuality = CompositingQuality.HighQuality;
+                    newG.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    newG.SmoothingMode = SmoothingMode.HighQuality;
+                    //置背景色
+                    newG.Clear(Color.White);
+                    //画图
+                    newG.DrawImage(originImage, new Rectangle(0, 0, newImage.Width, newImage.Height), new Rectangle(0, 0, originImage.Width, originImage.Height), GraphicsUnit.Pixel);
+                    //文字水印
+                    if (watermarkText != "")
                     {
-                        System.Drawing.Font fontWater = new Font("宋体", 10);
-                        System.Drawing.Brush brushWater = new SolidBrush(Color.White);
-                        gWater.DrawString(watermarkText, fontWater, brushWater, 10, 10);
-                        gWater.Dispose();
-                    }
-                }
-                //透明图片水印
-                if (watermarkImage != "")
-                {
-                    if (File.Exists(watermarkImage))
-                    {
-                        //获取水印图片
-                        using (System.Drawing.Image wrImage = System.Drawing.Image.FromFile(watermarkImage))
+                        using (Graphics gWater = Graphics.FromImage(newImage))
                         {
-                            //水印绘制条件：原始图片宽高均大于或等于水印图片
-                            if (newImage.Width >= wrImage.Width && newImage.Height >= wrImage.Height)
-                            {
-                                Graphics gWater = Graphics.FromImage(newImage);
-                                //透明属性
-                                ImageAttributes imgAttributes = new ImageAttributes();
-                                ColorMap colorMap = new ColorMap();
-                                colorMap.OldColor = Color.FromArgb(255, 0, 255, 0);
-                                colorMap.NewColor = Color.FromArgb(0, 0, 0, 0);
-                                ColorMap[] remapTable = { colorMap };
-                                imgAttributes.SetRemapTable(remapTable, ColorAdjustType.Bitmap);
-                                float[][] colorMatrixElements = {
-                                   new float[] {1.0f,  0.0f,  0.0f,  0.0f, 0.0f},
-                                   new float[] {0.0f,  1.0f,  0.0f,  0.0f, 0.0f},
-                                   new float[] {0.0f,  0.0f,  1.0f,  0.0f, 0.0f},
-                                   new float[] {0.0f,  0.0f,  0.0f,  0.5f, 0.0f},//透明度:0.5
-                                   new float[] {0.0f,  0.0f,  0.0f,  0.0f, 1.0f}
-                                };
-                                ColorMatrix wmColorMatrix = new ColorMatrix(colorMatrixElements);
-                                imgAttributes.SetColorMatrix(wmColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-                                gWater.DrawImage(wrImage, new Rectangle(newImage.Width - wrImage.Width, newImage.Height - wrImage.Height, wrImage.Width, wrImage.Height), 0, 0, wrImage.Width, wrImage.Height, GraphicsUnit.Pixel, imgAttributes);
-                                gWater.Dispose();
-                            }
-                            wrImage.Dispose();
+                            Font fontWater = new Font("宋体", 10);
+                            Brush brushWater = new SolidBrush(Color.White);
+                            gWater.DrawString(watermarkText, fontWater, brushWater, 10, 10);
+                            gWater.Dispose();
                         }
                     }
+                    //透明图片水印
+                    if (watermarkImage != "")
+                    {
+                        if (File.Exists(watermarkImage))
+                        {
+                            //获取水印图片
+                            using (Image wrImage = Image.FromFile(watermarkImage))
+                            {
+                                //水印绘制条件：原始图片宽高均大于或等于水印图片
+                                if (newImage.Width >= wrImage.Width && newImage.Height >= wrImage.Height)
+                                {
+                                    using (var gWater = Graphics.FromImage(newImage))
+                                    {
+                                        //透明属性
+                                        ImageAttributes imgAttributes = new ImageAttributes();
+                                        ColorMap colorMap = new ColorMap();
+                                        colorMap.OldColor = Color.FromArgb(255, 0, 255, 0);
+                                        colorMap.NewColor = Color.FromArgb(0, 0, 0, 0);
+                                        ColorMap[] remapTable = { colorMap };
+                                        imgAttributes.SetRemapTable(remapTable, ColorAdjustType.Bitmap);
+                                        float[][] colorMatrixElements = {
+                                           new float[] {1.0f,  0.0f,  0.0f,  0.0f, 0.0f},
+                                           new float[] {0.0f,  1.0f,  0.0f,  0.0f, 0.0f},
+                                           new float[] {0.0f,  0.0f,  1.0f,  0.0f, 0.0f},
+                                           new float[] {0.0f,  0.0f,  0.0f,  0.5f, 0.0f},//透明度:0.5
+                                           new float[] {0.0f,  0.0f,  0.0f,  0.0f, 1.0f}
+                                        };
+                                        ColorMatrix wmColorMatrix = new ColorMatrix(colorMatrixElements);
+                                        imgAttributes.SetColorMatrix(wmColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                                        gWater.DrawImage(wrImage, new Rectangle(newImage.Width - wrImage.Width, newImage.Height - wrImage.Height, wrImage.Width, wrImage.Height), 0, 0, wrImage.Width, wrImage.Height, GraphicsUnit.Pixel, imgAttributes);
+                                        gWater.Dispose();
+                                    }
+                                }
+                                wrImage.Dispose();
+                            }
+                        }
+                    }
+                    //保存缩略图
+                    newImage.Save(filePath, ImageFormat.Jpeg);
+                    //释放资源
+                    newG.Dispose();
+                    newImage.Dispose();
+                    originImage.Dispose();
                 }
-                //保存缩略图
-                newImage.Save(savePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                //释放资源
-                newG.Dispose();
-                newImage.Dispose();
-                initImage.Dispose();
             }
         }
 
         #endregion
-
-#endif
 
         #region 图片附加水印处理·图片水印
 
@@ -668,38 +575,48 @@ namespace GSA.ToolKits.FileUtility
         /// 图片附加水印处理
         /// <para>图片水印</para>
         /// </summary>
-        /// <param name="path">需要加载水印的图片路径（绝对路径）</param>
-        /// <param name="waterpath">水印图片（绝对路径）</param>
+        /// <param name="filePath">需要加载水印的图片路径（绝对路径）</param>
+        /// <param name="waterPath">水印图片（绝对路径）</param>
         /// <param name="location">
         /// 水印位置（传送正确的代码）
         /// <para>传值：LT / T / RT / LC / C / RC / LB / B</para>
         /// <para>释义：左上角/上居中/右上角/左居中/居中/右居中/左下角/下居中</para>
         /// </param>
         /// <returns>处理后的图片路径</returns>
-        public static string ImageWatermark(string path, string waterpath, string location)
+        public static string ImageWatermark(string filePath, string waterPath, string location)
         {
-            string kz_name = Path.GetExtension(path);
-            if (kz_name == ".jpg" || kz_name == ".bmp" || kz_name == ".jpeg")
+            var extName = Path.GetExtension(filePath);
+            if (extName == ".jpg" || extName == ".bmp" || extName == ".jpeg")
             {
-                DateTime time = DateTime.Now;
-                string filename = "" + time.Year.ToString() + time.Month.ToString() + time.Day.ToString() + time.Hour.ToString() + time.Minute.ToString() + time.Second.ToString() + time.Millisecond.ToString();
-                Image img = Bitmap.FromFile(path);
-                Image waterimg = Image.FromFile(waterpath);
-                Graphics g = Graphics.FromImage(img);
-                ArrayList loca = GetLocation(location, img, waterimg);
-                g.DrawImage(waterimg, new Rectangle(int.Parse(loca[0].ToString()), int.Parse(loca[1].ToString()), waterimg.Width, waterimg.Height));
-                waterimg.Dispose();
-                g.Dispose();
-                string newpath = Path.GetDirectoryName(path) + filename + kz_name;
-                img.Save(newpath);
-                img.Dispose();
-                File.Copy(newpath, path, true);
-                if (File.Exists(newpath))
+                var time = DateTime.Now;
+                var fileName = "" + time.Year.ToString() + time.Month.ToString() + time.Day.ToString() + time.Hour.ToString() + time.Minute.ToString() + time.Second.ToString() + time.Millisecond.ToString();
+                using (var orgImg = Image.FromFile(filePath))
+                using (var waterimg = Image.FromFile(waterPath))
+                using (var g = Graphics.FromImage(orgImg))
                 {
-                    File.Delete(newpath);
+                    //设置合成图像的渲染质量
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+                    //设置高质量插值法
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    //设置高质量,低速度呈现平滑程度
+                    g.SmoothingMode = SmoothingMode.HighQuality;
+
+                    var loca = GetLocation(location, orgImg, waterimg);
+                    g.DrawImage(waterimg, new Rectangle(int.Parse(loca[0].ToString()), int.Parse(loca[1].ToString()), waterimg.Width, waterimg.Height));
+                    waterimg.Dispose();
+                    g.Dispose();
+                    string newpath = Path.GetDirectoryName(filePath) + fileName + extName;
+                    orgImg.Save(newpath);
+                    orgImg.Dispose();
+
+                    File.Copy(newpath, filePath, true);
+                    if (File.Exists(newpath))
+                    {
+                        File.Delete(newpath);
+                    }
                 }
             }
-            return path;
+            return filePath;
         }
         /// <summary>
         /// 图片附加水印处理
@@ -773,7 +690,7 @@ namespace GSA.ToolKits.FileUtility
         /// 图片附加水印处理
         /// <para>文字水印</para>
         /// </summary>
-        /// <param name="path">图片路径（绝对路径）</param>
+        /// <param name="filePath">图片路径（绝对路径）</param>
         /// <param name="size">字体大小</param>
         /// <param name="letter">水印文字</param>
         /// <param name="color">颜色</param>
@@ -783,30 +700,39 @@ namespace GSA.ToolKits.FileUtility
         /// <para>释义：左上角/上居中/右上角/左居中/居中/右居中/左下角/下居中</para>
         /// </param>
         /// <returns>处理后的图片路径</returns>
-        public static string LetterWatermark(string path, int size, string letter, Color color, string location)
+        public static string ImageWatermark(string filePath, int size, string letter, Color color, string location)
         {
-            string kz_name = Path.GetExtension(path);
+            string kz_name = Path.GetExtension(filePath);
             if (kz_name == ".jpg" || kz_name == ".bmp" || kz_name == ".jpeg")
             {
                 DateTime time = DateTime.Now;
                 string filename = "" + time.Year.ToString() + time.Month.ToString() + time.Day.ToString() + time.Hour.ToString() + time.Minute.ToString() + time.Second.ToString() + time.Millisecond.ToString();
-                Image img = Bitmap.FromFile(path);
-                Graphics gs = Graphics.FromImage(img);
-                ArrayList loca = GetLocation(location, img, size, letter.Length);
-                Font font = new Font("宋体", size);
-                Brush br = new SolidBrush(color);
-                gs.DrawString(letter, font, br, float.Parse(loca[0].ToString()), float.Parse(loca[1].ToString()));
-                gs.Dispose();
-                string newpath = Path.GetDirectoryName(path) + filename + kz_name;
-                img.Save(newpath);
-                img.Dispose();
-                File.Copy(newpath, path, true);
-                if (File.Exists(newpath))
+                using (Image img = Bitmap.FromFile(filePath))
+                using (Graphics g = Graphics.FromImage(img))
                 {
-                    File.Delete(newpath);
+                    //设置合成图像的渲染质量
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+                    //设置高质量插值法
+                    g.InterpolationMode = InterpolationMode.High;
+                    //设置高质量,低速度呈现平滑程度
+                    g.SmoothingMode = SmoothingMode.HighQuality;
+
+                    ArrayList loca = GetLocation(location, img, size, letter.Length);
+                    Font font = new Font("宋体", size);
+                    Brush br = new SolidBrush(color);
+                    g.DrawString(letter, font, br, float.Parse(loca[0].ToString()), float.Parse(loca[1].ToString()));
+                    g.Dispose();
+                    string newpath = Path.GetDirectoryName(filePath) + filename + kz_name;
+                    img.Save(newpath);
+                    img.Dispose();
+                    File.Copy(newpath, filePath, true);
+                    if (File.Exists(newpath))
+                    {
+                        File.Delete(newpath);
+                    }
                 }
             }
-            return path;
+            return filePath;
         }
         /// <summary>
         /// 图片附加水印处理
@@ -869,6 +795,100 @@ namespace GSA.ToolKits.FileUtility
             loca.Add(x);
             loca.Add(y);
             return loca;
+        }
+
+        #endregion
+
+        #region 图片 & Base64 转换
+
+        /// <summary>
+        /// 将图片转换为 Base64 字符串（PNG、JGP、JPG、JPEG）
+        /// <para>包含图片前缀信息</para>
+        /// <para>如： data:image/png;base64,</para>
+        /// </summary>
+        /// <param name="filePath">文件绝对路径</param>
+        /// <returns>Base64字符串</returns>
+        public static string ImageToBase64IncludePrefix(string filePath)
+        {
+            var extValue = Path.GetExtension(filePath);
+            var prefix = string.Empty;
+            switch (extValue)
+            {
+                case ".png":
+                    prefix = "data:image/png;base64,";
+                    break;
+                case ".jgp":
+                    prefix = "data:image/jgp;base64,";
+                    break;
+                case ".jpg":
+                    prefix = "data:image/jpg;base64,";
+                    break;
+                case ".jpeg":
+                    prefix = "data:image/jpeg;base64,";
+                    break;
+                default:
+                    break;
+            }
+            return $"{prefix}{ImageToBase64(filePath)}";
+        }
+        /// <summary>
+        /// 将图片转换为 Base64 字符串（PNG、JGP、JPG、JPEG）
+        /// <para>不包含图片前缀信息</para>
+        /// <para>如： data:image/png;base64,</para>
+        /// </summary>
+        /// <param name="filePath">文件绝对路径</param>
+        /// <returns>Base64字符串</returns>
+        public static string ImageToBase64(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                return string.Empty;
+            }
+            using (var bitmap = new Bitmap(filePath))
+            {
+                using (var memory = new MemoryStream())
+                {
+                    bitmap.Save(memory, ImageFormat.Jpeg);
+                    byte[] bArray = new byte[memory.Length];
+                    memory.Position = 0;
+                    memory.Read(bArray, 0, (int)memory.Length);
+                    memory.Close();
+                    return Convert.ToBase64String(bArray);
+                }
+            }
+        }
+        /// <summary>
+        /// 将 Base64 字符串转换为图片（PNG、JGP、JPG、JPEG）
+        /// <para>包含图片前缀信息</para>
+        /// <para>如： data:image/png;base64,</para>
+        /// </summary>
+        /// <param name="base64String">Base64 字符串</param>
+        /// <returns>图片对象</returns>
+        public static Bitmap ImageFromBase64IncludePrefix(string base64String)
+        {
+            var index = base64String.IndexOf(',');
+            if (index > 0)
+            {
+                base64String = base64String.Remove(0, index);
+            }
+            return ImageFromBase64(base64String);
+        }
+        /// <summary>
+        /// 将 Base64 字符串转换为图片（PNG、JGP、JPG、JPEG）
+        /// <para>不包含图片前缀信息</para>
+        /// <para>如： data:image/png;base64,</para>
+        /// </summary>
+        /// <param name="base64String">Base64 字符串</param>
+        /// <returns>图片对象</returns>
+        public static Bitmap ImageFromBase64(string base64String)
+        {
+            byte[] arr = Convert.FromBase64String(base64String);
+            using (var ms = new MemoryStream(arr))
+            {
+                var bmp = new Bitmap(ms);
+                ms.Close();
+                return bmp;
+            }
         }
 
         #endregion
