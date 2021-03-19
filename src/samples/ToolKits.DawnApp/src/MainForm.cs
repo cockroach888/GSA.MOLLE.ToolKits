@@ -350,6 +350,20 @@ namespace GSA.ToolKits.DawnApp
                 tmpFrm.Show();
             }
         }
+        /// <summary>
+        /// 图片Base64相互转换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnImageBase64_Click(object sender, EventArgs e)
+        {
+            if (!CheckChildForm("ImageBase64Form"))
+            {
+                var tmpFrm = new FormView.ImageBase64Form();
+                tmpFrm.MdiParent = this;
+                tmpFrm.Show();
+            }
+        }
 
         #endregion
 
