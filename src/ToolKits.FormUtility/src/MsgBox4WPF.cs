@@ -4,11 +4,11 @@
 //**   脉脉含情的充满精神的高尚的小强精神
 //**   风幽思静繁花落；夜半楼台听江雨。（cockroach888@outlook.com）
 //=========================================================================
-//**   Copyright © 蟑螂·魂 2014 -- Support 文雀
+//**   Copyright © 蟑螂·魂 2021 -- Support 文雀
 //=========================================================================
-// 文件名称：MsgBox.cs
+// 文件名称：MsgBox4WPF.cs
 // 项目名称：窗体常用操作工具集
-// 创建时间：2015-05-25 09:35:07
+// 创建时间：2021-03-05 16:25:16
 // 创建人员：宋杰军
 // 负责人员：宋杰军
 // 参与人员：宋杰军
@@ -17,17 +17,18 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using System;
+//#if (!NET35 && !NET20)
+/*using System;
 using System.Drawing;
 using System.Text;
-using System.Windows.Forms;
+using System.Windows;
 
 namespace GSA.ToolKits.FormUtility
 {
     /// <summary>
     /// 消息提示窗体
     /// </summary>
-    public static class MsgBox
+    public static class MsgBox4WPF
     {
         /// <summary>
         /// 消息提示窗体类型
@@ -47,6 +48,10 @@ namespace GSA.ToolKits.FormUtility
             /// </summary>
             ConfirmDialog,
         }
+
+        private partial class MsgWindow : Window
+        { }
+
         /// <summary>
         /// 显示消息提示窗体
         /// </summary>
@@ -56,30 +61,28 @@ namespace GSA.ToolKits.FormUtility
         /// <param name="icon">需要显示的图标</param>
         /// <param name="dialogType">消息提示窗体类型</param>
         /// <returns>显示结果</returns>
-        private static DialogResult ShowDialogForm(string text, string caption, int numSecond, Bitmap icon, DialogType dialogType)
+        private static MessageBoxResult ShowDialogForm(string text, string caption, int numSecond, Bitmap icon, DialogType dialogType)
         {
-            if (string.IsNullOrEmpty(text)) return DialogResult.None;
+            if (string.IsNullOrEmpty(text)) return MessageBoxResult.None;
 
             var textFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
-            var msgForm = new Form();
-            //msgForm.BackColor = Color.Yellow;
-            msgForm.ShowInTaskbar = false;
-            msgForm.MaximizeBox = false;
-            msgForm.MinimizeBox = false;
-            msgForm.ShowIcon = false;
-            msgForm.FormBorderStyle = FormBorderStyle.None;
-            msgForm.WindowState = FormWindowState.Normal;
-            msgForm.StartPosition = FormStartPosition.CenterScreen;
-            // 隐性8个像素,所以预设宽度要减8
+            var msgForm = new MsgWindow();
             msgForm.Width = 382;
+            msgForm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            msgForm.WindowState = WindowState.Normal;
+            msgForm.WindowStyle = WindowStyle.None;
+            msgForm.ResizeMode = ResizeMode.NoResize;
+            msgForm.ShowInTaskbar = false;
+            msgForm.AllowsTransparency = true;
 
             // 
             // 标题栏
             //
             if (!string.IsNullOrEmpty(caption))
             {
-                msgForm.FormBorderStyle = FormBorderStyle.FixedSingle;
-                msgForm.Text = caption;
+                msgForm.AllowsTransparency = false;
+                msgForm.WindowStyle = WindowStyle.ToolWindow;
+                msgForm.Title = caption;
             }
 
             // 
@@ -152,7 +155,7 @@ namespace GSA.ToolKits.FormUtility
             // 确认按钮（btnOK）
             // 
             var btnOK = new Button();
-            btnOK.DialogResult = DialogResult.OK;
+            btnOK.DialogResult = MessageBoxResult.OK;
             btnOK.Name = "btnOK";
             btnOK.Text = "确认";
             btnOK.Tag = null;
@@ -204,7 +207,7 @@ namespace GSA.ToolKits.FormUtility
                         // 取消按钮（btnCancel）
                         // 
                         var btnCancel = new Button();
-                        btnCancel.DialogResult = DialogResult.Cancel;
+                        btnCancel.DialogResult = MessageBoxResult.Cancel;
                         btnCancel.Name = "btnCancel";
                         btnCancel.Text = "取消";
                         btnCancel.Tag = null;
@@ -241,7 +244,7 @@ namespace GSA.ToolKits.FormUtility
         /// <param name="numSecond">自动关闭秒数，小于零时不自动关闭；默认2秒。</param>
         /// <param name="icon">需要显示的图标</param>
         /// <returns>显示结果</returns>
-        public static DialogResult Show(string text, string caption = "系统提示", int numSecond = 2, Bitmap icon = null)
+        public static MessageBoxResult Show(string text, string caption = "系统提示", int numSecond = 2, Bitmap icon = null)
         {
             return ShowDialogForm(text, caption, numSecond, icon, DialogType.UsualDialog);
         }
@@ -253,7 +256,7 @@ namespace GSA.ToolKits.FormUtility
         /// <param name="numSecond">自动关闭秒数，小于零时不自动关闭；默认2秒。</param>
         /// <param name="icon">需要显示的图标</param>
         /// <returns>显示结果</returns>
-        public static DialogResult ShowError(Exception ex, string caption = "系统提示", int numSecond = -1, Bitmap icon = null)
+        public static MessageBoxResult ShowError(Exception ex, string caption = "系统提示", int numSecond = -1, Bitmap icon = null)
         {
             var sb = new StringBuilder();
             sb.Append($"●Message: {ex.Message}");
@@ -274,9 +277,11 @@ namespace GSA.ToolKits.FormUtility
         /// <param name="caption">显示标题</param>
         /// <param name="icon">需要显示的图标</param>
         /// <returns>显示结果</returns>
-        public static DialogResult ShowConfirm(string text, string caption = "系统提示", Bitmap icon = null)
+        public static MessageBoxResult ShowConfirm(string text, string caption = "系统提示", Bitmap icon = null)
         {
             return ShowDialogForm(text, caption, -1, icon, DialogType.ConfirmDialog);
         }
     }
 }
+//#endif
+*/
