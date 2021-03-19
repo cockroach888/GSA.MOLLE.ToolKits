@@ -831,42 +831,5 @@ namespace GSA.ToolKits.DawnUtility
 
         #endregion
 
-        #region 时间分钟数取整
-
-        /// <summary>
-        /// 时间分钟数取整
-        /// </summary>
-        /// <param name="takeTime">需要取整的时间</param>
-        /// <param name="interval">时间间隔</param>
-        /// <param name="takeFlag">
-        /// 取整标记
-        /// <para>1 向上取整[1.2 -> 2]</para>
-        /// <para>2 向下取整[1.2 -> 1]</para>
-        /// </param>
-        /// <param name="keepSecond">保留秒部分</param>
-        /// <returns>取整后的时间</returns>
-        public static DateTime TakeTime(DateTime takeTime, int interval, byte takeFlag = 2, bool keepSecond = true)
-        {
-            if (takeTime == DateTime.MinValue || takeTime == DateTime.MaxValue) return takeTime;
-            if (0 == interval) return takeTime;
-            var min = takeTime.Minute;
-            if (0 == min % interval) return takeTime;
-            if (min > interval) min = min % interval;
-            switch (takeFlag)
-            {
-                case 1:
-                    min = interval - min;
-                    takeTime = takeTime.AddMinutes(min);
-                    break;
-                case 2:
-                    takeTime = takeTime.AddMinutes(-min);
-                    break;
-            }
-            if (!keepSecond) takeTime = takeTime.AddSeconds(-takeTime.Second);
-            return takeTime;
-        }
-
-        #endregion
-
     }
 }
