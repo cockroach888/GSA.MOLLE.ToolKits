@@ -35,7 +35,9 @@ namespace GSA.ToolKits.DawnApp.FormView
         {
             try
             {
-                txtBase64String.Text = ImageHelper.ImageToBase64(txtFileSource.Text);
+                var base64String = ImageHelper.ImageToBase64(txtFileSource.Text);
+                txtBase64String.Text = base64String;
+                lblBase64Length.Text = $"ToBase64: {base64String.Length}";
             }
             catch (Exception ex)
             {
