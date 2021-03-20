@@ -92,7 +92,10 @@ namespace GSA.ToolKits.DawnApp
         /// <param name="e">传送事件</param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FEffects.ShowEff(this.Handle, 500, FEffects.AW_HIDE | FEffects.AW_BLEND);
+            if (!IsDisposed)
+            {
+                FEffects.ShowEff(this.Handle, 500, FEffects.AW_HIDE | FEffects.AW_BLEND);
+            }
         }
         /// <summary>
         /// 窗体结束时

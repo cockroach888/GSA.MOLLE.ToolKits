@@ -29,19 +29,119 @@ namespace GSA.ToolKits.DawnApp.FormView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageBase64Form));
+            this.btnToBase64 = new System.Windows.Forms.Button();
+            this.txtBase64String = new System.Windows.Forms.TextBox();
+            this.picFormBase64 = new System.Windows.Forms.PictureBox();
+            this.btnFormBase64 = new System.Windows.Forms.Button();
+            this.picToBase64 = new System.Windows.Forms.PictureBox();
+            this.btnFileBrowser = new System.Windows.Forms.Button();
+            this.txtFileSource = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picFormBase64)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picToBase64)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnToBase64
+            // 
+            this.btnToBase64.Location = new System.Drawing.Point(160, 636);
+            this.btnToBase64.Name = "btnToBase64";
+            this.btnToBase64.Size = new System.Drawing.Size(105, 42);
+            this.btnToBase64.TabIndex = 0;
+            this.btnToBase64.Text = "ToBase64";
+            this.btnToBase64.UseVisualStyleBackColor = true;
+            this.btnToBase64.Click += new System.EventHandler(this.btnToBase64_Click);
+            // 
+            // txtBase64String
+            // 
+            this.txtBase64String.Location = new System.Drawing.Point(12, 12);
+            this.txtBase64String.Multiline = true;
+            this.txtBase64String.Name = "txtBase64String";
+            this.txtBase64String.Size = new System.Drawing.Size(910, 253);
+            this.txtBase64String.TabIndex = 1;
+            // 
+            // picFormBase64
+            // 
+            this.picFormBase64.Image = global::GSA.ToolKits.DawnApp.Properties.Resources.QQ图片20200714134108;
+            this.picFormBase64.Location = new System.Drawing.Point(382, 271);
+            this.picFormBase64.Name = "picFormBase64";
+            this.picFormBase64.Size = new System.Drawing.Size(540, 407);
+            this.picFormBase64.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFormBase64.TabIndex = 2;
+            this.picFormBase64.TabStop = false;
+            // 
+            // btnFormBase64
+            // 
+            this.btnFormBase64.Location = new System.Drawing.Point(271, 636);
+            this.btnFormBase64.Name = "btnFormBase64";
+            this.btnFormBase64.Size = new System.Drawing.Size(105, 42);
+            this.btnFormBase64.TabIndex = 0;
+            this.btnFormBase64.Text = "FromBase64";
+            this.btnFormBase64.UseVisualStyleBackColor = true;
+            this.btnFormBase64.Click += new System.EventHandler(this.btnFormBase64_Click);
+            // 
+            // picToBase64
+            // 
+            this.picToBase64.Image = global::GSA.ToolKits.DawnApp.Properties.Resources.QQ图片20200714134108;
+            this.picToBase64.Location = new System.Drawing.Point(12, 271);
+            this.picToBase64.Name = "picToBase64";
+            this.picToBase64.Size = new System.Drawing.Size(364, 310);
+            this.picToBase64.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picToBase64.TabIndex = 3;
+            this.picToBase64.TabStop = false;
+            // 
+            // btnFileBrowser
+            // 
+            this.btnFileBrowser.Location = new System.Drawing.Point(301, 594);
+            this.btnFileBrowser.Name = "btnFileBrowser";
+            this.btnFileBrowser.Size = new System.Drawing.Size(75, 25);
+            this.btnFileBrowser.TabIndex = 4;
+            this.btnFileBrowser.Text = "浏览 (...)";
+            this.btnFileBrowser.UseVisualStyleBackColor = true;
+            this.btnFileBrowser.Click += new System.EventHandler(this.btnFileBrowser_Click);
+            // 
+            // txtFileSource
+            // 
+            this.txtFileSource.Location = new System.Drawing.Point(12, 595);
+            this.txtFileSource.Name = "txtFileSource";
+            this.txtFileSource.ReadOnly = true;
+            this.txtFileSource.Size = new System.Drawing.Size(283, 23);
+            this.txtFileSource.TabIndex = 5;
             // 
             // ImageBase64Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(934, 690);
+            this.Controls.Add(this.txtFileSource);
+            this.Controls.Add(this.btnFileBrowser);
+            this.Controls.Add(this.picToBase64);
+            this.Controls.Add(this.picFormBase64);
+            this.Controls.Add(this.txtBase64String);
+            this.Controls.Add(this.btnFormBase64);
+            this.Controls.Add(this.btnToBase64);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ImageBase64Form";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图片 & Base64 相互转换";
+            ((System.ComponentModel.ISupportInitialize)(this.picFormBase64)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picToBase64)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnToBase64;
+        private System.Windows.Forms.TextBox txtBase64String;
+        private System.Windows.Forms.PictureBox picFormBase64;
+        private System.Windows.Forms.Button btnFormBase64;
+        private System.Windows.Forms.PictureBox picToBase64;
+        private System.Windows.Forms.Button btnFileBrowser;
+        private System.Windows.Forms.TextBox txtFileSource;
     }
 }
