@@ -883,7 +883,16 @@ namespace GSA.ToolKits.FileUtility
         public static Bitmap ImageFromBase64(string base64String)
         {
             byte[] arr = Convert.FromBase64String(base64String);
-            using (var ms = new MemoryStream(arr))
+            return ImageFromArray(arr);
+        }
+        /// <summary>
+        /// 将包含图片信息的字节数组转换为图片
+        /// </summary>
+        /// <param name="array">包含图片信息的字节数组</param>
+        /// <returns>图片对象</returns>
+        public static Bitmap ImageFromArray(byte[] array)
+        {
+            using (var ms = new MemoryStream(array))
             {
                 var bmp = new Bitmap(ms);
                 ms.Close();

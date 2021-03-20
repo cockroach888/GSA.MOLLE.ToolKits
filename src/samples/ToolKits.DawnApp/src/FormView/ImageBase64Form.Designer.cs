@@ -38,6 +38,9 @@ namespace GSA.ToolKits.DawnApp.FormView
             this.txtFileSource = new System.Windows.Forms.TextBox();
             this.txtBase64String = new System.Windows.Forms.RichTextBox();
             this.lblBase64Length = new System.Windows.Forms.Label();
+            this.btnClearBase64String = new System.Windows.Forms.Button();
+            this.btnBase64StringLength = new System.Windows.Forms.Button();
+            this.chkIsVarbinary = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picFormBase64)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picToBase64)).BeginInit();
             this.SuspendLayout();
@@ -117,11 +120,45 @@ namespace GSA.ToolKits.DawnApp.FormView
             this.lblBase64Length.TabIndex = 7;
             this.lblBase64Length.Text = "Base64字符串长度";
             // 
+            // btnClearBase64String
+            // 
+            this.btnClearBase64String.Location = new System.Drawing.Point(805, 20);
+            this.btnClearBase64String.Name = "btnClearBase64String";
+            this.btnClearBase64String.Size = new System.Drawing.Size(50, 25);
+            this.btnClearBase64String.TabIndex = 8;
+            this.btnClearBase64String.Text = " 清空";
+            this.btnClearBase64String.UseVisualStyleBackColor = true;
+            this.btnClearBase64String.Click += new System.EventHandler(this.btnClearBase64String_Click);
+            // 
+            // btnBase64StringLength
+            // 
+            this.btnBase64StringLength.Location = new System.Drawing.Point(861, 20);
+            this.btnBase64StringLength.Name = "btnBase64StringLength";
+            this.btnBase64StringLength.Size = new System.Drawing.Size(50, 25);
+            this.btnBase64StringLength.TabIndex = 9;
+            this.btnBase64StringLength.Text = " 长度";
+            this.btnBase64StringLength.UseVisualStyleBackColor = true;
+            this.btnBase64StringLength.Click += new System.EventHandler(this.btnBase64StringLength_Click);
+            // 
+            // chkIsVarbinary
+            // 
+            this.chkIsVarbinary.AutoSize = true;
+            this.chkIsVarbinary.Location = new System.Drawing.Point(706, 22);
+            this.chkIsVarbinary.Name = "chkIsVarbinary";
+            this.chkIsVarbinary.Size = new System.Drawing.Size(93, 21);
+            this.chkIsVarbinary.TabIndex = 10;
+            this.chkIsVarbinary.Text = "IsVarbinary";
+            this.chkIsVarbinary.UseVisualStyleBackColor = true;
+            this.chkIsVarbinary.Visible = false;
+            // 
             // ImageBase64Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 690);
+            this.Controls.Add(this.chkIsVarbinary);
+            this.Controls.Add(this.btnBase64StringLength);
+            this.Controls.Add(this.btnClearBase64String);
             this.Controls.Add(this.lblBase64Length);
             this.Controls.Add(this.txtBase64String);
             this.Controls.Add(this.txtFileSource);
@@ -155,5 +192,8 @@ namespace GSA.ToolKits.DawnApp.FormView
         private System.Windows.Forms.TextBox txtFileSource;
         private System.Windows.Forms.RichTextBox txtBase64String;
         private System.Windows.Forms.Label lblBase64Length;
+        private System.Windows.Forms.Button btnClearBase64String;
+        private System.Windows.Forms.Button btnBase64StringLength;
+        private System.Windows.Forms.CheckBox chkIsVarbinary;
     }
 }

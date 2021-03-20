@@ -831,5 +831,23 @@ namespace GSA.ToolKits.DawnUtility
 
         #endregion
 
+        #region 字节数组 & Base64
+
+        /// <summary>
+        /// 将 Base64 字符串转换为字节数组
+        /// </summary>
+        /// <param name="base64String">Base64 字符串</param>
+        /// <returns>字节数组</returns>
+        public static byte[] Base64ToArray(string base64String) => Convert.FromBase64String(base64String);
+
+        /// <summary>
+        /// 将字节数组转换为 Base64 字符串
+        /// </summary>
+        /// <param name="array">字节数组</param>
+        /// <returns>Base64 字符串</returns>
+        public static string ArrayToBase64(byte[] array) => Convert.ToBase64String(array);
+
+        #endregion
+
     }
 }
