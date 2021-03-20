@@ -31,12 +31,12 @@ namespace GSA.ToolKits.DawnApp.FormView
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageBase64Form));
             this.btnToBase64 = new System.Windows.Forms.Button();
-            this.txtBase64String = new System.Windows.Forms.TextBox();
             this.picFormBase64 = new System.Windows.Forms.PictureBox();
             this.btnFormBase64 = new System.Windows.Forms.Button();
             this.picToBase64 = new System.Windows.Forms.PictureBox();
             this.btnFileBrowser = new System.Windows.Forms.Button();
             this.txtFileSource = new System.Windows.Forms.TextBox();
+            this.txtBase64String = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picFormBase64)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picToBase64)).BeginInit();
             this.SuspendLayout();
@@ -50,14 +50,6 @@ namespace GSA.ToolKits.DawnApp.FormView
             this.btnToBase64.Text = "ToBase64";
             this.btnToBase64.UseVisualStyleBackColor = true;
             this.btnToBase64.Click += new System.EventHandler(this.btnToBase64_Click);
-            // 
-            // txtBase64String
-            // 
-            this.txtBase64String.Location = new System.Drawing.Point(12, 12);
-            this.txtBase64String.Multiline = true;
-            this.txtBase64String.Name = "txtBase64String";
-            this.txtBase64String.Size = new System.Drawing.Size(910, 253);
-            this.txtBase64String.TabIndex = 1;
             // 
             // picFormBase64
             // 
@@ -107,16 +99,24 @@ namespace GSA.ToolKits.DawnApp.FormView
             this.txtFileSource.Size = new System.Drawing.Size(283, 23);
             this.txtFileSource.TabIndex = 5;
             // 
+            // txtBase64String
+            // 
+            this.txtBase64String.Location = new System.Drawing.Point(12, 12);
+            this.txtBase64String.Name = "txtBase64String";
+            this.txtBase64String.Size = new System.Drawing.Size(910, 247);
+            this.txtBase64String.TabIndex = 6;
+            this.txtBase64String.Text = "";
+            // 
             // ImageBase64Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 690);
+            this.Controls.Add(this.txtBase64String);
             this.Controls.Add(this.txtFileSource);
             this.Controls.Add(this.btnFileBrowser);
             this.Controls.Add(this.picToBase64);
             this.Controls.Add(this.picFormBase64);
-            this.Controls.Add(this.txtBase64String);
             this.Controls.Add(this.btnFormBase64);
             this.Controls.Add(this.btnToBase64);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -137,11 +137,11 @@ namespace GSA.ToolKits.DawnApp.FormView
         #endregion
 
         private System.Windows.Forms.Button btnToBase64;
-        private System.Windows.Forms.TextBox txtBase64String;
         private System.Windows.Forms.PictureBox picFormBase64;
         private System.Windows.Forms.Button btnFormBase64;
         private System.Windows.Forms.PictureBox picToBase64;
         private System.Windows.Forms.Button btnFileBrowser;
         private System.Windows.Forms.TextBox txtFileSource;
+        private System.Windows.Forms.RichTextBox txtBase64String;
     }
 }
