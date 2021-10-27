@@ -92,9 +92,18 @@ namespace GSA.ToolKits.DawnApp
         /// <param name="e">传送事件</param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!IsDisposed)
+            if (MessageBox.Show("您确定要退出本系统吗？", "【晨曦小竹·工具集】提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                FEffects.ShowEff(this.Handle, 500, FEffects.AW_HIDE | FEffects.AW_BLEND);
+                CloseAllForm();
+
+                if (!IsDisposed)
+                {
+                    FEffects.ShowEff(this.Handle, 500, FEffects.AW_HIDE | FEffects.AW_BLEND);
+                }
+            }
+            else
+            {
+                e.Cancel = true;
             }
         }
         /// <summary>
@@ -105,26 +114,11 @@ namespace GSA.ToolKits.DawnApp
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             //_logger.Write("程序关闭。");
-            this.Dispose();
         }
+
         /// <summary>
-        /// 正在关闭
+        /// 关闭所有已经打开的子窗体
         /// </summary>
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("您确定要退出本系统吗？", "【晨曦小竹·工具集】提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.CloseAllForm();
-                this.Dispose();
-                Application.Exit();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-            base.OnFormClosing(e);
-        }
-        //关闭所有已经打开的子窗体
         private void CloseAllForm()
         {
             if (this.MdiChildren.Length > 0)

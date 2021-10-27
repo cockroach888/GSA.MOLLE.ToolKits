@@ -32,11 +32,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.Oracle\src\bin\DBUtility.Oracle.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.Oracle\src\bin\DBUtility.Oracle.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\CRS2MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.Oracle\src\bin\DBUtility.Oracle.xml</DocumentationFile>
+    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.DBUtility\ToolKits.DBUtility.Oracle\src\bin\DBUtility.Oracle.xml</DocumentationFile>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
