@@ -11,22 +11,42 @@ cd /d %basedir%
 @echo.
 @echo.
 @echo\&echo  ---------- 解决方案 ----------
+
 dotnet new sln -n GSA2MOLLE4ToolKits
 
-@echo\&echo  ---------- 控制台示例应用程序 ----------
+
+
+
+
+@echo.
+@echo.
+@echo.
+@echo\&echo  ---------- 控制台示例应用程序 & DawnConsole 1 ----------
+
 dotnet new console -lang "C#" -f net5.0 -n ToolKits.DawnConsole -o samples/ToolKits.DawnConsole/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s samples samples/ToolKits.DawnConsole/src
 
-@echo\&echo  ---------- 窗体示例应用程序 ----------
+
+
+
+
+@echo.
+@echo.
+@echo.
+@echo\&echo  ---------- 窗体示例应用程序 & DawnApp 1 ----------
+
 dotnet new winforms -lang "C#" -f net5.0 -n ToolKits.DawnApp -o samples/ToolKits.DawnApp/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s samples samples/ToolKits.DawnApp/src
 
 
 
+
+
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- 各类常用工具集 ----------
+@echo\&echo  ---------- 各类常用工具集 & 12 ----------
+
 dotnet new classlib -lang "C#" -f net5.0 -n ToolKits.CockroachContainer -o ToolKits.CockroachContainer/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.CockroachContainer/src
 
@@ -65,10 +85,13 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.WebUtility/src
 
 
 
+
+
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- 数据库相关工具集 ----------
+@echo\&echo  ---------- 数据库相关工具集 & DBUtility 6 ----------
+
 dotnet new classlib -lang "C#" -f net5.0 -n ToolKits.DBUtility.MongoDB -o ToolKits.DBUtility/ToolKits.DBUtility.MongoDB/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/ToolKits.DBUtility.MongoDB/src
 
@@ -91,6 +114,45 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/T
 
 
 
+@echo.
+@echo.
+@echo.
+@echo\&echo  ---------- 项目类别 ﹫ ProjectCategory 10 ----------
+
+::dotnet new web -lang "C#"" -f net6.0 -n LibrayName -o ProjectCategory/LibrayName/src
+::dotnet sln SolutionName.sln add -s ProjectCategory ProjectCategory/LibrayName/src
+
+::dotnet new blazorserver -lang "C#"" -f net6.0 -n LibrayName -o ProjectCategory/LibrayName/src
+::dotnet sln SolutionName.sln add -s ProjectCategory ProjectCategory/LibrayName/src
+
+::dotnet new blazorwasm -lang "C#" -f net6.0 -n LibrayName -o ProjectCategory/LibrayName/src
+::dotnet sln SolutionName.sln add -s ProjectCategory ProjectCategory/LibrayName/src
+
+::dotnet new mvc -lang "C#" -f net6.0 -n LibrayName -o ProjectCategory/LibrayName/src
+::dotnet sln SolutionName.sln add -s ProjectCategory ProjectCategory/LibrayName/src
+
+::dotnet new webapi -lang "C#" -f net6.0 --exclude-launch-settings --no-https -n LibrayName -o LibrayName/src
+::dotnet sln SolutionName.sln add --in-root LibrayName/src
+
+::dotnet new winforms -lang "C#" -f net6.0 -n LibrayName -o samples/LibrayName/src
+::dotnet sln SolutionName.sln add -s samples samples/LibrayName/src
+
+::dotnet new wpf -lang "C#" -f net6.0 -n LibrayName -o ProjectCategory/LibrayName/src
+::dotnet sln SolutionName.sln add -s ProjectCategory ProjectCategory/LibrayName/src
+
+::dotnet new console -lang "C#" -f net6.0 -n LibrayName -o samples/LibrayName/src
+::dotnet sln SolutionName.sln add -s samples samples/LibrayName/src
+
+::dotnet new classlib -lang "C#" -f net6.0 -n LibrayName -o LibrayName/src
+::dotnet sln SolutionName.sln add --in-root LibrayName/src
+
+::dotnet new classlib -lang "C#" -f net6.0 -n LibrayName -o ProjectCategory/LibrayName/src
+::dotnet sln SolutionName.sln add -s ProjectCategory ProjectCategory/LibrayName/src
+
+
+
+
+
 ::@echo\&echo 所有项目自动创建工作已结束，600 秒后将自动退出本自动创建程序。
 ::timeout /t 600
 
@@ -99,6 +161,6 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/T
 @echo.
 @echo.
 @echo.
-@echo\&echo 自动创建所有项目完毕，请按任意键退出。
+@echo\&echo 所有项目自动创建完毕，请按任意键退出。
 pause>nul 
 exit

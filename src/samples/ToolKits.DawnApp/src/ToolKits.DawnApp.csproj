@@ -21,7 +21,7 @@
       NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
     <PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>ToolKitsIcon.jpg</PackageIcon>
+    <PackageIcon>PackageIcon.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>魂哥常用工具集 加解密字符串 生成GUID唯一编号 邮件收发测试 数据校验测试</PackageTags>
@@ -41,7 +41,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\..\ToolKitsIcon.jpg">
+    <None Include="..\..\..\PackageIcon.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

@@ -8,7 +8,7 @@
     <Version>5.0.0</Version>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>ToolKitsIcon.jpg</PackageIcon>
+    <PackageIcon>PackageIcon.jpg</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>ToolKits.SafeUtility.snk</AssemblyOriginatorKeyFile>
@@ -46,7 +46,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\ToolKitsIcon.jpg">
+    <None Include="..\..\PackageIcon.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
