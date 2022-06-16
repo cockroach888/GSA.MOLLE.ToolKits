@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{BFBDB35F-733F-4489-99F1-3975F98B8478}"
 EndProject
@@ -43,13 +43,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKits.DBUtility.Sqlce", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKits.DBUtility.SQLite", "ToolKits.DBUtility\ToolKits.DBUtility.SQLite\src\ToolKits.DBUtility.SQLite.csproj", "{E352EBCF-F603-4C18-9430-C0703725588D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.GoesUtility", "ToolKits.GoesUtility\src\ToolKits.GoesUtility.csproj", "{4D93EF95-EE82-4204-B7D3-41DD582013A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKits.GoesUtility", "ToolKits.GoesUtility\src\ToolKits.GoesUtility.csproj", "{4D93EF95-EE82-4204-B7D3-41DD582013A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.CockroachContainer", "ToolKits.CockroachContainer\src\ToolKits.CockroachContainer.csproj", "{6BE83CB4-5593-4762-B0D1-997F60C286F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKits.CockroachContainer", "ToolKits.CockroachContainer\src\ToolKits.CockroachContainer.csproj", "{6BE83CB4-5593-4762-B0D1-997F60C286F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.DBUtility.TDengine", "ToolKits.DBUtility\ToolKits.DBUtility.TDengine\src\ToolKits.DBUtility.TDengine.csproj", "{79A839F7-701A-4DCA-A7EB-832D7CB67D5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKits.DBUtility.TDengine", "ToolKits.DBUtility\ToolKits.DBUtility.TDengine\src\ToolKits.DBUtility.TDengine.csproj", "{79A839F7-701A-4DCA-A7EB-832D7CB67D5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.Commons", "ToolKits.Commons\src\ToolKits.Commons.csproj", "{5F721085-486F-4D74-84E5-48D6A6C901C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKits.CommonUtility", "ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj", "{F5557FFF-FE77-43B3-B3E7-2E1DA9412554}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,10 +141,10 @@ Global
 		{79A839F7-701A-4DCA-A7EB-832D7CB67D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79A839F7-701A-4DCA-A7EB-832D7CB67D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79A839F7-701A-4DCA-A7EB-832D7CB67D5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F721085-486F-4D74-84E5-48D6A6C901C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F721085-486F-4D74-84E5-48D6A6C901C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F721085-486F-4D74-84E5-48D6A6C901C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F721085-486F-4D74-84E5-48D6A6C901C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5557FFF-FE77-43B3-B3E7-2E1DA9412554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5557FFF-FE77-43B3-B3E7-2E1DA9412554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5557FFF-FE77-43B3-B3E7-2E1DA9412554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5557FFF-FE77-43B3-B3E7-2E1DA9412554}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

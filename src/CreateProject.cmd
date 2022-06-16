@@ -83,8 +83,8 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.VerifyUtility/src
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.WebUtility -o ToolKits.WebUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.WebUtility/src
 
-dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.Commons -o ToolKits.Commons/src
-dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.Commons/src
+dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.CommonUtility -o ToolKits.CommonUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.CommonUtility/src
 
 
 
@@ -93,7 +93,7 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.Commons/src
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- 数据库相关工具集 & DBUtility 7 ----------
+@echo\&echo  ---------- 数据库访问助手工具集 & DBUtility 7 ----------
 
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.DBUtility.MongoDB -o ToolKits.DBUtility/ToolKits.DBUtility.MongoDB/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/ToolKits.DBUtility.MongoDB/src
