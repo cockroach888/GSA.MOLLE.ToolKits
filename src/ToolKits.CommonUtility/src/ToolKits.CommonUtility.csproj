@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>netstandard2.0;net5.0;net6.0;</TargetFrameworks>
+		<TargetFrameworks>net6.0;</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
@@ -11,8 +11,8 @@
 		<DelaySign>false</DelaySign>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>1.0.0.0</AssemblyVersion>
-		<FileVersion>1.0.0.0</FileVersion>
+		<AssemblyVersion>6.0.0.0</AssemblyVersion>
+		<FileVersion>6.0.0.0</FileVersion>
 		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -22,9 +22,9 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>蟑螂·魂</Authors>
-		<Description>本类库为常见和通用的一些功能集合；目前提供了JSON序列化转换器、忽略属性定义等转换器和资源方案功能类。
+		<Description>本类库为常见和通用的一些功能集合；诸如JSON序列化转换器、自定义属性方案、数据模型助手、时间戳处理等。
 
-- 专注.Net技术栈，通过对.net6+等系列源码进行研究，展开系列技术的研习之路。内置多个独立的版本（netstandard2.0;net5.0;net6.0;）。
+- 专注.Net技术栈，通过对.net6+等系列源码进行研究，展开系列技术的研习之路。内置多个独立的版本（net6.0;）。
 
 - NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
 		<Company>华夏银河空间联盟</Company>
@@ -37,8 +37,9 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>提供JSON序列化对于时间戳的转换器，供TDengine序列化时过滤使用的忽略属性定义。</PackageReleaseNotes>
+		<PackageReleaseNotes>提供JSON序列化转换器、自定义属性方案、数据模型转换助手、时间戳转换助手等系列常见和通用功能。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
+		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
