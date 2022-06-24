@@ -21,22 +21,34 @@ dotnet new sln -n GSA2MOLLE4ToolKits
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- 控制台示例应用程序 & DawnConsole 1 ----------
+@echo\&echo  ---------- 示例程序 & samples 2 ----------
 
 dotnet new console -lang "C#" -f net6.0 -n ToolKits.DawnConsole -o samples/ToolKits.DawnConsole/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s samples samples/ToolKits.DawnConsole/src
 
-
-
-
-
-@echo.
-@echo.
-@echo.
-@echo\&echo  ---------- 窗体示例应用程序 & DawnApp 1 ----------
-
 dotnet new winforms -lang "C#" -f net6.0 -n ToolKits.DawnApp -o samples/ToolKits.DawnApp/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s samples samples/ToolKits.DawnApp/src
+
+
+
+
+
+@echo.
+@echo.
+@echo.
+@echo\&echo  ---------- TDengineDB 示例程序 & TaosData 4 ----------
+
+dotnet new console -lang "C#" -f net6.0 -n TDengineEx.Bootstrapper -o samples/TaosData/TDengineEx.Bootstrapper/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDengineEx.Bootstrapper/src
+
+dotnet new classlib -lang "C#" -f net6.0 -n TDengineEx.DataModel -o samples/TaosData/TDengineEx.DataModel/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDengineEx.DataModel/src
+
+dotnet new classlib -lang "C#" -f net6.0 -n TDengineEx.DataHelper -o samples/TaosData/TDengineEx.DataHelper/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDengineEx.DataHelper/src
+
+dotnet new classlib -lang "C#" -f net6.0 -n TDengineEx.DataExchange -o samples/TaosData/TDengineEx.DataExchange/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDengineEx.DataExchange/src
 
 
 
@@ -93,7 +105,7 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.CommonUtility/src
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- 数据库访问助手工具集 & DBUtility 7 ----------
+@echo\&echo  ---------- 数据库访问助手工具集 & DBUtility 8 ----------
 
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.DBUtility.MongoDB -o ToolKits.DBUtility/ToolKits.DBUtility.MongoDB/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/ToolKits.DBUtility.MongoDB/src
@@ -115,6 +127,9 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/T
 
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.DBUtility.TDengine -o ToolKits.DBUtility/ToolKits.DBUtility.TDengine/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/ToolKits.DBUtility.TDengine/src
+
+dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.DBUtility.TDengine.Managed -o ToolKits.DBUtility/ToolKits.DBUtility.TDengine.Managed/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s ToolKits.DBUtility ToolKits.DBUtility/ToolKits.DBUtility.TDengine.Managed/src
 
 
 
