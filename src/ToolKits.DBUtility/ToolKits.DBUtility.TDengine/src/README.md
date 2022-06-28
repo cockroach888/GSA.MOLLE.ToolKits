@@ -15,3 +15,6 @@
 
 ### 2022-06-16
 - 面向接口编程，结合ITDengineConnector和ITDengineConnectorFactory对外提供API使用形态；可通过TDengineConnectorProvider独立使用，亦可与微软通用主机深度集成。
+
+### 2022-06-28
+- 删除不必要的 NuGet 包引用。
