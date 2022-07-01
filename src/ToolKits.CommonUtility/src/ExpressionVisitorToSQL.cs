@@ -20,7 +20,7 @@
 // ========================================================================
 using System.Linq.Expressions;
 
-namespace ToolKits.CommonUtility;
+namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
 /// 将条件表达式转换为字符串SQL语句

@@ -18,7 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace ToolKits.CommonUtility.Schema;
+namespace GSA.ToolKits.CommonUtility.Schema;
 
 /// <summary>
 /// 数据库查询时忽略掉此字段

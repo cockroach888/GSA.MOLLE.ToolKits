@@ -23,7 +23,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 
-namespace ToolKits.CommonUtility;
+namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
 /// 数据模型泛型助手类

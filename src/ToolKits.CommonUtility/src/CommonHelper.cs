@@ -18,7 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace ToolKits.CommonUtility;
+namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
 /// 常见和通用的功能应用助手类

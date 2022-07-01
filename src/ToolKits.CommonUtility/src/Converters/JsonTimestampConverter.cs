@@ -21,7 +21,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace ToolKits.CommonUtility.Converters;
+namespace GSA.ToolKits.CommonUtility.Converters;
 
 /// <summary>
 /// Converts an object or value to or from JSON.

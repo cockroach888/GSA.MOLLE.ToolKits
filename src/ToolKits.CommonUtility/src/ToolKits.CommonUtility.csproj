@@ -10,9 +10,10 @@
 		<AssemblyOriginatorKeyFile>ToolKits.CommonUtility.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<RootNamespace>GSA.ToolKits.CommonUtilityr</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>6.0.0.0</AssemblyVersion>
-		<FileVersion>6.0.0.0</FileVersion>
+		<AssemblyVersion>6.0.0.1</AssemblyVersion>
+		<FileVersion>6.0.0.1</FileVersion>
 		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -37,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>提供JSON序列化转换器、自定义属性方案、数据模型转换助手、时间戳转换助手等系列常见和通用功能。</PackageReleaseNotes>
+		<PackageReleaseNotes>因之前仓促中忘记了重要的命名空间，导致未与之前库形成统一，现在纠正，为此给各位使用者带来不便，表示诚至的歉意，抱歉！！！</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
