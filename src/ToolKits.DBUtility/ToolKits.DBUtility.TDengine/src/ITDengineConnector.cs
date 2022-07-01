@@ -18,7 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace ToolKits.DBUtility.TDengine;
+namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
 /// TDengine RESTful API 连接器接口

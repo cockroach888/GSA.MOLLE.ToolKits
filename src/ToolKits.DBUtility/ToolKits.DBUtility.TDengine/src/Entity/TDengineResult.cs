@@ -21,11 +21,11 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using ToolKits.CommonUtility;
-using ToolKits.CommonUtility.Schema;
-using ToolKits.DBUtility.TDengine.Converters;
+using GSA.ToolKits.CommonUtility;
+using GSA.ToolKits.CommonUtility.Schema;
+using GSA.ToolKits.DBUtility.TDengine.Converters;
 
-namespace ToolKits.DBUtility.TDengine.Entity;
+namespace GSA.ToolKits.DBUtility.TDengine.Entity;
 
 /// <summary>
 /// 请求结果实体类

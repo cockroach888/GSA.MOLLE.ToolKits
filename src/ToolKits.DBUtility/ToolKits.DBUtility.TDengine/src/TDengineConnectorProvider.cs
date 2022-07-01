@@ -18,9 +18,9 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using ToolKits.DBUtility.TDengine.Internal;
+using GSA.ToolKits.DBUtility.TDengine.Internal;
 
-namespace ToolKits.DBUtility.TDengine;
+namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
 /// TDengine RESTful API 连接器提供者类

@@ -21,7 +21,7 @@
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace ToolKits.DBUtility.TDengine.Internal;
+namespace GSA.ToolKits.DBUtility.TDengine.Internal;
 
 /// <summary>
 /// TDengine RESTful API 连接器类

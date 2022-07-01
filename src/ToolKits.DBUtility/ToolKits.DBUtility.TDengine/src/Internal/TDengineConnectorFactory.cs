@@ -21,7 +21,7 @@
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
 
-namespace ToolKits.DBUtility.TDengine.Internal;
+namespace GSA.ToolKits.DBUtility.TDengine.Internal;
 
 /// <summary>
 /// TDengine RESTful API 连接器创建工厂类

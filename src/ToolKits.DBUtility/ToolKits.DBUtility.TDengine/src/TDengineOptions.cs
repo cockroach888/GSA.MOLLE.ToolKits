@@ -20,7 +20,7 @@
 // ========================================================================
 using System.Text.Json.Serialization;
 
-namespace ToolKits.DBUtility.TDengine;
+namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
 /// TDengine选项参数类

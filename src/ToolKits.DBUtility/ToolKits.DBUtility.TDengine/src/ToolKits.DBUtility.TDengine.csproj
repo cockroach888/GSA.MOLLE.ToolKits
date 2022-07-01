@@ -10,9 +10,10 @@
 		<AssemblyOriginatorKeyFile>ToolKits.DBUtility.TDengine.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>6.0.0.1</AssemblyVersion>
-		<FileVersion>6.0.0.1</FileVersion>
+		<AssemblyVersion>6.0.0.2</AssemblyVersion>
+		<FileVersion>6.0.0.2</FileVersion>
 		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -39,7 +40,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>删除不必要的 NuGet 包引用。</PackageReleaseNotes>
+		<PackageReleaseNotes>因之前仓促中忘记了重要的命名空间，导致未与之前库形成统一，现在纠正，为此给各位使用者带来不便，表示诚至的歉意，抱歉！！！</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
@@ -69,7 +70,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommonsUtility" Version="6.0.0" />
+		<PackageReference Include="CommonsUtility" Version="6.0.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
 		<PackageReference Include="RestSharp" Version="108.0.1" />

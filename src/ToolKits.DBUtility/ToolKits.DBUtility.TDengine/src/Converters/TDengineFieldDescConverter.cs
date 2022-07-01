@@ -20,9 +20,9 @@
 // ========================================================================
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using ToolKits.DBUtility.TDengine.Entity;
+using GSA.ToolKits.DBUtility.TDengine.Entity;
 
-namespace ToolKits.DBUtility.TDengine.Converters;
+namespace GSA.ToolKits.DBUtility.TDengine.Converters;
 
 /// <summary>
 /// Converts an object or value to or from JSON.

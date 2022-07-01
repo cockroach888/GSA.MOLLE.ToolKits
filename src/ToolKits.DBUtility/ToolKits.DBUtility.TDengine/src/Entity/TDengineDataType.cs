@@ -18,7 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace ToolKits.DBUtility.TDengine.Entity;
+namespace GSA.ToolKits.DBUtility.TDengine.Entity;
 
 /// <summary>
 /// 数据类型枚举类

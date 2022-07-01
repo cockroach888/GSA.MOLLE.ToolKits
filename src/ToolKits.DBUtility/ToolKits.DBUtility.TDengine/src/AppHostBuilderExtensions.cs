@@ -22,9 +22,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using ToolKits.DBUtility.TDengine.Internal;
+using GSA.ToolKits.DBUtility.TDengine.Internal;
 
-namespace ToolKits.DBUtility.TDengine;
+namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
 /// 涛思数据通用主机扩展类
