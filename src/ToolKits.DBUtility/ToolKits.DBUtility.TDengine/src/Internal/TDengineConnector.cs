@@ -56,31 +56,45 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
     /// 执行指定SQL语句
     /// </summary>
     /// <typeparam name="T">用于返回结果使用的泛型定义</typeparam>
-    /// <param name="dbName">数据库名称</param>
-    /// <param name="sqlString">需要执行的SQL字符串</param>
-    /// <param name="cancellationToken">取消令牌对象</param>
+    /// <param name="parameters">执行参数</param>
     /// <returns>返回结果泛型对象</returns>
-    public async Task<T?> ExecutionAsync<T>(string dbName, string sqlString, CancellationToken cancellationToken = default)
+    public async Task<T?> ExecutionAsync<T>(TDengineParameters parameters)
         where T : class, new()
     {
-        RestRequest request = new(dbName, Method.Post);
-        request.AddStringBody(sqlString, DataFormat.None);
+        RestRequest request = new()
+        {
+            Method = Method.Post
+        };
 
-        return await _client.PostAsync<T>(request, cancellationToken).ConfigureAwait(false);
+        if (!string.IsNullOrWhiteSpace(parameters.DBName))
+        {
+            request.Resource = parameters.DBName;
+        }
+
+        request.AddStringBody(parameters.SqlString, DataFormat.None);
+
+        return await _client.PostAsync<T>(request, parameters.Token).ConfigureAwait(false);
     }
 
     /// <summary>
     /// 执行指定SQL语句
     /// </summary>
-    /// <param name="dbName">数据库名称</param>
-    /// <param name="sqlString">需要执行的SQL字符串</param>
-    /// <param name="cancellationToken">取消令牌对象</param>
-    public async Task<string?> ExecutionAsync(string dbName, string sqlString, CancellationToken cancellationToken = default)
+    /// <param name="parameters">执行参数</param>
+    public async Task<string?> ExecutionAsync(TDengineParameters parameters)
     {
-        RestRequest request = new(dbName, Method.Post);
-        request.AddStringBody(sqlString, DataFormat.None);
+        RestRequest request = new()
+        {
+            Method = Method.Post
+        };
 
-        RestResponse response = await _client.PostAsync(request, cancellationToken);
+        if (!string.IsNullOrWhiteSpace(parameters.DBName))
+        {
+            request.Resource = parameters.DBName;
+        }
+
+        request.AddStringBody(parameters.SqlString, DataFormat.None);
+
+        RestResponse response = await _client.PostAsync(request, parameters.Token);
         return response.Content;
     }
 

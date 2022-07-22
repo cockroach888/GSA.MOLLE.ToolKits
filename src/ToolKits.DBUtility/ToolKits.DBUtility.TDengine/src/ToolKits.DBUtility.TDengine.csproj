@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>6.0.0.2</AssemblyVersion>
-		<FileVersion>6.0.0.2</FileVersion>
+		<AssemblyVersion>6.0.0.3</AssemblyVersion>
+		<FileVersion>6.0.0.3</FileVersion>
 		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -36,11 +36,13 @@
 		<PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
 		<PackageIcon>PackageIcon.jpg</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/ToolKits.DBUtility/ToolKits.DBUtility.TDengine/src</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>因之前仓促中忘记了重要的命名空间，导致未与之前库形成统一，现在纠正，为此给各位使用者带来不便，表示诚至的歉意，抱歉！！！</PackageReleaseNotes>
+		<PackageReleaseNotes>调整连接器接口参数形态，由单个参数调整为结构体形态，以满足更多扩展需求。
+- 优化连接器实现中对数据库名称的使用方式。
+- 友情提示：请务必调整taosAdapter的默认日志级别，以避免高速入库时，因控制台日志过频导致影响效率。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
