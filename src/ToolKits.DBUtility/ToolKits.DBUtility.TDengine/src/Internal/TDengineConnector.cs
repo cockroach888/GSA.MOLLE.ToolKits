@@ -18,6 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using GSA.ToolKits.DBUtility.TDengine.Entity;
 using RestSharp;
 using RestSharp.Authenticators;
 
@@ -56,9 +57,9 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
     /// 执行指定SQL语句
     /// </summary>
     /// <typeparam name="T">用于返回结果使用的泛型定义</typeparam>
-    /// <param name="parameters">执行参数</param>
+    /// <param name="param">通用查询参数</param>
     /// <returns>返回结果泛型对象</returns>
-    public async Task<T?> ExecutionAsync<T>(TDengineParameters parameters)
+    public async Task<T?> ExecutionAsync<T>(TDengineQueryParam param)
         where T : class, new()
     {
         RestRequest request = new()
@@ -66,35 +67,35 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
             Method = Method.Post
         };
 
-        if (!string.IsNullOrWhiteSpace(parameters.DBName))
+        if (!string.IsNullOrWhiteSpace(param.DBName))
         {
-            request.Resource = parameters.DBName;
+            request.Resource = param.DBName;
         }
 
-        request.AddStringBody(parameters.SqlString, DataFormat.None);
+        request.AddStringBody(param.SqlString, DataFormat.None);
 
-        return await _client.PostAsync<T>(request, parameters.Token).ConfigureAwait(false);
+        return await _client.PostAsync<T>(request, param.Token).ConfigureAwait(false);
     }
 
     /// <summary>
     /// 执行指定SQL语句
     /// </summary>
-    /// <param name="parameters">执行参数</param>
-    public async Task<string?> ExecutionAsync(TDengineParameters parameters)
+    /// <param name="param">通用查询参数</param>
+    public async Task<string?> ExecutionAsync(TDengineQueryParam param)
     {
         RestRequest request = new()
         {
             Method = Method.Post
         };
 
-        if (!string.IsNullOrWhiteSpace(parameters.DBName))
+        if (!string.IsNullOrWhiteSpace(param.DBName))
         {
-            request.Resource = parameters.DBName;
+            request.Resource = param.DBName;
         }
 
-        request.AddStringBody(parameters.SqlString, DataFormat.None);
+        request.AddStringBody(param.SqlString, DataFormat.None);
 
-        RestResponse response = await _client.PostAsync(request, parameters.Token);
+        RestResponse response = await _client.PostAsync(request, param.Token);
         return response.Content;
     }
 

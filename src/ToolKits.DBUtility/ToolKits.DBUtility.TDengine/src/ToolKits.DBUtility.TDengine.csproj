@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>6.0.0.3</AssemblyVersion>
-		<FileVersion>6.0.0.3</FileVersion>
+		<AssemblyVersion>6.0.1</AssemblyVersion>
+		<FileVersion>6.0.1</FileVersion>
 		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -40,9 +40,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>调整连接器接口参数形态，由单个参数调整为结构体形态，以满足更多扩展需求。
-- 优化连接器实现中对数据库名称的使用方式。
-- 友情提示：请务必调整taosAdapter的默认日志级别，以避免高速入库时，因控制台日志过频导致影响效率。</PackageReleaseNotes>
+		<PackageReleaseNotes>今天对整体功能结构等的优化和调整较广较大，具体请看README.md文件中的开发日志。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 

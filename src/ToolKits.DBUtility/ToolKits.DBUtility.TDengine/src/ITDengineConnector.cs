@@ -18,6 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using GSA.ToolKits.DBUtility.TDengine.Entity;
+
 namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
@@ -31,16 +33,16 @@ public interface ITDengineConnector
     /// </summary>
     /// <remarks>返回传递的泛型对象</remarks>
     /// <typeparam name="T">用于返回结果使用的泛型</typeparam>
-    /// <param name="parameters">执行参数</param>
+    /// <param name="param">通用查询参数</param>
     /// <returns>泛型对象</returns>
-    Task<T?> ExecutionAsync<T>(TDengineParameters parameters)
+    Task<T?> ExecutionAsync<T>(TDengineQueryParam param)
         where T : class, new();
 
     /// <summary>
     /// 执行指定SQL语句
     /// </summary>
     /// <remarks>返回原始的字符串请求结果</remarks>
-    /// <param name="parameters">执行参数</param>
+    /// <param name="param">通用查询参数</param>
     /// <returns>字符串请求结果</returns>
-    Task<string?> ExecutionAsync(TDengineParameters parameters);
+    Task<string?> ExecutionAsync(TDengineQueryParam param);
 }

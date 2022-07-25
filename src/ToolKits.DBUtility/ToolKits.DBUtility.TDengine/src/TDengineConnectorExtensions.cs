@@ -32,16 +32,12 @@ public static class TDengineConnectorExtensions
     /// </summary>
     /// <remarks>返回请求结果实体</remarks>
     /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="dbName">数据库名称</param>
-    /// <param name="sqlString">需要执行的SQL字符串</param>
-    /// <param name="cancellationToken">取消令牌对象</param>
+    /// <param name="param">通用查询参数</param>
     /// <returns>请求结果</returns>
     public static Task<TDengineResult?> ExecutionToResultAsync(
         this ITDengineConnector connector,
-        string dbName,
-        string sqlString,
-        CancellationToken cancellationToken = default)
-        => connector.ExecutionAsync<TDengineResult>(dbName, sqlString, cancellationToken);
+        TDengineQueryParam param)
+        => connector.ExecutionAsync<TDengineResult>(param);
 
     /// <summary>
     /// 执行指定SQL语句
@@ -52,19 +48,15 @@ public static class TDengineConnectorExtensions
     /// </remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="dbName">数据库名称</param>
-    /// <param name="sqlString">需要执行的SQL字符串</param>
-    /// <param name="cancellationToken">取消令牌对象</param>
+    /// <param name="param">通用查询参数</param>
     /// <returns>数据模型枚举列表</returns>
     /// <exception cref="Exception">抛出的异常信息</exception>
     public static async Task<IEnumerable<TModel>?> ExecutionToModelAsync<TModel>(
         this ITDengineConnector connector,
-        string dbName,
-        string sqlString,
-        CancellationToken cancellationToken = default)
+        TDengineQueryParam param)
         where TModel : class, new()
     {
-        TDengineResult? result = await connector.ExecutionToResultAsync(dbName, sqlString, cancellationToken).ConfigureAwait(false);
+        TDengineResult? result = await connector.ExecutionToResultAsync(param).ConfigureAwait(false);
 
         if (result == null)
         {
@@ -73,7 +65,7 @@ public static class TDengineConnectorExtensions
 
         if (result.Status != TDengineStatus.Succ)
         {
-            throw new Exception($"执行SQL语句时出现错误。数据库名：{dbName}，SQL语句：{sqlString}，返回结果：{result.Desc}。");
+            throw new Exception($"执行SQL语句时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，返回结果：{result.Desc}。");
         }
 
         return await result.ParseDataToTModelAsync<TModel>().ConfigureAwait(false);
@@ -83,29 +75,24 @@ public static class TDengineConnectorExtensions
     /// 执行数据记录统计操作
     /// </summary>
     /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="dbName">数据库名称</param>
-    /// <param name="tbName">数据表名称</param>
-    /// <param name="whereString">查询条件字符串</param>
-    /// <param name="cancellationToken">取消令牌对象</param>
+    /// <param name="query">条件查询参数</param>
     /// <returns>数据记录数</returns>
     /// <exception cref="Exception">抛出的异常信息</exception>
     public static async Task<long> ExecutionToCountAsync(
         this ITDengineConnector connector,
-        string dbName,
-        string tbName,
-        string? whereString = null,
-        CancellationToken cancellationToken = default)
+        TDengineWhereParam query)
     {
-        string sqlString = $"select count(*) from {tbName};";
+        string sqlString = $"select count(*) from {query.TableName};";
 
-        if (!string.IsNullOrWhiteSpace(whereString) &&
-            whereString.StartsWith("where"))
+        sqlString = TDengineCommons.WhereStringValidateAndJoinToSqlString(sqlString, query.WhereString);
+
+        TDengineQueryParam param = new(sqlString)
         {
-            whereString = whereString.Insert(0, " ");
-            sqlString = sqlString.Insert(sqlString.Length - 1, whereString);
-        }
+            DBName = query.DBName,
+            Token = query.Token
+        };
 
-        TDengineResult? result = await connector.ExecutionToResultAsync(dbName, sqlString, cancellationToken).ConfigureAwait(false);
+        TDengineResult? result = await connector.ExecutionToResultAsync(param).ConfigureAwait(false);
 
         if (result == null)
         {
@@ -114,7 +101,7 @@ public static class TDengineConnectorExtensions
 
         if (result.Status != TDengineStatus.Succ)
         {
-            throw new Exception($"执行数据记录统计时出现错误。数据库名：{dbName}，SQL语句：{sqlString}，返回结果：{result.Desc}。");
+            throw new Exception($"执行数据记录统计时出现错误。数据库名：{query.DBName}，SQL语句：{sqlString}，返回结果：{result.Desc}。");
         }
 
         return result.ParseDataToCountAsync();

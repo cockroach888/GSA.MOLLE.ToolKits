@@ -18,19 +18,19 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace GSA.ToolKits.DBUtility.TDengine;
+namespace GSA.ToolKits.DBUtility.TDengine.Entity;
 
 /// <summary>
-/// TDengine执行参数类
+/// TDengine通用查询参数类
 /// </summary>
 [Serializable]
-public sealed class TDengineParameters
+public sealed class TDengineQueryParam
 {
     /// <summary>
-    /// TDengine执行参数
+    /// TDengine通用查询参数
     /// </summary>
     /// <param name="sqlString">需要执行的SQL字符串</param>
-    public TDengineParameters(string sqlString)
+    public TDengineQueryParam(string sqlString)
     {
         SqlString = sqlString;
     }
@@ -54,9 +54,9 @@ public sealed class TDengineParameters
 
 
     /// <summary>
-    /// 实例化一个新的TDengine执行参数
+    /// 实例化一个新的TDengine通用查询参数
     /// </summary>
     /// <param name="sqlString">需要执行的SQL字符串</param>
-    /// <returns>TDengine执行参数</returns>
-    public static TDengineParameters New(string sqlString) => new(sqlString);
+    /// <returns>TDengine通用查询参数</returns>
+    public static TDengineQueryParam New(string sqlString) => new(sqlString);
 }
