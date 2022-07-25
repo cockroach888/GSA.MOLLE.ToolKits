@@ -18,7 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace GSA.ToolKits.DBUtility.TDengine.Entity;
+namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
 /// 字段描述实体类

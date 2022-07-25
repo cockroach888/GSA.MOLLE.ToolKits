@@ -23,9 +23,8 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using GSA.ToolKits.CommonUtility;
 using GSA.ToolKits.CommonUtility.Schema;
-using GSA.ToolKits.DBUtility.TDengine.Converters;
 
-namespace GSA.ToolKits.DBUtility.TDengine.Entity;
+namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
 /// 请求结果实体类

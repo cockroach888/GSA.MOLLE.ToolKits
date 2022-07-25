@@ -22,7 +22,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using GSA.ToolKits.DBUtility.TDengine.Internal;
 
 namespace GSA.ToolKits.DBUtility.TDengine;
 

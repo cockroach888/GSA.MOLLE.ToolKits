@@ -18,11 +18,10 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using GSA.ToolKits.DBUtility.TDengine.Entity;
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace GSA.ToolKits.DBUtility.TDengine.Internal;
+namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
 /// TDengine RESTful API 连接器类
