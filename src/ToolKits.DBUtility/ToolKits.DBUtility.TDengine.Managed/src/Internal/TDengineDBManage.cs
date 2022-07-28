@@ -28,18 +28,15 @@ namespace GSA.ToolKits.DBUtility.TDengine.Managed;
 /// </summary>
 internal sealed class TDengineDBManage : ITDengineDBManage
 {
-    private readonly ILogger<TDengineDBManage> _logger;
     private readonly ITDengineConnector _connector;
 
 
     /// <summary>
     /// TDengine 数据库管理
     /// </summary>
-    /// <param name="logger">日志服务</param>
     /// <param name="connector">连接器</param>
-    public TDengineDBManage(ILogger<TDengineDBManage> logger, ITDengineConnector connector)
+    public TDengineDBManage(ITDengineConnector connector)
     {
-        _logger = logger;
         _connector = connector;
     }
 
@@ -127,8 +124,6 @@ internal sealed class TDengineDBManage : ITDengineDBManage
     /// <returns>表示响应当前异步操作的支持对象</returns>
     public async Task DropAsync(string dbName)
     {
-        _logger.LogInformation($"删除数据库“{dbName}”。");
-
         string sqlString = $"drop database if exists {dbName};";
         TDengineQueryParam param = new(sqlString);
         _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
