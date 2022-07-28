@@ -104,4 +104,25 @@ public static class TDengineConnectorExtensions
 
         return result.ParseDataToCountAsync();
     }
+
+    /// <summary>
+    /// 直接执行SQL字符串
+    /// </summary>
+    /// <remarks>执行时发生异常，则返回错误信息，否则不返回任何信息。</remarks>
+    /// <param name="connector">TDengine RESTful API 连接器</param>
+    /// <param name="sqlString">需要执行的SQL字符串</param>
+    /// <param name="token">取消令牌</param>
+    /// <returns>错误信息</returns>
+    public static async Task<string?> ExecutionSqlAsync(
+        this ITDengineConnector connector,
+        string sqlString,
+        CancellationToken token = default)
+    {
+        TDengineQueryParam param = new(sqlString)
+        {
+            Token = token
+        };
+        TDengineResult? result = await connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+        return result?.Desc;
+    }
 }

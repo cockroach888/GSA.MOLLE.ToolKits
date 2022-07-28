@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>6.0.2</AssemblyVersion>
-		<FileVersion>6.0.2</FileVersion>
+		<AssemblyVersion>6.0.3</AssemblyVersion>
+		<FileVersion>6.0.3</FileVersion>
 		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -40,7 +40,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>最近几天改动较多，详情请看开发日志。调整内部目录中各类文件的命令空间，变更为统一命名空间，以减少层级。</PackageReleaseNotes>
+		<PackageReleaseNotes>增加直接执行SQL字符串的扩展方法</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
