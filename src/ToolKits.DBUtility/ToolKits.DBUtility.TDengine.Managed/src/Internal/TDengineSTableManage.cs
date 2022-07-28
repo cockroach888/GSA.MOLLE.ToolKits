@@ -18,36 +18,73 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using System.Text;
+
 namespace GSA.ToolKits.DBUtility.TDengine.Managed;
 
 /// <summary>
-/// 类功能说明
+/// TDengine 超级数据表管理类
 /// </summary>
 public sealed class TDengineSTableManage : ITDengineSTableManage
 {
+    private readonly ITDengineConnector _connector;
+
+
     /// <summary>
-    /// 类功能说明
+    /// TDengine 超级数据表管理
     /// </summary>
-    public TDengineSTableManage()
+    /// <param name="connector">连接器</param>
+    public TDengineSTableManage(ITDengineConnector connector)
     {
-        //do something.
+        _connector = connector;
     }
 
-    #region 成员变量
 
+    #region 接口实现[ITDengineSTableManage]
 
+    /// <summary>
+    /// 创建超级数据表
+    /// </summary>
+    /// <param name="option">选项参数</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    public async Task CreateAsync(STableCreateOption option)
+    {
+        StringBuilder sb = new();
+        sb.Append($"create stable");
 
-    #endregion
+        if (option.CheckIsExist)
+        {
+            sb.Append(" if not exists");
+        }
 
-    #region 成员属性
+        sb.Append($" {option.DBName}.{option.STableName}");
+        sb.Append($" ({option.Columns})");
+        sb.Append($" tags ({option.Tags})");
 
+        sb.Append(';');
 
+        TDengineQueryParam param = new(sb.ToString())
+        {
+            DBName = option.DBName
+        };
+        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+    }
 
-    #endregion
-
-    #region 成员方法
-
-
+    /// <summary>
+    /// 删除超级数据表
+    /// </summary>
+    /// <param name="dbName">数据库名称</param>
+    /// <param name="stbName">超级数据表名称</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    public async Task DropAsync(string dbName, string stbName)
+    {
+        string sqlString = $"drop stable if exists {dbName}.{stbName};";
+        TDengineQueryParam param = new(sqlString)
+        {
+            DBName = dbName
+        };
+        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+    }
 
     #endregion
 

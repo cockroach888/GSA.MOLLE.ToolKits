@@ -25,9 +25,18 @@ namespace GSA.ToolKits.DBUtility.TDengine.Managed;
 /// </summary>
 public interface ITDengineTableManage
 {
+    /// <summary>
+    /// 创建数据表
+    /// </summary>
+    /// <param name="option">选项参数</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    Task CreateAsync(TableCreateOption option);
 
-    Task CreateTableAsync(TableCreateOption option);
-
-
-    Task DropTableAsync(string dbName, string tbName);
+    /// <summary>
+    /// 删除数据表
+    /// </summary>
+    /// <param name="dbName">数据库名称</param>
+    /// <param name="tbName">数据表名称</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    Task DropAsync(string dbName, string tbName);
 }

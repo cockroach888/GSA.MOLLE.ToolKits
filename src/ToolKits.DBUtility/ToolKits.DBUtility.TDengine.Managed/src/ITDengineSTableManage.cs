@@ -25,9 +25,18 @@ namespace GSA.ToolKits.DBUtility.TDengine.Managed;
 /// </summary>
 public interface ITDengineSTableManage
 {
+    /// <summary>
+    /// 创建超级数据表
+    /// </summary>
+    /// <param name="option">选项参数</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    Task CreateAsync(STableCreateOption option);
 
-    Task CreateSTableAsync(STableCreateOption option);
-
-
-    Task DropSTableAsync(string dbName, string stbName);
+    /// <summary>
+    /// 删除超级数据表
+    /// </summary>
+    /// <param name="dbName">数据库名称</param>
+    /// <param name="stbName">超级数据表名称</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    Task DropAsync(string dbName, string stbName);
 }

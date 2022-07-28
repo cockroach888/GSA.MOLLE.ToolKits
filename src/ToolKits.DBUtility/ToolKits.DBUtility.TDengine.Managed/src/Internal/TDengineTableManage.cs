@@ -18,36 +18,90 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using System.Text;
+
 namespace GSA.ToolKits.DBUtility.TDengine.Managed;
 
 /// <summary>
-/// 类功能说明
+/// TDengine 数据表管理类
 /// </summary>
 public sealed class TDengineTableManage : ITDengineTableManage
 {
+    private readonly ITDengineConnector _connector;
+
+
     /// <summary>
-    /// 类功能说明
+    /// TDengine 数据表管理
     /// </summary>
-    public TDengineTableManage()
+    /// <param name="connector">连接器</param>
+    public TDengineTableManage(ITDengineConnector connector)
     {
-        //do something.
+        _connector = connector;
     }
 
-    #region 成员变量
 
+    #region 接口实现[ITDengineTableManage]
 
+    /// <summary>
+    /// 创建数据表
+    /// </summary>
+    /// <param name="option">选项参数</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    public async Task CreateAsync(TableCreateOption option)
+    {
+        StringBuilder sb = new();
+        sb.Append($"create table");
 
-    #endregion
+        if (option.CheckIsExist)
+        {
+            sb.Append(" if not exists");
+        }
+        
+        sb.Append($" {option.DBName}.{option.TableName}");
 
-    #region 成员属性
+        if (string.IsNullOrWhiteSpace(option.STableName))
+        {
+            sb.Append($" ({option.Columns})");
+        }
+        else
+        {
+            sb.Append($" using {option.DBName}.{option.STableName}");
 
+            if (!string.IsNullOrWhiteSpace(option.TagNames))
+            {
+                sb.Append($" ({option.TagNames})");
+            }
 
+            if (!string.IsNullOrWhiteSpace(option.TagValues))
+            {
+                sb.Append($" tags ({option.TagValues})");
+            }
+        }
 
-    #endregion
+        sb.Append(';');
 
-    #region 成员方法
+        TDengineQueryParam param = new(sb.ToString())
+        {
+            DBName = option.DBName
+        };
+        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+    }
 
-
+    /// <summary>
+    /// 删除数据表
+    /// </summary>
+    /// <param name="dbName">数据库名称</param>
+    /// <param name="tbName">数据表名称</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    public async Task DropAsync(string dbName, string tbName)
+    {
+        string sqlString = $"drop table if exists {dbName}.{tbName};";
+        TDengineQueryParam param = new(sqlString)
+        {
+            DBName = dbName
+        };
+        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+    }
 
     #endregion
 

@@ -18,37 +18,78 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using System.ComponentModel.DataAnnotations;
+
 namespace GSA.ToolKits.DBUtility.TDengine.Managed;
 
 /// <summary>
-/// 类功能说明
+/// 数据表创建选项参数类
 /// </summary>
+[Serializable]
 public sealed class TableCreateOption
 {
     /// <summary>
-    /// 类功能说明
+    /// 数据表创建选项参数
     /// </summary>
-    public TableCreateOption()
+    /// <param name="dBName">数据库名称</param>
+    /// <param name="tbName">数据表名称</param>
+    public TableCreateOption(string dBName, string tbName)
     {
-        //do something.
+        DBName = dBName;
+        TableName = tbName;
     }
 
-    #region 成员变量
 
+    /// <summary>
+    /// 检查是否已存在
+    /// <para>默认检查</para>
+    /// </summary>
+    /// <remarks>当超级数据表已存在时不执行创建操作。</remarks>
+    public bool CheckIsExist { get; set; } = true;
 
+    /// <summary>
+    /// 数据库名称
+    /// </summary>
+    /// <remarks>数据库名最大长度为33个半角字符。</remarks>
+    [Required]
+    [StringLength(33)]
+    public string DBName { get; set; }
 
-    #endregion
+    /// <summary>
+    /// 数据表名称
+    /// </summary>
+    /// <remarks>数据表名称最大长度为192个半角字符</remarks>    
+    [Required]
+    [StringLength(192)]
+    public string TableName { get; set; }
 
-    #region 成员属性
+    /// <summary>
+    /// 包含所有字段名称和对应数据类型的字符串
+    /// <para>当使用超级表作为数据表约束创建时，此字段将无效。</para>
+    /// </summary>
+    /// <remarks>
+    /// 注意事项：
+    /// <para>字段名称和数据类型之间，使用半角空格隔开。</para>
+    /// <para>多个字段定义之间，使用半角逗号(,)分隔。</para>
+    /// </remarks>
+    public string? Columns { get; set; }
 
+    /// <summary>
+    /// 超级数据表名称
+    /// </summary>
+    [StringLength(192)]
+    public string? STableName { get; set; }
 
+    /// <summary>
+    /// 使用超级表中指定的标签定义
+    /// <para>当不指定时，将默认使用超级表中定义的所有标签。</para>
+    /// </summary>
+    /// <remarks>多个标签名称之间使用半角逗号(,)隔开</remarks>
+    public string? TagNames { get; set; } = string.Empty;
 
-    #endregion
-
-    #region 成员方法
-
-
-
-    #endregion
-
+    /// <summary>
+    /// 各标签定义的值
+    /// </summary>
+    /// <remarks>多个标签值之间使用半角逗号(,)隔开</remarks>
+    public string? TagValues { get; set; } = string.Empty;
 }

@@ -23,13 +23,13 @@ using System.ComponentModel.DataAnnotations;
 namespace GSA.ToolKits.DBUtility.TDengine.Managed;
 
 /// <summary>
-/// 数据库选项参数类
+/// 数据库创建选项参数类
 /// </summary>
 [Serializable]
 public sealed class DatabaseCreateOption
 {
     /// <summary>
-    /// 数据库选项参数
+    /// 数据库创建选项参数
     /// </summary>
     /// <param name="dBName">数据库名称</param>
     public DatabaseCreateOption(string dBName)
@@ -39,18 +39,19 @@ public sealed class DatabaseCreateOption
 
 
     /// <summary>
-    /// 数据库名称
-    /// </summary>
-    /// <remarks>数据库名最大长度为33个半角字符。</remarks>
-    [StringLength(33)]
-    public string DBName { get; set; }
-
-    /// <summary>
     /// 检查是否已存在
     /// <para>默认检查</para>
     /// </summary>
-    /// <remarks>当数据已存在时不执行创建操作。</remarks>
+    /// <remarks>当数据库已存在时不执行创建操作。</remarks>
     public bool CheckIsExist { get; set; } = true;
+
+    /// <summary>
+    /// 数据库名称
+    /// </summary>
+    /// <remarks>数据库名称最大长度为33个半角字符。</remarks>
+    [Required]
+    [StringLength(33)]
+    public string DBName { get; set; }
 
     /// <summary>
     /// 内存块的空间大小（单位:MB(兆)，范围1-128）
