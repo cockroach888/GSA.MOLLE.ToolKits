@@ -11,15 +11,14 @@
 		<DelaySign>false</DelaySign>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<AssemblyName>DawnUtility</AssemblyName>
-		<AssemblyVersion>1.0.0.0</AssemblyVersion>
-		<FileVersion>1.0.0.0</FileVersion>
-		<DebugType>none</DebugType>
+		<AssemblyVersion>6.0.0</AssemblyVersion>
+		<FileVersion>6.0.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>蟑螂·魂</Authors>
 		<Description>本类库提供了数据类型转换操作辅助类、字符串拼装操作辅助类、字符串操作辅助类、非对称RSA加密类、转换人民币大小金额、C#动态类型对象处理类、DES加解密操作辅助类、魂哥常用操作辅助类、日期操作辅助类、加解密操作辅助类、实体和泛型集合与DataTable数据相互转换帮助类、验证码操作辅助类、超级整型、AES加解密操作辅助类等；简单实用、舒心易用，是您开发中的必备利器。

@@ -14,13 +14,12 @@
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
 		<AssemblyVersion>6.0.3</AssemblyVersion>
 		<FileVersion>6.0.3</FileVersion>
-		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>蟑螂·魂</Authors>
 		<Description>本类库为TDengine数据库操作独家专属，简单实用、舒心易用，是您开发中的必备利器。

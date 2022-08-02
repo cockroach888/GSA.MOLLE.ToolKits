@@ -1,55 +1,55 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net472;netcoreapp3.1;net5.0</TargetFrameworks>
-    <ApplicationIcon>Library.ico</ApplicationIcon>
-    <AssemblyName>CockroachContainer</AssemblyName>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>5.0.0</Version>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>PackageIcon.jpg</PackageIcon>
-    <RepositoryType>git</RepositoryType>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>ToolKits.CockroachContainer.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <PackageId>CockroachContainer</PackageId>
-    <Product>魂哥自创的自定义服务(伪IOC)容器</Product>
-    <Authors>蟑螂·魂</Authors>
-    <Company>华夏银河空间联盟</Company>
-    <Description>本类库提供了基于ConcurrentDictionary（线程安全字典对象）的伪IOC容器服务，配合优雅单例模式，可以在整个程序生命周期中优雅地使用，同时支持单接口多实现等使用场景；简单实用、舒心易用，是您开发中的必备利器。
+	<PropertyGroup>
+		<TargetFrameworks>net472;netcoreapp3.1;net5.0</TargetFrameworks>
+		<ApplicationIcon>Library.ico</ApplicationIcon>
+		<AssemblyName>CockroachContainer</AssemblyName>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<Version>5.0.0</Version>
+		<PackageLicenseExpression></PackageLicenseExpression>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageIcon>PackageIcon.jpg</PackageIcon>
+		<RepositoryType>git</RepositoryType>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>ToolKits.CockroachContainer.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>false</DelaySign>
+		<PackageId>CockroachContainer</PackageId>
+		<Product>魂哥自创的自定义服务(伪IOC)容器</Product>
+		<Authors>蟑螂·魂</Authors>
+		<Company>华夏银河空间联盟</Company>
+		<Description>本类库提供了基于ConcurrentDictionary（线程安全字典对象）的伪IOC容器服务，配合优雅单例模式，可以在整个程序生命周期中优雅地使用，同时支持单接口多实现等使用场景；简单实用、舒心易用，是您开发中的必备利器。
 
-      内置多个独立的版本（net40, net45, net472, netcoreapp3.1, net5.0）。
+- 内置多个独立的版本（net40, net45, net472, netcoreapp3.1, net5.0）。
 
-      NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
-    <PackageTags>魂哥常用工具集 魂哥自创的自定义服务(伪IOC)容器 Container Service IOC</PackageTags>
-    <PackageReleaseNotes>新增魂哥自创的自定义服务(伪IOC)容器，面向 .net 5.0 开发；内置多个独立的版本（net40, net45, net472, netcoreapp3.1, net5.0）让使用更便捷。</PackageReleaseNotes>
-    <Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
-    <PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <RootNamespace>GSA.ToolKits.CockroachContainer</RootNamespace>
-  </PropertyGroup>
+- NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
+		<PackageTags>魂哥常用工具集 魂哥自创的自定义服务(伪IOC)容器 Container Service IOC</PackageTags>
+		<PackageReleaseNotes>新增魂哥自创的自定义服务(伪IOC)容器，面向 .net 5.0 开发；内置多个独立的版本（net40, net45, net472, netcoreapp3.1, net5.0）让使用更便捷。</PackageReleaseNotes>
+		<Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
+		<PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<RootNamespace>GSA.ToolKits.CockroachContainer</RootNamespace>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.CockroachContainer\src\bin\CockroachContainer.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.CockroachContainer\src\bin\CockroachContainer.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.CockroachContainer\src\bin\CockroachContainer.xml</DocumentationFile>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.CockroachContainer\src\bin\CockroachContainer.xml</DocumentationFile>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\..\PackageIcon.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\..\PackageIcon.jpg">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

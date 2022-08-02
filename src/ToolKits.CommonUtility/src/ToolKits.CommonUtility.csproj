@@ -14,13 +14,12 @@
 		<AssemblyName>CommonUtility</AssemblyName>
 		<AssemblyVersion>6.0.0.1</AssemblyVersion>
 		<FileVersion>6.0.0.1</FileVersion>
-		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>蟑螂·魂</Authors>
 		<Description>本类库为常见和通用的一些功能集合；诸如JSON序列化转换器、自定义属性方案、数据模型助手、时间戳处理等。
