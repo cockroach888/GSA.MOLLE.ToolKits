@@ -134,13 +134,12 @@ public static class TDataModelHelper
                     sbValue.Append($"{(int)value},");
                     break;
                 case Type t when t == typeof(int[]):
-                    string arrstring = "''";
                     if (value is int[] array && array.Length > 0)
                     {
-                        arrstring = $"'{string.Join(',', array)}',";
+                        sbValue.Append($"'{string.Join(',', array)}',");
+                        break;
                     }
-                    sbValue.Append($"{arrstring}");
-                    break;
+                    continue;
                 default:
                     throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({property.PropertyType.Name})，请联系相关人员处理。（NameString: {sbName}  |  ValueString: {sbValue}。）");
             }
