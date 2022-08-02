@@ -1,9 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<ApplicationIcon>Library.ico</ApplicationIcon>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>TDengineEx.DataHelper.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>false</DelaySign>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
 
 </Project>
