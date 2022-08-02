@@ -113,16 +113,6 @@ public static class TDataModelHelper
                 continue;
             }
 
-            // 字段拼接
-            if (returnNameString)
-            {
-                ColumnAttribute? attr = property.GetCustomAttribute<ColumnAttribute>();
-                if (null != attr)
-                {
-                    sbName.Append($"{attr.Name},");
-                }
-            }
-
             switch (property.PropertyType)
             {
                 case Type tbool when tbool == typeof(bool):
@@ -144,13 +134,25 @@ public static class TDataModelHelper
                     sbValue.Append($"{(int)value},");
                     break;
                 case Type t when t == typeof(int[]):
+                    string arrstring = "''";
                     if (value is int[] array && array.Length > 0)
                     {
-                        sbValue.Append($"'{string.Join(',', array)}',");
+                        arrstring = $"'{string.Join(',', array)}',";
                     }
+                    sbValue.Append($"{arrstring}");
                     break;
                 default:
-                    throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({property.PropertyType.Name})，请联系相关人员处理。");
+                    throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({property.PropertyType.Name})，请联系相关人员处理。（NameString: {sbName}  |  ValueString: {sbValue}。）");
+            }
+
+            // 字段拼接
+            if (returnNameString)
+            {
+                ColumnAttribute? attr = property.GetCustomAttribute<ColumnAttribute>();
+                if (null != attr)
+                {
+                    sbName.Append($"{attr.Name},");
+                }
             }
         }
 

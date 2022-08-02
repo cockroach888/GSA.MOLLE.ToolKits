@@ -37,7 +37,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>因之前仓促中忘记了重要的命名空间，导致未与之前库形成统一，现在纠正，为此给各位使用者带来不便，表示诚至的歉意，抱歉！！！</PackageReleaseNotes>
+		<PackageReleaseNotes>修复TDataModelHelper中的GetColumnValueString功能实现。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
