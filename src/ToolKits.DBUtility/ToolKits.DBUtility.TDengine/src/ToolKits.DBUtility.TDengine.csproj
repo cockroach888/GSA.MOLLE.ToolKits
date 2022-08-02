@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>6.0.3</AssemblyVersion>
-		<FileVersion>6.0.3</FileVersion>
+		<AssemblyVersion>6.0.3.1</AssemblyVersion>
+		<FileVersion>6.0.3.1</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -39,7 +39,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>增加直接执行SQL字符串的扩展方法</PackageReleaseNotes>
+		<PackageReleaseNotes>变更解决方案内的项目引用方式，同步依赖库的版本迭代。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
@@ -69,10 +69,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommonsUtility" Version="6.0.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
 		<PackageReference Include="RestSharp" Version="108.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
 	</ItemGroup>
 	
 </Project>

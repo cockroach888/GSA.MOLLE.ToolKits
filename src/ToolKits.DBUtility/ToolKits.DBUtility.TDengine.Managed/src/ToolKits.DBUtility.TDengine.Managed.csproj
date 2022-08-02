@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine.Managed</RootNamespace>
 		<AssemblyName>DBUtility.TDengine.Managed</AssemblyName>
-		<AssemblyVersion>6.0.0</AssemblyVersion>
-		<FileVersion>6.0.0</FileVersion>
+		<AssemblyVersion>6.0.0.1</AssemblyVersion>
+		<FileVersion>6.0.0.1</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -39,7 +39,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine Managed</PackageTags>
-		<PackageReleaseNotes>对DBUtility.TDengine库进行数据库管理层面的扩展封装。提供数据库日常管理的操作，以满足日常使用需求。</PackageReleaseNotes>
+		<PackageReleaseNotes>变更解决方案内的项目引用方式，同步依赖库的版本迭代。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
@@ -69,8 +69,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DBUtility.TDengine" Version="6.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ToolKits.DBUtility.TDengine\src\ToolKits.DBUtility.TDengine.csproj" />
 	</ItemGroup>
 	
 </Project>
