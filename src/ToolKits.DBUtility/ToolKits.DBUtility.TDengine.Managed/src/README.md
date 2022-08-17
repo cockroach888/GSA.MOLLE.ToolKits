@@ -2,11 +2,13 @@
 
 # 魂哥常用工具集（GSA.MOLLE.ToolKits）
 
-## 本类库为TDengine数据库操作的扩展管理库，封装了数据库相关的日常管理操作等，简单实用、舒心易用，是您开发中的必备利器。
+## 基于RESTful API的TDengine C# 连接器的管理扩展
 
-- 通过对数据库日常管理操作的封装，丰富了DBUtility.TDengine库的功能，诸如数据库、超级表、数据表等等管理，提供方便的日常管理操作，以满足不同的应用需求。
+- 对DBUtility.TDengine封装库提供的扩展支持，提供数据库日常的管理应用等需求，诸如数据库、超级表、数据表等的管理，友好的日常管理接口使用形态，可以满足不同的应用需求。（[NuGet包](https://www.nuget.org/packages/DBUtility.TDengine.Managed)）
 
-- 专注.Net技术栈，通过对.net6+等系列源码进行研究，展开系列技术的研习之路。内置多个独立的版本（net6.0）。
+- The DBUtility.TDengine package library provides extended support for the daily management application requirements of the database, such as the management of databases, super tables, and data tables. The friendly daily management interface usage form in TDengine can meet different application requirements.（[NuGet package](https://www.nuget.org/packages/DBUtility.TDengine.Managed)）
+
+- 应用示例(samples)：https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/samples/TaosData
 
 - NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。
 
@@ -28,3 +30,9 @@
 
 ### 2022-08-02
 - 变更解决方案内的项目引用方式，同步依赖库的版本迭代。
+
+### 2022-08-08
+- 优化Provider中的最佳单例实践编码。
+
+### 2022-08-17
+- 修改项目的描述信息，以更贴合和符合封装库的介绍。

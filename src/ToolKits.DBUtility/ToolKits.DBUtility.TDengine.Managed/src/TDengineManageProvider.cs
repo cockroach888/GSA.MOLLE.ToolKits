@@ -33,7 +33,7 @@ public sealed class TDengineManageProvider
     /// <summary>
     /// 类功能说明
     /// </summary>
-    internal static TDengineManageProvider Default { get; } = _lazyInstance.Value;
+    internal static TDengineManageProvider Default => _lazyInstance.Value;
 
     #endregion
 

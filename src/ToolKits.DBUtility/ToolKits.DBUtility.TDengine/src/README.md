@@ -2,11 +2,13 @@
 
 # 魂哥常用工具集（GSA.MOLLE.ToolKits）
 
-## 本类库为TDengine数据库操作独家专属，简单实用、舒心易用，是您开发中的必备利器。
+## 基于RESTful API的TDengine C# 连接器
 
-- 因TDengine官方C#版本连接器还处于趋于完善阶段；而业务增长需要持续稳定，一天入库的数据最低也会是1亿以上数据量，故数据的入库完整性和效率尤为重要；经测试RESTful API善可接收，故采用RestSharp等最新技术进行了简单的封装，目前测试使用效果善可。
+- 基于官方提供的RESTful API接口，使用.net6(即将提供.net7支持)等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的[NuGet包](https://www.nuget.org/packages/DBUtility.TDengine)供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。
 
-- 专注.Net技术栈，通过对.net6+等系列源码进行研究，展开系列技术的研习之路。内置多个独立的版本（net6.0）。
+- Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .net6 (.net7 support will be provided soon). This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding [NuGet package](https://www.nuget.org/packages/DBUtility.TDengine) is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
+
+- 应用示例(samples)：https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/samples/TaosData
 
 - NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。
 
@@ -46,3 +48,9 @@
 
 ### 2022-08-02
 - 变更解决方案内的项目引用方式，同步依赖库的版本迭代。
+
+### 2022-08-08
+- 优化Provider中的最佳单例实践编码。
+
+### 2022-08-17
+- 修改项目的描述信息，以更贴合和符合封装库的介绍。

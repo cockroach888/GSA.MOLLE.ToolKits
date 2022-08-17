@@ -33,7 +33,7 @@ public sealed class TDengineConnectorProvider
     /// <summary>
     /// TDengine RESTful API 连接器提供者
     /// </summary>
-    public static TDengineConnectorProvider Default { get; } = _lazyInstance.Value;
+    public static TDengineConnectorProvider Default => _lazyInstance.Value;
 
     #endregion
 
