@@ -41,7 +41,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine Managed</PackageTags>
-		<PackageReleaseNotes>变更解决方案内的项目引用方式，同步依赖库的版本迭代。</PackageReleaseNotes>
+		<PackageReleaseNotes>修改项目的描述信息，以更贴合和符合封装库的介绍。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
