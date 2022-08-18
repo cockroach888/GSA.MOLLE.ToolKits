@@ -47,7 +47,7 @@ public sealed class JsonTimestampConverter : JsonConverter<DateTime>
 
         if (reader.TryGetInt64(out long value))
         {
-            result = DateTimeHelper.GetDateTimeAsync(value).GetAwaiter().GetResult();
+            result = DateTimeHelper.ConvertToDateTime(value);
         }
 
         return result;
@@ -60,7 +60,5 @@ public sealed class JsonTimestampConverter : JsonConverter<DateTime>
     /// <param name="value">The value to convert to JSON.</param>
     /// <param name="options">An object that specifies serialization options to use.</param>
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
-    {
-        writer.WriteStringValue($"{DateTimeHelper.GetTimestampAsync(value).GetAwaiter().GetResult()}");
-    }
+        => writer.WriteStringValue($"{DateTimeHelper.ConvertToTimestamp(value)}");
 }

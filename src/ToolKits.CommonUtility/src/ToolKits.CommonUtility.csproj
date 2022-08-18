@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtilityr</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>6.0.1.1</AssemblyVersion>
-		<FileVersion>6.0.1.1</FileVersion>
+		<AssemblyVersion>6.0.2</AssemblyVersion>
+		<FileVersion>6.0.2</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -37,7 +37,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>修复TDataModelHelper中的GetColumnValueString功能实现。</PackageReleaseNotes>
+		<PackageReleaseNotes>去掉DateTimeHelper类中的多余且然并卵的异步形态。相关优化处置工作。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
