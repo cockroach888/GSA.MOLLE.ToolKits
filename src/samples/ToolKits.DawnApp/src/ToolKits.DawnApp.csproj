@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net5.0-windows</TargetFramework>
+		<TargetFramework>net6.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ApplicationIcon>sys.ico</ApplicationIcon>
 		<AssemblyName>魂哥工具集</AssemblyName>
@@ -64,6 +64,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\ToolKits.CockroachContainer\src\ToolKits.CockroachContainer.csproj" />
+		<ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.DawnUtility\src\ToolKits.DawnUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.MongoDB\src\ToolKits.DBUtility.MongoDB.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.Mssql\src\ToolKits.DBUtility.Mssql.csproj" />
