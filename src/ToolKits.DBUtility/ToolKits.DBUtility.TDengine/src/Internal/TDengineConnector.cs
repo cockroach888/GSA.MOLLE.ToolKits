@@ -94,7 +94,7 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
 
         request.AddStringBody(param.SqlString, DataFormat.None);
 
-        RestResponse response = await _client.PostAsync(request, param.Token);
+        RestResponse response = await _client.PostAsync(request, param.Token).ConfigureAwait(false);
         return response.Content;
     }
 

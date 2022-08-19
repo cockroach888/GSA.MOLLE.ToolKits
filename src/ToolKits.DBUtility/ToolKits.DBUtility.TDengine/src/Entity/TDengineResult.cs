@@ -86,7 +86,7 @@ public sealed class TDengineResult
     /// 解析请求数据结果为数据记录统计
     /// </summary>
     /// <returns>数据记录数</returns>
-    public long ParseDataToCountAsync()
+    public long ParseDataToCount()
     {
         string strValue = Regex.Replace(Data.ToString(), @"[^\d]*", "");
         _ = long.TryParse(strValue, out long value);

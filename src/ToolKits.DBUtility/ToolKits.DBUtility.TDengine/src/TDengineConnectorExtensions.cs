@@ -32,10 +32,10 @@ public static class TDengineConnectorExtensions
     /// <param name="connector">TDengine RESTful API 连接器</param>
     /// <param name="param">通用查询参数</param>
     /// <returns>请求结果</returns>
-    public static Task<TDengineResult?> ExecutionToResultAsync(
+    public static async Task<TDengineResult?> ExecutionToResultAsync(
         this ITDengineConnector connector,
         TDengineQueryParam param)
-        => connector.ExecutionAsync<TDengineResult>(param);
+        => await connector.ExecutionAsync<TDengineResult>(param).ConfigureAwait(false);
 
     /// <summary>
     /// 执行指定SQL语句
@@ -102,7 +102,7 @@ public static class TDengineConnectorExtensions
             throw new Exception($"执行数据记录统计时出现错误。数据库名：{query.DBName}，SQL语句：{sqlString}，返回结果：{result.Desc}。");
         }
 
-        return result.ParseDataToCountAsync();
+        return result.ParseDataToCount();
     }
 
     /// <summary>
