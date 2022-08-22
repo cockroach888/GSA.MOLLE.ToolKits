@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：TDengineOptions.cs
+// 文件名称：TDengineVersion.cs
 // 项目名称：TDengine RESTful API 连接器
-// 创建时间：2022-06-22 22:24:33
+// 创建时间：2022-08-22 22:24:50
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,45 +18,20 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using System.Text.Json.Serialization;
-
 namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
-/// TDengine选项参数类
+/// 版本选择器枚举
 /// </summary>
-[Serializable]
-public sealed class TDengineOptions
+public enum TDengineVersion : byte
 {
     /// <summary>
-    /// 主机名或IP地址
+    /// TDengine 2.x
     /// </summary>
-    public string? Host { get; set; }
+    V2_X = 2,
 
     /// <summary>
-    /// 端口号（缺省 6041）
+    /// TDengine 3.x
     /// </summary>
-    public uint Port { get; set; } = 6041;
-
-    /// <summary>
-    /// 用户名（缺省 root）
-    /// </summary>
-    public string UserName { get; set; } = "root";
-
-    /// <summary>
-    /// 密码（缺省 taosdata）
-    /// </summary>
-    public string Password { get; set; } = "taosdata";
-
-    /// <summary>
-    /// 版本选择器
-    /// </summary>
-    /// <remarks>缺省为 TDengine2.x 版本</remarks>
-    public TDengineVersion VersionSelector { get; set; } = TDengineVersion.V2_X;
-
-    /// <summary>
-    /// 数据库连接URI标识符
-    /// </summary>
-    [JsonIgnore]
-    internal Uri BaseUri => new UriBuilder($"http://{Host}:{Port}/rest/sql").Uri;
+    V3_X = 3,
 }
