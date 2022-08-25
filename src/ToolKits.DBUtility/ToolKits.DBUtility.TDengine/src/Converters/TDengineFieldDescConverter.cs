@@ -62,8 +62,19 @@ internal sealed class TDengineFieldDescConverter : JsonConverter<IEnumerable<TDe
             line.MoveNext();
             info.FieldName = line.Current.GetString();
 
+
             line.MoveNext();
-            info.FieldType = Enum.Parse<TDengineDataType>($"{line.Current.GetInt16()}");
+            string? typeString = line.Current.GetString();
+
+            if (typeString is not null)
+            {
+                info.FieldType = Enum.Parse<TDengineDataType>(typeString);
+            }
+            else
+            {
+                info.FieldType = Enum.Parse<TDengineDataType>($"{line.Current.GetInt16()}");
+            }
+
 
             line.MoveNext();
             info.FiledSize = line.Current.GetInt16();

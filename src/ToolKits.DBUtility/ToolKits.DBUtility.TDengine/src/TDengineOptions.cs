@@ -52,7 +52,7 @@ public sealed class TDengineOptions
     /// 版本选择器
     /// </summary>
     /// <remarks>缺省为 TDengine2.x 版本</remarks>
-    public TDengineVersion VersionSelector { get; set; } = TDengineVersion.V2_X;
+    public TDengineVersion VersionSelector { get; set; } = TDengineVersion.V2;
 
     /// <summary>
     /// 数据库连接URI标识符

@@ -26,6 +26,11 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 public enum TDengineDataType
 {
     /// <summary>
+    /// NULL
+    /// </summary>
+    NULL,
+
+    /// <summary>
     /// 布尔型
     /// </summary>
     BOOL = 1,
@@ -61,6 +66,11 @@ public enum TDengineDataType
     DOUBLE = 7,
 
     /// <summary>
+    /// BINARY类型的别名
+    /// </summary>
+    VARCHAR,
+
+    /// <summary>
     /// 记录单字节字符串
     /// </summary>
     /// <remarks>只用于处理 ASCII 可见字符</remarks>
@@ -76,6 +86,31 @@ public enum TDengineDataType
     /// </summary>
     /// <remarks>如中文字符</remarks>
     NCHAR = 10,
+
+    /// <summary>
+    /// 无符号 单字节整型
+    /// </summary>
+    TINYINT_UNSIGNED,
+
+    /// <summary>
+    /// 无符号 短整型
+    /// </summary>
+    SMALLINT_UNSIGNED,
+
+    /// <summary>
+    /// 无符号 整型
+    /// </summary>
+    INT_UNSIGNED,
+
+    /// <summary>
+    /// 无符号 长整型
+    /// </summary>
+    BIGINT_UNSIGNED,
+
+    /// <summary>
+    /// JSON
+    /// </summary>
+    JSON,
 
     /// <summary>
     /// 未知

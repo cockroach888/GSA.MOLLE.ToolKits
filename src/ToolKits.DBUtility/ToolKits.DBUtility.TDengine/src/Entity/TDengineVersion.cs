@@ -28,10 +28,10 @@ public enum TDengineVersion : byte
     /// <summary>
     /// TDengine 2.x
     /// </summary>
-    V2_X = 2,
+    V2 = 2,
 
     /// <summary>
     /// TDengine 3.x
     /// </summary>
-    V3_X = 3,
+    V3 = 3,
 }

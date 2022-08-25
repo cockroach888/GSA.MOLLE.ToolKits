@@ -34,26 +34,16 @@ public sealed class TDengineResult
 {
     /// <summary>
     /// 请求状态
-    /// </summary>    
+    /// </summary>
+    /// <remarks>succ 表示请求成功</remarks>
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public TDengineStatus Status { get; set; }
 
     /// <summary>
-    /// 错误编码
+    /// 请求结果编码
     /// </summary>
-    /// <remarks>仅请求失败时有效</remarks>
+    /// <remarks>仅请求失败时有效，0 代表成功。</remarks>
     public int Code { get; set; }
-
-    /// <summary>
-    /// 错误描述
-    /// </summary>
-    /// <remarks>仅请求失败时有效</remarks>
-    public string? Desc { get; set; }
-
-    /// <summary>
-    /// 字段名称数组
-    /// </summary>
-    public string[]? Head { get; set; }
 
     /// <summary>
     /// 列名称及元信息枚举列表
@@ -71,6 +61,16 @@ public sealed class TDengineResult
     /// 返回行数
     /// </summary>
     public long Rows { get; set; }
+
+    /// <summary>
+    /// 错误描述
+    /// </summary>
+    /// <remarks>
+    /// 仅请求失败时有效
+    /// <para>TDengine2.x - Status不等于succ</para>
+    /// <para>TDengine3.x - Code不等于0</para>
+    /// </remarks>
+    public string? Desc { get; set; }
 
 
     /// <summary>
