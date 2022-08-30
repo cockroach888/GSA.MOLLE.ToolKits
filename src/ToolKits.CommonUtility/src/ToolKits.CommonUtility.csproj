@@ -10,10 +10,10 @@
 		<AssemblyOriginatorKeyFile>ToolKits.CommonUtility.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<RootNamespace>GSA.ToolKits.CommonUtilityr</RootNamespace>
+		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>6.0.2</AssemblyVersion>
-		<FileVersion>6.0.2</FileVersion>
+		<AssemblyVersion>6.0.3</AssemblyVersion>
+		<FileVersion>6.0.3</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 

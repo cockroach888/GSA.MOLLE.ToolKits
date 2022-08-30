@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.CommonUtility.Schema;
 
 /// <summary>
-/// 数据库查询时忽略掉此字段
+/// 构建SQL查询字符串语句时，忽略掉此带有本属性的字段。
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
 public sealed class TaosSelectIgnoreAttribute : Attribute

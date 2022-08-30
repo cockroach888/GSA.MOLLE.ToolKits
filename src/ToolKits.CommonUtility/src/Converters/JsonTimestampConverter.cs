@@ -24,13 +24,12 @@ using System.Text.Json.Serialization;
 namespace GSA.ToolKits.CommonUtility.Converters;
 
 /// <summary>
-/// Converts an object or value to or from JSON.
+/// 用于JSON序列化时，处理时间戳的自定义转换器。
 /// </summary>
-/// <remarks>The type of object or value handled by the converter.</remarks>
 public sealed class JsonTimestampConverter : JsonConverter<DateTime>
 {
     /// <summary>
-    /// Reads and converts the JSON to type T.
+    /// 将时间戳转换为 DateTime 类型
     /// </summary>
     /// <param name="reader">The reader.</param>
     /// <param name="typeToConvert">The type to convert.</param>
@@ -54,7 +53,7 @@ public sealed class JsonTimestampConverter : JsonConverter<DateTime>
     }
 
     /// <summary>
-    /// Writes a specified value as JSON.
+    /// 将 DateTime 转换为时间戳
     /// </summary>
     /// <param name="writer">The writer to write to.</param>
     /// <param name="value">The value to convert to JSON.</param>
