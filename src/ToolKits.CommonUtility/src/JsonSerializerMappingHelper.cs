@@ -18,6 +18,11 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using GSA.ToolKits.CommonUtility.Entity;
+using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+
 namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
@@ -25,5 +30,176 @@ namespace GSA.ToolKits.CommonUtility;
 /// </summary>
 public static class JsonSerializerMappingHelper
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TModel"></typeparam>
+    /// <param name="keyNode"></param>
+    /// <param name="valuesNode"></param>
+    /// <param name="keyIndex"></param>
+    /// <returns></returns>
+    public static async ValueTask<TModel?> DeserializeMappingAsync<TModel>(JsonNode keyNode, JsonNode valuesNode, int keyIndex = -1)
+        where TModel : class, new()
+    {
+        return await Task.Run(() =>
+        {
+            IList<JsonSerializerFieldMapping> mappings = new List<JsonSerializerFieldMapping>();
 
+            Type type = typeof(TModel);
+            PropertyInfo[] properties = type.GetProperties();
+
+            int index = -1;
+            JsonArray keyArray = keyNode.AsArray();
+            foreach (JsonNode? node in keyArray)
+            {
+                index++;
+                string? keyName;
+
+                if (node is null)
+                {
+                    continue;
+                }
+
+                //if (keyIndex > 0)
+                //{
+                //    int count = node.AsArray().Count;
+
+                //    if (keyIndex >= count)
+                //    {
+                //        continue;
+                //    }
+
+                //    keyName = node[keyIndex]?.GetValue<string>().ToUpperInvariant();
+                //}
+                int count = node.AsArray().Count;
+                if (keyIndex > 0 && keyIndex < count)
+                {
+                    keyName = node[keyIndex]?.GetValue<string>().ToUpperInvariant();
+                }
+                else
+                {
+                    keyName = node.GetValue<string>().ToUpperInvariant();
+                }
+
+                if (keyName is null)
+                {
+                    continue;
+                }
+
+                PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName);
+
+                if (property is null)
+                {
+                    continue;
+                }
+
+                mappings.Add(new JsonSerializerFieldMapping(property, index));
+            }
+
+            if (mappings.Count <= 0)
+            {
+                return default;
+            }
+
+            TModel info = new();
+            JsonArray valuesArray = valuesNode.AsArray();
+
+            foreach (JsonNode? node in valuesArray)
+            {
+                if (node is null)
+                {
+                    continue;
+                }
+
+                foreach (JsonSerializerFieldMapping field in mappings)
+                {
+                    JsonNode? value = node[field.DataIndex];
+
+                    if (value is null)
+                    {
+                        continue;
+                    }
+
+                    field.MappingValue(info, value);
+                }
+            }
+
+            return info;
+        }).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TModel"></typeparam>
+    /// <param name="keyElement"></param>
+    /// <param name="valuesElement"></param>
+    /// <param name="keyIndex"></param>
+    /// <returns></returns>
+    public static async ValueTask<TModel?> DeserializeMappingAsync<TModel>(JsonElement keyElement, JsonElement valuesElement, int keyIndex = -1)
+        where TModel : class, new()
+    {
+        return await Task.Run(() =>
+        {
+            IList<JsonSerializerFieldMapping> mappings = new List<JsonSerializerFieldMapping>();
+
+            Type type = typeof(TModel);
+            PropertyInfo[] properties = type.GetProperties();
+
+            int keyLength = keyElement.GetArrayLength();
+            for (int index = 0; index < keyLength; index++)
+            {
+                JsonElement element = keyElement[index];
+                string? keyName;
+
+                int count = element.GetArrayLength();
+                if (keyIndex > 0 && keyIndex < count)
+                {
+                    keyName = element[keyIndex].GetString()?.ToUpperInvariant();
+                }
+                else
+                {
+                    keyName = element.GetString()?.ToUpperInvariant();
+                }
+
+                if (keyName is null)
+                {
+                    continue;
+                }
+
+                PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName);
+
+                if (property is null)
+                {
+                    continue;
+                }
+
+                mappings.Add(new JsonSerializerFieldMapping(property, index));
+            }
+
+            if (mappings.Count <= 0)
+            {
+                return default;
+            }
+
+            TModel info = new();
+            int valLength = keyElement.GetArrayLength();
+
+            for (int index = 0; index < valLength; index++)
+            {
+                foreach (JsonSerializerFieldMapping field in mappings)
+                {
+                    JsonElement value = valuesElement[index][field.DataIndex];
+                    field.MappingValue(info, value);
+                }
+            }
+
+            return info;
+        }).ConfigureAwait(false);
+    }
+
+    //public static Task SerializeMappingAsync<TValue>(TValue value)
+    //{
+    //    return Task.CompletedTask;
+    //}
 }
