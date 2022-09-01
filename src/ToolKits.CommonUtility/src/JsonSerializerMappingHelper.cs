@@ -38,7 +38,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesNode"></param>
     /// <param name="keyIndex"></param>
     /// <returns></returns>
-    public static async ValueTask<TModel?> DeserializeMappingAsync<TModel>(JsonNode keyNode, JsonNode valuesNode, int keyIndex = -1)
+    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonNode keyNode, JsonNode valuesNode, int keyIndex = -1)
         where TModel : class, new()
     {
         return await Task.Run(() =>
@@ -60,7 +60,7 @@ public static class JsonSerializerMappingHelper
                     continue;
                 }
 
-                //if (keyIndex > 0)
+                //if (keyIndex >= 0)
                 //{
                 //    int count = node.AsArray().Count;
 
@@ -72,7 +72,7 @@ public static class JsonSerializerMappingHelper
                 //    keyName = node[keyIndex]?.GetValue<string>().ToUpperInvariant();
                 //}
                 int count = node.AsArray().Count;
-                if (keyIndex > 0 && keyIndex < count)
+                if (keyIndex >= 0 && keyIndex < count)
                 {
                     keyName = node[keyIndex]?.GetValue<string>().ToUpperInvariant();
                 }
@@ -101,7 +101,7 @@ public static class JsonSerializerMappingHelper
                 return default;
             }
 
-            TModel info = new();
+            IList<TModel> result = new List<TModel>();
             JsonArray valuesArray = valuesNode.AsArray();
 
             foreach (JsonNode? node in valuesArray)
@@ -111,6 +111,8 @@ public static class JsonSerializerMappingHelper
                     continue;
                 }
 
+                TModel info = new();
+
                 foreach (JsonSerializerFieldMapping field in mappings)
                 {
                     JsonNode? value = node[field.DataIndex];
@@ -119,12 +121,13 @@ public static class JsonSerializerMappingHelper
                     {
                         continue;
                     }
-
                     field.MappingValue(info, value);
                 }
+
+                result.Add(info);
             }
 
-            return info;
+            return result;
         }).ConfigureAwait(false);
     }
 
@@ -136,7 +139,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesElement"></param>
     /// <param name="keyIndex"></param>
     /// <returns></returns>
-    public static async ValueTask<TModel?> DeserializeMappingAsync<TModel>(JsonElement keyElement, JsonElement valuesElement, int keyIndex = -1)
+    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement keyElement, JsonElement valuesElement, int keyIndex = -1)
         where TModel : class, new()
     {
         return await Task.Run(() =>
@@ -153,7 +156,7 @@ public static class JsonSerializerMappingHelper
                 string? keyName;
 
                 int count = element.GetArrayLength();
-                if (keyIndex > 0 && keyIndex < count)
+                if (keyIndex >= 0 && keyIndex < count)
                 {
                     keyName = element[keyIndex].GetString()?.ToUpperInvariant();
                 }
@@ -182,19 +185,23 @@ public static class JsonSerializerMappingHelper
                 return default;
             }
 
-            TModel info = new();
+            IList<TModel> result = new List<TModel>();
             int valLength = keyElement.GetArrayLength();
 
             for (int index = 0; index < valLength; index++)
             {
+                TModel info = new();
+
                 foreach (JsonSerializerFieldMapping field in mappings)
                 {
                     JsonElement value = valuesElement[index][field.DataIndex];
                     field.MappingValue(info, value);
                 }
+
+                result.Add(info);
             }
 
-            return info;
+            return result;
         }).ConfigureAwait(false);
     }
 
