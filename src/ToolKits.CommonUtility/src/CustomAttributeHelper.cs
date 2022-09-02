@@ -28,11 +28,11 @@ namespace GSA.ToolKits.CommonUtility;
 public static class CustomAttributeHelper
 {
     /// <summary>
-    /// 
+    /// 是否存指定泛型对象的自定义属性
     /// </summary>
-    /// <typeparam name="TAttribute"></typeparam>
-    /// <param name="member"></param>
-    /// <returns></returns>
+    /// <typeparam name="TAttribute">自定义属性泛型</typeparam>
+    /// <param name="member">表示成员的属性信息</param>
+    /// <returns>true 存在 / false 不存在</returns>
     public static bool Exists<TAttribute>(MemberInfo? member)
         where TAttribute : Attribute
     {
@@ -45,12 +45,12 @@ public static class CustomAttributeHelper
     }
 
     /// <summary>
-    /// 
+    /// 是否存指定泛型对象的自定义属性
     /// </summary>
-    /// <typeparam name="TAttribute"></typeparam>
-    /// <param name="type"></param>
-    /// <param name="memberName"></param>
-    /// <returns></returns>
+    /// <typeparam name="TAttribute">自定义属性泛型</typeparam>
+    /// <param name="type">应用自定义属性的类型对象</param>
+    /// <param name="memberName">成员元数据的名称</param>
+    /// <returns>true 存在 / false 不存在</returns>
     public static bool Exists<TAttribute>(Type type, string? memberName = null)
         where TAttribute : Attribute
     {
@@ -64,12 +64,12 @@ public static class CustomAttributeHelper
     }
 
     /// <summary>
-    /// 
+    /// 是否存指定泛型对象的自定义属性
     /// </summary>
-    /// <typeparam name="TType"></typeparam>
-    /// <typeparam name="TAttribute"></typeparam>
-    /// <param name="memberName"></param>
-    /// <returns></returns>
+    /// <typeparam name="TType">应用自定义属性的泛型</typeparam>
+    /// <typeparam name="TAttribute">自定义属性泛型</typeparam>
+    /// <param name="memberName">成员元数据的名称</param>
+    /// <returns>true 存在 / false 不存在</returns>
     public static bool Exists<TType, TAttribute>(string? memberName = null)
         where TType : class
         where TAttribute : Attribute
