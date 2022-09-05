@@ -25,7 +25,9 @@ namespace GSA.ToolKits.CommonUtility;
 /// <summary>
 /// 将条件表达式转换为字符串SQL语句
 /// </summary>
+/// <remarks>
 /// <example>
+/// 使用示例(Usage examples)：
 /// <code>
 /// var exception = Lambda 表达式;
 /// ExpressionVisitorToSQL visitorToSQL = new();
@@ -33,6 +35,7 @@ namespace GSA.ToolKits.CommonUtility;
 /// string sqlCondition = visitorToSQL.GetSqlCondtion();
 /// </code>
 /// </example>
+/// </remarks>
 public sealed class ExpressionVisitorToSQL : ExpressionVisitor
 {
     private readonly Stack<string> _sqlCondition = new Stack<string>();

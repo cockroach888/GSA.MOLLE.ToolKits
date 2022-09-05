@@ -18,6 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using GSA.ToolKits.CommonUtility.Schema;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text;
@@ -26,51 +27,36 @@ using System.Text.Json;
 namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
-/// 数据模型泛型助手类
+/// 提供数据模型的字段名称与值的字符串拼接助手类
 /// </summary>
 public static class TDataModelHelper
 {
     /// <summary>
-    /// 从指定数据模型中，获取数据表名称。
+    /// 从指定数据模型中，获取其成员表示数据字段的名称，并拼接成字符串。
     /// </summary>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <returns>数据表名称</returns>
-    public static string? GetTableName<TModel>()
+    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
+    /// <returns>数据字段名称拼接字符串</returns>
+    public static string GetColumnNameString<TModel, TIgnoreAttribute>()
         where TModel : class, new()
-    {
-        Type type = typeof(TModel);
-        TableAttribute? attr = type.GetCustomAttribute<TableAttribute>();
-
-        return attr?.Name;
-    }
-
-    /// <summary>
-    /// 从指定数据模型中，获取数据字段名称拼接字符串。
-    /// </summary>
-    /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="typeIgnoreAttr">忽略属性类型</param>
-    /// <returns>数据库字段名称拼接字符串</returns>
-    public static string GetColumnNameString<TModel>(Type? typeIgnoreAttr = null)
-        where TModel : class, new()
+        where TIgnoreAttribute : Attribute
     {
         Type type = typeof(TModel);
         PropertyInfo[] properties = type.GetProperties();
-
         StringBuilder sb = new();
 
         foreach (PropertyInfo property in properties)
         {
-            if (property.CustomAttributes.Any(p => p.AttributeType == typeIgnoreAttr))
+            if (property.Exists<TIgnoreAttribute>())
             {
                 continue;
             }
 
-            ColumnAttribute? attr = property.GetCustomAttribute<ColumnAttribute>();
+            string? columnName = property.GetCustomAttributeValue<ColumnAttribute, string?>(x => x.Name);
 
-            if (null != attr)
+            if (columnName is not null)
             {
-                sb.Append(attr.Name);
-                sb.Append(',');
+                sb.Append($"{columnName},");
             }
         }
 
@@ -83,32 +69,42 @@ public static class TDataModelHelper
     }
 
     /// <summary>
-    /// 从指定数据模型中，获取数据字段值拼接字符串。
+    /// 从指定数据模型中，获取其成员表示数据字段的名称，并拼接成字符串。
     /// </summary>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="model">数据模型对象</param>
-    /// <param name="typeIgnoreAttr">忽略属性类型</param>
-    /// <param name="returnNameString"></param>
-    /// <returns>数据库字段值拼接字符串</returns>
-    public static (string NameString, string ValueString) GetColumnValueString<TModel>(TModel model, Type? typeIgnoreAttr = null, bool returnNameString = true)
+    /// <returns>数据字段名称拼接字符串</returns>
+    public static string GetColumnNameString<TModel>()
         where TModel : class, new()
+        => GetColumnNameString<TModel, SpecialNullableTypeAttribute>();
+
+    /// <summary>
+    /// 从指定数据模型中，获取其成员的值，并拼接成字符串。
+    /// </summary>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
+    /// <param name="model">数据模型实例</param>
+    /// <param name="returnNameString">是否返回数据字段的名称字符串(缺省为返回)</param>
+    /// <returns>数据库字段值拼接字符串</returns>
+    /// <exception cref="TypeAccessException">暂不支持的数据类型异常</exception>
+    public static (string NameString, string ValueString) GetColumnValueString<TModel, TIgnoreAttribute>(TModel model, bool returnNameString = true)
+        where TModel : class, new()
+        where TIgnoreAttribute : Attribute
     {
         Type type = model.GetType();
         PropertyInfo[] properties = type.GetProperties();
-
         StringBuilder sbName = new();
         StringBuilder sbValue = new();
 
         foreach (PropertyInfo property in properties)
         {
-            if (property.CustomAttributes.Any(p => p.AttributeType == typeIgnoreAttr))
+            if (property.Exists<TIgnoreAttribute>())
             {
                 continue;
             }
 
             object? value = property.GetValue(model);
 
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }
@@ -122,35 +118,35 @@ public static class TDataModelHelper
                 case Type ttime when ttime == typeof(DateTime):
                     sbValue.Append($"'{value:yyyy-MM-dd HH:mm:ss.ffff}',");
                     break;
+                case Type tsbyte when tsbyte == typeof(sbyte):
                 case Type tbyte when tbyte == typeof(byte):
                 case Type tshort when tshort == typeof(short):
+                case Type tushort when tushort == typeof(ushort):
                 case Type tint when tint == typeof(int):
+                case Type tuint when tuint == typeof(uint):
                 case Type tlong when tlong == typeof(long):
+                case Type tulong when tulong == typeof(ulong):
                 case Type tfloat when tfloat == typeof(float):
                 case Type tdouble when tdouble == typeof(double):
+                case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
                     sbValue.Append($"{value},");
                     break;
-                case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
-                    sbValue.Append($"{(int)value},");
-                    break;
-                case Type t when t == typeof(int[]):
-                    if (value is int[] array && array.Length > 0)
-                    {
-                        sbValue.Append($"'{string.Join(',', array)}',");
-                        break;
-                    }
-                    continue;
+                //case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
+                //sbValue.Append($"{(int)value},");
+                //sbValue.Append($"{nameof(value)},");
+                //break;
                 default:
                     throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({property.PropertyType.Name})，请联系相关人员处理。（NameString: {sbName}  |  ValueString: {sbValue}。）");
             }
 
-            // 字段拼接
+            // 数据字段拼接
             if (returnNameString)
             {
-                ColumnAttribute? attr = property.GetCustomAttribute<ColumnAttribute>();
-                if (null != attr)
+                string? columnName = property.GetCustomAttributeValue<ColumnAttribute, string?>(x => x.Name);
+
+                if (columnName is not null)
                 {
-                    sbName.Append($"{attr.Name},");
+                    sbName.Append($"{columnName},");
                 }
             }
         }

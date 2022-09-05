@@ -25,6 +25,63 @@ namespace GSA.ToolKits.CommonUtility;
 /// <summary>
 /// 自定义属性助手类
 /// </summary>
+/// <remarks>
+/// <example>
+/// DatabaseInfo.cs
+/// <code>
+/// [Table("TableTableTable")]
+/// public sealed class DatabaseInfo
+/// {
+///     public string? Name { get; set; }
+/// 
+///     [JsonPropertyName("created_time")]
+///     public DateTime CreatedTime { get; set; }
+/// 
+///     [JsonIgnore]
+///     [JsonPropertyName("report_time")]
+///     public DateTime ReportTime;
+/// 
+///     [Required]
+///     public sbyte Update { get; set; }
+/// 
+///     public string? Status { get; set; }
+/// }
+/// </code>
+/// Usage examples:
+/// <code>
+/// Type type = typeof(DatabaseInfo);
+/// PropertyInfo[] properties = type.GetProperties();
+/// MemberInfo member = properties[1];
+/// 
+/// bool bool01 = CustomAttributeHelper.Exists&lt;JsonIgnoreAttribute&gt;(member);
+/// 
+/// bool bool02 = CustomAttributeHelper.Exists&lt;TableAttribute&gt;(type);
+/// bool bool03 = CustomAttributeHelper.Exists&lt;RequiredAttribute&gt;(type, "Update");
+/// bool bool031 = CustomAttributeHelper.Exists&lt;JsonIgnoreAttribute&gt;(type, "ReportTime");
+/// 
+/// bool bool04 = CustomAttributeHelper.Exists&lt;DatabaseInfo, TableAttribute&gt;();
+/// bool bool05 = CustomAttributeHelper.Exists&lt;DatabaseInfo, RequiredAttribute&gt;("Update");
+/// bool bool06 = member.Exists&lt;JsonIgnoreAttribute&gt;();
+/// 
+/// bool bool07 = type.Exists&lt;TableAttribute&gt;();
+/// bool bool08 = type.Exists&lt;RequiredAttribute&gt;("Update");
+/// 
+/// 
+/// var value01 = CustomAttributeHelper.GetValue&lt;JsonPropertyNameAttribute, string&gt;(member, p =&gt; p.Name);
+/// 
+/// var value02 = CustomAttributeHelper.GetValue&lt;JsonPropertyNameAttribute, string&gt;(type, p =&gt; p.Name);
+/// var value03 = CustomAttributeHelper.GetValue&lt;JsonPropertyNameAttribute, string&gt;(type, p =&gt; p.Name, "CreatedTime");
+/// 
+/// var value04 = CustomAttributeHelper.GetValue&lt;DatabaseInfo, TableAttribute, string&gt;(p =&gt; p.Name);
+/// var value05 = CustomAttributeHelper.GetValue&lt;DatabaseInfo, JsonPropertyNameAttribute, string&gt;(p =&gt; p.Name, memberName: "CreatedTime");
+/// 
+/// var value06 = member.GetCustomAttributeValue&lt;JsonPropertyNameAttribute, string&gt;(p =&gt; p.Name);
+/// 
+/// var value07 = type.GetCustomAttributeValue&lt;JsonPropertyNameAttribute, string&gt;(p =&gt; p.Name);
+/// var value08 = type.GetCustomAttributeValue&lt;JsonPropertyNameAttribute, string&gt;(p =&gt; p.Name, "CreatedTime");
+/// </code>
+/// </example>
+/// </remarks>
 public static class CustomAttributeHelper
 {
     /// <summary>

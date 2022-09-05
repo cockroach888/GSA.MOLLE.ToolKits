@@ -22,6 +22,7 @@ using GSA.ToolKits.CommonUtility.Entity;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 
 namespace GSA.ToolKits.CommonUtility;
 
@@ -38,9 +39,14 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesNode"></param>
     /// <param name="keyIndex"></param>
     /// <returns></returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonNode keyNode, JsonNode valuesNode, int keyIndex = -1)
+    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1)
         where TModel : class, new()
     {
+        if (keyNode is null || valuesNode is null)
+        {
+            return default;
+        }
+
         return await Task.Run(() =>
         {
             IList<JsonSerializerFieldMapping> mappings = new List<JsonSerializerFieldMapping>();
@@ -60,17 +66,6 @@ public static class JsonSerializerMappingHelper
                     continue;
                 }
 
-                //if (keyIndex >= 0)
-                //{
-                //    int count = node.AsArray().Count;
-
-                //    if (keyIndex >= count)
-                //    {
-                //        continue;
-                //    }
-
-                //    keyName = node[keyIndex]?.GetValue<string>().ToUpperInvariant();
-                //}
                 int count = node.AsArray().Count;
                 if (keyIndex >= 0 && keyIndex < count)
                 {
@@ -86,9 +81,10 @@ public static class JsonSerializerMappingHelper
                     continue;
                 }
 
-                PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName);
+                PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName ||
+                                                                    p.GetCustomAttributeValue<JsonPropertyNameAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName);
 
-                if (property is null)
+                if (property is null || property.Exists<JsonIgnoreAttribute>())
                 {
                     continue;
                 }
@@ -139,9 +135,14 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesElement"></param>
     /// <param name="keyIndex"></param>
     /// <returns></returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement keyElement, JsonElement valuesElement, int keyIndex = -1)
+    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
         where TModel : class, new()
     {
+        if (keyElement is null || valuesElement is null)
+        {
+            return default;
+        }
+
         return await Task.Run(() =>
         {
             IList<JsonSerializerFieldMapping> mappings = new List<JsonSerializerFieldMapping>();
@@ -149,10 +150,10 @@ public static class JsonSerializerMappingHelper
             Type type = typeof(TModel);
             PropertyInfo[] properties = type.GetProperties();
 
-            int keyLength = keyElement.GetArrayLength();
+            int keyLength = keyElement.Value.GetArrayLength();
             for (int index = 0; index < keyLength; index++)
             {
-                JsonElement element = keyElement[index];
+                JsonElement element = keyElement.Value[index];
                 string? keyName;
 
                 int count = element.GetArrayLength();
@@ -170,9 +171,10 @@ public static class JsonSerializerMappingHelper
                     continue;
                 }
 
-                PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName);
+                PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName ||
+                                                                    p.GetCustomAttributeValue<JsonPropertyNameAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName);
 
-                if (property is null)
+                if (property is null || property.Exists<JsonIgnoreAttribute>())
                 {
                     continue;
                 }
@@ -186,7 +188,7 @@ public static class JsonSerializerMappingHelper
             }
 
             IList<TModel> result = new List<TModel>();
-            int valLength = keyElement.GetArrayLength();
+            int valLength = valuesElement.Value.GetArrayLength();
 
             for (int index = 0; index < valLength; index++)
             {
@@ -194,7 +196,7 @@ public static class JsonSerializerMappingHelper
 
                 foreach (JsonSerializerFieldMapping field in mappings)
                 {
-                    JsonElement value = valuesElement[index][field.DataIndex];
+                    JsonElement value = valuesElement.Value[index][field.DataIndex];
                     field.MappingValue(info, value);
                 }
 
