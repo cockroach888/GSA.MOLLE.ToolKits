@@ -103,7 +103,6 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
     /// <summary>
     /// 资源释放
     /// </summary>
-    /// <returns>表示响应当前异步操作的支持对象</returns>
     public void Dispose()
     {
         using (_client) { }

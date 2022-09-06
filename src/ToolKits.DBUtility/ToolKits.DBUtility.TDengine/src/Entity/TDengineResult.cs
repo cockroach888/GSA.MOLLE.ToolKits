@@ -80,7 +80,7 @@ public sealed class TDengineResult
     /// <returns>解析后的泛型数据请求结果枚举列表</returns>
     public async Task<IEnumerable<TModel>> ParseDataToTModelAsync<TModel>()
         where TModel : class, new()
-        => await TDataModelHelper.ConverterAsync<TModel>(Data, typeof(TaosSelectIgnoreAttribute)).ConfigureAwait(false);
+        => await TDataModelHelper.ConverterAsync<TModel>(Data, typeof(BuildSelectSqlStringIgnoreAttribute)).ConfigureAwait(false);
 
     /// <summary>
     /// 解析请求数据结果为数据记录统计
