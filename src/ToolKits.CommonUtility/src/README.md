@@ -53,3 +53,10 @@
 - 增加特别的可为空的类型属性，用于内部另类应用处理；
 - 优化JSON序列化数据映射助手类的功能实现；
 - 优化TDataModelHelper类的整体功能实现，去掉多余方法，以及相关注释内容等。
+
+### 2022-09-05
+- 调整TaosInsertIgnoreAttribute为BuildInsertSqlStringIgnoreAttribute名称；
+- 调整TaosSelectIgnoreAttribute为BuildSelectSqlStringIgnoreAttribute名称；
+- 还原TDataModelHelper中的原枚举独立case应用；
+- 增加JsonSerializerMappingIgnoreAttribute类，用于处理映射时的忽略需求；
+- 优化部分类中的注释内容，以期更能匹配其所表示的含义。

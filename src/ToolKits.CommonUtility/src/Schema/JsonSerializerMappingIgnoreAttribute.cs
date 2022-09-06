@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：TaosInsertIgnoreAttribute.cs
+// 文件名称：JsonSerializerMappingIgnoreAttribute.cs
 // 项目名称：魂哥常用工具集
-// 创建时间：2022-06-22 17:39:37
+// 创建时间：2022-09-05 17:01:28
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,10 +21,9 @@
 namespace GSA.ToolKits.CommonUtility.Schema;
 
 /// <summary>
-/// 构建SQL插入字符串语句时，忽略掉此带有本属性的字段。
+/// 类功能说明
 /// </summary>
-[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-public sealed class TaosInsertIgnoreAttribute : Attribute
+public sealed class JsonSerializerMappingIgnoreAttribute
 {
     // do nothing.
 }

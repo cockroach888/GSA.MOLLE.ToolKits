@@ -21,10 +21,10 @@
 namespace GSA.ToolKits.CommonUtility.Schema;
 
 /// <summary>
-/// 构建SQL查询字符串语句时，忽略掉此带有本属性的字段。
+/// 构建查询SQL字符串时，忽略本字段。
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-public sealed class TaosSelectIgnoreAttribute : Attribute
+public sealed class BuildSelectSqlStringIgnoreAttribute : Attribute
 {
     // do nothing.
 }

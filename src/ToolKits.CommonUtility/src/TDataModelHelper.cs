@@ -128,13 +128,12 @@ public static class TDataModelHelper
                 case Type tulong when tulong == typeof(ulong):
                 case Type tfloat when tfloat == typeof(float):
                 case Type tdouble when tdouble == typeof(double):
-                case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
                     sbValue.Append($"{value},");
                     break;
-                //case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
-                //sbValue.Append($"{(int)value},");
-                //sbValue.Append($"{nameof(value)},");
-                //break;
+                case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
+                    sbValue.Append($"{(int)value},");
+                    //sbValue.Append($"{nameof(value)},");
+                    break;
                 default:
                     throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({property.PropertyType.Name})，请联系相关人员处理。（NameString: {sbName}  |  ValueString: {sbValue}。）");
             }
