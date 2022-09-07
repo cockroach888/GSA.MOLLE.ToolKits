@@ -60,3 +60,11 @@
 - 还原TDataModelHelper中的原枚举独立case应用；
 - 增加JsonSerializerMappingIgnoreAttribute类，用于处理映射时的忽略需求；
 - 优化部分类中的注释内容，以期更能匹配其所表示的含义。
+
+### 2022-09-06
+- 优化JsonSerializerMappingIgnoreAttribute类的功能实现，补全注释内容；
+- 变更CommonHelper中NewGUID方法转换大写的使用方式；
+- 为CustomAttributeExtensions类增加namespace System定义，以明确其扩展；
+- 优化DateTimeHelper类中GetTimestamp方法实现，将普通switch变更为模式匹配；
+- 优化JsonSerializerMappingHelper类的功能实现，补全相应的注释内容；
+- 优化TDataModelHelper类中的功能实现，着手为枚举增加字符串取值方式。

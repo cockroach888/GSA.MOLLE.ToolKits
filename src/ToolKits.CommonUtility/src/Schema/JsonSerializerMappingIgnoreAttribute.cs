@@ -21,9 +21,10 @@
 namespace GSA.ToolKits.CommonUtility.Schema;
 
 /// <summary>
-/// 类功能说明
+/// JSON序列化字段与数据映射时，忽略本字段。
 /// </summary>
-public sealed class JsonSerializerMappingIgnoreAttribute
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+public sealed class JsonSerializerMappingIgnoreAttribute : Attribute
 {
     // do nothing.
 }

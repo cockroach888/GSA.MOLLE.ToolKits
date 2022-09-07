@@ -43,24 +43,16 @@ public static class DateTimeHelper
     /// <summary>
     /// 获取当前系统日期与时间的时间戳（UTC）
     /// </summary>
+    /// <remarks>缺省返回-1，表示获取失败。</remarks>
     /// <param name="type">时间戳类型</param>
     /// <returns>时间戳</returns>
     public static long GetTimestamp(TimestampType type = TimestampType.TotalMilliseconds)
-    {
-        long result = -1;
-
-        switch (type)
+        => type switch
         {
-            case TimestampType.TotalSeconds:
-                result = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                break;
-            case TimestampType.TotalMilliseconds:
-                result = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                break;
-        }
-
-        return result;
-    }
+            TimestampType.TotalSeconds => DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+            TimestampType.TotalMilliseconds => DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+            _ => -1
+        };
 
     /// <summary>
     /// 转换指定日期与时间为时间戳

@@ -23,6 +23,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GSA.ToolKits.CommonUtility;
 
@@ -131,8 +132,13 @@ public static class TDataModelHelper
                     sbValue.Append($"{value},");
                     break;
                 case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
+                    if (property.Exists<JsonStringEnumConverter>())
+                    {
+                        sbValue.Append($"{value},");
+                        break;
+                    }
+
                     sbValue.Append($"{(int)value},");
-                    //sbValue.Append($"{nameof(value)},");
                     break;
                 default:
                     throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({property.PropertyType.Name})，请联系相关人员处理。（NameString: {sbName}  |  ValueString: {sbValue}。）");
@@ -167,7 +173,7 @@ public static class TDataModelHelper
     /// 将JsonElement元素转换为指定数据模型泛型的枚举列表对象
     /// </summary>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="jsonElement">sonElement元素</param>
+    /// <param name="jsonElement">jsonElement元素</param>
     /// <param name="typeIgnoreAttr">忽略属性类型</param>
     /// <returns>数据模型枚举列表</returns>
     public static Task<IEnumerable<TModel>> ConverterAsync<TModel>(JsonElement jsonElement, Type? typeIgnoreAttr = null)

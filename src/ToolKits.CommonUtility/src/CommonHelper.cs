@@ -30,7 +30,7 @@ public static class CommonHelper
     /// </summary>
     /// <remarks>使用32位字符串，全大写形式。</remarks>
     /// <returns>GUID值</returns>
-    public static string NewGUID() => Guid.NewGuid().ToString("N").ToUpper();
+    public static string NewGUID() => Guid.NewGuid().ToString("N").ToUpperInvariant();
 
     /// <summary>
     /// 随机获取某枚举定义中的某个枚举值

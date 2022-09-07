@@ -21,6 +21,8 @@
 using GSA.ToolKits.CommonUtility;
 using System.Reflection;
 
+namespace System;
+
 /// <summary>
 /// 自定义属性扩展类
 /// </summary>
