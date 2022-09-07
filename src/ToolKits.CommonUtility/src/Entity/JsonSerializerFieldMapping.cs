@@ -110,10 +110,16 @@ public sealed class JsonSerializerFieldMapping
                 }
                 break;
             case Type t when t == typeof(Enum) || t.BaseType == typeof(Enum):
+#if NET6_0_OR_GREATER
                 if (Enum.TryParse(t, $"{node}", out object? result))
                 {
                     Property.SetValue(info, result);
                 }
+#else
+                //object result = Enum.Parse(t, $"{node}");
+                object result = Convert.ChangeType($"{node}", t);
+                Property.SetValue(info, result);
+#endif
                 break;
             default:
                 throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({Property.Name}，{Property.PropertyType})，请联系相关人员处理。");
@@ -175,10 +181,16 @@ public sealed class JsonSerializerFieldMapping
                 }
                 break;
             case Type t when t == typeof(Enum) || t.BaseType == typeof(Enum):
+#if NET6_0_OR_GREATER
                 if (Enum.TryParse(t, $"{element}", out object? result))
                 {
                     Property.SetValue(info, result);
                 }
+#else
+                //object result = Enum.Parse(t, $"{element}");
+                object result = Convert.ChangeType($"{element}", t);
+                Property.SetValue(info, result);
+#endif
                 break;
             default:
                 throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({Property.Name}，{Property.PropertyType})，请联系相关人员处理。");

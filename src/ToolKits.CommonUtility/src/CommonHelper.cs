@@ -40,6 +40,10 @@ public static class CommonHelper
     public static T GetEnumOfRandom<T>() where T : Enum
     {
         T[] arrays = (T[])Enum.GetValues(typeof(T));
+#if NET6_0_OR_GREATER
         return arrays[Random.Shared.Next(0, arrays.Length)];
+#else        
+        return arrays[new Random().Next(0, arrays.Length)];
+#endif
     }
 }

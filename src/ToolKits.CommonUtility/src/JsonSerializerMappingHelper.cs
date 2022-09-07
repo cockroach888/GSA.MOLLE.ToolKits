@@ -30,6 +30,7 @@ namespace GSA.ToolKits.CommonUtility;
 /// <summary>
 /// JSON序列化数据映射助手类
 /// </summary>
+/// <remarks>提供处理键和值分离的JSON序列化应用。</remarks>
 public static class JsonSerializerMappingHelper
 {
     /// <summary>
