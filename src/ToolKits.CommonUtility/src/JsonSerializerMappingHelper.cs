@@ -142,6 +142,44 @@ public static class JsonSerializerMappingHelper
         where TModel : class, new()
         => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyNode, valuesNode, keyIndex).ConfigureAwait(false);
 
+
+    /// <summary>
+    /// 反序列化键与值分离形态的JSON字符串数据，并将其转换为相应的数据模型。
+    /// </summary>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
+    /// <param name="jsonKeyString">存储键名称的JSON字符串</param>
+    /// <param name="jsonValuesString">存储所有数据的JSON字符串</param>
+    /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <returns>数据模型枚举列表</returns>
+    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
+        where TModel : class, new()
+        where TIgnoreAttribute : Attribute
+    {
+        if (jsonKeyString is null || jsonValuesString is null)
+        {
+            return default;
+        }
+
+        JsonNode? keyNode = JsonSerializer.SerializeToNode(jsonKeyString);
+        JsonNode? valuesNode = JsonSerializer.SerializeToNode(jsonValuesString);
+
+        return await DeserializeMappingAsync<TModel, TIgnoreAttribute>(keyNode, valuesNode, keyIndex).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 反序列化键与值分离形态的JSON字符串数据，并将其转换为相应的数据模型。
+    /// </summary>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <param name="jsonKeyString">存储键名称的JSON字符串</param>
+    /// <param name="jsonValuesString">存储所有数据的JSON字符串</param>
+    /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <returns>数据模型枚举列表</returns>
+    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
+        where TModel : class, new()
+        => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(jsonKeyString, jsonValuesString, keyIndex).ConfigureAwait(false);
+
+
     /// <summary>
     /// 反序列化键与值分离形态的JSON元素数据，并将其转换为相应的数据模型。
     /// </summary>
@@ -152,8 +190,8 @@ public static class JsonSerializerMappingHelper
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
     /// <returns>数据模型枚举列表</returns>
     public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
-    where TModel : class, new()
-    where TIgnoreAttribute : Attribute
+        where TModel : class, new()
+        where TIgnoreAttribute : Attribute
     {
         if (keyElement is null || valuesElement is null)
         {
@@ -235,6 +273,7 @@ public static class JsonSerializerMappingHelper
     public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
         where TModel : class, new()
         => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyElement, valuesElement, keyIndex).ConfigureAwait(false);
+
 
     //public static Task SerializeMappingAsync<TValue>(TValue value)
     //{

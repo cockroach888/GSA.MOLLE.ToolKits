@@ -68,3 +68,8 @@
 - 优化DateTimeHelper类中GetTimestamp方法实现，将普通switch变更为模式匹配；
 - 优化JsonSerializerMappingHelper类的功能实现，补全相应的注释内容；
 - 优化TDataModelHelper类中的功能实现，着手为枚举增加字符串取值方式。
+
+### 2022-09-07
+- 增加JsonSerializerEnumToStringAttribute功能属性类，用于枚举序列化为字符串；
+- 优化JSON序列化数据映射助手类，增加反序列化键与值分离形态的JSON字符串数据功能；
+- 优化TDataModelHelper类，迁移原ConverterAsync功能方法为独立助手类。

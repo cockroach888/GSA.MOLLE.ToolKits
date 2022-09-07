@@ -22,13 +22,11 @@ using GSA.ToolKits.CommonUtility.Schema;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
-/// 提供数据模型的字段名称与值的字符串拼接助手类
+/// 数据模型属性字段名称与值字符串拼接助手类
 /// </summary>
 public static class TDataModelHelper
 {
@@ -77,6 +75,7 @@ public static class TDataModelHelper
     public static string GetColumnNameString<TModel>()
         where TModel : class, new()
         => GetColumnNameString<TModel, SpecialNullableTypeAttribute>();
+
 
     /// <summary>
     /// 从指定数据模型中，获取其成员的值，并拼接成字符串。
@@ -132,7 +131,7 @@ public static class TDataModelHelper
                     sbValue.Append($"{value},");
                     break;
                 case Type tenum when tenum == typeof(Enum) || tenum.BaseType == typeof(Enum):
-                    if (property.Exists<JsonStringEnumConverter>())
+                    if (property.Exists<JsonSerializerEnumToStringAttribute>())
                     {
                         sbValue.Append($"{value},");
                         break;
@@ -170,123 +169,14 @@ public static class TDataModelHelper
     }
 
     /// <summary>
-    /// 将JsonElement元素转换为指定数据模型泛型的枚举列表对象
+    /// 从指定数据模型中，获取其成员的值，并拼接成字符串。
     /// </summary>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="jsonElement">jsonElement元素</param>
-    /// <param name="typeIgnoreAttr">忽略属性类型</param>
-    /// <returns>数据模型枚举列表</returns>
-    public static Task<IEnumerable<TModel>> ConverterAsync<TModel>(JsonElement jsonElement, Type? typeIgnoreAttr = null)
+    /// <param name="model">数据模型实例</param>
+    /// <param name="returnNameString">是否返回数据字段的名称字符串(缺省为返回)</param>
+    /// <returns>数据库字段值拼接字符串</returns>
+    /// <exception cref="TypeAccessException">暂不支持的数据类型异常</exception>
+    public static (string NameString, string ValueString) GetColumnValueString<TModel>(TModel model, bool returnNameString = true)
         where TModel : class, new()
-    {
-        return Task.Run(() =>
-        {
-            JsonElement.ArrayEnumerator source = jsonElement.EnumerateArray();
-
-            if (!source.Any())
-            {
-                return Enumerable.Empty<TModel>();
-            }
-
-            Type type = typeof(TModel);
-            IEnumerable<PropertyInfo> properties = type.GetProperties().Where(p => !p.CustomAttributes.Any(p => p.AttributeType == typeIgnoreAttr));
-
-            IList<TModel> result = new List<TModel>();
-
-            foreach (JsonElement item in source)
-            {
-                JsonElement.ArrayEnumerator line = item.EnumerateArray();
-
-                if (line.Count() < properties.Count())
-                {
-                    continue;
-                }
-
-                TModel info = new();
-
-                foreach (PropertyInfo property in properties)
-                {
-                    line.MoveNext();
-
-                    switch (property.PropertyType)
-                    {
-                        case Type t when t == typeof(bool):
-                            //if (bool.TryParse(line.Current.GetString(), out bool boolValue))
-                            //{
-                            //    property.SetValue(info, boolValue);
-                            //}
-                            property.SetValue(info, line.Current.GetBoolean());
-                            break;
-                        case Type t when t == typeof(byte):
-                            property.SetValue(info, line.Current.GetByte());
-                            break;
-                        case Type t when t == typeof(short):
-                            property.SetValue(info, line.Current.GetInt16());
-                            break;
-                        case Type t when t == typeof(int):
-                            property.SetValue(info, line.Current.GetInt32());
-                            break;
-                        case Type t when t == typeof(long):
-                            property.SetValue(info, line.Current.GetInt64());
-                            break;
-                        case Type t when t == typeof(float):
-                            property.SetValue(info, line.Current.GetSingle());
-                            break;
-                        case Type t when t == typeof(double):
-                            property.SetValue(info, line.Current.GetDouble());
-                            break;
-                        case Type t when t == typeof(string):
-                            property.SetValue(info, line.Current.GetString());
-                            break;
-                        case Type t when t == typeof(DateTime):
-                            if (DateTime.TryParse(line.Current.GetString(), out DateTime timeValue))
-                            {
-                                property.SetValue(info, timeValue);
-                            }
-                            break;
-                        case Type t when t == typeof(Enum) || t.BaseType == typeof(Enum):
-                            string strEnumValue = $"{line.Current.GetInt32()}";
-                            if (Enum.TryParse(t, strEnumValue, out object? tmpEnumResult))
-                            {
-                                property.SetValue(info, tmpEnumResult);
-                            }
-                            break;
-                        case Type t when t == typeof(int[]):
-                            string[]? value = line.Current.GetString()?.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                            if (value != null)
-                            {
-                                int[] values = Array.ConvertAll(value, int.Parse);
-                                property.SetValue(info, values);
-                            }
-                            break;
-                        default:
-                            throw new TypeAccessException($"当前泛型对象中存在暂不支持的数据类型({property.PropertyType.Name})，请联系相关人员处理。");
-                    }
-                }
-
-                result.Add(info);
-            }
-
-            return result.AsEnumerable();
-        });
-    }
-
-    /// <summary>
-    /// 将Json字符串转换为指定数据模型泛型的枚举列表对象
-    /// </summary>
-    /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="jsonString">Json字符串</param>
-    /// <param name="typeIgnoreAttr">忽略属性类型</param>
-    /// <returns>数据模型枚举列表</returns>
-    public static async Task<IEnumerable<TModel>> ConverterAsync<TModel>(string? jsonString, Type? typeIgnoreAttr = null)
-        where TModel : class, new()
-    {
-        if (string.IsNullOrWhiteSpace(jsonString))
-        {
-            return Enumerable.Empty<TModel>();
-        }
-
-        JsonElement source = JsonSerializer.SerializeToElement(jsonString);
-        return await ConverterAsync<TModel>(source, typeIgnoreAttr).ConfigureAwait(false);
-    }
+        => GetColumnValueString<TModel, SpecialNullableTypeAttribute>(model, returnNameString);
 }
