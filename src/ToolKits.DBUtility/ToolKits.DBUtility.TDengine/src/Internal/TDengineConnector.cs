@@ -37,6 +37,8 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
     /// <param name="options">TDengine选项参数</param>
     public TDengineConnector(TDengineOptions options)
     {
+        Options = options;
+
         _client = new(options.BaseUri)
         {
             Authenticator = new HttpBasicAuthenticator(options.UserName, options.Password)
@@ -53,52 +55,67 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
     #region 接口实现[ITDengineConnector]
 
     /// <summary>
-    /// 执行指定SQL语句
+    /// TDengine 选项参数
     /// </summary>
-    /// <typeparam name="T">用于返回结果使用的泛型定义</typeparam>
+    public TDengineOptions Options { get; }
+
+
+    /// <summary>
+    /// 执行 RESTful API 请求，并返回请求结果的泛型对象。
+    /// </summary>
+    /// <typeparam name="TRequestResult">用于序列化请求结果的泛型</typeparam>
     /// <param name="param">通用查询参数</param>
-    /// <returns>返回结果泛型对象</returns>
-    public async Task<T?> ExecutionAsync<T>(TDengineQueryParam param)
-        where T : class, new()
+    /// <returns>请求结果泛型对象</returns>
+    public async ValueTask<TRequestResult?> ExecuteAsync<TRequestResult>(TDengineQueryParam param)
+        where TRequestResult : class, new()
     {
-        RestRequest request = new()
-        {
-            Method = Method.Post
-        };
-
-        if (!string.IsNullOrWhiteSpace(param.DBName))
-        {
-            request.Resource = param.DBName;
-        }
-
-        request.AddStringBody(param.SqlString, DataFormat.None);
-
-        return await _client.PostAsync<T>(request, param.Token).ConfigureAwait(false);
+        RestRequest request = CreateRequest(param);
+        return await _client.PostAsync<TRequestResult>(request, param.Token).ConfigureAwait(false);
     }
 
     /// <summary>
-    /// 执行指定SQL语句
+    /// 执行 RESTful API 请求，并返回请求结果的原始字符串。
     /// </summary>
+    /// <remarks>返回原始的字符串请求结果</remarks>
     /// <param name="param">通用查询参数</param>
-    public async Task<string?> ExecutionAsync(TDengineQueryParam param)
+    /// <returns>请求结果原始字符串</returns>
+    public async ValueTask<string?> ExecuteAsync(TDengineQueryParam param)
     {
-        RestRequest request = new()
-        {
-            Method = Method.Post
-        };
-
-        if (!string.IsNullOrWhiteSpace(param.DBName))
-        {
-            request.Resource = param.DBName;
-        }
-
-        request.AddStringBody(param.SqlString, DataFormat.None);
-
+        RestRequest request = CreateRequest(param);
         RestResponse response = await _client.PostAsync(request, param.Token).ConfigureAwait(false);
         return response.Content;
     }
 
     #endregion
+
+
+    /// <summary>
+    /// 创建Rest所需要的请求对象
+    /// </summary>
+    /// <param name="param">通用查询参数</param>
+    /// <returns>Rest请求对象</returns>
+    private RestRequest CreateRequest(TDengineQueryParam param)
+    {
+        RestRequest request = new()
+        {
+            Method = Method.Post
+        };
+
+        if (param.DBName is not null)
+        {
+            request.Resource = param.DBName;
+        }
+
+        // 自动补全SQL语句末尾结束符
+        if (param.SqlString.EndsWith(";") is false)
+        {
+            param.SqlString += ";";
+        }
+
+        request.AddStringBody(param.SqlString, DataFormat.None);
+
+        return request;
+    }
 
     /// <summary>
     /// 资源释放

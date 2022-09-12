@@ -18,11 +18,10 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using System.Text.Json;
+using GSA.ToolKits.CommonUtility;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using GSA.ToolKits.CommonUtility;
-using GSA.ToolKits.CommonUtility.Schema;
 
 namespace GSA.ToolKits.DBUtility.TDengine;
 
@@ -46,19 +45,18 @@ public sealed class TDengineResult
     public int Code { get; set; }
 
     /// <summary>
-    /// 列名称及元信息枚举列表
+    /// 包含列名称及元信息的JSON节点
     /// </summary>
     [JsonPropertyName("column_meta")]
-    [JsonConverter(typeof(TDengineFieldDescConverter))]
-    public IEnumerable<TDengineFieldDesc> ColumnMeta { get; set; } = Enumerable.Empty<TDengineFieldDesc>();
+    public JsonNode? ColumnMeta { get; set; }
 
     /// <summary>
-    /// 请求数据结果的 JsonElement 内容
+    /// 包含请求数据结果的JSON节点
     /// </summary>    
-    public JsonElement Data { get; set; }
+    public JsonNode? Data { get; set; }
 
     /// <summary>
-    /// 返回行数
+    /// 请求结果行数
     /// </summary>
     public long Rows { get; set; }
 
@@ -74,20 +72,36 @@ public sealed class TDengineResult
 
 
     /// <summary>
-    /// 解析请求数据结果为泛型对象
+    /// 解析包含请求数据结果的JSON节点为相应的数据模型
     /// </summary>
-    /// <remarks>注意：查询SQL语句须包含字段，并与泛型属性的顺序和数量保持一致。</remarks>
-    /// <returns>解析后的泛型数据请求结果枚举列表</returns>
-    public async Task<IEnumerable<TModel>> ParseDataToTModelAsync<TModel>()
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
+    /// <returns>数据模型枚举列表</returns>
+    public async ValueTask<IEnumerable<TModel>?> ParseToTModelAsync<TModel, TIgnoreAttribute>()
         where TModel : class, new()
-        => await TDataModelHelper.ConverterAsync<TModel>(Data, typeof(BuildSelectSqlStringIgnoreAttribute)).ConfigureAwait(false);
+        where TIgnoreAttribute : Attribute
+        => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel, TIgnoreAttribute>(ColumnMeta, Data, 0).ConfigureAwait(false);
+
+    /// <summary>
+    /// 解析包含请求数据结果的JSON节点为相应的数据模型
+    /// </summary>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <returns>数据模型枚举列表</returns>
+    public async ValueTask<IEnumerable<TModel>?> ParseToTModelAsync<TModel>()
+        where TModel : class, new()
+        => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel>(ColumnMeta, Data, 0).ConfigureAwait(false);
 
     /// <summary>
     /// 解析请求数据结果为数据记录统计
     /// </summary>
     /// <returns>数据记录数</returns>
-    public long ParseDataToCount()
+    public long ParseToCount()
     {
+        if (Data is null)
+        {
+            return 0;
+        }
+
         string strValue = Regex.Replace(Data.ToString(), @"[^\d]*", "");
         _ = long.TryParse(strValue, out long value);
         return value;

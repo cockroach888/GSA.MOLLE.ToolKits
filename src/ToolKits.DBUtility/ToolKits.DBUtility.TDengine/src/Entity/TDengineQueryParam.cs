@@ -21,19 +21,20 @@
 namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
-/// TDengine通用查询参数类
+/// TDengine 通用查询参数类
 /// </summary>
 [Serializable]
 public sealed class TDengineQueryParam
 {
     /// <summary>
-    /// TDengine通用查询参数
+    /// TDengine 通用查询参数
     /// </summary>
     /// <param name="sqlString">需要执行的SQL字符串</param>
     public TDengineQueryParam(string sqlString)
     {
         SqlString = sqlString;
     }
+
 
     /// <summary>
     /// 需要执行的SQL字符串

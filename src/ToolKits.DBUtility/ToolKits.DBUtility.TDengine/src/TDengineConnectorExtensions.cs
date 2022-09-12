@@ -26,94 +26,27 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 public static class TDengineConnectorExtensions
 {
     /// <summary>
-    /// 执行指定SQL语句
+    /// 执行指定请求操作，并返回其请求结果。
     /// </summary>
-    /// <remarks>返回请求结果实体</remarks>
+    /// <remarks>请求结果为 RESTful API 返回结果的序列化对象。</remarks>
     /// <param name="connector">TDengine RESTful API 连接器</param>
     /// <param name="param">通用查询参数</param>
     /// <returns>请求结果</returns>
-    public static async Task<TDengineResult?> ExecutionToResultAsync(
+    public static async ValueTask<TDengineResult?> ExecuteRequestResultAsync(
         this ITDengineConnector connector,
         TDengineQueryParam param)
-        => await connector.ExecutionAsync<TDengineResult>(param).ConfigureAwait(false);
+        => await connector.ExecuteAsync<TDengineResult>(param).ConfigureAwait(false);
+
 
     /// <summary>
-    /// 执行指定SQL语句
+    /// 执行非查询请求操作，并返回其请求结果。
     /// </summary>
-    /// <remarks>
-    /// 返回数据模型枚举列表。
-    /// <para>注意：查询SQL语句须包含字段，并与泛型属性的顺序和数量保持一致。</para>
-    /// </remarks>
-    /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="param">通用查询参数</param>
-    /// <returns>数据模型枚举列表</returns>
-    /// <exception cref="Exception">抛出的异常信息</exception>
-    public static async Task<IEnumerable<TModel>?> ExecutionToModelAsync<TModel>(
-        this ITDengineConnector connector,
-        TDengineQueryParam param)
-        where TModel : class, new()
-    {
-        TDengineResult? result = await connector.ExecutionToResultAsync(param).ConfigureAwait(false);
-
-        if (result == null)
-        {
-            return Enumerable.Empty<TModel>();
-        }
-
-        if (result.Status != TDengineStatus.Succ)
-        {
-            throw new Exception($"执行SQL语句时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，返回结果：{result.Desc}。");
-        }
-
-        return await result.ParseDataToTModelAsync<TModel>().ConfigureAwait(false);
-    }
-
-    /// <summary>
-    /// 执行数据记录统计操作
-    /// </summary>
-    /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="query">条件查询参数</param>
-    /// <returns>数据记录数</returns>
-    /// <exception cref="Exception">抛出的异常信息</exception>
-    public static async Task<long> ExecutionToCountAsync(
-        this ITDengineConnector connector,
-        TDengineWhereParam query)
-    {
-        string sqlString = $"select count(*) from {query.TableName};";
-
-        sqlString = TDengineCommons.WhereStringValidateAndJoinToSqlString(sqlString, query.WhereString);
-
-        TDengineQueryParam param = new(sqlString)
-        {
-            DBName = query.DBName,
-            Token = query.Token
-        };
-
-        TDengineResult? result = await connector.ExecutionToResultAsync(param).ConfigureAwait(false);
-
-        if (result == null)
-        {
-            return 0;
-        }
-
-        if (result.Status != TDengineStatus.Succ)
-        {
-            throw new Exception($"执行数据记录统计时出现错误。数据库名：{query.DBName}，SQL语句：{sqlString}，返回结果：{result.Desc}。");
-        }
-
-        return result.ParseDataToCount();
-    }
-
-    /// <summary>
-    /// 直接执行SQL字符串
-    /// </summary>
-    /// <remarks>执行时发生异常，则返回错误信息，否则不返回任何信息。</remarks>
+    /// <remarks>请求结果仅在执行时发生异常，才返回其异常信息，否则返回null值。</remarks>
     /// <param name="connector">TDengine RESTful API 连接器</param>
     /// <param name="sqlString">需要执行的SQL字符串</param>
     /// <param name="token">取消令牌</param>
-    /// <returns>错误信息</returns>
-    public static async Task<string?> ExecutionSqlAsync(
+    /// <returns>请求结果</returns>
+    public static async ValueTask<string?> ExecuteNonQueryAsync(
         this ITDengineConnector connector,
         string sqlString,
         CancellationToken token = default)
@@ -122,7 +55,152 @@ public static class TDengineConnectorExtensions
         {
             Token = token
         };
-        TDengineResult? result = await connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+
+        TDengineResult? result = await connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
         return result?.Desc;
+    }
+
+
+    /// <summary>
+    /// 执行查询请求操作，并返回其数据模型枚举列表。
+    /// </summary>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
+    /// <param name="connector">TDengine RESTful API 连接器</param>
+    /// <param name="param">通用查询参数</param>
+    /// <returns>数据模型枚举列表</returns>
+    /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
+    public static async ValueTask<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel, TIgnoreAttribute>(
+        this ITDengineConnector connector,
+        TDengineQueryParam param)
+        where TModel : class, new()
+        where TIgnoreAttribute : Attribute
+    {
+        TDengineResult? result = await connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
+
+        if (result is null)
+        {
+            return Enumerable.Empty<TModel>();
+        }
+
+        if (result.Desc is not null)
+        {
+            throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
+        }
+
+        return await result.ParseToTModelAsync<TModel, TIgnoreAttribute>().ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 执行查询请求操作，并返回其数据模型枚举列表。
+    /// </summary>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <param name="connector">TDengine RESTful API 连接器</param>
+    /// <param name="param">通用查询参数</param>
+    /// <returns>数据模型枚举列表</returns>
+    /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
+    public static async ValueTask<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel>(
+        this ITDengineConnector connector,
+        TDengineQueryParam param)
+        where TModel : class, new()
+    {
+        TDengineResult? result = await connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
+
+        if (result is null)
+        {
+            return Enumerable.Empty<TModel>();
+        }
+
+        if (result.Desc is not null)
+        {
+            throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
+        }
+
+        return await result.ParseToTModelAsync<TModel>().ConfigureAwait(false);
+    }
+
+
+    /// <summary>
+    /// 执行查询请求操作，并返回其数据模型信息。
+    /// </summary>
+    /// <remarks>ExecuteDataModelAsync的扩展方法，当存在多条数据时，将返回第一条数据。</remarks>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
+    /// <param name="connector">TDengine RESTful API 连接器</param>
+    /// <param name="param">通用查询参数</param>
+    /// <returns>数据模型</returns>
+    public static async ValueTask<TModel?> ExecuteSingleModelAsync<TModel, TIgnoreAttribute>(
+        this ITDengineConnector connector,
+        TDengineQueryParam param)
+        where TModel : class, new()
+        where TIgnoreAttribute : Attribute
+    {
+        IEnumerable<TModel>? result = await connector.ExecuteDataModelAsync<TModel, TIgnoreAttribute>(param).ConfigureAwait(false);
+
+        if (result is null)
+        {
+            return default;
+        }
+
+        return result.FirstOrDefault();
+    }
+
+    /// <summary>
+    /// 执行查询请求操作，并返回其数据模型信息。
+    /// </summary>
+    /// <remarks>ExecuteDataModelAsync的扩展方法，当存在多条数据时，将返回第一条数据。</remarks>
+    /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <param name="connector">TDengine RESTful API 连接器</param>
+    /// <param name="param">通用查询参数</param>
+    /// <returns>数据模型</returns>
+    public static async ValueTask<TModel?> ExecuteSingleModelAsync<TModel>(
+        this ITDengineConnector connector,
+        TDengineQueryParam param)
+        where TModel : class, new()
+    {
+        IEnumerable<TModel>? result = await connector.ExecuteDataModelAsync<TModel>(param).ConfigureAwait(false);
+
+        if (result is null)
+        {
+            return default;
+        }
+
+        return result.FirstOrDefault();
+    }
+
+
+    /// <summary>
+    /// 执行数据记录统计请求操作，并返回其统计结果。
+    /// </summary>
+    /// <param name="connector">TDengine RESTful API 连接器</param>
+    /// <param name="condition">条件查询参数</param>
+    /// <returns>数据记录数</returns>
+    /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
+    public static async ValueTask<long> ExecuteRecordNumAsync(
+        this ITDengineConnector connector,
+        TDengineWhereParam condition)
+    {
+        string sqlString = $"select count(*) from {condition.TableName};";
+        sqlString = TDengineCommons.WhereStringValidateAndJoinToSqlString(sqlString, condition.WhereString);
+
+        TDengineQueryParam param = new(sqlString)
+        {
+            DBName = condition.DBName,
+            Token = condition.Token
+        };
+
+        TDengineResult? result = await connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
+
+        if (result is null)
+        {
+            return 0;
+        }
+
+        if (result.Desc is not null)
+        {
+            throw new Exception($"执行数据记录统计时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
+        }
+
+        return result.ParseToCount();
     }
 }

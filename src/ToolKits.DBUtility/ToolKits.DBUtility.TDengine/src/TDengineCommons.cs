@@ -32,9 +32,9 @@ public static class TDengineCommons
     /// <returns>验证后的查询条件字符串</returns>
     public static string? WhereStringValidate(string? whereString)
     {
-        if (string.IsNullOrWhiteSpace(whereString))
+        if (whereString is null)
         {
-            return whereString;
+            return default;
         }
 
         // 移除首尾所有空白字符
@@ -63,7 +63,7 @@ public static class TDengineCommons
     {
         whereString = WhereStringValidate(whereString);
 
-        if (string.IsNullOrWhiteSpace(whereString))
+        if (whereString is null)
         {
             return sqlString;
         }

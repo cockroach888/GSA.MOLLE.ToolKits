@@ -78,6 +78,7 @@ internal sealed class TDengineConnectorFactory : ITDengineConnectorFactory, IAsy
 
     #endregion
 
+
     /// <summary>
     /// 尝试移除所匹配的连接器实例
     /// </summary>

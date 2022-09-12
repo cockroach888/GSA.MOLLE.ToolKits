@@ -71,3 +71,22 @@
 - 优化请求结果实体类，调整属性定义顺序和注释内容，去掉Head定义；
 - 优化版本选择器中版本名称定义，调整为V2和V3的名称；
 - 完成TDengine3.0的适配工作，待业务实践测试印证功能的完整性。
+
+### 2022-09-11
+- 调整项目属性，增加多版本(netstandard2.0;netstandard2.1;net5.0;net6.0;)支持；
+- 优化项目属性中的NuGet打包的说明内容，以及相关信息的优化工作；
+- 优化ITDengineConnector接口类，变更原有接口形态，剔除不必要的注释内容；
+- 变更TDengineResult实体类的列元数据字段的数据类型，改为原生JSON格式类型；
+- 优化Task返回为ValueTask返回。
+
+### 2022-09-12
+- 恢复ITDengineConnector接口类的原有形态，变更原泛型T为TRequestResult名称；
+- 更改ITDengineConnector接口中方法名称用户，由Execution更改为Execute单词；
+- 优化ITDengineConnector接口，增加TDengine选项参数，调整各方法的注释内容；
+- 调整部分功能实现类中的逻辑判断方式，采用is null或is not null方式，以相关注释内容；
+- 重构TDengine RESTful API 连接器扩展类，优化名称定义、编码实现等，并增加单模型查询扩展方法；
+- 删除TDengineFieldDescConverter转换器，改为更先进的自动映射机制；
+- 优化TDengineResult实体类，变更ColumnMeta和Data的数据类型为JsonNode类型；
+- 优化TDengineResult实体类中自有方法，适配上游封装库功能迭代；
+- 优化TDengineConnector实现类，以同步接口的优化工作；
+- 发布同时支持TDengine 2.x和3.x的全新版本，原内部序列化由顺序映射进化为自动映射。
