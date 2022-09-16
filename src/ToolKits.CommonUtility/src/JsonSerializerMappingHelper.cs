@@ -20,6 +20,7 @@
 // ========================================================================
 using GSA.ToolKits.CommonUtility.Entity;
 using GSA.ToolKits.CommonUtility.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -36,6 +37,7 @@ public static class JsonSerializerMappingHelper
     /// <summary>
     /// 反序列化键与值分离形态的JSON节点数据，并将其转换为相应的数据模型。
     /// </summary>
+    /// <remarks>在进行字段名称的比对判断时，条件为属性名称、JsonPropertyNameAttribute配置值、ColumnAttribute配置值三者，满足其任何大写形态的条件之一。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
     /// <param name="keyNode">存储键名称的JSON节点</param>
@@ -86,7 +88,8 @@ public static class JsonSerializerMappingHelper
                 }
 
                 PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName ||
-                                                                    p.GetCustomAttributeValue<JsonPropertyNameAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName);
+                                                                    p.GetCustomAttributeValue<JsonPropertyNameAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName ||
+                                                                    p.GetCustomAttributeValue<ColumnAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName);
 
                 if (property is null || property.Exists<TIgnoreAttribute>())
                 {
@@ -134,6 +137,7 @@ public static class JsonSerializerMappingHelper
     /// <summary>
     /// 反序列化键与值分离形态的JSON节点数据，并将其转换为相应的数据模型。
     /// </summary>
+    /// <remarks>在进行字段名称的比对判断时，条件为属性名称、JsonPropertyNameAttribute配置值、ColumnAttribute配置值三者，满足其任何大写形态的条件之一。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <param name="keyNode">存储键名称的JSON节点</param>
     /// <param name="valuesNode">存储所有数据的JSON节点</param>
@@ -147,6 +151,7 @@ public static class JsonSerializerMappingHelper
     /// <summary>
     /// 反序列化键与值分离形态的JSON字符串数据，并将其转换为相应的数据模型。
     /// </summary>
+    /// <remarks>在进行字段名称的比对判断时，条件为属性名称、JsonPropertyNameAttribute配置值、ColumnAttribute配置值三者，满足其任何大写形态的条件之一。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
     /// <param name="jsonKeyString">存储键名称的JSON字符串</param>
@@ -171,6 +176,7 @@ public static class JsonSerializerMappingHelper
     /// <summary>
     /// 反序列化键与值分离形态的JSON字符串数据，并将其转换为相应的数据模型。
     /// </summary>
+    /// <remarks>在进行字段名称的比对判断时，条件为属性名称、JsonPropertyNameAttribute配置值、ColumnAttribute配置值三者，满足其任何大写形态的条件之一。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <param name="jsonKeyString">存储键名称的JSON字符串</param>
     /// <param name="jsonValuesString">存储所有数据的JSON字符串</param>
@@ -184,6 +190,7 @@ public static class JsonSerializerMappingHelper
     /// <summary>
     /// 反序列化键与值分离形态的JSON元素数据，并将其转换为相应的数据模型。
     /// </summary>
+    /// <remarks>在进行字段名称的比对判断时，条件为属性名称、JsonPropertyNameAttribute配置值、ColumnAttribute配置值三者，满足其任何大写形态的条件之一。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
     /// <param name="keyElement">存储键名称的JSON元素</param>
@@ -228,7 +235,8 @@ public static class JsonSerializerMappingHelper
                 }
 
                 PropertyInfo? property = properties.SingleOrDefault(p => p.Name.ToUpperInvariant() == keyName ||
-                                                                    p.GetCustomAttributeValue<JsonPropertyNameAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName);
+                                                                    p.GetCustomAttributeValue<JsonPropertyNameAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName ||
+                                                                    p.GetCustomAttributeValue<ColumnAttribute, string>(x => x.Name)?.ToUpperInvariant() == keyName);
 
                 if (property is null || property.Exists<TIgnoreAttribute>())
                 {
@@ -266,6 +274,7 @@ public static class JsonSerializerMappingHelper
     /// <summary>
     /// 反序列化键与值分离形态的JSON元素数据，并将其转换为相应的数据模型。
     /// </summary>
+    /// <remarks>在进行字段名称的比对判断时，条件为属性名称、JsonPropertyNameAttribute配置值、ColumnAttribute配置值三者，满足其任何大写形态的条件之一。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <param name="keyElement">存储键名称的JSON元素</param>
     /// <param name="valuesElement">存储所有数据的JSON元素</param>

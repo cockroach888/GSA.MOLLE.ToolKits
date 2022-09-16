@@ -33,6 +33,7 @@ public static class TDataModelHelper
     /// <summary>
     /// 从指定数据模型中，获取其成员表示数据字段的名称，并拼接成字符串。
     /// </summary>
+    /// <remarks>被获取的字段名称，来源于其成员自定义属性(ColumnAttribute)配置值（如：[Column("station_id")]）。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
     /// <returns>数据字段名称拼接字符串</returns>
@@ -70,6 +71,7 @@ public static class TDataModelHelper
     /// <summary>
     /// 从指定数据模型中，获取其成员表示数据字段的名称，并拼接成字符串。
     /// </summary>
+    /// <remarks>被获取的字段名称，来源于其成员自定义属性(ColumnAttribute)配置值（如：[Column("station_id")]）。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <returns>数据字段名称拼接字符串</returns>
     public static string GetColumnNameString<TModel>()
@@ -80,6 +82,7 @@ public static class TDataModelHelper
     /// <summary>
     /// 从指定数据模型中，获取其成员的值，并拼接成字符串。
     /// </summary>
+    /// <remarks>被获取的字段名称，来源于其成员自定义属性(ColumnAttribute)配置值（如：[Column("station_id")]）。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
     /// <param name="model">数据模型实例</param>
@@ -171,6 +174,7 @@ public static class TDataModelHelper
     /// <summary>
     /// 从指定数据模型中，获取其成员的值，并拼接成字符串。
     /// </summary>
+    /// <remarks>被获取的字段名称，来源于其成员自定义属性(ColumnAttribute)配置值（如：[Column("station_id")]）。</remarks>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <param name="model">数据模型实例</param>
     /// <param name="returnNameString">是否返回数据字段的名称字符串(缺省为返回)</param>

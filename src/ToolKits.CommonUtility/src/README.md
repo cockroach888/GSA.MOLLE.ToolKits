@@ -87,3 +87,8 @@
 - 增加多版本(netstandard2.0;netstandard2.1;net5.0;net6.0;)支持，并对部分编码增加条件编译；
 - 优化部分功能类的注释内容，以及本库的功能介绍和打包信息等内容；
 - 发布最新版本。
+
+### 2022-09-16
+- 为TDataModelHelper类中各方法，增加特别注释内容，以明确其含义；
+- 优化JsonSerializerMappingHelper类中各方法，增加特别注释内容，以明确其含义；
+- 优化JsonSerializerMappingHelper类中主方法实现，增加ColumnAttribute的字段比对应用。
