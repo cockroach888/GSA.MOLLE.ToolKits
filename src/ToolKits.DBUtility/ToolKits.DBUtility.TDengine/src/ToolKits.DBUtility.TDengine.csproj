@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>6.3.0.1</AssemblyVersion>
-		<FileVersion>6.3.0.1</FileVersion>
+		<AssemblyVersion>6.3.0.2</AssemblyVersion>
+		<FileVersion>6.3.0.2</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 

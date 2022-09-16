@@ -2,16 +2,16 @@
 
 # 魂哥常用工具集（GSA.MOLLE.ToolKits）
 
-## 基于RESTful API的TDengine C# 连接器
+## 功能介绍
 
-- 基于官方提供的RESTful API接口，使用.net6(即将提供.net7支持)等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的[NuGet包](https://www.nuget.org/packages/DBUtility.TDengine)供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。
+**基于官方提供的RESTful API接口，使用.net6(即将提供.net7支持)等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的NuGet包供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。**
 
-- Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .net6 (.net7 support will be provided soon). This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding [NuGet package](https://www.nuget.org/packages/DBUtility.TDengine) is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
-
+- Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .net6 (.net7 support will be provided soon). This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding NuGet package is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
 - 应用示例(samples)：https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/samples/TaosData
+- 鄙人专注.Net技术，深入研习.NET 6+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 本库均由鄙人采用最新技术实践编码完成；本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。
 
-- NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。
-
+<br>
 
 ## 开发日志
 
