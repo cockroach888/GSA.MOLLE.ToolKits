@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：GlobalUsingDefinition.cs
-// 项目名称：我是一个负责全局引用的类，没有其它功能。
-// 创建时间：2022-08-25 22:53:48
+// 文件名称：AutoStationDataHelper.cs
+// 项目名称：魂哥常用工具集
+// 创建时间：2022-09-16 15:21:05
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,11 +18,25 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-global using GSA.ToolKits.DBUtility.TDengine;
-global using Microsoft.Extensions.DependencyInjection;
-global using Microsoft.Extensions.Hosting;
-global using Microsoft.Extensions.Logging;
-global using TDengineEx.Bootstrapper.Services;
-global using TDengineEx.Bootstrapper.ResetDB;
-global using TDengineEx.DataModel;
-global using TDengineEx.DataHelper;
+namespace TDengineEx.DataHelper;
+
+/// <summary>
+/// 气象自动站数据数据访问助手类
+/// </summary>
+internal sealed class AutoStationDataHelper : DataHelperAbstract, IAutoStationDataHelper
+{
+    /// <summary>
+    /// 气象自动站数据数据访问助手
+    /// </summary>
+    /// <param name="connector">TDengine RESTful API 连接器</param>
+    public AutoStationDataHelper(ITDengineConnector connector)
+        : base(connector)
+    { }
+
+
+    /// <summary>
+    /// 数据表格前缀
+    /// </summary>
+    /// <remarks>PS：超级表与子表的关联性，也可以是独立表名称。</remarks>
+    internal override string? TablePrefix => "auto_station";
+}

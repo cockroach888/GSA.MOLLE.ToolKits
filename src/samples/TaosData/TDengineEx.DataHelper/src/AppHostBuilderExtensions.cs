@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：WeatherStatus.cs
+// 文件名称：AppHostBuilderExtensions.cs
 // 项目名称：魂哥常用工具集
-// 创建时间：2022-06-28 23:30:26
+// 创建时间：2022-09-16 15:14:31
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,37 +18,27 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace TDengineEx.DataModel
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
+
+namespace TDengineEx.DataHelper;
 
 /// <summary>
-/// 类功能说明
+/// 数据库操作通用主机扩展类
 /// </summary>
-public sealed class WeatherStatus
+public static class AppHostBuilderExtensions
 {
     /// <summary>
-    /// 类功能说明
+    /// 集成所有的业务数据库
     /// </summary>
-    public WeatherStatus()
+    /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+    /// <returns>实现链式编程的同一个 <see cref="IHostBuilder"/> 实例。</returns>
+    public static IHostBuilder UseAllBusinessDB(this IHostBuilder hostBuilder)
     {
-        //do something.
+        return hostBuilder.ConfigureServices((context, services) =>
+        {
+            services.TryAddSingleton<IAutoStationHelper, AutoStationHelper>();
+            services.TryAddSingleton<IAutoStationDataHelper, AutoStationDataHelper>();
+        });
     }
-
-    #region 成员变量
-
-
-
-    #endregion
-
-    #region 成员属性
-
-
-
-    #endregion
-
-    #region 成员方法
-
-
-
-    #endregion
-
 }

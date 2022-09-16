@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：WeatherInfoModel.cs
-// 项目名称：魂哥常用工具集
-// 创建时间：2022-06-28 23:30:06
+// 文件名称：GlobalUsingDefinition.cs
+// 项目名称：我是一个负责全局引用的类，没有其它功能。
+// 创建时间：2022-09-16 15:11:26
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,37 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace TDengineEx.DataModel
-
-/// <summary>
-/// 类功能说明
-/// </summary>
-public sealed class WeatherInfoModel
-{
-    /// <summary>
-    /// 类功能说明
-    /// </summary>
-    public WeatherInfoModel()
-    {
-        //do something.
-    }
-
-    #region 成员变量
-
-
-
-    #endregion
-
-    #region 成员属性
-
-
-
-    #endregion
-
-    #region 成员方法
-
-
-
-    #endregion
-
-}
+global using GSA.ToolKits.CommonUtility;
+global using GSA.ToolKits.CommonUtility.Schema;
+global using GSA.ToolKits.DBUtility.TDengine;
+global using TDengineEx.DataModel;

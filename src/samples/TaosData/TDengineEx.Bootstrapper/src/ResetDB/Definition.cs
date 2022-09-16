@@ -41,17 +41,47 @@ internal sealed class Definition
     /// <summary>
     /// 气象自动站编号列表
     /// </summary>
-    public (string id, string name, float longitude, float latitude, float altitude, int level)[] Ids { get; } = new (string id, string name, float longitude, float latitude, float altitude, int level)[]
+    public (string id, string name, float latitude, float longitude, float altitude, int level)[] Ids { get; } = new (string id, string name, float latitude, float longitude, float altitude, int level)[]
     {
-        (id:"qx1001",name:"气象自动站1001",66.66f,110.11f,1000f,16),
-        (id:"qx1002",name:"气象自动站1002",66.66f,110.11f,1000f,16),
-        (id:"qx1003",name:"气象自动站1003",66.66f,110.11f,1000f,16),
-        (id:"qx1004",name:"气象自动站1004",66.66f,110.11f,1000f,16),
-        (id:"qx1005",name:"气象自动站1005",66.66f,110.11f,1000f,16),
-        (id:"qx1006",name:"气象自动站1006",66.66f,110.11f,1000f,16),
-        (id:"qx1007",name:"气象自动站1007",66.66f,110.11f,1000f,16),
-        (id:"qx1008",name:"气象自动站1008",66.66f,110.11f,1000f,16),
-        (id:"qx1009",name:"气象自动站1009",66.66f,110.11f,1000f,16),
-        (id:"qx1010",name:"气象自动站1010",66.66f,110.11f,1000f,16)
+        (id:"nmcqx1001",name:"气象自动站1001",40.66f,80.11f,1000f,16),
+        (id:"nmcqx1002",name:"气象自动站1002",41.66f,81.11f,1000f,16),
+        (id:"nmcqx1003",name:"气象自动站1003",42.66f,82.11f,1000f,16),
+        (id:"nmcqx1004",name:"气象自动站1004",43.66f,83.11f,1000f,16),
+        (id:"nmcqx1005",name:"气象自动站1005",44.66f,84.11f,1000f,16),
+        (id:"nmcqx1006",name:"气象自动站1006",45.66f,85.11f,1000f,16),
+        (id:"nmcqx1007",name:"气象自动站1007",46.66f,86.11f,1000f,16),
+        (id:"nmcqx1008",name:"气象自动站1008",47.66f,87.11f,1000f,16),
+        (id:"nmcqx1009",name:"气象自动站1009",48.66f,88.11f,1000f,16),
+        (id:"nmcqx1010",name:"气象自动站1010",49.66f,89.11f,1000f,16),
+        (id:"nmcqx1011",name:"气象自动站1011",50.66f,90.11f,1000f,16),
+        (id:"nmcqx1012",name:"气象自动站1012",51.66f,91.11f,1000f,16),
+        (id:"nmcqx1013",name:"气象自动站1013",52.66f,92.11f,1000f,16),
+        (id:"nmcqx1014",name:"气象自动站1014",53.66f,93.11f,1000f,16),
+        (id:"nmcqx1015",name:"气象自动站1015",54.66f,94.11f,1000f,16),
+        (id:"nmcqx1016",name:"气象自动站1016",55.66f,95.11f,1000f,16),
+        (id:"nmcqx1017",name:"气象自动站1017",56.66f,96.11f,1000f,16),
+        (id:"nmcqx1018",name:"气象自动站1018",57.66f,97.11f,1000f,16),
+        (id:"nmcqx1019",name:"气象自动站1019",58.66f,98.11f,1000f,16),
+        (id:"nmcqx1020",name:"气象自动站1020",59.66f,99.11f,1000f,16),
+        (id:"nmcqx1021",name:"气象自动站1021",60.66f,100.11f,1000f,16),
+        (id:"nmcqx1022",name:"气象自动站1022",61.66f,101.11f,1000f,16),
+        (id:"nmcqx1023",name:"气象自动站1023",62.66f,102.11f,1000f,16),
+        (id:"nmcqx1024",name:"气象自动站1024",63.66f,103.11f,1000f,16),
+        (id:"nmcqx1025",name:"气象自动站1025",64.66f,104.11f,1000f,16),
+        (id:"nmcqx1026",name:"气象自动站1026",65.66f,105.11f,1000f,16),
+        (id:"nmcqx1027",name:"气象自动站1027",66.66f,106.11f,1000f,16),
+        (id:"nmcqx1028",name:"气象自动站1028",67.66f,107.11f,1000f,16),
+        (id:"nmcqx1029",name:"气象自动站1029",68.66f,108.11f,1000f,16),
+        (id:"nmcqx1030",name:"气象自动站1030",69.66f,109.11f,1000f,16),
+        (id:"nmcqx1031",name:"气象自动站1031",70.66f,110.11f,1000f,16),
+        (id:"nmcqx1032",name:"气象自动站1032",71.66f,111.11f,1000f,16),
+        (id:"nmcqx1033",name:"气象自动站1033",72.66f,112.11f,1000f,16),
+        (id:"nmcqx1034",name:"气象自动站1034",73.66f,113.11f,1000f,16),
+        (id:"nmcqx1035",name:"气象自动站1035",74.66f,114.11f,1000f,16),
+        (id:"nmcqx1036",name:"气象自动站1036",75.66f,115.11f,1000f,16),
+        (id:"nmcqx1037",name:"气象自动站1037",76.66f,116.11f,1000f,16),
+        (id:"nmcqx1038",name:"气象自动站1038",77.66f,117.11f,1000f,16),
+        (id:"nmcqx1039",name:"气象自动站1039",78.66f,118.11f,1000f,16),
+        (id:"nmcqx1040",name:"气象自动站1040",79.66f,119.11f,1000f,16)
     };
 }

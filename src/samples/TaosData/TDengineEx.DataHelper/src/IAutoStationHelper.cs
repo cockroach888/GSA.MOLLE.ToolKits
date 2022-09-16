@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：GlobalUsingDefinition.cs
-// 项目名称：我是一个负责全局引用的类，没有其它功能。
-// 创建时间：2022-08-25 22:53:48
+// 文件名称：IAutoStationHelper.cs
+// 项目名称：魂哥常用工具集
+// 创建时间：2022-09-16 15:17:47
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,11 +18,12 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-global using GSA.ToolKits.DBUtility.TDengine;
-global using Microsoft.Extensions.DependencyInjection;
-global using Microsoft.Extensions.Hosting;
-global using Microsoft.Extensions.Logging;
-global using TDengineEx.Bootstrapper.Services;
-global using TDengineEx.Bootstrapper.ResetDB;
-global using TDengineEx.DataModel;
-global using TDengineEx.DataHelper;
+namespace TDengineEx.DataHelper;
+
+/// <summary>
+/// 自动气象站信息数据访问助手接口
+/// </summary>
+public interface IAutoStationHelper : IDataHelper
+{
+    // do nothing.
+}

@@ -10,11 +10,17 @@
     })
     .ConfigureServices((context, services) =>
     {
-        services.AddHostedService<ResetDBBackgroundService>();
+        // 数据库、数据表、初始数据服务 - 后台主机托管服务
+        //services.AddHostedService<ResetDBBackgroundService>();
+
+        // 气象自动站 - 主机托管服务
+        services.AddHostedService<AutoStationHostedService>();
     })
     .ConfigureServices((services) =>
     {
         //services.AddSingleton<IAppHostLifetime, AppHostLifetime>();
+
+        // 数据库、数据表、初始数据服务
         services.AddTransient<IResetDB, ResetAutoStationDB>();
     })
     .ConfigureLogging((context, logging) =>
@@ -24,8 +30,11 @@
         //logging.AddConsole();
     });
 
-// 数据访问服务集成
+// 数据库服务集成
 builder.UseTDengineDB();
+
+// 数据访问助手服务集成
+builder.UseAllBusinessDB();
 
 // 阻塞式运行
 await builder.Build().RunAsync().ConfigureAwait(false);

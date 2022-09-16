@@ -18,6 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using System.Text;
+
 namespace TDengineEx.Bootstrapper.ResetDB;
 
 /// <summary>
@@ -27,6 +29,7 @@ internal sealed class ResetAutoStationDB : IResetDB
 {
     private readonly ILogger<ResetAutoStationDB> _logger;
     private readonly ITDengineConnector _connector;
+
     private const string DBNAME = "db_auto_station";
     private const string STABLENAME = "auto_station";
 
@@ -51,10 +54,18 @@ internal sealed class ResetAutoStationDB : IResetDB
     /// <returns>表示响应当前异步操作的支持对象</returns>
     public async Task ExecuteAsync()
     {
-        await DropDB().ConfigureAwait(false);
-        await CreateDB().ConfigureAwait(false);
-        await CreateSTable().ConfigureAwait(false);
-        await CreateTable().ConfigureAwait(false);
+        try
+        {
+            await DropDB().ConfigureAwait(false);
+            await CreateDB().ConfigureAwait(false);
+
+            await CreateAutoStation().ConfigureAwait(false);
+            await CreateAutoStationData().ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+        }
     }
 
     #endregion
@@ -65,12 +76,21 @@ internal sealed class ResetAutoStationDB : IResetDB
     /// 日志
     /// </summary>
     /// <param name="msg">日志消息</param>
-    /// <param name="script">SQL脚本</param>
-    private void Log(string? msg, string script)
+    private void Log(string? msg)
     {
-        msg ??= $"成功执行SQL脚本：{script}";
-        _logger.LogInformation(msg);
+        if (msg is null)
+        {
+            _logger.LogDebug("成功执行SQL脚本。");
+        }
+        else
+        {
+            _logger.LogDebug($"执行SQL脚本时出现异常：{msg}");
+        }
     }
+
+    #endregion
+
+    #region 数据库
 
     /// <summary>
     /// 删除数据库
@@ -78,9 +98,9 @@ internal sealed class ResetAutoStationDB : IResetDB
     /// <returns>表示响应当前异步操作的支持对象</returns>
     private async Task DropDB()
     {
-        string sqlString = $"drop database if exists {DBNAME};";
-        string? result = await _connector.ExecutionSqlAsync(sqlString).ConfigureAwait(false);
-        Log(result, sqlString);
+        string sqlString = $"drop database if exists {DBNAME}";
+        string? result = await _connector.ExecuteNonQueryAsync(sqlString).ConfigureAwait(false);
+        Log(result);
     }
 
     /// <summary>
@@ -90,37 +110,166 @@ internal sealed class ResetAutoStationDB : IResetDB
     private async Task CreateDB()
     {
         // V2
-        //string sqlString = $"create database if not exists {DBNAME} keep 30 days 1 cache 32 blocks 8 update 0;";
+        string sqlString = $"create database if not exists {DBNAME} keep 365 days 1 cache 32 blocks 8 update 0";
 
         // V3
-        string sqlString = $"create database if not exists {DBNAME} buffer 256 cachemodel 'last_row' cachesize 4 duration 1 keep 30 precision 'ms';";
+        if (_connector.Options.VersionSelector is TDengineVersion.V3)
+        {
+            sqlString = $"create database if not exists {DBNAME} buffer 256 cachemodel 'last_row' cachesize 4 duration 1 keep 365 precision 'ms'";
+        }
 
-        string? result = await _connector.ExecutionSqlAsync(sqlString).ConfigureAwait(false);
-        Log(result, sqlString);
+        string? result = await _connector.ExecuteNonQueryAsync(sqlString).ConfigureAwait(false);
+        Log(result);
+    }
+
+    #endregion
+
+    #region 自动站信息
+
+    /// <summary>
+    /// 创建自动站信息
+    /// </summary>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    private async Task CreateAutoStation()
+    {
+        StringBuilder sb = new();
+        sb.Append("create table if not exists ")
+          .Append($"{DBNAME}.{STABLENAME}_info")
+          .Append(" (")
+          .Append("tss timestamp,")
+          .Append("station_id binary(32),")
+          .Append("station_name nchar(64),")
+          .Append("latitude float,")
+          .Append("longitude float,")
+          .Append("altitude float,")
+          .Append("level smallint")
+          .Append(')');
+
+        string? result = await _connector.ExecuteNonQueryAsync(sb.ToString()).ConfigureAwait(false);
+        Log(result);
+
+        // 写入初始数据
+        foreach (var (id, name, latitude, longitude, altitude, level) in Definition.Default.Ids)
+        {
+            sb.Clear();
+            sb.Append("insert into ")
+              .Append($"{DBNAME}.{STABLENAME}_info")
+              .Append(" values ")
+              .Append('(')
+              .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffff}',")
+              .Append($"'{id}',")
+              .Append($"'{name}',")
+              .Append($"{latitude},")
+              .Append($"{longitude},")
+              .Append($"{altitude},")
+              .Append($"{level}")
+              .Append(')');
+
+            result = await _connector.ExecuteNonQueryAsync(sb.ToString()).ConfigureAwait(false);
+            Log(result);
+        }
+    }
+
+    #endregion
+
+    #region 自动站数据
+
+    /// <summary>
+    /// 创建自动站数据
+    /// </summary>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    private async Task CreateAutoStationData()
+    {
+        await CreateDataSTable().ConfigureAwait(false);
+        await CreateDataTable().ConfigureAwait(false);
+        await CreateMockData().ConfigureAwait(false);
     }
 
     /// <summary>
     /// 创建超级数据表
     /// </summary>
     /// <returns>表示响应当前异步操作的支持对象</returns>
-    private async Task CreateSTable()
+    private async Task CreateDataSTable()
     {
-        string sqlString = $"create stable if not exists {DBNAME}.{STABLENAME} (tss timestamp, report_time timestamp, temperature float, air_pressure float, relative_humidity float, maximum_wind_speed float, rainfall float) tags (station_id varchar(32), station_name nchar(64), longitude float, latitude float, altitude float, level smallint);";
-        string? result = await _connector.ExecutionSqlAsync(sqlString).ConfigureAwait(false);
-        Log(result, sqlString);
+        StringBuilder sb = new();
+        sb.Append("create stable if not exists ")
+          .Append($"{DBNAME}.{STABLENAME}")
+          .Append(" (")
+          .Append("tss timestamp,")
+          .Append("report_time timestamp,")
+          .Append("temperature float,")
+          .Append("air_pressure float,")
+          .Append("relative_humidity float,")
+          .Append("maximum_wind_speed float,")
+          .Append("rainfall float")
+          .Append(") tags (")
+          .Append("station_id binary(32),")
+          .Append("station_name nchar(64),")
+          .Append("latitude float,")
+          .Append("longitude float,")
+          .Append("altitude float,")
+          .Append("level smallint")
+          .Append(')');
+
+        string? result = await _connector.ExecuteNonQueryAsync(sb.ToString()).ConfigureAwait(false);
+        Log(result);
     }
 
     /// <summary>
     /// 创建数据表
     /// </summary>
     /// <returns>表示响应当前异步操作的支持对象</returns>
-    private async Task CreateTable()
+    private async Task CreateDataTable()
     {
-        foreach (var ids in Definition.Default.Ids)
+        foreach (var (id, name, latitude, longitude, altitude, level) in Definition.Default.Ids)
         {
-            string sqlString = $"create table if not exists {DBNAME}.{STABLENAME}_{ids.id} using {DBNAME}.{STABLENAME} tags ('{ids.id}', '{ids.name}', {ids.longitude}, {ids.latitude}, {ids.altitude}, {ids.level});";
-            string? result = await _connector.ExecutionSqlAsync(sqlString).ConfigureAwait(false);
-            Log(result, sqlString);
+            StringBuilder sb = new();
+            sb.Append("create table if not exists ")
+              .Append($"{DBNAME}.{STABLENAME}_{id}")
+              .Append($" using ")
+              .Append($"{DBNAME}.{STABLENAME}")
+              .Append(" tags ")
+              .Append('(')
+              .Append($"'{id}',")
+              .Append($"'{name}',")
+              .Append($"{latitude},")
+              .Append($"{longitude},")
+              .Append($"{altitude},")
+              .Append($"{level}")
+              .Append(')');
+
+            string? result = await _connector.ExecuteNonQueryAsync(sb.ToString()).ConfigureAwait(false);
+            Log(result);
+        }
+    }
+
+    /// <summary>
+    /// 创建模拟数据
+    /// </summary>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    private async Task CreateMockData()
+    {
+        foreach (var (id, _, _, _, _, _) in Definition.Default.Ids)
+        {
+            for (int i = 0, iLen = Random.Shared.Next(1000, 5000); i < iLen; i++)
+            {
+                StringBuilder sb = new();
+                sb.Append("insert into ")
+                  .Append($"{DBNAME}.{STABLENAME}_{id}")
+                  .Append(" values ")
+                  .Append('(')
+                  .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffff}',") // tss timestamp
+                  .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffff}',") // report_time timestamp
+                  .Append($"{Random.Shared.Next(-70, 70)},") // temperature float
+                  .Append($"{Random.Shared.Next(0, 1500)},") // air_pressure float
+                  .Append($"{Random.Shared.Next(0, 100)},") // relative_humidity float
+                  .Append($"{Random.Shared.Next(0, 128)},") // maximum_wind_speed float
+                  .Append($"{Random.Shared.Next(0, 250)}") // rainfall float
+                  .Append(')');
+
+                string? result = await _connector.ExecuteNonQueryAsync(sb.ToString()).ConfigureAwait(false);
+                Log(result);
+            }
         }
     }
 
