@@ -92,3 +92,6 @@
 - 为TDataModelHelper类中各方法，增加特别注释内容，以明确其含义；
 - 优化JsonSerializerMappingHelper类中各方法，增加特别注释内容，以明确其含义；
 - 优化JsonSerializerMappingHelper类中主方法实现，增加ColumnAttribute的字段比对应用。
+
+### 2022-09-18
+- 增加元组的JSON序列化自定义转换器，暂时支持1-6个元素的定义。

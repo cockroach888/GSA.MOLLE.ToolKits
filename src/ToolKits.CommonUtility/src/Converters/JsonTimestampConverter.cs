@@ -37,9 +37,10 @@ public sealed class JsonTimestampConverter : JsonConverter<DateTime>
     /// <returns>The converted value.</returns>
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (reader.TokenType != JsonTokenType.Number)
+        if (reader.Read() is false ||
+            reader.TokenType is not JsonTokenType.Number)
         {
-            return default;
+            throw new JsonException();
         }
 
         DateTime result = DateTime.MinValue;

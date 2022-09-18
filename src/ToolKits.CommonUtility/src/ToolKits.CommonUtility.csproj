@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>6.3.1</AssemblyVersion>
-		<FileVersion>6.3.1</FileVersion>
+		<AssemblyVersion>6.4.0</AssemblyVersion>
+		<FileVersion>6.4.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -36,7 +36,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>优化相关类中各方法，增加特别注释内容，以明确其含义。</PackageReleaseNotes>
+		<PackageReleaseNotes>增加元组的JSON序列化自定义转换器，暂时支持1-6个元素的定义。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
