@@ -15,9 +15,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
-	  <ProjectReference Include="..\..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.TDengine\src\ToolKits.DBUtility.TDengine.csproj" />
-	  <ProjectReference Include="..\..\TDengineEx.DataModel\src\TDengineEx.DataModel.csproj" />
+		<ProjectReference Include="..\..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.TDengine\src\ToolKits.DBUtility.TDengine.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\TDengineEx.DataModel\src\TDengineEx.DataModel.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
 	</ItemGroup>
 
 </Project>

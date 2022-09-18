@@ -15,7 +15,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
+		<ProjectReference Include="..\..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
 	</ItemGroup>
 
 </Project>
