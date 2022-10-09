@@ -6,4 +6,8 @@
 		<RootNamespace>GSA.ToolKits.DawnConsole</RootNamespace>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
+	</ItemGroup>
+
 </Project>
