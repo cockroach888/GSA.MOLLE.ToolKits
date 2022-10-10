@@ -752,7 +752,7 @@ namespace GSA.ToolKits.DawnUtility
 
         #endregion
 
-        #region 简、繁体转换
+        /*#region 简、繁体转换
 
         /// <summary>
         /// 转换为简体中文
@@ -769,7 +769,7 @@ namespace GSA.ToolKits.DawnUtility
             return Strings.StrConv(str, VbStrConv.TraditionalChinese, 0);
         }
 
-        #endregion
+        #endregion*/
 
         #region Base64
 
