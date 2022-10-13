@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>6.5.0</AssemblyVersion>
-		<FileVersion>6.5.0</FileVersion>
+		<AssemblyVersion>6.5.1</AssemblyVersion>
+		<FileVersion>6.5.1</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -36,7 +36,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>增加网络与通信助手类(NetworkHelper)，暂仅有物理IP地址和MAC地址获取方法。</PackageReleaseNotes>
+		<PackageReleaseNotes>修正对于ValueTask的使用误解，变更为Task的直接异步形态。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>

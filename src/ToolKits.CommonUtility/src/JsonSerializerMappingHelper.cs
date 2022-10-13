@@ -44,7 +44,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesNode">存储所有数据的JSON节点</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
     {
@@ -143,7 +143,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesNode">存储所有数据的JSON节点</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1)
         where TModel : class, new()
         => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyNode, valuesNode, keyIndex).ConfigureAwait(false);
 
@@ -158,7 +158,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="jsonValuesString">存储所有数据的JSON字符串</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
     {
@@ -182,7 +182,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="jsonValuesString">存储所有数据的JSON字符串</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
         where TModel : class, new()
         => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(jsonKeyString, jsonValuesString, keyIndex).ConfigureAwait(false);
 
@@ -197,7 +197,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesElement">存储所有数据的JSON元素</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
     {
@@ -280,7 +280,7 @@ public static class JsonSerializerMappingHelper
     /// <param name="valuesElement">存储所有数据的JSON元素</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async ValueTask<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
         where TModel : class, new()
         => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyElement, valuesElement, keyIndex).ConfigureAwait(false);
 
