@@ -49,7 +49,7 @@ public static class AutoStationHelperExtensions
     /// <param name="helper">数据访问助手</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>气象自动站信息</returns>
-    public static async ValueTask<AutoStationModel?> SelectAsync(
+    public static async Task<AutoStationModel?> SelectAsync(
         this IAutoStationHelper helper,
         string stationId,
         CancellationToken cancellationToken = default)
@@ -67,7 +67,7 @@ public static class AutoStationHelperExtensions
     /// <param name="helper">数据访问助手</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>气象自动站信息枚举列表</returns>
-    public static async ValueTask<IEnumerable<AutoStationModel>?> SelectAsync(
+    public static async Task<IEnumerable<AutoStationModel>?> SelectAsync(
         this IAutoStationHelper helper,
         CancellationToken cancellationToken = default)
     {

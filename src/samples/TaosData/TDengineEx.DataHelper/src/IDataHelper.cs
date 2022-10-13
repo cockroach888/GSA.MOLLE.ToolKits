@@ -33,7 +33,7 @@ public interface IDataHelper
     /// <param name="sqlString">需要执行的SQL字符串</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>数据模型枚举列表</returns>
-    ValueTask<IEnumerable<TModel>?> QueryDataModelAsync<TModel, TIgnoreAttribute>(string sqlString, CancellationToken cancellationToken = default)
+    Task<IEnumerable<TModel>?> QueryDataModelAsync<TModel, TIgnoreAttribute>(string sqlString, CancellationToken cancellationToken = default)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute;
 
@@ -44,7 +44,7 @@ public interface IDataHelper
     /// <param name="sqlString">需要执行的SQL字符串</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>数据模型枚举列表</returns>
-    ValueTask<IEnumerable<TModel>?> QueryDataModelAsync<TModel>(string sqlString, CancellationToken cancellationToken = default)
+    Task<IEnumerable<TModel>?> QueryDataModelAsync<TModel>(string sqlString, CancellationToken cancellationToken = default)
         where TModel : class, new();
 
 
@@ -56,7 +56,7 @@ public interface IDataHelper
     /// <param name="sqlString">需要执行的SQL字符串</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>数据模型</returns>
-    ValueTask<TModel?> QuerySingleModelAsync<TModel, TIgnoreAttribute>(string sqlString, CancellationToken cancellationToken = default)
+    Task<TModel?> QuerySingleModelAsync<TModel, TIgnoreAttribute>(string sqlString, CancellationToken cancellationToken = default)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute;
 
@@ -67,6 +67,6 @@ public interface IDataHelper
     /// <param name="sqlString">需要执行的SQL字符串</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>数据模型</returns>
-    ValueTask<TModel?> QuerySingleModelAsync<TModel>(string sqlString, CancellationToken cancellationToken = default)
+    Task<TModel?> QuerySingleModelAsync<TModel>(string sqlString, CancellationToken cancellationToken = default)
         where TModel : class, new();
 }
