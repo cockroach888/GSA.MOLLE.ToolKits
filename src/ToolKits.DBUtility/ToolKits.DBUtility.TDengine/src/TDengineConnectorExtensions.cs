@@ -32,7 +32,7 @@ public static class TDengineConnectorExtensions
     /// <param name="connector">TDengine RESTful API 连接器</param>
     /// <param name="param">通用查询参数</param>
     /// <returns>请求结果</returns>
-    public static async ValueTask<TDengineResult?> ExecuteRequestResultAsync(
+    public static async Task<TDengineResult?> ExecuteRequestResultAsync(
         this ITDengineConnector connector,
         TDengineQueryParam param)
         => await connector.ExecuteAsync<TDengineResult>(param).ConfigureAwait(false);
@@ -46,7 +46,7 @@ public static class TDengineConnectorExtensions
     /// <param name="sqlString">需要执行的SQL字符串</param>
     /// <param name="token">取消令牌</param>
     /// <returns>请求结果</returns>
-    public static async ValueTask<string?> ExecuteNonQueryAsync(
+    public static async Task<string?> ExecuteNonQueryAsync(
         this ITDengineConnector connector,
         string sqlString,
         CancellationToken token = default)
@@ -70,7 +70,7 @@ public static class TDengineConnectorExtensions
     /// <param name="param">通用查询参数</param>
     /// <returns>数据模型枚举列表</returns>
     /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
-    public static async ValueTask<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel, TIgnoreAttribute>(
+    public static async Task<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel, TIgnoreAttribute>(
         this ITDengineConnector connector,
         TDengineQueryParam param)
         where TModel : class, new()
@@ -99,7 +99,7 @@ public static class TDengineConnectorExtensions
     /// <param name="param">通用查询参数</param>
     /// <returns>数据模型枚举列表</returns>
     /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
-    public static async ValueTask<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel>(
+    public static async Task<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel>(
         this ITDengineConnector connector,
         TDengineQueryParam param)
         where TModel : class, new()
@@ -129,7 +129,7 @@ public static class TDengineConnectorExtensions
     /// <param name="connector">TDengine RESTful API 连接器</param>
     /// <param name="param">通用查询参数</param>
     /// <returns>数据模型</returns>
-    public static async ValueTask<TModel?> ExecuteSingleModelAsync<TModel, TIgnoreAttribute>(
+    public static async Task<TModel?> ExecuteSingleModelAsync<TModel, TIgnoreAttribute>(
         this ITDengineConnector connector,
         TDengineQueryParam param)
         where TModel : class, new()
@@ -153,7 +153,7 @@ public static class TDengineConnectorExtensions
     /// <param name="connector">TDengine RESTful API 连接器</param>
     /// <param name="param">通用查询参数</param>
     /// <returns>数据模型</returns>
-    public static async ValueTask<TModel?> ExecuteSingleModelAsync<TModel>(
+    public static async Task<TModel?> ExecuteSingleModelAsync<TModel>(
         this ITDengineConnector connector,
         TDengineQueryParam param)
         where TModel : class, new()
@@ -176,7 +176,7 @@ public static class TDengineConnectorExtensions
     /// <param name="condition">条件查询参数</param>
     /// <returns>数据记录数</returns>
     /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
-    public static async ValueTask<long> ExecuteRecordNumAsync(
+    public static async Task<long> ExecuteRecordNumAsync(
         this ITDengineConnector connector,
         TDengineWhereParam condition)
     {

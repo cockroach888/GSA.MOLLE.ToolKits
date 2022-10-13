@@ -37,7 +37,7 @@ public interface ITDengineConnector
     /// <typeparam name="TRequestResult">用于序列化请求结果的泛型</typeparam>
     /// <param name="param">通用查询参数</param>
     /// <returns>请求结果泛型对象</returns>
-    ValueTask<TRequestResult?> ExecuteAsync<TRequestResult>(TDengineQueryParam param)
+    Task<TRequestResult?> ExecuteAsync<TRequestResult>(TDengineQueryParam param)
         where TRequestResult : class, new();
 
     /// <summary>
@@ -46,5 +46,5 @@ public interface ITDengineConnector
     /// <remarks>返回原始的字符串请求结果</remarks>
     /// <param name="param">通用查询参数</param>
     /// <returns>请求结果原始字符串</returns>
-    ValueTask<string?> ExecuteAsync(TDengineQueryParam param);
+    Task<string?> ExecuteAsync(TDengineQueryParam param);
 }

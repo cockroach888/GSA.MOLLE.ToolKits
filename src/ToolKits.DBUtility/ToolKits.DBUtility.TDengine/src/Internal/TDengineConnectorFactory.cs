@@ -98,7 +98,7 @@ internal sealed class TDengineConnectorFactory : ITDengineConnectorFactory, IAsy
     /// 资源释放
     /// </summary>
     /// <returns>表示响应当前异步操作的支持对象</returns>
-    public async ValueTask DisposeAsync()
+    public async Task DisposeAsync()
     {
         await Task.Delay(0).ConfigureAwait(false);
 

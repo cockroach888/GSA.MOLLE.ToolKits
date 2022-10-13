@@ -77,7 +77,7 @@ public sealed class TDengineResult
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
     /// <returns>数据模型枚举列表</returns>
-    public async ValueTask<IEnumerable<TModel>?> ParseToTModelAsync<TModel, TIgnoreAttribute>()
+    public async Task<IEnumerable<TModel>?> ParseToTModelAsync<TModel, TIgnoreAttribute>()
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
         => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel, TIgnoreAttribute>(ColumnMeta, Data, 0).ConfigureAwait(false);
@@ -87,7 +87,7 @@ public sealed class TDengineResult
     /// </summary>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <returns>数据模型枚举列表</returns>
-    public async ValueTask<IEnumerable<TModel>?> ParseToTModelAsync<TModel>()
+    public async Task<IEnumerable<TModel>?> ParseToTModelAsync<TModel>()
         where TModel : class, new()
         => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel>(ColumnMeta, Data, 0).ConfigureAwait(false);
 

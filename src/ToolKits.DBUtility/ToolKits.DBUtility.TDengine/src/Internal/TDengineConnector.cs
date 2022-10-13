@@ -66,7 +66,7 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
     /// <typeparam name="TRequestResult">用于序列化请求结果的泛型</typeparam>
     /// <param name="param">通用查询参数</param>
     /// <returns>请求结果泛型对象</returns>
-    public async ValueTask<TRequestResult?> ExecuteAsync<TRequestResult>(TDengineQueryParam param)
+    public async Task<TRequestResult?> ExecuteAsync<TRequestResult>(TDengineQueryParam param)
         where TRequestResult : class, new()
     {
         RestRequest request = CreateRequest(param);
@@ -79,7 +79,7 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
     /// <remarks>返回原始的字符串请求结果</remarks>
     /// <param name="param">通用查询参数</param>
     /// <returns>请求结果原始字符串</returns>
-    public async ValueTask<string?> ExecuteAsync(TDengineQueryParam param)
+    public async Task<string?> ExecuteAsync(TDengineQueryParam param)
     {
         RestRequest request = CreateRequest(param);
         RestResponse response = await _client.PostAsync(request, param.Token).ConfigureAwait(false);
