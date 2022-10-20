@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
-/// 日期与时间帮助类
+/// 日期与时间助手类
 /// </summary>
 public static class DateTimeHelper
 {
