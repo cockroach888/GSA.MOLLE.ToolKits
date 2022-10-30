@@ -77,8 +77,8 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.GoesUtility/src
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.NuclearUtility -o ToolKits.NuclearUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.NuclearUtility/src
 
-dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.PagerUtility -o ToolKits.PagerUtility/src
-dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PagerUtility/src
+dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.PagingUtility -o ToolKits.PagingUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PagingUtility/src
 
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.PHYUtility -o ToolKits.PHYUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PHYUtility/src

@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDengineEx.DataHelper", "sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDengineEx.DataExchange", "samples\TaosData\TDengineEx.DataExchange\src\TDengineEx.DataExchange.csproj", "{D00A1E42-CC53-401B-9353-AD50C7A23B5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.PagingUtility", "ToolKits.PagingUtility\src\ToolKits.PagingUtility.csproj", "{09759F26-ADFB-421C-BCB5-BFA2FDA96971}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +179,10 @@ Global
 		{D00A1E42-CC53-401B-9353-AD50C7A23B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D00A1E42-CC53-401B-9353-AD50C7A23B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D00A1E42-CC53-401B-9353-AD50C7A23B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09759F26-ADFB-421C-BCB5-BFA2FDA96971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09759F26-ADFB-421C-BCB5-BFA2FDA96971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09759F26-ADFB-421C-BCB5-BFA2FDA96971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09759F26-ADFB-421C-BCB5-BFA2FDA96971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
