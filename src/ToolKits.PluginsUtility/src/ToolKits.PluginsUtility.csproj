@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Version>5.0.0</Version>
 		<PackageLicenseExpression></PackageLicenseExpression>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageIcon>PackageIcon.jpg</PackageIcon>
 		<RepositoryType>git</RepositoryType>
 		<SignAssembly>true</SignAssembly>
@@ -42,7 +42,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\LICENSE">
+		<None Include="..\..\..\LICENSE.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>

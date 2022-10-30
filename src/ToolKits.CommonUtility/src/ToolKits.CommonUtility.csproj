@@ -28,7 +28,7 @@
 - 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
 		<Company>华夏银河空间联盟</Company>
 		<Product>常见和通用功能集合工具集</Product>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
 		<PackageIcon>PackageIcon.jpg</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -52,7 +52,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\LICENSE">
+		<None Include="..\..\..\LICENSE.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>

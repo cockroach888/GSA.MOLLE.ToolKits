@@ -20,7 +20,7 @@
 
 - NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
 		<PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageIcon>PackageIcon.jpg</PackageIcon>
 		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -37,7 +37,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\..\LICENSE">
+		<None Include="..\..\..\..\LICENSE.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
@@ -70,7 +70,6 @@
 		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.Mssql\src\ToolKits.DBUtility.Mssql.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.ODBC\src\ToolKits.DBUtility.ODBC.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.Oracle\src\ToolKits.DBUtility.Oracle.csproj" />
-		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.Sqlce\src\ToolKits.DBUtility.Sqlce.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.SQLite\src\ToolKits.DBUtility.SQLite.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.FileUtility\src\ToolKits.FileUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.FormUtility\src\ToolKits.FormUtility.csproj" />
