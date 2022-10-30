@@ -261,9 +261,8 @@ namespace GSA.ToolKits.DawnUtility
         /// <param name="objValue">要转换的值</param>
         /// <returns>转换后的 Int64 类型结果</returns>
         public static long TypeToInt64(object objValue)
-        {
-            return TypeToInt64(objValue, 0);
-        }
+            => TypeToInt64(objValue, 0);
+
         /// <summary>
         /// 将对象转换为 Int64 类型
         /// 范围：-9,223,372,036,854,775,808 — 9,223,372,036,854,775,807
@@ -272,10 +271,8 @@ namespace GSA.ToolKits.DawnUtility
         /// <param name="defValue">缺省值</param>
         /// <returns>转换后的 Int64 类型结果</returns>
         public static long TypeToInt64(object objValue, long defValue)
-        {
-            if (objValue != null) return TypeToInt64(objValue.ToString(), defValue);
-            return defValue;
-        }
+            => objValue is not null ? TypeToInt64(objValue.ToString(), defValue) : defValue;
+
         /// <summary>
         /// 将对象转换为 Int64 类型
         /// 默认返回 0
@@ -284,22 +281,30 @@ namespace GSA.ToolKits.DawnUtility
         /// <param name="strValue">要转换的值</param>
         /// <returns>转换后的 Int64 类型结果</returns>
         public static long TypeToInt64(string strValue)
-        {
-            return TypeToInt64(strValue, 0);
-        }
+            => TypeToInt64(strValue, 0);
+
         /// <summary>
-        /// 将对象转换为 Int64 类型
-        /// 范围：-9,223,372,036,854,775,808 — 9,223,372,036,854,775,807
+        /// 将对象转换为 Int64 (long) 类型
         /// </summary>
-        /// <param name="strValue">要转换的值</param>
+        /// <remarks>范围：-9,223,372,036,854,775,808 — 9,223,372,036,854,775,807</remarks>
+        /// <param name="strValue">要转换的字符串值</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的 Int64 类型结果</returns>
-        public static long TypeToInt64(string strValue, long defValue)
+        /// <returns>转换结果数值</returns>
+        private static long TypeToInt64(string? strValue, long defValue)
         {
-            if (string.IsNullOrEmpty(strValue) || strValue.Trim().Length > 20 || !Regex.IsMatch(strValue.Trim(), @"^([-]|[0-9])[0-9]*(\.\w*)?$")) return defValue;
-            long rv;
-            if (Int64.TryParse(strValue, out rv)) return rv;
-            //return Convert.ToInt64(TypeToFloat(strValue, defValue));
+            if (string.IsNullOrWhiteSpace(strValue) ||
+                strValue is null ||
+                strValue.Trim().Length > 20 ||
+                Regex.IsMatch(strValue.Trim(), @"^([-]|[0-9])[0-9]*(\.\w*)?$") is false)
+            {
+                return defValue;
+            }
+
+            if (long.TryParse(strValue, out long value))
+            {
+                return value;
+            }
+
             try
             {
                 return Convert.ToInt64(strValue);
