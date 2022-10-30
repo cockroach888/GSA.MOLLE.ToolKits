@@ -1,42 +1,52 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;netcoreapp3.1;net5.0</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
-		<AssemblyName>PagerUtility</AssemblyName>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-		<Version>5.0.0</Version>
-		<PackageLicenseExpression></PackageLicenseExpression>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageIcon>PackageIcon.jpg</PackageIcon>
-		<RepositoryType>git</RepositoryType>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>ToolKits.PagerUtility.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
-		<PackageId>PagerUtility</PackageId>
-		<Product>数据分页展示工具集</Product>
-		<Authors>蟑螂·魂</Authors>
-		<Company>华夏银河空间联盟</Company>
-		<Description>本类库提供了中文和英文版本的分页展示工具，展示风格多样，同时还封装了基于Bootstrap框架的分页展示形式，对于微软MVC更是无下限的友好支持，欢迎您的使用；简单实用、舒心易用，是您开发中的必备利器。
-
-- 内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）。
-
-- NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
-		<PackageTags>魂哥常用工具集 数据分页展示工具集 Bootstrap MVC分页 分页</PackageTags>
-		<PackageReleaseNotes>重新定义类库并变更命名空间，面向 .net 5.0 开发；建议重新引用本类库，对此给您造成的不变深表歉意！内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）让使用更便捷。</PackageReleaseNotes>
-		<Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
-		<PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.PagerUtility</RootNamespace>
+		<AssemblyName>PagerUtility</AssemblyName>
+		<AssemblyVersion>6.0.0</AssemblyVersion>
+		<FileVersion>6.0.0</FileVersion>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Authors>蟑螂·魂</Authors>
+		<Description>本库提供了中英双语两个版本的数据分页助手类，多样性的数据分页功能，集成前端UI框架Bootstrap数据分页组件，契合微软MVC技术等，支持多种版本（netstandard2.0;netstandard2.1;net5.0;net6.0;）。
+- 鄙人专注.Net技术，深入研习.NET 6+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
+- 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
+		<Company>华夏银河空间联盟</Company>
+		<Product>数据分页应用工具集</Product>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
+		<PackageIcon>PackageIcon.jpg</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
+		<PackageTags>魂哥常用工具集 数据分页应用工具集 Pagination 数据分页 Bootstrap MVC分页 分页</PackageTags>
+		<PackageReleaseNotes>对整个封装库进行重大优化和调整，全面基于netstandard2.0、netstandard2.1、net5.0、net6.0及更高版本进行处置。</PackageReleaseNotes>
+		<Version>$(AssemblyVersion)</Version>
+		<PackageId>PagerUtility</PackageId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.PagerUtility\src\bin\PagerUtility.xml</DocumentationFile>
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.PagerUtility\src\bin\PagerUtility.xml</DocumentationFile>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
@@ -49,18 +59,26 @@
 	<ItemGroup>
 		<Content Include="PagerHelper.css">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>content</PackagePath>
 		</Content>
 		<Content Include="PagerHelper.js">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>content</PackagePath>
 		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\LICENSE">
+		<None Include="..\..\..\LICENSE.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="..\..\PackageIcon.jpg">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="README.md">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
