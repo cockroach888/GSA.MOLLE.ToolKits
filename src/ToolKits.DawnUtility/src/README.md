@@ -7,23 +7,20 @@
 **本库提供了开发中日常应用的各种助手类，如数据转换、字符串操作、加解密、验证码等，支持多种版本（netstandard2.0;netstandard2.1;net5.0;net6.0;）。**
 
 包括但不限于如下功能类：
-1. CommonHelper(常见和通用的功能应用助手类)
-1. CustomAttributeHelper(自定义属性助手类)
-1. DateTimeHelper(日期与时间帮助类)
-1. ExpressionVisitorToSQL(将条件表达式转换为字符串SQL语句)
-1. JsonSerializerMappingHelper(JSON序列化数据映射助手类，键值分离JSON序列化)
-1. TDataModelHelper(数据模型属性字段名称与值字符串拼接助手类)
-
-
-
-本类库提供了数据类型转换操作辅助类、字符串拼装操作辅助类、字符串操作辅助类、非对称RSA加密类、转换人民币大小金额、
-C#动态类型对象处理类、DES加解密操作辅助类、魂哥常用操作辅助类、日期操作辅助类、加解密操作辅助类、
-实体和泛型集合与DataTable数据相互转换帮助类、验证码操作辅助类、超级整型、AES加解密操作辅助类等；
-
-
-
-
-
+1. AesHelper(AES加解密助手类)
+1. BigInteger(超级整型助手类)
+1. CheckCodeHelper(验证码助手类)
+1. ConvertorHelper(DataTable数据转换助手类)
+1. CryptoHelper(加解密操作助手类)
+1. DateHelper(日期功能辅助助手类)
+1. DawnHelper(魂哥常用助手类)
+1. DesHelper(DES加解密助手类)
+1. ReadValueUtility(数据读取与解析助手类)
+1. RMBHelper(人民币功能辅助助手类)
+1. RSAHelper(RSA非对称加解密助手类)
+1. StringHelper(字符串功能辅助助手类)
+1. StringJoiner(字符串拼装助手类)
+1. TypeHelper(数据类型转换助手类)
 
 - 鄙人专注.Net技术，深入研习.NET 6+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；

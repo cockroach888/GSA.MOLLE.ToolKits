@@ -22,9 +22,15 @@
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>蟑螂·魂</Authors>
-		<Description>fsdfsdfsdf</Description>
+		<Description>本库提供了开发中日常应用的各种助手类，如数据转换、字符串操作、加解密、验证码等，支持多种版本（netstandard2.0;netstandard2.1;net5.0;net6.0;）。
+
+包括但不限于如下功能类：AesHelper(AES加解密助手类)、BigInteger(超级整型助手类)、CheckCodeHelper(验证码助手类)、ConvertorHelper(DataTable数据转换助手类)、CryptoHelper(加解密操作助手类)、DateHelper(日期功能辅助助手类)、DawnHelper(魂哥常用助手类)、DesHelper(DES加解密助手类)、ReadValueUtility(数据读取与解析助手类)、RMBHelper(人民币功能辅助助手类)、RSAHelper(RSA非对称加解密助手类)、StringHelper(字符串功能辅助助手类)、StringJoiner(字符串拼装助手类)、TypeHelper(数据类型转换助手类)。
+
+- 鄙人专注.Net技术，深入研习.NET 6+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
+- 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
 		<Company>华夏银河空间联盟</Company>
-		<Product>文件操作实用工具集</Product>
+		<Product>晨曦小竹实用工具集</Product>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
 		<PackageIcon>PackageIcon.jpg</PackageIcon>
@@ -32,7 +38,7 @@
 		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
-		<PackageTags>魂哥常用工具集 文件操作实用工具集 文件操作 目录操作 图片操作 INI操作 XML操作 日志记录</PackageTags>
+		<PackageTags>魂哥常用工具集 晨曦小竹实用工具集 数据转换 字符串操作 加解密 非对称加解密 验证码 日期功能辅助 字符串拼装</PackageTags>
 		<PackageReleaseNotes>对整个封装库进行重大优化和调整，全面基于netstandard2.0、netstandard2.1、net5.0、net6.0及更高版本进行处置。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>DawnUtility</PackageId>
@@ -49,7 +55,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\LICENSE">
+		<None Include="..\..\..\LICENSE.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
