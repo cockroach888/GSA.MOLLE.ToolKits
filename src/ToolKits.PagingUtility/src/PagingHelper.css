@@ -1,0 +1,25 @@
+﻿/* 数据分页样式
+----------------------------------------*/
+#pagerList{text-align:center;color:#2E6AB1;line-height:200%;padding:10px 0;}
+#pagerList .tips{color:#f00;font-size:14px;}
+#pagerList a{background:none;border:1px solid #639B1B;color:#2E6AB1;outline:none;margin-right:5px;padding:2px 5px;text-decoration:none;cursor:pointer;}
+#pagerList a:link,#pagerList a:visited,#pagerList a:active,#pagerList a:hover{color:#2E6AB1;}
+#pagerList a:hover{background-color:#c7d1d6;text-decoration:none;}
+#pagerList span.current{background-color:#639B1B;border:1px solid #639B1B;color:#fff;font-weight:bold;margin-right:5px;padding:2px 5px;cursor:pointer;}
+/* 支持所有浏览器 */
+#pagerList .gotoarea{border:1px solid #639B1B;padding:2px 0;}
+#pagerList .gotoarea input{position:relative;top:-2px;margin-left:1px;width:36px;border-style:none;cursor:text;}
+#pagerList .gotoarea label{padding:2px 5px;color:#fff;background:#639B1B;cursor:pointer;}
+/* Firefox&火狐HACK处理 */
+@-moz-document url-prefix(){#pagerList .gotoarea input{top:0;padding:2px 0;}}
+/* IE8浏览器HACK处理 */
+@media \0screen {#pagerList .gotoarea input{height:19px;line-height:19px;}}
+/* IE6-IE7浏览器HACK处理 */
+@media screen\9{}
+#pagerList .gotoarea{*border:none;*padding:0;}
+#pagerList .gotoarea input{*top:0;*height:19px;*line-height:19px;*border:1px solid #639B1B;}
+#pagerList .gotoarea label{*border:1px solid #639B1B;}
+/* IE6浏览器HACK处理 */
+/*#pagerList .gotoarea{_padding:2px 5px;}
+#pagerList .gotoarea input{_top:2px;}
+#pagerList .gotoarea label{_padding:2px 0;}*/

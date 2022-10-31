@@ -1,9 +1,90 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<ApplicationIcon>Library.ico</ApplicationIcon>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>ToolKits.PagingUtility.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>false</DelaySign>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<RootNamespace>GSA.ToolKits.PagingUtility</RootNamespace>
+		<AssemblyName>PagingUtility</AssemblyName>
+		<AssemblyVersion>6.0.0</AssemblyVersion>
+		<FileVersion>6.0.0</FileVersion>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Authors>蟑螂·魂</Authors>
+		<Description>本库提供了中英双语等多个版本的数据分页助手类，多样性的数据分页功能，集成前端UI框架Bootstrap数据分页组件，契合微软MVC技术等，支持多种版本（netstandard2.0;netstandard2.1;net5.0;net6.0;）。
+- 鄙人专注.Net技术，深入研习.NET 6+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
+- 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
+		<Company>华夏银河空间联盟</Company>
+		<Product>数据分页应用工具集</Product>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
+		<PackageIcon>PackageIcon.jpg</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
+		<PackageTags>魂哥常用工具集 数据分页应用工具集 Pagination 数据分页 Bootstrap MVC分页 分页</PackageTags>
+		<PackageReleaseNotes>对整个封装库进行重大优化和调整，全面基于netstandard2.0、netstandard2.1、net5.0、net6.0及更高版本进行处置。</PackageReleaseNotes>
+		<Version>$(AssemblyVersion)</Version>
+		<PackageId>PagingUtility</PackageId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="PagingHelper.css" />
+		<None Remove="PagingHelper.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="PagingHelper.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>content</PackagePath>
+		</Content>
+		<Content Include="PagingHelper.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>content</PackagePath>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\..\PackageIcon.jpg">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="System.ComponentModel.DataAnnotations">
+	    <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
 
 </Project>
