@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
+	  <ProjectReference Include="..\..\..\ToolKits.PagingUtility\src\ToolKits.PagingUtility.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -42,4 +42,49 @@ public static class PagingHelper
             PagingUIType.CustomUI => BootstrapV5UI.Create(options),
             _ => string.Empty
         };
+
+    /// <summary>
+    /// 自动校验数据分页选项(参数)
+    /// </summary>
+    /// <param name="options">数据分页选项(参数)</param>
+    internal static void Validate(PagingOptions options)
+    {
+        // 判断额外的和自定义参数是否自带参数分隔符
+        if (options.ExtraParameters is not null &&
+            !string.IsNullOrWhiteSpace(options.ExtraParameters) &&
+            !options.ExtraParameters.StartsWith(","))
+        {
+            options.ExtraParameters.Insert(0, ",");
+        }
+
+        // 数据分页标签Id
+        if (!string.IsNullOrWhiteSpace(options.PagingTagId))
+        {
+            options.PagingTagId = $" id=\"{options.PagingTagId}\"";
+        }
+
+        // 数据分页标签Class
+        if (!string.IsNullOrWhiteSpace(options.PagingTagClass))
+        {
+            options.PagingTagClass = $" class=\"{options.PagingTagClass}\"";
+        }
+
+        // 数据分页标签Style
+        if (!string.IsNullOrWhiteSpace(options.PagingTagStyle))
+        {
+            options.PagingTagStyle = $" style=\"{options.PagingTagStyle}\"";
+        }
+
+        // 数据分页项Class
+        if (!string.IsNullOrWhiteSpace(options.PagingItemClass))
+        {
+            options.PagingItemClass = $" {options.PagingItemClass}";
+        }
+
+        // 数据分页项Style
+        if (!string.IsNullOrWhiteSpace(options.PagingItemStyle))
+        {
+            options.PagingItemStyle = $" style=\"{options.PagingItemStyle}\"";
+        }
+    }
 }

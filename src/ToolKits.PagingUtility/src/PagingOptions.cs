@@ -41,7 +41,10 @@ public sealed class PagingOptions
     /// <summary>
     /// 额外的自定义参数，首参数为当前页数值。
     /// </summary>
-    /// <remarks>除首参数外，额外的自定义参数。</remarks>
+    /// <remarks>
+    /// 除首参数外，额外的自定义参数。
+    /// <para>PS：请注意特殊字符转义问题，如果是字符串则必须加上单引号等。</para>
+    /// </remarks>
     public string? ExtraParameters { get; set; }
 
     /// <summary>
@@ -80,7 +83,17 @@ public sealed class PagingOptions
     /// </summary>
     public int CurrentPage
     {
-        get { return _currentPage; }
+        get
+        {
+            if (TotalPages > 1 &&
+                _currentPage > TotalPages ||
+                TotalPages == 1)
+            {
+                _currentPage = TotalPages;
+            }
+
+            return _currentPage;
+        }
         set
         {
             _currentPage = value;
@@ -90,7 +103,8 @@ public sealed class PagingOptions
                 _currentPage = 1;
             }
 
-            if (value > TotalPages)
+            if (TotalPages > 1 &&
+                value > TotalPages)
             {
                 _currentPage = TotalPages;
             }
@@ -98,9 +112,19 @@ public sealed class PagingOptions
     }
 
     /// <summary>
+    /// 上一页
+    /// </summary>
+    public int PreviousPage => CurrentPage > 1 && TotalPages > 1 ? CurrentPage - 1 : 1;
+
+    /// <summary>
+    /// 下一页
+    /// </summary>
+    public int NextPage => CurrentPage < TotalPages ? CurrentPage + 1 : TotalPages;
+
+    /// <summary>
     /// 总页数
     /// </summary>
-    public int TotalPages { get; private set; }
+    public int TotalPages { get; private set; } = 1;
 
     /// <summary>
     /// 分页大小
@@ -171,7 +195,7 @@ public sealed class PagingOptions
         get
         {
             int result = CurrentPage - DigitalPageFlag;
-            return result >= 1 ? result : 1;
+            return result > 2 ? result : 2;
         }
     }
 
@@ -182,16 +206,22 @@ public sealed class PagingOptions
 
 
     /// <summary>
-    /// 是否输出当前页记录数
+    /// 是否输出当前页记录数，必须为CurrentPageRecords实时赋值，默认不输出。
     /// </summary>
     /// <remarks>true 输出，false 不输出。</remarks>
-    public bool IsOutputCurrentPageRecords { get; set; }
+    public bool IsOutputCurrentPageRecords { get; set; } = false;
 
     /// <summary>
-    /// 是否使用分页跳转
+    /// 是否使用分页跳转功能，默认使用。
     /// </summary>
     /// <remarks>true 使用，false 不使用。</remarks>
-    public bool IsUsePagingJump { get; set; }
+    public bool IsUsePagingJump { get; set; } = true;
+
+    /// <summary>
+    /// 是否使用禁用模式，即将无分页项设置为禁用状态，默认不使用。
+    /// </summary>
+    /// <remarks>true 使用，false 不使用。</remarks>
+    public bool IsUseDisabledMode { get; set; } = false;
 
 
     /// <summary>
@@ -203,7 +233,6 @@ public sealed class PagingOptions
             TotalRecords < 1 ||
             TotalRecords <= PaginationSize)
         {
-            _currentPage = 1;
             TotalPages = 1;
 
             return;
