@@ -317,16 +317,35 @@ public sealed class PagingOptions
 
 
     /// <summary>
+    /// 是否使用禁用模式，即将无分页项设置为禁用状态，缺省为 false。
+    /// </summary>
+    /// <remarks>true 使用，false 不使用。</remarks>
+    public bool IsUseDisabledMode { get; set; } = false;
+
+
+    /// <summary>
     /// 是否使用分页跳转功能，缺省为 true。
     /// </summary>
     /// <remarks>true 使用，false 不使用。</remarks>
     public bool IsUsePagingJump { get; set; } = true;
 
     /// <summary>
-    /// 是否使用禁用模式，即将无分页项设置为禁用状态，缺省为 false。
+    /// 分页跳转文本框宽度
     /// </summary>
-    /// <remarks>true 使用，false 不使用。</remarks>
-    public bool IsUseDisabledMode { get; set; } = false;
+    /// <remarks>缺省为 65</remarks>
+    public int PagingJumpTextWidth { get; set; } = 65;
+
+    /// <summary>
+    /// 分页跳转文本框 id 定义值
+    /// </summary>
+    /// <remarks>缺省为 txtPagingJumpto</remarks>
+    public string PagingJumpTextId { get; set; } = "txtPagingJumpto";
+
+    /// <summary>
+    /// 分页跳转确定按钮触发的JS函数，仅传递分页大小参数。
+    /// </summary>
+    /// <remarks>缺省为 OnPagingJumpto</remarks>
+    public string PagingJumpFunction { get; set; } = "OnPagingJumpto";
 
 
     /// <summary>

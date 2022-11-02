@@ -23,3 +23,16 @@
 function OnPagingUtility(pageNumber, paginationSize, parameter) {
     // do something.
 }
+
+/**
+ * 分页跳转
+ * @param {Int32} paginationSize 分页大小
+ * @return {Void}
+*/
+function OnPagingJumpto(paginationSize) {
+    const __pageNumber = document.getElementById('txtPagingJumpto').value
+
+    if (!isNaN(__pageNumber)) {
+        OnPagingUtility(parseInt(__pageNumber), paginationSize)
+    }
+}

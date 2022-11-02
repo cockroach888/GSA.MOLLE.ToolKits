@@ -39,7 +39,7 @@ internal static class BootstrapV5UI
 
         StringBuilder sb = new();
 
-        sb.Append($"<nav aria-label=\"Page Paging navigation\"{options.PagingTagIdHtml}{options.PagingTagClassHtml}{options.PagingTagStyleHtml}>");
+        sb.Append($"<nav aria-label=\"Page Paging Pagination navigation\"{options.PagingTagIdHtml}{options.PagingTagClassHtml}{options.PagingTagStyleHtml}>");
         sb.Append("<ul class=\"pagination m-auto\">");
 
         // 儒家圣人说了，顺序不可乱。
@@ -53,6 +53,7 @@ internal static class BootstrapV5UI
         GetLastPage(sb, options);
         GetNextPage(sb, options);
 
+        GetJumpToPage(sb, options);
         GetPagingInfo(sb, options);
 
         sb.Append($"</ul>");
@@ -93,6 +94,31 @@ internal static class BootstrapV5UI
     }
 
     /// <summary>
+    /// 分页跳转
+    /// </summary>
+    /// <param name="sb">可变的字符串生成器</param>
+    /// <param name="options">数据分页选项(参数)</param>
+    private static void GetJumpToPage(StringBuilder sb, PagingOptions options)
+    {
+        if (options.IsUsePagingJump is false)
+        {
+            return;
+        }
+
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
+        sb.Append($"<span class=\"page-link bg-transparent border-0\">共{options.TotalPages}页，到第</span>");
+        sb.Append("</li>");
+
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
+        sb.Append($"<input class=\"form-control rounded-0\" style=\"width:{options.PagingJumpTextWidth}px;\" type=\"text\" placeholder=\"{options.CurrentPage}\" aria-label=\"跳转到第几页\" id=\"{options.PagingJumpTextId}\">");
+        sb.Append("</li>");
+
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
+        sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\" onclick=\"{options.PagingJumpFunction}({options.PaginationSize})\">确定</a>");
+        sb.Append("</li>");
+    }
+
+    /// <summary>
     /// 数据分页信息
     /// </summary>
     /// <param name="sb">可变的字符串生成器</param>
@@ -118,7 +144,7 @@ internal static class BootstrapV5UI
             }
             else
             {
-                sb.Append($"<li><a class=\"dropdown-item\" href=\"javascript:void(0)\">{item}</a></li>");
+                sb.Append($"<li><a class=\"dropdown-item disabled\" href=\"javascript:void(0)\">{item}</a></li>");
             }
         }
 

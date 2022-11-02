@@ -38,7 +38,7 @@ namespace GSA.ToolKits.DawnConsole
             };
 
             string pageString;
-            /*
+            
             // Page 1
             options.TotalRecords = 50;
             options.CurrentPage = 5;
@@ -267,7 +267,7 @@ namespace GSA.ToolKits.DawnConsole
             //Console.WriteLine($"Page 300: {pageString}");
             //Console.WriteLine();
             Console.WriteLine($"{pageString}");
-            */
+            
 
             // Page 1000
             options.TotalRecords = 50000;
