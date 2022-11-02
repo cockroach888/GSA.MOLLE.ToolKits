@@ -29,23 +29,39 @@ public sealed class PagingOptions
     private int _currentPage = 1;
     private int _paginationSize = 25;
     private int _totalRecords = 0;
-    private int _digitalPageCount = 7;
+    private int _digitalPageCount = 5;
+
+    private string? _extraParameters;
 
 
     /// <summary>
-    /// 数据分页函数名称，首参数为当前页数值。
+    /// 数据分页函数名称，首参数为当前页，次参数为分页大小。
     /// </summary>
     /// <remarks>调用JavsScript脚本的函数名称，默认名称：OnPagingUtility。</remarks>
     public string PagingFunction { get; set; } = "OnPagingUtility";
 
     /// <summary>
-    /// 额外的自定义参数，首参数为当前页数值。
+    /// 额外的自定义参数，首参数为当前页，次参数为分页大小。
     /// </summary>
     /// <remarks>
-    /// 除首参数外，额外的自定义参数。
+    /// 除首参数和次参数外，额外的自定义参数。
     /// <para>PS：请注意特殊字符转义问题，如果是字符串则必须加上单引号等。</para>
     /// </remarks>
-    public string? ExtraParameters { get; set; }
+    public string? ExtraParameters
+    {
+        get
+        {
+            if (_extraParameters is not null &&
+            !string.IsNullOrWhiteSpace(_extraParameters) &&
+            !_extraParameters.StartsWith(","))
+            {
+                return _extraParameters.Insert(0, ",");
+            }
+
+            return _extraParameters;
+        }
+        set { _extraParameters = value; }
+    }
 
     /// <summary>
     /// 数据分页标签Id
@@ -54,10 +70,42 @@ public sealed class PagingOptions
     public string PagingTagId { get; set; } = "PagingUtility";
 
     /// <summary>
+    /// 数据分页标签Id（HTML）
+    /// </summary>
+    internal string? PagingTagIdHtml
+    {
+        get
+        {
+            if (!string.IsNullOrWhiteSpace(PagingTagId))
+            {
+                return $" id=\"{PagingTagId}\"";
+            }
+
+            return default;
+        }
+    }
+
+    /// <summary>
     /// 数据分页标签Class
     /// </summary>
     /// <remarks>承载数据分页的HTML标签，为其添加的“class”值，默认：无。</remarks>
     public string? PagingTagClass { get; set; }
+
+    /// <summary>
+    /// 数据分页标签Class（HTML）
+    /// </summary>
+    public string? PagingTagClassHtml
+    {
+        get
+        {
+            if (!string.IsNullOrWhiteSpace(PagingTagClass))
+            {
+                return $" class=\"{PagingTagClass}\"";
+            }
+
+            return default;
+        }
+    }
 
     /// <summary>
     /// 数据分页标签Style
@@ -66,10 +114,42 @@ public sealed class PagingOptions
     public string? PagingTagStyle { get; set; }
 
     /// <summary>
+    /// 数据分页标签Style（HTML）
+    /// </summary>
+    public string? PagingTagStyleHtml
+    {
+        get
+        {
+            if (!string.IsNullOrWhiteSpace(PagingTagStyle))
+            {
+                return $" style=\"{PagingTagStyle}\"";
+            }
+
+            return default;
+        }
+    }
+
+    /// <summary>
     /// 数据分页项Class
     /// </summary>
     /// <remarks>数据分页的各分页项目，为其添加的“class”值，默认：无。</remarks>
     public string? PagingItemClass { get; set; }
+
+    /// <summary>
+    /// 数据分页项Class（HTML）
+    /// </summary>
+    public string? PagingItemClassHtml
+    {
+        get
+        {
+            if (!string.IsNullOrWhiteSpace(PagingItemClass))
+            {
+                return $" {PagingItemClass}";
+            }
+
+            return default;
+        }
+    }
 
     /// <summary>
     /// 数据分页项Style
@@ -77,10 +157,27 @@ public sealed class PagingOptions
     /// <remarks>数据分页的各分页项目，为其添加的“style”值，默认：无。</remarks>
     public string? PagingItemStyle { get; set; }
 
+    /// <summary>
+    /// 数据分页项Style（HTML）
+    /// </summary>
+    public string? PagingItemStyleHtml
+    {
+        get
+        {
+            if (!string.IsNullOrWhiteSpace(PagingItemStyle))
+            {
+                return $" style=\"{PagingItemStyle}\"";
+            }
+
+            return default;
+        }
+    }
+
 
     /// <summary>
     /// 当前页
     /// </summary>
+    /// <remarks>缺省为 1</remarks>
     public int CurrentPage
     {
         get
@@ -124,21 +221,32 @@ public sealed class PagingOptions
     /// <summary>
     /// 总页数
     /// </summary>
+    /// <remarks>缺省为 1</remarks>
     public int TotalPages { get; private set; } = 1;
 
     /// <summary>
     /// 分页大小
     /// </summary>
+    /// <remarks>缺省为 25</remarks>
     public int PaginationSize
     {
         get { return _paginationSize; }
         set
         {
+            PaginationSizeRange ??= new int[4] { 25, 50, 75, 100 };
+
             _paginationSize = value;
 
+            if (!PaginationSizeRange.Any(p => p == _paginationSize))
+            {
+                _paginationSize = PaginationSizeRange[0];
+            }
+
+            // 一顿操作猛如虎，结果值为特么零，那就 Color see see。
             if (_paginationSize <= 0)
             {
-                _paginationSize = 1;
+                _paginationSize = 25;
+                PaginationSizeRange = new int[4] { 25, 50, 75, 100 };
             }
 
             DataCalculation();
@@ -146,8 +254,15 @@ public sealed class PagingOptions
     }
 
     /// <summary>
+    /// 分页大小范围
+    /// </summary>
+    /// <remarks>缺省为 [25、50、75、100]</remarks>
+    public int[] PaginationSizeRange { get; set; } = new int[4] { 25, 50, 75, 100 };
+
+    /// <summary>
     /// 总记录数
     /// </summary>
+    /// <remarks>缺省为 0</remarks>
     public int TotalRecords
     {
         get { return _totalRecords; }
@@ -164,15 +279,11 @@ public sealed class PagingOptions
         }
     }
 
-    /// <summary>
-    /// 当前页记录数
-    /// </summary>
-    public int CurrentPageRecords { get; set; }
-
 
     /// <summary>
     /// 数字分页总个数
     /// </summary>
+    /// <remarks>缺省为 5</remarks>
     public int DigitalPageCount
     {
         get { return _digitalPageCount; }
@@ -182,7 +293,7 @@ public sealed class PagingOptions
 
             if (value <= 0)
             {
-                _digitalPageCount = 7;
+                _digitalPageCount = 5;
             }
         }
     }
@@ -206,19 +317,13 @@ public sealed class PagingOptions
 
 
     /// <summary>
-    /// 是否输出当前页记录数，必须为CurrentPageRecords实时赋值，默认不输出。
-    /// </summary>
-    /// <remarks>true 输出，false 不输出。</remarks>
-    public bool IsOutputCurrentPageRecords { get; set; } = false;
-
-    /// <summary>
-    /// 是否使用分页跳转功能，默认使用。
+    /// 是否使用分页跳转功能，缺省为 true。
     /// </summary>
     /// <remarks>true 使用，false 不使用。</remarks>
     public bool IsUsePagingJump { get; set; } = true;
 
     /// <summary>
-    /// 是否使用禁用模式，即将无分页项设置为禁用状态，默认不使用。
+    /// 是否使用禁用模式，即将无分页项设置为禁用状态，缺省为 false。
     /// </summary>
     /// <remarks>true 使用，false 不使用。</remarks>
     public bool IsUseDisabledMode { get; set; } = false;

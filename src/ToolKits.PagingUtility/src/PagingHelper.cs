@@ -25,11 +25,13 @@ namespace GSA.ToolKits.PagingUtility;
 /// <summary>
 /// 数据分页助手类
 /// </summary>
+/// <remarks>JS函数首参数为当前页，次参数为分页大小。</remarks>
 public static class PagingHelper
 {
     /// <summary>
     /// 构建数据分页
     /// </summary>
+    /// <remarks>JS函数首参数为当前页，次参数为分页大小。</remarks>
     /// <param name="uIType">数据分页UI类型</param>
     /// <param name="options">数据分页选项(参数)</param>
     /// <returns>数据分页</returns>
@@ -49,42 +51,6 @@ public static class PagingHelper
     /// <param name="options">数据分页选项(参数)</param>
     internal static void Validate(PagingOptions options)
     {
-        // 判断额外的和自定义参数是否自带参数分隔符
-        if (options.ExtraParameters is not null &&
-            !string.IsNullOrWhiteSpace(options.ExtraParameters) &&
-            !options.ExtraParameters.StartsWith(","))
-        {
-            options.ExtraParameters.Insert(0, ",");
-        }
-
-        // 数据分页标签Id
-        if (!string.IsNullOrWhiteSpace(options.PagingTagId))
-        {
-            options.PagingTagId = $" id=\"{options.PagingTagId}\"";
-        }
-
-        // 数据分页标签Class
-        if (!string.IsNullOrWhiteSpace(options.PagingTagClass))
-        {
-            options.PagingTagClass = $" class=\"{options.PagingTagClass}\"";
-        }
-
-        // 数据分页标签Style
-        if (!string.IsNullOrWhiteSpace(options.PagingTagStyle))
-        {
-            options.PagingTagStyle = $" style=\"{options.PagingTagStyle}\"";
-        }
-
-        // 数据分页项Class
-        if (!string.IsNullOrWhiteSpace(options.PagingItemClass))
-        {
-            options.PagingItemClass = $" {options.PagingItemClass}";
-        }
-
-        // 数据分页项Style
-        if (!string.IsNullOrWhiteSpace(options.PagingItemStyle))
-        {
-            options.PagingItemStyle = $" style=\"{options.PagingItemStyle}\"";
-        }
+        options.PaginationSizeRange ??= new int[4] { 25, 50, 75, 100 };
     }
 }

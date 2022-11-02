@@ -34,23 +34,26 @@ internal static class BootstrapV5UI
     /// <returns>数据分页</returns>
     public static string Create(PagingOptions options)
     {
+        // 人生大事，莫过于__________。
         PagingHelper.Validate(options);
 
         StringBuilder sb = new();
 
-        sb.Append($"<nav aria-label=\"Page Paging navigation\"{options.PagingTagId}{options.PagingTagClass}{options.PagingTagStyle}>");
+        sb.Append($"<nav aria-label=\"Page Paging navigation\"{options.PagingTagIdHtml}{options.PagingTagClassHtml}{options.PagingTagStyleHtml}>");
         sb.Append("<ul class=\"pagination m-auto\">");
 
         // 儒家圣人说了，顺序不可乱。
         GetPreviousPage(sb, options);
         GetFirstPage(sb, options);
 
-        GetSeparator(sb, options, 1);
+        GetSeparator(sb, options, true);
         GetDigitalPage(sb, options);
-        GetSeparator(sb, options, 2);
+        GetSeparator(sb, options, false);
 
         GetLastPage(sb, options);
         GetNextPage(sb, options);
+
+        GetPagingInfo(sb, options);
 
         sb.Append($"</ul>");
         sb.Append($"</nav>");
@@ -63,34 +66,64 @@ internal static class BootstrapV5UI
     /// </summary>
     /// <param name="sb">可变的字符串生成器</param>
     /// <param name="options">数据分页选项(参数)</param>
-    /// <param name="isFirstOrLast">属于首页还是末页分隔符。（1 首页 | 2 末页）</param>
-    private static void GetSeparator(StringBuilder sb, PagingOptions options, byte isFirstOrLast)
+    /// <param name="isFirstOrLast">属于首页还是末页分隔符。（true 首页 | false 末页）</param>
+    private static void GetSeparator(StringBuilder sb, PagingOptions options, bool isFirstOrLast)
     {
-        if (options.TotalPages <= options.DigitalPageCount + 2)
-        {
-            return;
-        }
+        // 首页 & 末页
+        int count = options.DigitalPageStart + options.DigitalPageCount;
 
-        // 首页
-        if (isFirstOrLast == 1 &&
+        if (isFirstOrLast &&
             options.DigitalPageStart - 1 == 1)
         {
             return;
         }
 
-        // 末页
-        int count = options.DigitalPageCount + options.DigitalPageStart;
-        if (isFirstOrLast == 2 &&
-            (options.TotalPages - 1 == count ||
-            options.TotalPages == count))
+        if (!isFirstOrLast &&
+            (options.TotalPages == count ||
+            count > options.TotalPages))
         {
             return;
         }
 
-        sb.Append($"<li class=\"page-item{options.PagingItemClass}\"{options.PagingItemStyle}>");
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
         sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\">");
         sb.Append("<span aria-hidden=\"true\">&hellip;</span>");
         sb.Append("</a>");
+        sb.Append("</li>");
+    }
+
+    /// <summary>
+    /// 数据分页信息
+    /// </summary>
+    /// <param name="sb">可变的字符串生成器</param>
+    /// <param name="options">数据分页选项(参数)</param>
+    private static void GetPagingInfo(StringBuilder sb, PagingOptions options)
+    {
+        // 分页信息
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
+        sb.Append($"<span class=\"page-link bg-transparent border-0\">共{options.TotalRecords}条，每页</span>");
+        sb.Append("</li>");
+
+        // 分页大小 rounded-0
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\" ms-1{options.PagingItemStyleHtml}>");
+        sb.Append($"<div class=\"dropdown\">");
+        sb.Append($"<a class=\"page-link btn btn-secondary btn-sm dropdown-toggle\" href=\"javascript:void(0)\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">{options.PaginationSize}</a>");
+        sb.Append($"<ul class=\"dropdown-menu\">");
+
+        foreach (int item in options.PaginationSizeRange)
+        {
+            if (item != options.PaginationSize)
+            {
+                sb.Append($"<li><a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"{options.PagingFunction}({options.CurrentPage},{item}{options.ExtraParameters})\">{item}</a></li>");
+            }
+            else
+            {
+                sb.Append($"<li><a class=\"dropdown-item\" href=\"javascript:void(0)\">{item}</a></li>");
+            }
+        }
+
+        sb.Append($"</ul>");
+        sb.Append($"</div>");
         sb.Append("</li>");
     }
 
@@ -106,14 +139,14 @@ internal static class BootstrapV5UI
 
         if (options.CurrentPage > 1)
         {
-            onclickString = $" onclick=\"{options.PagingFunction}({options.PreviousPage}{options.ExtraParameters})\"";
+            onclickString = $" onclick=\"{options.PagingFunction}({options.PreviousPage},{options.PaginationSize}{options.ExtraParameters})\"";
         }
         else if (options.IsUseDisabledMode)
         {
             stateString = " disabled";
         }
 
-        sb.Append($"<li class=\"page-item{options.PagingItemClass}{stateString}\"{options.PagingItemStyle}>");
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}{stateString}\"{options.PagingItemStyleHtml}>");
         sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Previous\"{onclickString}>");
         sb.Append("<span aria-hidden=\"true\">&laquo;</span>");
         sb.Append("</a>");
@@ -143,10 +176,10 @@ internal static class BootstrapV5UI
         }
         else
         {
-            onclickString = $" onclick=\"{options.PagingFunction}(1{options.ExtraParameters})\"";
+            onclickString = $" onclick=\"{options.PagingFunction}(1,{options.PaginationSize}{options.ExtraParameters})\"";
         }
 
-        sb.Append($"<li class=\"page-item{options.PagingItemClass}{stateString}\"{currentString}{options.PagingItemStyle}>");
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}{stateString}\"{currentString}{options.PagingItemStyleHtml}>");
         sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\"{onclickString}>1</a>");
         sb.Append("</li>");
     }
@@ -163,23 +196,18 @@ internal static class BootstrapV5UI
             return;
         }
 
-        int iLen = options.DigitalPageStart + options.DigitalPageCount;
+        int iLen = options.DigitalPageStart + options.DigitalPageCount - 1;
 
-        if (iLen > options.TotalPages)
+        if (iLen >= options.TotalPages)
         {
-            iLen = options.TotalPages;
-        }
-
-        if (options.DigitalPageStart == iLen)
-        {
-            iLen++;
+            iLen = options.TotalPages - 1;
         }
 
         string stateString = string.Empty;
         string onclickString = string.Empty;
         string currentString = string.Empty;
 
-        for (int i = options.DigitalPageStart; i < iLen; i++)
+        for (int i = options.DigitalPageStart; i <= iLen; i++)
         {
             if (options.CurrentPage == i)
             {
@@ -193,10 +221,10 @@ internal static class BootstrapV5UI
             }
             else
             {
-                onclickString = $" onclick=\"{options.PagingFunction}({i}{options.ExtraParameters})\"";
+                onclickString = $" onclick=\"{options.PagingFunction}({i},{options.PaginationSize}{options.ExtraParameters})\"";
             }
 
-            sb.Append($"<li class=\"page-item{options.PagingItemClass}{stateString}\"{currentString}{options.PagingItemStyle}>");
+            sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}{stateString}\"{currentString}{options.PagingItemStyleHtml}>");
             sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\"{onclickString}>{i}</a>");
             sb.Append("</li>");
 
@@ -234,10 +262,10 @@ internal static class BootstrapV5UI
         }
         else
         {
-            onclickString = $" onclick=\"{options.PagingFunction}({options.TotalPages}{options.ExtraParameters})\"";
+            onclickString = $" onclick=\"{options.PagingFunction}({options.TotalPages},{options.PaginationSize}{options.ExtraParameters})\"";
         }
 
-        sb.Append($"<li class=\"page-item{options.PagingItemClass}{stateString}\"{currentString}{options.PagingItemStyle}>");
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}{stateString}\"{currentString}{options.PagingItemStyleHtml}>");
         sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\"{onclickString}>{options.TotalPages}</a>");
         sb.Append("</li>");
     }
@@ -254,15 +282,15 @@ internal static class BootstrapV5UI
 
         if (options.CurrentPage < options.TotalPages)
         {
-            onclickString = $" onclick=\"{options.PagingFunction}({options.NextPage}{options.ExtraParameters})\"";
+            onclickString = $" onclick=\"{options.PagingFunction}({options.NextPage},{options.PaginationSize}{options.ExtraParameters})\"";
         }
         else if (options.IsUseDisabledMode)
         {
             stateString = " disabled";
         }
 
-        sb.Append($"<li class=\"page-item{options.PagingItemClass}{stateString}\"{options.PagingItemStyle}>");
-        sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Next\"{onclickString}>");
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}{stateString}\"{options.PagingItemStyleHtml}>");
+        sb.Append($"<a class=\"page-link rounded-end\" href=\"javascript:void(0)\" aria-label=\"Next\"{onclickString}>");
         sb.Append("<span aria-hidden=\"true\">&raquo;</span>");
         sb.Append("</a>");
         sb.Append("</li>");
