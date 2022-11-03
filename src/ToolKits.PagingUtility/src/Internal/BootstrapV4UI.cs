@@ -32,6 +32,9 @@ internal static class BootstrapV4UI
     /// <returns>数据分页</returns>
     public static string Create(PagingOptions options)
     {
-        return string.Empty;
+        // 人生大事，莫过于__________。
+        PagingHelper.Validate(options);
+
+        return "敬请期待。";
     }
 }
