@@ -35,6 +35,11 @@ public sealed class PagingOptions
 
 
     /// <summary>
+    /// 无数据记录时提示信息
+    /// </summary>
+    public string NoDataRecordedTips { get; set; } = "待加载数据";
+
+    /// <summary>
     /// 数据分页函数名称，首参数为当前页，次参数为分页大小。
     /// </summary>
     /// <remarks>调用JavsScript脚本的函数名称，默认名称：OnPagingUtility。</remarks>

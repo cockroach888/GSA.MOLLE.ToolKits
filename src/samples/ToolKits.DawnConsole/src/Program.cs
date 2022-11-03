@@ -9,7 +9,7 @@ namespace GSA.ToolKits.DawnConsole
         static void Main(string[] args)
         {
             /*
-             * Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello World!");
             Console.WriteLine();
             Console.WriteLine();
 
@@ -33,12 +33,22 @@ namespace GSA.ToolKits.DawnConsole
                 //PagingItemStyle = "font-style:italic;",
                 CurrentPage = 5,
                 PaginationSize = 50,
-                TotalRecords = 30000,
-                IsUsePagingJump = true
+                TotalRecords = 30000
             };
 
             string pageString;
-            
+
+
+            // Page 0
+            options.TotalRecords = 0;
+            options.CurrentPage = 5;
+            pageString = PagingHelper.Builder(PagingUIType.Bootstrap_V5, options);
+
+            //Console.WriteLine($"Page 0: {pageString}");
+            //Console.WriteLine();
+            Console.WriteLine($"{pageString}");
+
+            /*
             // Page 1
             options.TotalRecords = 50;
             options.CurrentPage = 5;
@@ -267,7 +277,7 @@ namespace GSA.ToolKits.DawnConsole
             //Console.WriteLine($"Page 300: {pageString}");
             //Console.WriteLine();
             Console.WriteLine($"{pageString}");
-            
+            */
 
             // Page 1000
             options.TotalRecords = 50000;
@@ -280,7 +290,9 @@ namespace GSA.ToolKits.DawnConsole
             
 
 
-            //Console.WriteLine("按任意键继续...");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("按任意键继续...");
             Console.ReadKey();
         }
     }

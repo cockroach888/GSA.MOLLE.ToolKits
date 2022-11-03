@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.PagingUtility</RootNamespace>
 		<AssemblyName>PagingUtility</AssemblyName>
-		<AssemblyVersion>1.0.1</AssemblyVersion>
-		<FileVersion>1.0.1</FileVersion>
+		<AssemblyVersion>1.1.0</AssemblyVersion>
+		<FileVersion>1.1.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -36,7 +36,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据分页应用工具集 Pagination 数据分页 Bootstrap MVC分页 分页</PackageTags>
-		<PackageReleaseNotes>增补开发日志信息。</PackageReleaseNotes>
+		<PackageReleaseNotes>无数据记录时，增加可定义的提示信息，默认为“待加载数据”提示。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>PagingUtility</PackageId>
 	</PropertyGroup>

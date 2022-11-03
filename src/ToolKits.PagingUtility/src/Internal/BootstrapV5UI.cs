@@ -42,22 +42,31 @@ internal static class BootstrapV5UI
         sb.Append($"<nav aria-label=\"Page Paging Pagination navigation\"{options.PagingTagIdHtml}{options.PagingTagClassHtml}{options.PagingTagStyleHtml}>");
         sb.Append("<ul class=\"pagination m-auto\">");
 
-        // 儒家圣人说了，顺序不可乱。
-        GetPreviousPage(sb, options);
-        GetFirstPage(sb, options);
+        if (options.TotalRecords <= 0)
+        {
+            sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
+            sb.Append($"<span class=\"page-link\">{options.NoDataRecordedTips}</span>");
+            sb.Append("</li>");
+        }
+        else
+        {
+            // 儒家圣人说了，顺序不可乱。
+            GetPreviousPage(sb, options);
+            GetFirstPage(sb, options);
 
-        GetSeparator(sb, options, true);
-        GetDigitalPage(sb, options);
-        GetSeparator(sb, options, false);
+            GetSeparator(sb, options, true);
+            GetDigitalPage(sb, options);
+            GetSeparator(sb, options, false);
 
-        GetLastPage(sb, options);
-        GetNextPage(sb, options);
+            GetLastPage(sb, options);
+            GetNextPage(sb, options);
 
-        GetJumpToPage(sb, options);
-        GetPagingInfo(sb, options);
+            GetJumpToPage(sb, options);
+            GetPagingInfo(sb, options);
+        }
 
-        sb.Append($"</ul>");
-        sb.Append($"</nav>");
+        sb.Append("</ul>");
+        sb.Append("</nav>");
 
         return sb.ToString();
     }
@@ -87,7 +96,7 @@ internal static class BootstrapV5UI
         }
 
         sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
-        sb.Append($"<a class=\"page-link\" href=\"javascript:void(0)\">");
+        sb.Append("<a class=\"page-link\" href=\"javascript:void(0)\">");
         sb.Append("<span aria-hidden=\"true\">&hellip;</span>");
         sb.Append("</a>");
         sb.Append("</li>");
@@ -131,10 +140,10 @@ internal static class BootstrapV5UI
         sb.Append("</li>");
 
         // 分页大小 rounded-0
-        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\" ms-1{options.PagingItemStyleHtml}>");
-        sb.Append($"<div class=\"dropdown\">");
+        sb.Append($"<li class=\"page-item{options.PagingItemClassHtml}\"{options.PagingItemStyleHtml}>");
+        sb.Append("<div class=\"dropdown\">");
         sb.Append($"<a class=\"page-link btn btn-secondary btn-sm dropdown-toggle\" href=\"javascript:void(0)\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">{options.PaginationSize}</a>");
-        sb.Append($"<ul class=\"dropdown-menu\">");
+        sb.Append("<ul class=\"dropdown-menu\">");
 
         foreach (int item in options.PaginationSizeRange)
         {
@@ -148,8 +157,17 @@ internal static class BootstrapV5UI
             }
         }
 
-        sb.Append($"</ul>");
-        sb.Append($"</div>");
+        /*
+        <select class="form-select" aria-label="Pagination Size">
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+            <option value="75">75</option>
+            <option value="100">100</option>
+        </select>
+        */
+
+        sb.Append("</ul>");
+        sb.Append("</div>");
         sb.Append("</li>");
     }
 
