@@ -57,6 +57,13 @@ internal sealed class AutoStationHostedService : IHostedService
         stopwatch.Stop();
 
         _logger.LogInformation($"查询到站点信息：编号({info?.StationId})、站名({info?.StationName})，耗时：{stopwatch.Elapsed}");
+
+
+        stopwatch.Restart();
+        var datas = await _stationDataHelper.SearchAsync("nmcqx1001").ConfigureAwait(false);
+        stopwatch.Stop();
+
+        _logger.LogInformation($"查询到站点数据：{datas?.Count()}条，耗时：{stopwatch.Elapsed}");
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

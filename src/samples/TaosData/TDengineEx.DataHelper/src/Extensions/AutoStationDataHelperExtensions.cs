@@ -25,5 +25,35 @@ namespace TDengineEx.DataHelper;
 /// </summary>
 public static class AutoStationDataHelperExtensions
 {
-    
+    /// <summary>
+    /// 获取气象自动站数据
+    /// </summary>
+    /// <param name="helper">数据访问助手</param>
+    /// <param name="stationId">自动站编号</param>
+    /// <param name="cancellationToken">取消令牌</param>
+    /// <returns>气象自动站数据枚举列表</returns>
+    public static async Task<IEnumerable<AutoStationDataModel>?> SearchAsync(
+        this IAutoStationDataHelper helper,
+        string stationId,
+        CancellationToken cancellationToken = default)
+    {
+        AutoStationDataHelper innerHelper = (AutoStationDataHelper)helper;
+
+        string tableName = $"{innerHelper.DBName}.{innerHelper.TablePrefix}_{stationId}";
+        string columnNameString = TDataModelHelper.GetColumnNameString<AutoStationDataModel>();
+
+        TDengineSearchParam param = new(tableName)
+        {
+            Token = cancellationToken,
+            DBName = innerHelper.DBName,
+            FieldNames = columnNameString,
+            WhereString = "temperature between 20 and 35",
+            OrderByString = "tss desc",
+            PageNumber = 10,
+            PaginationSize = 50
+        };
+
+        IEnumerable<AutoStationDataModel>? result = await innerHelper.Connector.ExecuteSearchModelAsync<AutoStationDataModel>(param).ConfigureAwait(false);
+        return result;
+    }
 }

@@ -21,7 +21,7 @@
         //services.AddSingleton<IAppHostLifetime, AppHostLifetime>();
 
         // 数据库、数据表、初始数据服务
-        services.AddTransient<IResetDB, ResetAutoStationDB>();
+        //services.AddTransient<IResetDB, ResetAutoStationDB>();
     })
     .ConfigureLogging((context, logging) =>
     {
