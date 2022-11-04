@@ -83,7 +83,8 @@ public static class TDengineConnectorExtensions
             return Enumerable.Empty<TModel>();
         }
 
-        if (result.Desc is not null)
+        if (!string.IsNullOrWhiteSpace(result.Desc) &&
+            result.Desc is not null)
         {
             throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
         }
@@ -111,7 +112,8 @@ public static class TDengineConnectorExtensions
             return Enumerable.Empty<TModel>();
         }
 
-        if (result.Desc is not null)
+        if (!string.IsNullOrWhiteSpace(result.Desc) &&
+            result.Desc is not null)
         {
             throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
         }
@@ -180,7 +182,7 @@ public static class TDengineConnectorExtensions
         this ITDengineConnector connector,
         TDengineWhereParam condition)
     {
-        string sqlString = $"select count(*) from {condition.TableName};";
+        string sqlString = $"select count(*) from {condition.TableName}";
         sqlString = TDengineCommons.WhereStringValidateAndJoinToSqlString(sqlString, condition.WhereString);
 
         TDengineQueryParam param = new(sqlString)
@@ -196,7 +198,8 @@ public static class TDengineConnectorExtensions
             return 0;
         }
 
-        if (result.Desc is not null)
+        if (!string.IsNullOrWhiteSpace(result.Desc) &&
+            result.Desc is not null)
         {
             throw new Exception($"执行数据记录统计时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
         }

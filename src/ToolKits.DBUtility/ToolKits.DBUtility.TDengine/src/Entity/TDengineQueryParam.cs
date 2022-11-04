@@ -55,9 +55,9 @@ public sealed class TDengineQueryParam
 
 
     /// <summary>
-    /// 实例化一个新的TDengine通用查询参数
+    /// 实例化一个新的 TDengine 通用查询参数
     /// </summary>
     /// <param name="sqlString">需要执行的SQL字符串</param>
-    /// <returns>TDengine通用查询参数</returns>
+    /// <returns>TDengine 通用查询参数</returns>
     public static TDengineQueryParam New(string sqlString) => new(sqlString);
 }

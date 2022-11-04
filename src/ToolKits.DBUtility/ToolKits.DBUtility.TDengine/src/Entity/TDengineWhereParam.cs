@@ -21,13 +21,13 @@
 namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
-/// TDengine条件查询参数类
+/// TDengine 条件查询参数类
 /// </summary>
 [Serializable]
 public sealed class TDengineWhereParam
 {
     /// <summary>
-    /// TDengine条件查询参数
+    /// TDengine 条件查询参数
     /// </summary>
     /// <param name="tableName">数据表名称</param>
     public TDengineWhereParam(string tableName)
@@ -60,9 +60,9 @@ public sealed class TDengineWhereParam
 
 
     /// <summary>
-    /// 实例化一个新的TDengine条件查询参数
+    /// 实例化一个新的 TDengine 条件查询参数
     /// </summary>
-    /// <param name="sqlString">数据表名称</param>
-    /// <returns>TDengine条件查询参数</returns>
-    public static TDengineWhereParam New(string sqlString) => new(sqlString);
+    /// <param name="tableName">数据表名称</param>
+    /// <returns>TDengine 条件查询参数</returns>
+    public static TDengineWhereParam New(string tableName) => new(tableName);
 }

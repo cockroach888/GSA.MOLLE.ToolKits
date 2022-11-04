@@ -32,7 +32,8 @@ public static class TDengineCommons
     /// <returns>验证后的查询条件字符串</returns>
     public static string? WhereStringValidate(string? whereString)
     {
-        if (whereString is null)
+        if (string.IsNullOrWhiteSpace(whereString) ||
+            whereString is null)
         {
             return default;
         }
@@ -63,11 +64,14 @@ public static class TDengineCommons
     {
         whereString = WhereStringValidate(whereString);
 
-        if (whereString is null)
+        if (string.IsNullOrWhiteSpace(whereString) ||
+            whereString is null)
         {
             return sqlString;
         }
 
-        return sqlString.Insert(sqlString.Length - 1, whereString);
+        int startIndex = sqlString.EndsWith(";") ? sqlString.Length - 1 : sqlString.Length;
+
+        return sqlString.Insert(startIndex, whereString);
     }
 }

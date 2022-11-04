@@ -101,7 +101,8 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
             Method = Method.Post
         };
 
-        if (param.DBName is not null)
+        if (!string.IsNullOrWhiteSpace(param.DBName) &&
+            param.DBName is not null)
         {
             request.Resource = param.DBName;
         }

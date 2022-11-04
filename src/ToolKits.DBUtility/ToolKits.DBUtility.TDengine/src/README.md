@@ -104,3 +104,10 @@
 - 修正对于ValueTask的使用误解，变更为Task的直接异步形态；
 - 经过查阅相关资料，ValueTask多用于缓存消费，会可能导致返回的对象或结果已释放等；
 - 恢复上游引用的自动依赖传递，以避免下游需要单独引用问题，提高用户体验。
+
+### 2022-11-04
+- 调整个别注释格式，增加空格；
+- 修正TDengine条件查询参数类中的New方法，参数名称命名错误问题；
+- 参数名称本应为数据表名称，结果成了SQL字符串，导致了误导性消费；
+- 修正所有字符串判断，增加string.IsNullOrWhiteSpace判断，仅is not null会导致空字符串有效；
+- 在WhereStringValidateAndJoinToSqlString中增加开始索引判断应用。
