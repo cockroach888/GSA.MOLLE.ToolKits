@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
 		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>6.3.3</AssemblyVersion>
-		<FileVersion>6.3.3</FileVersion>
+		<AssemblyVersion>6.4.0</AssemblyVersion>
+		<FileVersion>6.4.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -37,7 +37,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>修正部分已知和未知问题，优化部分功能构成，增强效用和用户体验。</PackageReleaseNotes>
+		<PackageReleaseNotes>增加数据检索与数据分页应用场景功能实现。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 

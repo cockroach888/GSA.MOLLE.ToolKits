@@ -111,3 +111,13 @@
 - 参数名称本应为数据表名称，结果成了SQL字符串，导致了误导性消费；
 - 修正所有字符串判断，增加string.IsNullOrWhiteSpace判断，仅is not null会导致空字符串有效；
 - 在WhereStringValidateAndJoinToSqlString中增加开始索引判断应用。
+
+### 2022-11-04
+- 增加数据检索与数据分页应用场景功能实现；
+- 增加 TDengine 数据检索参数(TDengineSearchParam)类；
+- 数据检索参数类涵盖所有数据检索相关的参数信息，如数据分页、排序、条件等；
+- TDengineCommons类中增加排序和数据分页拼接方法；
+- 拆分 TDengine RESTful API 连接器扩展类，变更为分部类形式；
+- 增加 TDengineConnectorDataModelExtensions 并迁移相应功能；
+- 增加 TDengineConnectorSingleModelExtensions 并迁移相应功能；
+- 增加 TDengineConnectorSearchModelExtensions 并实现数据检索相应功能。

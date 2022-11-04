@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
-/// TDengine常见和通用功能类
+/// TDengine 常见和通用功能类
 /// </summary>
 public static class TDengineCommons
 {
@@ -73,5 +73,42 @@ public static class TDengineCommons
         int startIndex = sqlString.EndsWith(";") ? sqlString.Length - 1 : sqlString.Length;
 
         return sqlString.Insert(startIndex, whereString);
+    }
+
+    /// <summary>
+    /// 将排序字符串加入到SQL语句中
+    /// </summary>
+    /// <param name="sqlString">SQL字符串</param>
+    /// <param name="orderbyString">排序字符串</param>
+    /// <returns>SQL字符串</returns>
+    public static string OrderByJoinToSqlString(string sqlString, string? orderbyString)
+    {
+        if (string.IsNullOrWhiteSpace(orderbyString) ||
+            orderbyString is null)
+        {
+            return sqlString;
+        }
+
+        return $"{sqlString} order by {orderbyString}";
+    }
+
+    /// <summary>
+    /// 将数据分页功能加入到SQL语句中
+    /// </summary>
+    /// <param name="sqlString">SQL字符串</param>
+    /// <param name="pageNumber">检索页码</param>
+    /// <param name="paginationSize">分页大小</param>
+    /// <returns>SQL字符串</returns>
+    public static string PaginationJoinToSqlString(string sqlString, int pageNumber, int paginationSize)
+    {
+        if (pageNumber <= 0 || paginationSize <= 0)
+        {
+            return sqlString;
+        }
+
+        //数据分页偏移量
+        int paginationOffset = (pageNumber - 1) * paginationSize;
+
+        return $"{sqlString} limit {paginationSize} offset {paginationOffset}";
     }
 }

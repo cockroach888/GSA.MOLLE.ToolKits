@@ -23,7 +23,7 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 /// <summary>
 /// TDengine RESTful API 连接器扩展类
 /// </summary>
-public static class TDengineConnectorExtensions
+public static partial class TDengineConnectorExtensions
 {
     /// <summary>
     /// 执行指定请求操作，并返回其请求结果。
@@ -58,116 +58,6 @@ public static class TDengineConnectorExtensions
 
         TDengineResult? result = await connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
         return result?.Desc;
-    }
-
-
-    /// <summary>
-    /// 执行查询请求操作，并返回其数据模型枚举列表。
-    /// </summary>
-    /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
-    /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="param">通用查询参数</param>
-    /// <returns>数据模型枚举列表</returns>
-    /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
-    public static async Task<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel, TIgnoreAttribute>(
-        this ITDengineConnector connector,
-        TDengineQueryParam param)
-        where TModel : class, new()
-        where TIgnoreAttribute : Attribute
-    {
-        TDengineResult? result = await connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
-
-        if (result is null)
-        {
-            return Enumerable.Empty<TModel>();
-        }
-
-        if (!string.IsNullOrWhiteSpace(result.Desc) &&
-            result.Desc is not null)
-        {
-            throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
-        }
-
-        return await result.ParseToTModelAsync<TModel, TIgnoreAttribute>().ConfigureAwait(false);
-    }
-
-    /// <summary>
-    /// 执行查询请求操作，并返回其数据模型枚举列表。
-    /// </summary>
-    /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="param">通用查询参数</param>
-    /// <returns>数据模型枚举列表</returns>
-    /// <exception cref="Exception">执行请求发生异常时，抛出的异常信息。</exception>
-    public static async Task<IEnumerable<TModel>?> ExecuteDataModelAsync<TModel>(
-        this ITDengineConnector connector,
-        TDengineQueryParam param)
-        where TModel : class, new()
-    {
-        TDengineResult? result = await connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
-
-        if (result is null)
-        {
-            return Enumerable.Empty<TModel>();
-        }
-
-        if (!string.IsNullOrWhiteSpace(result.Desc) &&
-            result.Desc is not null)
-        {
-            throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
-        }
-
-        return await result.ParseToTModelAsync<TModel>().ConfigureAwait(false);
-    }
-
-
-    /// <summary>
-    /// 执行查询请求操作，并返回其数据模型信息。
-    /// </summary>
-    /// <remarks>ExecuteDataModelAsync的扩展方法，当存在多条数据时，将返回第一条数据。</remarks>
-    /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
-    /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="param">通用查询参数</param>
-    /// <returns>数据模型</returns>
-    public static async Task<TModel?> ExecuteSingleModelAsync<TModel, TIgnoreAttribute>(
-        this ITDengineConnector connector,
-        TDengineQueryParam param)
-        where TModel : class, new()
-        where TIgnoreAttribute : Attribute
-    {
-        IEnumerable<TModel>? result = await connector.ExecuteDataModelAsync<TModel, TIgnoreAttribute>(param).ConfigureAwait(false);
-
-        if (result is null)
-        {
-            return default;
-        }
-
-        return result.FirstOrDefault();
-    }
-
-    /// <summary>
-    /// 执行查询请求操作，并返回其数据模型信息。
-    /// </summary>
-    /// <remarks>ExecuteDataModelAsync的扩展方法，当存在多条数据时，将返回第一条数据。</remarks>
-    /// <typeparam name="TModel">数据模型泛型</typeparam>
-    /// <param name="connector">TDengine RESTful API 连接器</param>
-    /// <param name="param">通用查询参数</param>
-    /// <returns>数据模型</returns>
-    public static async Task<TModel?> ExecuteSingleModelAsync<TModel>(
-        this ITDengineConnector connector,
-        TDengineQueryParam param)
-        where TModel : class, new()
-    {
-        IEnumerable<TModel>? result = await connector.ExecuteDataModelAsync<TModel>(param).ConfigureAwait(false);
-
-        if (result is null)
-        {
-            return default;
-        }
-
-        return result.FirstOrDefault();
     }
 
 
