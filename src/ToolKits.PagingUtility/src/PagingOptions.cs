@@ -28,7 +28,7 @@ public sealed class PagingOptions
 {
     private int _currentPage = 1;
     private int _paginationSize = 25;
-    private int _totalRecords = 0;
+    private long _totalRecords = 0;
     private int _digitalPageCount = 5;
 
     private string? _extraParameters;
@@ -37,7 +37,7 @@ public sealed class PagingOptions
     /// <summary>
     /// 无数据记录时提示信息
     /// </summary>
-    public string NoDataRecordedTips { get; set; } = "待加载数据";
+    public string NoDataRecordedTips { get; set; } = "暂无数据，或未检索到任何数据，待加载数据。";
 
     /// <summary>
     /// 数据分页函数名称，首参数为当前页，次参数为分页大小。
@@ -268,7 +268,7 @@ public sealed class PagingOptions
     /// 总记录数
     /// </summary>
     /// <remarks>缺省为 0</remarks>
-    public int TotalRecords
+    public long TotalRecords
     {
         get { return _totalRecords; }
         set
@@ -367,7 +367,7 @@ public sealed class PagingOptions
             return;
         }
 
-        TotalPages = TotalRecords / PaginationSize;
+        TotalPages = (int)(TotalRecords / PaginationSize);
 
         if (TotalRecords % PaginationSize != 0)
         {
