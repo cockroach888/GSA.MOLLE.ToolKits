@@ -37,9 +37,27 @@ public sealed class JsonTimestampConverter : JsonConverter<DateTime>
     /// <returns>The converted value.</returns>
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        string? valueString = reader.GetString();
-        long value = InternalTypeHelper.TypeToInt64(valueString, 0);
-        return DateTimeHelper.ConvertToDateTime(value);
+        if (reader.Read() is false ||
+            reader.TokenType is not (JsonTokenType.Number | JsonTokenType.String))
+        {
+            return DateTime.MinValue;
+        }
+
+        long value = 0;
+
+        switch (reader.TokenType)
+        {
+            case JsonTokenType.Number:
+                reader.TryGetInt64(out value);
+                break;
+            case JsonTokenType.String:
+                string? valueString = reader.GetString();
+                value = InternalTypeHelper.TypeToInt64(valueString, 0);
+                break;
+            default: break;
+        }
+
+        return DateTimeHelper.TryConvertToDateTime(value);
     }
 
     /// <summary>

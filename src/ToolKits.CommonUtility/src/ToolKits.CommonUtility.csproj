@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>6.6.0</AssemblyVersion>
-		<FileVersion>6.6.0</FileVersion>
+		<AssemblyVersion>6.6.1</AssemblyVersion>
+		<FileVersion>6.6.1</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -36,7 +36,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>调整JSON时间戳自定义转换器的相关应用。</PackageReleaseNotes>
+		<PackageReleaseNotes>修正时间戳JSON自定义转换器中的严重BUG。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>

@@ -64,6 +64,31 @@ public static class DateTimeHelper
         => _dictToTimestamp[type](value.ToUniversalTime());
 
     /// <summary>
+    /// 转换指定时间戳为日期与时间(请优先使用指定类型方法)
+    /// </summary>
+    /// <remarks>自动尝试使用“毫秒->秒”的顺序解析，如果均失败则返回最小时间。</remarks>
+    /// <param name="value">需要转换的时间戳</param>
+    /// <returns>日期与时间</returns>
+    public static DateTime TryConvertToDateTime(long value)
+    {
+        try
+        {
+            return _dictToDateTime[TimestampType.TotalMilliseconds](value);
+        }
+        catch
+        {
+            try
+            {
+                return _dictToDateTime[TimestampType.TotalSeconds](value);
+            }
+            catch
+            {
+                return DateTime.MinValue;
+            }
+        }
+    }
+
+    /// <summary>
     /// 转换指定时间戳为日期与时间
     /// </summary>
     /// <param name="value">需要转换的时间戳</param>
