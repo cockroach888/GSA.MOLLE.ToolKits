@@ -63,6 +63,7 @@ public static class DateTimeHelper
     public static long ConvertToTimestamp(DateTime value, TimestampType type = TimestampType.TotalMilliseconds)
         => _dictToTimestamp[type](value.ToUniversalTime());
 
+
     /// <summary>
     /// 转换指定时间戳为日期与时间(请优先使用指定类型方法)
     /// </summary>
@@ -87,6 +88,15 @@ public static class DateTimeHelper
             }
         }
     }
+
+    /// <summary>
+    /// 转换指定时间戳为表示当前所在的本地的日期与时间
+    /// </summary>
+    /// <param name="value">需要转换的时间戳</param>
+    /// <returns>本地的日期与时间</returns>
+    public static DateTime TryConvertToLocalTime(long value)
+        => TryConvertToDateTime(value).ToLocalTime();
+
 
     /// <summary>
     /// 转换指定时间戳为日期与时间

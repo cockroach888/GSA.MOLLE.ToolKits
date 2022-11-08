@@ -114,4 +114,5 @@
 ### 2022-11-08
 - 修正时间戳JSON自定义转换器中的严重BUG；
 - 增加TryConvertToDateTime方法，自动根据毫秒->秒的解析，如果均失败则返回最小时间；
-- 增加读取Utf8JsonReader时的Number或String判断，并相应获取数值。
+- 增加读取Utf8JsonReader时的Number或String判断，并相应获取数值；
+- 调整时间戳JSON自定义转换器，在转换后的时间默认为本地时间。

@@ -56,7 +56,7 @@ public sealed class JsonTimestampConverter : JsonConverter<DateTime>
             default: break;
         }
 
-        return DateTimeHelper.TryConvertToDateTime(value);
+        return DateTimeHelper.TryConvertToLocalTime(value);
     }
 
     /// <summary>

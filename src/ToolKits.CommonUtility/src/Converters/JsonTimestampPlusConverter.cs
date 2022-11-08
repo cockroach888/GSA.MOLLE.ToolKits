@@ -60,7 +60,7 @@ public sealed class JsonTimestampPlusConverter : JsonConverter<DateTime>
             default: break;
         }
 
-        return DateTimeHelper.TryConvertToDateTime(value);
+        return DateTimeHelper.TryConvertToLocalTime(value);
     }
 
     /// <summary>
