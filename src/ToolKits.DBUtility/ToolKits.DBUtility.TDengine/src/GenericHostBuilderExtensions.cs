@@ -6,7 +6,7 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：AppHostBuilderExtensions.cs
+// 文件名称：GenericHostBuilderExtensions.cs
 // 项目名称：TDengine RESTful API 连接器
 // 创建时间：2022-06-22 22:20:19
 // 创建人员：宋杰军
@@ -28,7 +28,7 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 /// <summary>
 /// 涛思数据通用主机扩展类
 /// </summary>
-public static class AppHostBuilderExtensions
+public static class GenericHostBuilderExtensions
 {
     /// <summary>
     /// 集成TDengine时序数据库
@@ -43,7 +43,12 @@ public static class AppHostBuilderExtensions
             services.Configure(configure);
 
             var config = context.Configuration.GetSection(nameof(TDengineOptions));
-            TDengineOptions opt = ConfigurationBinder.Get<TDengineOptions>(config);
+            TDengineOptions? opt = ConfigurationBinder.Get<TDengineOptions>(config);
+
+            if (opt is null)
+            {
+                throw new ArgumentNullException(nameof(TDengineOptions));
+            }
 
             services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
             services.TryAddSingleton<ITDengineConnectorFactory, TDengineConnectorFactory>();
@@ -66,7 +71,12 @@ public static class AppHostBuilderExtensions
             services.Configure<TDengineOptions>(context.Configuration.GetSection(nameof(TDengineOptions)));
 
             var config = context.Configuration.GetSection(nameof(TDengineOptions));
-            TDengineOptions opt = ConfigurationBinder.Get<TDengineOptions>(config);
+            TDengineOptions? opt = ConfigurationBinder.Get<TDengineOptions>(config);
+
+            if (opt is null)
+            {
+                throw new ArgumentNullException(nameof(TDengineOptions));
+            }
 
             services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
             services.TryAddSingleton<ITDengineConnectorFactory, TDengineConnectorFactory>();
