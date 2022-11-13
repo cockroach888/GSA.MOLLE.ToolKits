@@ -4,11 +4,11 @@
 
 ## 功能介绍
 
-**基于官方提供的RESTful API接口，使用.net6(即将提供.net7支持)等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的NuGet包供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。**
+**基于官方提供的RESTful API接口，使用.NET 7等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的NuGet包供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。**
 
-- Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .net6 (.net7 support will be provided soon). This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding NuGet package is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
+- Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .NET 7. This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding NuGet package is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
 - 应用示例(samples)：https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/samples/TaosData
-- 鄙人专注.Net技术，深入研习.NET 6+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 鄙人专注.NET技术，深入研习.NET 6|7+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成；本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。
 
 <br>
@@ -121,3 +121,7 @@
 - 增加 TDengineConnectorDataModelExtensions 并迁移相应功能；
 - 增加 TDengineConnectorSingleModelExtensions 并迁移相应功能；
 - 增加 TDengineConnectorSearchModelExtensions 并实现数据检索相应功能。
+
+### 2022-11-13
+- 全面进入.NET 7时代，将深入研习部分技术体系及源码，增加net7.0独立编译支持。
+- 去掉net5.0独立编译支持，转由netstandard标准库提供支持。
