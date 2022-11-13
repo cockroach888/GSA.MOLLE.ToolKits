@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：CockroachServiceFactory.cs
+// 文件名称：GenericHostBuilderExtensions.cs
 // 项目名称：魂哥常用工具集
-// 创建时间：2021-02-28 20:06:22
+// 创建时间：2022-11-13 15:09:57
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,16 +18,27 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
+
 namespace GSA.ToolKits.CockroachContainer;
 
 /// <summary>
-/// 自定义服务(伪IOC)容器工厂
+/// 自定义服务(伪IOC)容器GenericHost扩展服务
 /// </summary>
-public static class CockroachServiceFactory
+public static class GenericHostBuilderExtensions
 {
     /// <summary>
-    /// 新建自定义服务(伪IOC)容器
+    /// 集成自定义服务(伪IOC)容器
     /// </summary>
-    /// <returns></returns>
-    public static ICockroachService New() => new CockroachService();
+    /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+    /// <returns>The same instance of the <see cref="IHostBuilder"/> for chaining.</returns>
+    public static IHostBuilder UseCockroachService(this IHostBuilder hostBuilder)
+    {
+        return hostBuilder.ConfigureServices((context, services) =>
+        {
+            services.TryAddSingleton<ICockroachService>(sp => new CockroachService());
+        });
+    }
 }
