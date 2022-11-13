@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net6.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine.Managed</RootNamespace>
 		<AssemblyName>DBUtility.TDengine.Managed</AssemblyName>
-		<AssemblyVersion>6.0.1</AssemblyVersion>
-		<FileVersion>6.0.1</FileVersion>
+		<AssemblyVersion>7.0.0</AssemblyVersion>
+		<FileVersion>7.0.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -41,7 +41,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine Managed</PackageTags>
-		<PackageReleaseNotes>同步更新上游库依赖，以避免重大问题。</PackageReleaseNotes>
+		<PackageReleaseNotes>全面进入.NET 7时代，将深入研习部分技术体系及源码，增加net7.0独立编译支持。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
@@ -71,7 +71,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

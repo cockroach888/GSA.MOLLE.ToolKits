@@ -113,7 +113,7 @@ internal sealed class TDengineDBManage : ITDengineDBManage
         sb.Append(';');
 
         TDengineQueryParam param = new(sb.ToString());
-        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+        _ = await _connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -125,7 +125,7 @@ internal sealed class TDengineDBManage : ITDengineDBManage
     {
         string sqlString = $"drop database if exists {dbName};";
         TDengineQueryParam param = new(sqlString);
-        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+        _ = await _connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
     }
 
     #endregion

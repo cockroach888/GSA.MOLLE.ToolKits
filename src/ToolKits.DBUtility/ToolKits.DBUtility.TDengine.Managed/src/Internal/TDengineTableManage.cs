@@ -84,7 +84,7 @@ public sealed class TDengineTableManage : ITDengineTableManage
         {
             DBName = option.DBName
         };
-        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+        _ = await _connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public sealed class TDengineTableManage : ITDengineTableManage
         {
             DBName = dbName
         };
-        _ = await _connector.ExecutionToResultAsync(param).ConfigureAwait(false);
+        _ = await _connector.ExecuteRequestResultAsync(param).ConfigureAwait(false);
     }
 
     #endregion
