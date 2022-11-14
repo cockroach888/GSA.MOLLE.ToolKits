@@ -33,14 +33,17 @@ public static class GenericHostBuilderExtensions
     /// <summary>
     /// 集成TDengine时序数据库
     /// </summary>
+    /// <remarks>
+    /// <para><see cref="TDengineOptions"/> 来自默认的配置文件中，如：appsettings.json 文件。</para>
+    /// <para>注意：配置节名称必须与类名称相同，即：TDengineOptions。</para>
+    /// </remarks>
     /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
-    /// <param name="configure">TDengine选项参数</param>
     /// <returns>实现链式编程的同一个 <see cref="IHostBuilder"/> 实例。</returns>
-    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder, Action<TDengineOptions> configure)
+    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder)
     {
         return hostBuilder.ConfigureServices((context, services) =>
         {
-            services.Configure(configure);
+            services.Configure<TDengineOptions>(context.Configuration.GetSection(nameof(TDengineOptions)));
 
             var config = context.Configuration.GetSection(nameof(TDengineOptions));
             TDengineOptions? opt = ConfigurationBinder.Get<TDengineOptions>(config);
@@ -58,17 +61,14 @@ public static class GenericHostBuilderExtensions
     /// <summary>
     /// 集成TDengine时序数据库
     /// </summary>
-    /// <remarks>
-    /// <para><see cref="TDengineOptions"/> 来自默认的配置文件中，如：appsettings.json 文件。</para>
-    /// <para>注意：配置节名称必须与类名称相同，即：TDengineOptions。</para>
-    /// </remarks>
     /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+    /// <param name="configure">TDengine选项参数</param>
     /// <returns>实现链式编程的同一个 <see cref="IHostBuilder"/> 实例。</returns>
-    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder)
+    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder, Action<TDengineOptions> configure)
     {
         return hostBuilder.ConfigureServices((context, services) =>
         {
-            services.Configure<TDengineOptions>(context.Configuration.GetSection(nameof(TDengineOptions)));
+            services.Configure(configure);
 
             var config = context.Configuration.GetSection(nameof(TDengineOptions));
             TDengineOptions? opt = ConfigurationBinder.Get<TDengineOptions>(config);
