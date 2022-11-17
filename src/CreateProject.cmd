@@ -57,7 +57,7 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDeng
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- 各类常用工具集 & 13 ----------
+@echo\&echo  ---------- 各类常用工具集 & 12 ----------
 
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.CockroachContainer -o ToolKits.CockroachContainer/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.CockroachContainer/src
@@ -77,8 +77,8 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.GoesUtility/src
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.NuclearUtility -o ToolKits.NuclearUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.NuclearUtility/src
 
-dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.PagingUtility -o ToolKits.PagingUtility/src
-dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PagingUtility/src
+dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.PagerUtility -o ToolKits.PagerUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PagerUtility/src
 
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.PHYUtility -o ToolKits.PHYUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PHYUtility/src
@@ -95,8 +95,23 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.VerifyUtility/src
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.WebUtility -o ToolKits.WebUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.WebUtility/src
 
+
+
+
+
+@echo.
+@echo.
+@echo.
+@echo\&echo  ---------- 迈向新起点再出发工具集 & Forever 3 ----------
+
 dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.CommonUtility -o ToolKits.CommonUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.CommonUtility/src
+
+dotnet new classlib -lang "C#" -f net6.0 -n ToolKits.PagingUtility -o ToolKits.PagingUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PagingUtility/src
+
+dotnet new classlib -lang "C#" -f net7.0 -n ToolKits.PasswordUtility -o ToolKits.PasswordUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PasswordUtility/src
 
 
 
