@@ -53,14 +53,14 @@ internal sealed class AutoStationHostedService : IHostedService
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         Stopwatch stopwatch = Stopwatch.StartNew();
-        var info = await _stationHelper.SelectAsync("nmcqx1001").ConfigureAwait(false);
+        var info = await _stationHelper.SelectAsync("nmcqx1025").ConfigureAwait(false);
         stopwatch.Stop();
 
         _logger.LogInformation($"查询到站点信息：编号({info?.StationId})、站名({info?.StationName})，耗时：{stopwatch.Elapsed}");
 
 
         stopwatch.Restart();
-        var datas = await _stationDataHelper.SearchAsync("nmcqx1001").ConfigureAwait(false);
+        var datas = await _stationDataHelper.SearchAsync("nmcqx1025").ConfigureAwait(false);
         stopwatch.Stop();
 
         _logger.LogInformation($"查询到站点数据：{datas?.Count()}条，耗时：{stopwatch.Elapsed}");
