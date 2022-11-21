@@ -101,10 +101,18 @@ internal sealed class TDengineConnector : ITDengineConnector, IDisposable
             Method = Method.Post
         };
 
+        // 数据库名称
         if (!string.IsNullOrWhiteSpace(param.DBName) &&
             param.DBName is not null)
         {
             request.Resource = param.DBName;
+
+            // 时区参数，只有带数据库名称时方可有效。
+            if (Options.VersionSelector is TDengineVersion.V3 &&
+                !string.IsNullOrWhiteSpace(Options.TimeZone))
+            {
+                request.Resource = $"{param.DBName}?tz={Options.TimeZone}";
+            }
         }
 
         // 自动补全SQL语句末尾结束符
