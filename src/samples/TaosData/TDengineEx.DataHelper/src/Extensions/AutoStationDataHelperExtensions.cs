@@ -47,7 +47,7 @@ public static class AutoStationDataHelperExtensions
             Token = cancellationToken,
             DBName = innerHelper.DBName,
             FieldNames = columnNameString,
-            WhereString = "temperature between 20 and 35",
+            WhereString = "temperature between -20 and 20",
             OrderByString = "tss desc",
             PageNumber = 10,
             PaginationSize = 50

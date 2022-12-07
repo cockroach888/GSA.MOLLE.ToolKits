@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TDengineEx.Bootstrapper": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

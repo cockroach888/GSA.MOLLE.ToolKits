@@ -49,6 +49,16 @@ public sealed class TDengineOptions
     public string Password { get; set; } = "taosdata";
 
     /// <summary>
+    /// 时区（缺省 Asia/Shanghai）
+    /// </summary>
+    /// <remarks>
+    /// 注意：
+    /// <para>1.时区参数只在 TDEngine 3.x 版本才支持；</para>
+    /// <para>2.时区参数只有带数据库名称时方可有效。</para>
+    /// </remarks>
+    public string TimeZone { get; set; } = "Asia/Shanghai";
+
+    /// <summary>
     /// 版本选择器
     /// </summary>
     /// <remarks>缺省为 TDengine2.x 版本</remarks>
