@@ -11,6 +11,9 @@ git push gitee
 @echo\&echo 推送到 GitHub 远程仓库
 git push github
 
+@echo\&echo 推送到 Bitbucket 远程仓库
+git push bitbucket
+
 @echo\&echo 推送到 Origin 远程仓库
 git push origin
 
