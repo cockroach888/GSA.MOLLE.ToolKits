@@ -14,8 +14,11 @@ git push github
 @echo\&echo 推送到 Bitbucket 远程仓库
 git push bitbucket
 
-@echo\&echo 推送到 Origin 远程仓库
-git push origin
+@echo\&echo 推送到 Azure 远程仓库
+git push azure
+
+::@echo\&echo 推送到 Origin 远程仓库
+::git push origin
 
 @echo\&echo 查看本地仓库状态
 git status
