@@ -18,6 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using GSA.ToolKits.CommonUtility.Entity;
+
 namespace GSA.ToolKits.CommonUtility;
 
 /// <summary>
@@ -28,9 +30,15 @@ public static class CommonHelper
     /// <summary>
     /// 获取一个新的GUID值
     /// </summary>
-    /// <remarks>使用32位字符串，全大写形式。</remarks>
+    /// <param name="type">格式化类型，缺省"N"。</param>
+    /// <param name="isUpper">是否为大写形式，缺省小写。</param>
     /// <returns>GUID值</returns>
-    public static string NewGUID() => Guid.NewGuid().ToString("N").ToUpperInvariant();
+    public static string NewGUID(GuidFormatType type = GuidFormatType.N, bool isUpper = false)
+    {
+        string typeString = Enum.GetName(typeof(GuidFormatType), type);
+        string result = Guid.NewGuid().ToString(typeString);
+        return isUpper ? result.ToUpperInvariant() : result.ToLowerInvariant();
+    }
 
     /// <summary>
     /// 随机获取某枚举定义中的某个枚举值

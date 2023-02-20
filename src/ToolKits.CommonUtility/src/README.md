@@ -7,12 +7,15 @@
 **本库提供常见和通用的各种助手类合集，支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;）。**
 
 包括但不限于如下功能类：
-1. CommonHelper(常见和通用的功能应用助手类)
-1. CustomAttributeHelper(自定义属性助手类)
-1. DateTimeHelper(日期与时间帮助类)
-1. ExpressionVisitorToSQL(将条件表达式转换为字符串SQL语句)
-1. JsonSerializerMappingHelper(JSON序列化数据映射助手类，键值分离JSON序列化)
-1. TDataModelHelper(数据模型属性字段名称与值字符串拼接助手类)
+1. CommonHelper (常见和通用的功能应用助手类)
+1. CustomAttributeHelper (自定义属性助手类)
+1. DateTimeHelper (日期与时间帮助类)
+1. ExpressionVisitorToSQL (将条件表达式转换为字符串SQL语句)
+1. JsonSerializerMappingHelper (JSON序列化数据映射助手类，键值分离JSON序列化)
+1. MockDataHelper (数据模拟助手类)
+1. NetworkHelper (网络与通信助手类)
+1. TDataModelHelper (数据模型属性字段名称与值字符串拼接助手类)
+1. UrlHackerHelper (Url相关操作与处理助手类)
 
 - 鄙人专注.NET技术，深入研习.NET 6|7+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
@@ -126,3 +129,8 @@
 - 优化数据模拟助手随机生成中文编码；
 - 增加获取指定偏移量与格式的日期时间字符串；
 - 更新第三方包引用。
+
+### 2023-02-20
+- 增加GUID格式化类型枚举定义，以满足不同层面的GUID生成需求；
+- 调整常见和通用的功能应用助手中的获取GUID方法，增加格式化和大小写参数，默认为“N”和小写；
+- 优化README.md中的功能库涵盖注解，以及增加部分注释内容等。
