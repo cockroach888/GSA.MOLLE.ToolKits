@@ -113,6 +113,9 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PagingUtility/src
 dotnet new classlib -lang "C#" -f net7.0 -n ToolKits.PasswordUtility -o ToolKits.PasswordUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PasswordUtility/src
 
+dotnet new classlib -lang "C#" -f net7.0 -n ToolKits.EMQXUtility -o ToolKits.EMQXUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.EMQXUtility/src
+
 
 
 

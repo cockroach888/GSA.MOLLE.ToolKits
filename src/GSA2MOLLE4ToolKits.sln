@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.PagingUtility", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.PasswordUtility", "ToolKits.PasswordUtility\src\ToolKits.PasswordUtility.csproj", "{C58F69DC-25D1-4EAD-8FE4-E39D7DD049D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.EMQXUtility", "ToolKits.EMQXUtility\src\ToolKits.EMQXUtility.csproj", "{8E74F113-B26B-411F-82EA-910B5D949FC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +191,10 @@ Global
 		{C58F69DC-25D1-4EAD-8FE4-E39D7DD049D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C58F69DC-25D1-4EAD-8FE4-E39D7DD049D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C58F69DC-25D1-4EAD-8FE4-E39D7DD049D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E74F113-B26B-411F-82EA-910B5D949FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E74F113-B26B-411F-82EA-910B5D949FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E74F113-B26B-411F-82EA-910B5D949FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E74F113-B26B-411F-82EA-910B5D949FC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
