@@ -7,7 +7,7 @@
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
 // 文件名称：EMQXManagementHelper.cs
-// 项目名称：魂哥常用工具集
+// 项目名称：EMQX消息服务工具集
 // 创建时间：2023-02-23 15:05:22
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
@@ -18,7 +18,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using Microsoft.Extensions.Options;
 using RestSharp;
 using RestSharp.Authenticators;
 
