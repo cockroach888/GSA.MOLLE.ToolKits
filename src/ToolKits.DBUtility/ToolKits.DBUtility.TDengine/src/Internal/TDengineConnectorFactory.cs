@@ -26,7 +26,7 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 /// <summary>
 /// TDengine RESTful API 连接器创建工厂类
 /// </summary>
-internal sealed class TDengineConnectorFactory : ITDengineConnectorFactory, IAsyncDisposable
+internal sealed class TDengineConnectorFactory : ITDengineConnectorFactory
 {
     private readonly ConcurrentDictionary<int, TDengineConnector> _connectors = new();
     private readonly TDengineOptions _options;
@@ -97,11 +97,8 @@ internal sealed class TDengineConnectorFactory : ITDengineConnectorFactory, IAsy
     /// <summary>
     /// 资源释放
     /// </summary>
-    /// <returns>表示响应当前异步操作的支持对象</returns>
-    public async ValueTask DisposeAsync()
+    public void Dispose()
     {
-        await Task.Delay(0).ConfigureAwait(false);
-
         foreach (TDengineConnector connector in _connectors.Values)
         {
             using (connector) { }

@@ -26,7 +26,7 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 /// <summary>
 /// TDengine RESTful API 连接器类
 /// </summary>
-internal sealed class TDengineConnector : ITDengineConnector, IDisposable
+internal sealed class TDengineConnector : ITDengineConnector
 {
     private readonly RestClient _client;
 

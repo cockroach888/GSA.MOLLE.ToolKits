@@ -1,79 +1,80 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Library</OutputType>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;</TargetFrameworks>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<ApplicationIcon>Library.ico</ApplicationIcon>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>ToolKits.DBUtility.TDengine.snk</AssemblyOriginatorKeyFile>
-		<DelaySign>false</DelaySign>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
-		<AssemblyName>DBUtility.TDengine</AssemblyName>
-		<AssemblyVersion>7.1.0</AssemblyVersion>
-		<FileVersion>7.1.0</FileVersion>
-		<LangVersion>latest</LangVersion>
-	</PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>Library.ico</ApplicationIcon>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>ToolKits.DBUtility.TDengine.snk</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
+        <AssemblyName>DBUtility.TDengine</AssemblyName>
+        <AssemblyVersion>7.1.1</AssemblyVersion>
+        <FileVersion>7.1.1</FileVersion>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
 
-	<PropertyGroup>
-		<IsPackable>true</IsPackable>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Authors>蟑螂·魂</Authors>
-		<Description>基于官方提供的RESTful API接口，使用.NET 7等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的NuGet包供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Authors>蟑螂·魂</Authors>
+        <Description>基于官方提供的RESTful API接口，使用.NET 7等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的NuGet包供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。
+        
 - Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .NET 7. This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding NuGet package is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
 - 应用示例(samples)：https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/samples/TaosData
 - 鄙人专注.NET技术，深入研习.NET 6|7+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成；本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
-		<Company>华夏银河空间联盟</Company>
-		<Product>数据库操作实用工具集 TDengine</Product>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
-		<PackageIcon>PackageIcon.jpg</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/ToolKits.DBUtility/ToolKits.DBUtility.TDengine/src</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
-		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>集成新增加的 RESTful API 时区设置(tz)参数。</PackageReleaseNotes>
-		<Version>$(AssemblyVersion)</Version>
-	</PropertyGroup>
+        <Company>华夏银河空间联盟</Company>
+        <Product>数据库操作实用工具集 TDengine</Product>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
+        <PackageIcon>PackageIcon.jpg</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/ToolKits.DBUtility/ToolKits.DBUtility.TDengine/src</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
+        <PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
+        <PackageReleaseNotes>调整主要功能的接口IDisposable实现形式，优化通用主机服务注册机制。</PackageReleaseNotes>
+        <Version>$(AssemblyVersion)</Version>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DebugType>embedded</DebugType>
-		<DebugSymbols>true</DebugSymbols>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DebugType>none</DebugType>
-		<DebugSymbols>false</DebugSymbols>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>none</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\..\..\..\LICENSE.txt">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-		<None Include="..\..\..\PackageIcon.jpg">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-		<None Include="README.md">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
+    <ItemGroup>
+        <None Include="..\..\..\..\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="..\..\..\PackageIcon.jpg">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
-		<PackageReference Include="RestSharp" Version="108.0.2" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+        <PackageReference Include="RestSharp" Version="108.0.3" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
-	</ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
+    </ItemGroup>
 
 </Project>

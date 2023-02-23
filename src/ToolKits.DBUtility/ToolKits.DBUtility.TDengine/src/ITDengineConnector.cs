@@ -23,7 +23,7 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 /// <summary>
 /// TDengine RESTful API 连接器接口
 /// </summary>
-public interface ITDengineConnector
+public interface ITDengineConnector : IDisposable
 {
     /// <summary>
     /// TDengine 选项参数

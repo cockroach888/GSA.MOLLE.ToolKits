@@ -43,18 +43,17 @@ public static class GenericHostBuilderExtensions
     {
         return hostBuilder.ConfigureServices((context, services) =>
         {
+            services.TryAddSingleton<ITDengineConnectorFactory, TDengineConnectorFactory>();
+
             services.Configure<TDengineOptions>(context.Configuration.GetSection(nameof(TDengineOptions)));
 
             var config = context.Configuration.GetSection(nameof(TDengineOptions));
             TDengineOptions? opt = ConfigurationBinder.Get<TDengineOptions>(config);
 
-            if (opt is null)
+            if (opt is not null)
             {
-                throw new ArgumentNullException(nameof(TDengineOptions));
+                services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
             }
-
-            services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
-            services.TryAddSingleton<ITDengineConnectorFactory, TDengineConnectorFactory>();
         });
     }
 
@@ -68,18 +67,17 @@ public static class GenericHostBuilderExtensions
     {
         return hostBuilder.ConfigureServices((context, services) =>
         {
+            services.TryAddSingleton<ITDengineConnectorFactory, TDengineConnectorFactory>();
+
             services.Configure(configure);
 
             var config = context.Configuration.GetSection(nameof(TDengineOptions));
             TDengineOptions? opt = ConfigurationBinder.Get<TDengineOptions>(config);
 
-            if (opt is null)
+            if (opt is not null)
             {
-                throw new ArgumentNullException(nameof(TDengineOptions));
+                services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
             }
-
-            services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
-            services.TryAddSingleton<ITDengineConnectorFactory, TDengineConnectorFactory>();
         });
     }
 }

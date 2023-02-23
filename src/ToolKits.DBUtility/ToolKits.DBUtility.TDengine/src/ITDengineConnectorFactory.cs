@@ -23,7 +23,7 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 /// <summary>
 /// TDengine RESTful API 连接器创建工厂接口
 /// </summary>
-public interface ITDengineConnectorFactory
+public interface ITDengineConnectorFactory : IDisposable
 {
     /// <summary>
     /// 创建 TDengine RESTful API 连接器实例

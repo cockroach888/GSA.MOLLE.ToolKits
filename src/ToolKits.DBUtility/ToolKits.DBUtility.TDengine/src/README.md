@@ -140,3 +140,9 @@
 
 ### 2022-11-21
 - 集成新增加的 RESTful API 时区设置(tz)参数。
+
+### 2023-02-23
+- 将ITDengineConnectorFactory接口实现中的IDisposable接口，变更为接口本身包含IDisposable接口；
+- 将ITDengineConnector接口实现中的IDisposable接口，变更为接口本身包含IDisposable接口；
+- 调整通用主机扩展，当不存在TDengineOptions配置时，不注册默认ITDengineConnector服务；
+- 更新第三方包引用。
