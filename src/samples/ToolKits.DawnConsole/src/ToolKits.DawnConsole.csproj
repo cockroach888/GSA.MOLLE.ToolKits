@@ -8,7 +8,9 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
+	  <ProjectReference Include="..\..\..\ToolKits.EMQXUtility\src\ToolKits.EMQXUtility.csproj" />
 	  <ProjectReference Include="..\..\..\ToolKits.PagingUtility\src\ToolKits.PagingUtility.csproj" />
+	  <ProjectReference Include="..\..\..\ToolKits.PasswordUtility\src\ToolKits.PasswordUtility.csproj" />
 	</ItemGroup>
 
 </Project>

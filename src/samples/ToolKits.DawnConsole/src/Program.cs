@@ -1,5 +1,6 @@
-﻿using GSA.ToolKits.CommonUtility;
-using GSA.ToolKits.PagingUtility;
+﻿//using GSA.ToolKits.CommonUtility;
+//using GSA.ToolKits.PagingUtility;
+using GSA.ToolKits.EMQXUtility;
 using System;
 
 
@@ -289,7 +290,7 @@ Console.WriteLine($"{pageString}");
 
 
 
-
+/*
 Console.WriteLine(MockDataHelper.MockRandomChinese(10));
 Console.WriteLine();
 
@@ -332,6 +333,14 @@ Console.WriteLine();
 
 Console.WriteLine(MockDataHelper.MockDateTimeString(1, formatString: "yyyy-M-d HH:mm:ss"));
 Console.WriteLine();
+*/
+
+IEMQXManagementHelper _helper = EMQXManagementHelperProvider.Default.Create(new EMQXManagementOptions()
+{
+    BasedHost = "http://127.0.0.1:10151/api/v5",
+    APIKey = "4298d2d03dbe60fb",
+    SecretKey = "2Ohw9ADrrJttnBcADxL7D127DHgYqLhG6X78LaCcoyLJ"
+});
 
 
 
