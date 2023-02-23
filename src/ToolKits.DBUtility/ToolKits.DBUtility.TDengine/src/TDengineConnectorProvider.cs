@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.DBUtility.TDengine;
 
 /// <summary>
-/// TDengine RESTful API 连接器提供者类
+/// TDengine RESTful API 连接器提供者
 /// </summary>
 public sealed class TDengineConnectorProvider
 {

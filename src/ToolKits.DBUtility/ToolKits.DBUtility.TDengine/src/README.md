@@ -159,3 +159,8 @@
 - 将ITDengineConnector接口实现中的IDisposable接口，变更为接口本身包含IDisposable接口；
 - 调整通用主机扩展，当不存在TDengineOptions配置时，不注册默认ITDengineConnector服务；
 - 更新第三方包引用。
+
+### 2023-02-23 23:47
+- 迁移通用主机(GenericHost)扩展支持至DBUtility.TDengine.GenericHost功能库，使本功能库回归天然纯粹；
+- 增加TDengine RESTful API 连接器创建工厂提供者，以提供本功能库独立应用支持；
+- 优化TDengineOptions在连接器创建过程中的应用实践。

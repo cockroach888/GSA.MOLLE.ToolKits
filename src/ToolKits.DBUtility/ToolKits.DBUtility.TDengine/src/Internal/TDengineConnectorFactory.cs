@@ -18,7 +18,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
 
 namespace GSA.ToolKits.DBUtility.TDengine;
@@ -29,16 +28,16 @@ namespace GSA.ToolKits.DBUtility.TDengine;
 internal sealed class TDengineConnectorFactory : ITDengineConnectorFactory
 {
     private readonly ConcurrentDictionary<int, TDengineConnector> _connectors = new();
-    private readonly TDengineOptions _options;
+    private readonly TDengineOptions? _options;
 
 
     /// <summary>
     /// TDengine RESTful API 连接器创建工厂
     /// </summary>
     /// <param name="options">选项参数</param>
-    public TDengineConnectorFactory(IOptions<TDengineOptions> options)
+    public TDengineConnectorFactory(TDengineOptions? options = default)
     {
-        _options = options.Value;
+        _options = options;
     }
 
 

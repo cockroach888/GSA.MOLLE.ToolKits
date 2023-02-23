@@ -35,9 +35,9 @@ internal sealed class TDengineConnector : ITDengineConnector
     /// TDengine RESTful API 连接器
     /// </summary>
     /// <param name="options">TDengine选项参数</param>
-    public TDengineConnector(TDengineOptions options)
+    public TDengineConnector(TDengineOptions? options)
     {
-        Options = options;
+        Options = options ?? throw new ArgumentNullException(nameof(TDengineOptions));
 
         _client = new(options.BaseUri)
         {
