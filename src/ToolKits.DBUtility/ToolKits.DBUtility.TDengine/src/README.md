@@ -13,6 +13,19 @@
 
 <br>
 
+### 配置文件示例
+
+```
+"TDengineOptions": {
+    "Host": "127.0.0.1",
+    "Port": 10101,
+    "UserName": "root",
+    "Password": "taosdata",
+    //"VersionSelector": "V2"
+    "VersionSelector": "V3"
+}
+```
+
 ## 开发日志
 
 ### 2022-06-16
