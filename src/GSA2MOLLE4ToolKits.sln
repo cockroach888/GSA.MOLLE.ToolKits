@@ -69,6 +69,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.PasswordUtility", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.EMQXUtility", "ToolKits.EMQXUtility\src\ToolKits.EMQXUtility.csproj", "{8E74F113-B26B-411F-82EA-910B5D949FC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.DBUtility.TDengine.GenericHost", "ToolKits.DBUtility\ToolKits.DBUtility.TDengine.GenericHost\src\ToolKits.DBUtility.TDengine.GenericHost.csproj", "{7FC072E3-D5E0-4A36-9A0E-6C315EFEB985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.DBUtility.TDengine.CeriumXHost", "ToolKits.DBUtility\ToolKits.DBUtility.TDengine.CeriumXHost\src\ToolKits.DBUtility.TDengine.CeriumXHost.csproj", "{5A7C21FA-A394-4300-8384-F8C534A187E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.EMQXUtility.GenericHost", "ToolKits.EMQXUtility.GenericHost\src\ToolKits.EMQXUtility.GenericHost.csproj", "{36140F40-E385-4927-996E-7F6C15CC4A12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.EMQXUtility.CeriumXHost", "ToolKits.EMQXUtility.CeriumXHost\src\ToolKits.EMQXUtility.CeriumXHost.csproj", "{9FE2087D-F209-4743-B9AE-7870DD9E90BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +203,22 @@ Global
 		{8E74F113-B26B-411F-82EA-910B5D949FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E74F113-B26B-411F-82EA-910B5D949FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E74F113-B26B-411F-82EA-910B5D949FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC072E3-D5E0-4A36-9A0E-6C315EFEB985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC072E3-D5E0-4A36-9A0E-6C315EFEB985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC072E3-D5E0-4A36-9A0E-6C315EFEB985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC072E3-D5E0-4A36-9A0E-6C315EFEB985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A7C21FA-A394-4300-8384-F8C534A187E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A7C21FA-A394-4300-8384-F8C534A187E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A7C21FA-A394-4300-8384-F8C534A187E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A7C21FA-A394-4300-8384-F8C534A187E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36140F40-E385-4927-996E-7F6C15CC4A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36140F40-E385-4927-996E-7F6C15CC4A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36140F40-E385-4927-996E-7F6C15CC4A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36140F40-E385-4927-996E-7F6C15CC4A12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FE2087D-F209-4743-B9AE-7870DD9E90BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE2087D-F209-4743-B9AE-7870DD9E90BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE2087D-F209-4743-B9AE-7870DD9E90BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE2087D-F209-4743-B9AE-7870DD9E90BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,6 +239,8 @@ Global
 		{9D4AF0DC-C01D-42A9-A4BC-B1401443D1B3} = {D9DF76BE-23A9-45F6-A70A-2C2E55630ABA}
 		{9B76D24C-D886-41B9-BAC8-09BDAE445742} = {D9DF76BE-23A9-45F6-A70A-2C2E55630ABA}
 		{D00A1E42-CC53-401B-9353-AD50C7A23B5A} = {D9DF76BE-23A9-45F6-A70A-2C2E55630ABA}
+		{7FC072E3-D5E0-4A36-9A0E-6C315EFEB985} = {94D61215-F782-456F-A009-350983C43010}
+		{5A7C21FA-A394-4300-8384-F8C534A187E8} = {94D61215-F782-456F-A009-350983C43010}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8126D26C-AB0A-414D-8010-3B6CA26C34B8}
