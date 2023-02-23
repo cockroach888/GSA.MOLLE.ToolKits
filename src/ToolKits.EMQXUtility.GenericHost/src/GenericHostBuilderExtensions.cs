@@ -7,7 +7,7 @@
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
 // 文件名称：GenericHostBuilderExtensions.cs
-// 项目名称：魂哥常用工具集
+// 项目名称：EMQX消息服务工具集
 // 创建时间：2023-02-23 23:09:09
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
@@ -21,34 +21,9 @@
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
-/// 类功能说明
+/// EMQX消息服务工具集通用主机(GenericHost)扩展类
 /// </summary>
-public sealed class GenericHostBuilderExtensions
+public static class GenericHostBuilderExtensions
 {
-    /// <summary>
-    /// 类功能说明
-    /// </summary>
-    public GenericHostBuilderExtensions()
-    {
-        //do something.
-    }
-
-    #region 成员变量
-
-
-
-    #endregion
-
-    #region 成员属性
-
-
-
-    #endregion
-
-    #region 成员方法
-
-
-
-    #endregion
-
+    // do something.
 }
