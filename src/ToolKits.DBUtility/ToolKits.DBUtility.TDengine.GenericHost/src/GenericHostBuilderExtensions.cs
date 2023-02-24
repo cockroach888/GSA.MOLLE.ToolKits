@@ -43,7 +43,7 @@ public static class GenericHostBuilderExtensions
     {
         return hostBuilder.ConfigureServices((context, services) =>
         {
-            services.TryAddSingleton<ITDengineConnectorFactory>(sp => new TDengineConnectorFactory());
+            services.TryAddSingleton(sp => TDengineConnectorFactoryProvider.Default.Create());
 
             services.Configure<TDengineOptions>(context.Configuration.GetSection(nameof(TDengineOptions)));
 
@@ -52,7 +52,7 @@ public static class GenericHostBuilderExtensions
 
             if (opt is not null)
             {
-                services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
+                services.TryAddSingleton(sp => TDengineConnectorProvider.Default.Create(opt));
             }
         });
     }
@@ -77,8 +77,8 @@ public static class GenericHostBuilderExtensions
                 throw new ArgumentNullException(nameof(TDengineOptions));
             }
 
-            services.TryAddSingleton<ITDengineConnector>(sp => new TDengineConnector(opt));
-            services.TryAddSingleton<ITDengineConnectorFactory>(sp => new TDengineConnectorFactory(opt));
+            services.TryAddSingleton(sp => TDengineConnectorProvider.Default.Create(opt));
+            services.TryAddSingleton(sp => TDengineConnectorFactoryProvider.Default.Create(opt));
         });
     }
 }

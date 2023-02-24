@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.DBUtility.TDengine.GenericHost</RootNamespace>
 		<AssemblyName>DBUtility.TDengine.GenericHost</AssemblyName>
-		<AssemblyVersion>7.0.0</AssemblyVersion>
-		<FileVersion>7.0.0</FileVersion>
+		<AssemblyVersion>7.0.1</AssemblyVersion>
+		<FileVersion>7.0.1</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -37,7 +37,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>本库为TDengine RESTful API 连接器(ToolKits.DBUtility.TDengine)的扩展支持，提供与通用主机(GenericHost)的交互能力；本库支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;）。</PackageReleaseNotes>
+		<PackageReleaseNotes>变更实例创建方式，由直接实例化对象，变更为调用Provider创建实例。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>DBUtility.TDengine.GenericHost</PackageId>
 	</PropertyGroup>
