@@ -343,13 +343,44 @@ IEMQXManagementHelper _helper = EMQXManagementHelperProvider.Default.Create(new 
     SecretKey = "2Ohw9ADrrJttnBcADxL7D127DHgYqLhG6X78LaCcoyLJ"
 });
 
+// 健康检查
 string status = await _helper.GetStatusAsync().ConfigureAwait(false);
 Console.WriteLine(status);
 Console.WriteLine();
 
+// 获取遥测信息
 TelemetryDataModel teleInfo = await _helper.GetTelemetryDataAsync().ConfigureAwait(false);
 Console.WriteLine(teleInfo);
 Console.WriteLine();
+
+
+//password_based:built_in_database
+//scram:built_in_database
+
+// 创建超级用户
+AuthenticationUserCreateModel info = new()
+{
+    AuthenticatorId = "password_based:built_in_database",
+    UserName = "superuser",
+    Password = "superuser123",
+    IsSuperuser = true
+};//%3A
+AuthenticationUserCreateResult result = await _helper.CreateAuthenticationUser(info).ConfigureAwait(false);
+Console.WriteLine(result);
+Console.WriteLine();
+
+// 创建普通用户
+info = new()
+{
+    AuthenticatorId = "password_based:built_in_database",
+    UserName = "normaluser",
+    Password = "normaluser123",
+    IsSuperuser = false
+};
+result = await _helper.CreateAuthenticationUser(info).ConfigureAwait(false);
+Console.WriteLine(result);
+Console.WriteLine();
+
 
 
 Console.WriteLine();

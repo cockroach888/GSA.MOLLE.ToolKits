@@ -70,11 +70,7 @@ internal sealed class EMQXManagementHelper : IEMQXManagementHelper
     /// <returns>状态信息</returns>
     public async Task<string?> GetStatusAsync()
     {
-        RestRequest request = new("status")
-        {
-            Method = Method.Get
-        };
-
+        RestRequest request = new("status", method: Method.Get);
         RestResponse response = await _client.GetAsync(request).ConfigureAwait(false);
         return response.Content;
     }

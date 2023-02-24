@@ -30,16 +30,43 @@ public static class EMQXManagementHelperExtensions
     /// <summary>
     /// 获取遥测数据信息
     /// </summary>
+    /// <param name="helper">EMQX 管理助手</param>
     /// <returns>遥测数据信息</returns>
     public static async Task<TelemetryDataModel?> GetTelemetryDataAsync(this IEMQXManagementHelper helper)
     {
         EMQXManagementHelper innerHelper = (EMQXManagementHelper)helper;
-
-        RestRequest request = new("telemetry/data")
-        {
-            Method = Method.Get
-        };
-
+        RestRequest request = new("telemetry/data", method: Method.Get);
         return await innerHelper.Client.GetAsync<TelemetryDataModel>(request).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 为指定的认证器创建用户信息
+    /// </summary>
+    /// <param name="helper">EMQX 管理助手</param>
+    /// <param name="info">认证用户信息</param>
+    /// <returns>创建结果</returns>
+    public static async Task<AuthenticationUserCreateResult?> CreateAuthenticationUser(this IEMQXManagementHelper helper, AuthenticationUserCreateModel info)
+    {
+        if (string.IsNullOrWhiteSpace(info.AuthenticatorId) ||
+            string.IsNullOrWhiteSpace(info.UserName) ||
+            string.IsNullOrWhiteSpace(info.Password))
+        {
+            throw new ArgumentNullException("对不起！认证器 ID、用户名和密码均不能为空。");
+        }
+
+        EMQXManagementHelper innerHelper = (EMQXManagementHelper)helper;
+
+        string urlString = $"authentication/{info.AuthenticatorId}/users";
+        RestRequest request = new(urlString, method: Method.Post); ;
+
+        var uri = innerHelper.Client.BuildUri(request);
+
+        request.AddJsonBody(info);
+        //request.Parameters.AddParameter(new JsonParameter("user_id", info.UserName, contentType: "application/json"));
+        //request.Parameters.AddParameter(new JsonParameter("password", info.Password, contentType: "application/json"));
+        //request.Parameters.AddParameter(new JsonParameter("is_superuser", info.IsSuperuser, contentType: "application/json"));
+
+        var result = await innerHelper.Client.PostAsync<AuthenticationUserCreateResult>(request).ConfigureAwait(false);
+        return result;
     }
 }
