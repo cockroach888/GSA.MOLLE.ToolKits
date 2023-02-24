@@ -18,6 +18,11 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
+
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
@@ -25,5 +30,52 @@ namespace GSA.ToolKits.EMQXUtility;
 /// </summary>
 public static class GenericHostBuilderExtensions
 {
-    // do something.
+    /// <summary>
+    /// 集成EMQX消息服务工具集
+    /// </summary>
+    /// <remarks>
+    /// <para><see cref="EMQXManagementOptions"/> 来自默认的配置文件中，如：appsettings.json 文件。</para>
+    /// <para>注意：配置节名称必须与类名称相同，即：EMQXManagementOptions。</para>
+    /// </remarks>
+    /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+    /// <returns>实现链式编程的同一个 <see cref="IHostBuilder"/> 实例。</returns>
+    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder)
+    {
+        return hostBuilder.ConfigureServices((context, services) =>
+        {
+            services.Configure<EMQXManagementOptions>(context.Configuration.GetSection(nameof(EMQXManagementOptions)));
+
+            var config = context.Configuration.GetSection(nameof(EMQXManagementOptions));
+            EMQXManagementOptions? opt = ConfigurationBinder.Get<EMQXManagementOptions>(config);
+
+            if (opt is not null)
+            {
+                services.TryAddSingleton(sp => EMQXManagementHelperProvider.Default.Create(opt));
+            }
+        });
+    }
+
+    /// <summary>
+    /// 集成EMQX消息服务工具集
+    /// </summary>
+    /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+    /// <param name="configure">选项参数</param>
+    /// <returns>实现链式编程的同一个 <see cref="IHostBuilder"/> 实例。</returns>
+    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder, Action<EMQXManagementOptions> configure)
+    {
+        return hostBuilder.ConfigureServices((context, services) =>
+        {
+            services.Configure(configure);
+
+            var config = context.Configuration.GetSection(nameof(EMQXManagementOptions));
+            EMQXManagementOptions? opt = ConfigurationBinder.Get<EMQXManagementOptions>(config);
+
+            if (opt is null)
+            {
+                throw new ArgumentNullException(nameof(EMQXManagementOptions));
+            }
+
+            services.TryAddSingleton(sp => EMQXManagementHelperProvider.Default.Create(opt));
+        });
+    }
 }
