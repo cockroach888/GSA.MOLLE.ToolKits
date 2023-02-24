@@ -43,13 +43,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.TDengine\src\ToolKits.DBUtility.TDengine.csproj" />
+		<ProjectReference Include="..\..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.TDengine.GenericHost\src\ToolKits.DBUtility.TDengine.GenericHost.csproj" />
 		<ProjectReference Include="..\..\TDengineEx.DataHelper\src\TDengineEx.DataHelper.csproj" />
-		<ProjectReference Include="..\..\TDengineEx.DataModel\src\TDengineEx.DataModel.csproj" />
 	</ItemGroup>
 
 </Project>
