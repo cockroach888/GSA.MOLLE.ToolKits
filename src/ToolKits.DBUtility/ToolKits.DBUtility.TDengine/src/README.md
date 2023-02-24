@@ -164,3 +164,6 @@
 - 迁移通用主机(GenericHost)扩展支持至DBUtility.TDengine.GenericHost功能库，使本功能库回归天然纯粹；
 - 增加TDengine RESTful API 连接器创建工厂提供者，以提供本功能库独立应用支持；
 - 优化TDengineOptions在连接器创建过程中的应用实践。
+
+### 2023-02-24
+- 移除友元程序集配置，外部一律采用Provider调用，提升使用优雅度。

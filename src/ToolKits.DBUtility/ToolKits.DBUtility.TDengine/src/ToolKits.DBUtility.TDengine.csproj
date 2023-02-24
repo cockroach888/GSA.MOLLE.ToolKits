@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
         <AssemblyName>DBUtility.TDengine</AssemblyName>
-        <AssemblyVersion>7.2.0</AssemblyVersion>
-        <FileVersion>7.2.0</FileVersion>
+        <AssemblyVersion>7.2.1</AssemblyVersion>
+        <FileVersion>7.2.1</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -38,7 +38,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-        <PackageReleaseNotes>调整主要功能的接口IDisposable实现形式，优化通用主机服务注册机制。</PackageReleaseNotes>
+        <PackageReleaseNotes>移除友元程序集配置，外部一律采用Provider调用，提升使用优雅度。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
     </PropertyGroup>
 
@@ -66,10 +66,6 @@
             <PackagePath></PackagePath>
         </None>
     </ItemGroup>
-
-	<ItemGroup>
-		<InternalsVisibleTo Include="DBUtility.TDengine.GenericHost, PublicKey=00240000048000001402000006020000002400005253413100100000010001001d8f139806a386d6076c238ce604bea99a37a43a04eeb304ad01b96526ed3d6468b72a299704f27c9d379acf0b0c7145d03057e5dc8aa4cd59bd39ef6cf6b95fffee9bf23e67465b68196e367bcfe485e461846e6fb24a7dbf7cc60bb37be1c8d983a5027a62b9bf0233f74f6a5bee168a848e3f8c4982e37f36c72e8706ee7bdbd3f4c34cc73f99a7ef35278b1d92679bc36a9ff506a4438f1bd94bda319a3b6cbbdbbb44bf5a6b59e54497d75acb3bc085811fd976e5e00a1f9bcaccb6554c08db624a6c0d80732c453ec326072aa4ada1b8eba11cc7d9aa4de2e276a7772a70132c45447c1d7aa1186ac92cf38653c79ac4c0b6bfb90a562b7e0c3db335106d90b612ec77569db38f07426d2ec6cb22ee50e93d00461742da60a0e8d574c1b3f641b96d9ca7a5f5cefea219798fe3b1d654b5e0cdab1d6b55372607470f0520e2d8d31819f0bd04ee0d5e3d32815f2e154c4dc861d380c1ba0332a18e96dd082f822e1d9940768bbb65725d52eab672a7752a715dac20469c5919119ae5dace956d3682f1a3f4e1644a1d3923797534f4d38bf5c595de8186ae4dbeef1dd4a60db133f9761d98ae2710571e6b4f920d96a7aff576417d0497ad5025da5db7a0f828eae2f42eb3c89ba483673a7bb70b3e0e5a21e30048fe67a0ceea7f9b3ab8fa453471e338500f451aaa14c78897c736de3eaeef224826e0732e356558c3" />
-	</ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="RestSharp" Version="108.0.3" />
