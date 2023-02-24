@@ -39,12 +39,14 @@ public static class EMQXManagementHelperExtensions
         return await innerHelper.Client.GetAsync<TelemetryDataModel>(request).ConfigureAwait(false);
     }
 
+
     /// <summary>
-    /// 为指定的认证器创建用户信息
+    /// 为全局认证链上的指定认证器创建用户数据
     /// </summary>
     /// <param name="helper">EMQX 管理助手</param>
     /// <param name="info">认证用户信息</param>
     /// <returns>创建结果</returns>
+    /// <exception cref="ArgumentNullException">对不起！认证器 ID、用户名和密码均不能为空。</exception>
     public static async Task<AuthenticationUserCreateResult?> CreateAuthenticationUser(this IEMQXManagementHelper helper, AuthenticationUserCreateModel info)
     {
         if (string.IsNullOrWhiteSpace(info.AuthenticatorId) ||
@@ -55,18 +57,28 @@ public static class EMQXManagementHelperExtensions
         }
 
         EMQXManagementHelper innerHelper = (EMQXManagementHelper)helper;
-
-        string urlString = $"authentication/{info.AuthenticatorId}/users";
-        RestRequest request = new(urlString, method: Method.Post); ;
-
-        var uri = innerHelper.Client.BuildUri(request);
-
+        RestRequest request = new($"authentication/{info.AuthenticatorId}/users", method: Method.Post);
         request.AddJsonBody(info);
-        //request.Parameters.AddParameter(new JsonParameter("user_id", info.UserName, contentType: "application/json"));
-        //request.Parameters.AddParameter(new JsonParameter("password", info.Password, contentType: "application/json"));
-        //request.Parameters.AddParameter(new JsonParameter("is_superuser", info.IsSuperuser, contentType: "application/json"));
+        return await innerHelper.Client.PostAsync<AuthenticationUserCreateResult>(request).ConfigureAwait(false);
+    }
 
-        var result = await innerHelper.Client.PostAsync<AuthenticationUserCreateResult>(request).ConfigureAwait(false);
-        return result;
+    /// <summary>
+    /// 获取全局认证链上指定认证器中的指定用户数据
+    /// </summary>
+    /// <param name="helper">EMQX 管理助手</param>
+    /// <param name="param">查询参数</param>
+    /// <returns>查询结果</returns>
+    /// <exception cref="ArgumentNullException">对不起！认证器 ID 和用户名均不能为空。</exception>
+    public static async Task<AuthenticationUserQueryResult?> QueryAuthenticationUser(this IEMQXManagementHelper helper, AuthenticationUserQueryParam param)
+    {
+        if (string.IsNullOrWhiteSpace(param.AuthenticatorId) ||
+            string.IsNullOrWhiteSpace(param.UserName))
+        {
+            throw new ArgumentNullException("对不起！认证器 ID 和用户名均不能为空。");
+        }
+
+        EMQXManagementHelper innerHelper = (EMQXManagementHelper)helper;
+        RestRequest request = new($"authentication/{param.AuthenticatorId}/users/{param.UserName}", method: Method.Get);
+        return await innerHelper.Client.GetAsync<AuthenticationUserQueryResult>(request).ConfigureAwait(false);
     }
 }

@@ -3,6 +3,7 @@
 using GSA.ToolKits.EMQXUtility;
 using GSA.ToolKits.EMQXUtility.Entity;
 using System;
+using System.Text.Json;
 
 
 /*Console.WriteLine("Hello World!");
@@ -350,13 +351,14 @@ Console.WriteLine();
 
 // 获取遥测信息
 TelemetryDataModel teleInfo = await _helper.GetTelemetryDataAsync().ConfigureAwait(false);
-Console.WriteLine(teleInfo);
+Console.WriteLine(JsonSerializer.Serialize(teleInfo));
 Console.WriteLine();
 
 
 //password_based:built_in_database
 //scram:built_in_database
 
+/*
 // 创建超级用户
 AuthenticationUserCreateModel info = new()
 {
@@ -364,9 +366,9 @@ AuthenticationUserCreateModel info = new()
     UserName = "superuser",
     Password = "superuser123",
     IsSuperuser = true
-};//%3A
+};
 AuthenticationUserCreateResult result = await _helper.CreateAuthenticationUser(info).ConfigureAwait(false);
-Console.WriteLine(result);
+Console.WriteLine(JsonSerializer.Serialize(result));
 Console.WriteLine();
 
 // 创建普通用户
@@ -378,7 +380,17 @@ info = new()
     IsSuperuser = false
 };
 result = await _helper.CreateAuthenticationUser(info).ConfigureAwait(false);
-Console.WriteLine(result);
+Console.WriteLine(JsonSerializer.Serialize(result));
+Console.WriteLine();
+*/
+
+AuthenticationUserQueryParam param = new()
+{
+    AuthenticatorId = "password_based:built_in_database",
+    UserName = "superuser"
+};
+AuthenticationUserQueryResult queryResult = await _helper.QueryAuthenticationUser(param).ConfigureAwait(false);
+Console.WriteLine(JsonSerializer.Serialize(queryResult));
 Console.WriteLine();
 
 
