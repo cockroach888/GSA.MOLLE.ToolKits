@@ -28,7 +28,6 @@ namespace GSA.ToolKits.EMQXUtility;
 /// </summary>
 internal sealed class EMQXManagementHelper : IEMQXManagementHelper
 {
-    private readonly EMQXManagementOptions _options;
     private readonly RestClient _client;
 
 
@@ -38,8 +37,6 @@ internal sealed class EMQXManagementHelper : IEMQXManagementHelper
     /// <param name="options">选项参数</param>
     public EMQXManagementHelper(EMQXManagementOptions options)
     {
-        _options = options;
-
         if (string.IsNullOrWhiteSpace(options.BasedHost) ||
             string.IsNullOrWhiteSpace(options.APIKey) ||
             string.IsNullOrWhiteSpace(options.SecretKey))
@@ -59,21 +56,27 @@ internal sealed class EMQXManagementHelper : IEMQXManagementHelper
     /// </summary>
     internal string Id { get; } = Guid.NewGuid().ToString("N");
 
+    /// <summary>
+    /// EMQX RESTful API 客户端
+    /// </summary>
+    internal RestClient Client => _client;
+
 
     #region 接口实现[IEMQXManagementHelper]
 
     /// <summary>
-    /// 获取遥测数据信息
+    /// 获取EMQX服务状态(健康检查)
     /// </summary>
-    /// <returns>遥测数据信息</returns>
-    public async Task<TelemetryDataModel?> GetTelemetryDataAsync()
+    /// <returns>状态信息</returns>
+    public async Task<string?> GetStatusAsync()
     {
-        RestRequest request = new("/telemetry/data")
+        RestRequest request = new("status")
         {
             Method = Method.Get
         };
 
-        return await _client.PostAsync<TelemetryDataModel>(request).ConfigureAwait(false);
+        RestResponse response = await _client.GetAsync(request).ConfigureAwait(false);
+        return response.Content;
     }
 
     #endregion

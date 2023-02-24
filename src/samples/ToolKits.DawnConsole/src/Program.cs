@@ -1,6 +1,7 @@
 ﻿//using GSA.ToolKits.CommonUtility;
 //using GSA.ToolKits.PagingUtility;
 using GSA.ToolKits.EMQXUtility;
+using GSA.ToolKits.EMQXUtility.Entity;
 using System;
 
 
@@ -342,8 +343,13 @@ IEMQXManagementHelper _helper = EMQXManagementHelperProvider.Default.Create(new 
     SecretKey = "2Ohw9ADrrJttnBcADxL7D127DHgYqLhG6X78LaCcoyLJ"
 });
 
+string status = await _helper.GetStatusAsync().ConfigureAwait(false);
+Console.WriteLine(status);
+Console.WriteLine();
 
-
+TelemetryDataModel teleInfo = await _helper.GetTelemetryDataAsync().ConfigureAwait(false);
+Console.WriteLine(teleInfo);
+Console.WriteLine();
 
 
 Console.WriteLine();

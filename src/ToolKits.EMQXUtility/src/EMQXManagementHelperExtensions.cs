@@ -18,6 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using RestSharp;
+
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
@@ -25,5 +27,19 @@ namespace GSA.ToolKits.EMQXUtility;
 /// </summary>
 public static class EMQXManagementHelperExtensions
 {
-    // do something.
+    /// <summary>
+    /// 获取遥测数据信息
+    /// </summary>
+    /// <returns>遥测数据信息</returns>
+    public static async Task<TelemetryDataModel?> GetTelemetryDataAsync(this IEMQXManagementHelper helper)
+    {
+        EMQXManagementHelper innerHelper = (EMQXManagementHelper)helper;
+
+        RestRequest request = new("telemetry/data")
+        {
+            Method = Method.Get
+        };
+
+        return await innerHelper.Client.GetAsync<TelemetryDataModel>(request).ConfigureAwait(false);
+    }
 }

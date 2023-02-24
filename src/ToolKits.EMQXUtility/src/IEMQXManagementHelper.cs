@@ -26,8 +26,8 @@ namespace GSA.ToolKits.EMQXUtility;
 public interface IEMQXManagementHelper : IDisposable
 {
     /// <summary>
-    /// 获取遥测数据信息
+    /// 获取EMQX服务状态(健康检查)
     /// </summary>
-    /// <returns>遥测数据信息</returns>
-    Task<TelemetryDataModel?> GetTelemetryDataAsync();
+    /// <returns>状态信息</returns>
+    Task<string?> GetStatusAsync();
 }
