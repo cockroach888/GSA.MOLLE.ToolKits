@@ -39,7 +39,7 @@ public static class GenericHostBuilderExtensions
     /// </remarks>
     /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
     /// <returns>实现链式编程的同一个 <see cref="IHostBuilder"/> 实例。</returns>
-    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder)
+    public static IHostBuilder UseEMQXUtility(this IHostBuilder hostBuilder)
     {
         return hostBuilder.ConfigureServices((context, services) =>
         {
@@ -61,7 +61,7 @@ public static class GenericHostBuilderExtensions
     /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
     /// <param name="configure">选项参数</param>
     /// <returns>实现链式编程的同一个 <see cref="IHostBuilder"/> 实例。</returns>
-    public static IHostBuilder UseTDengineDB(this IHostBuilder hostBuilder, Action<EMQXManagementOptions> configure)
+    public static IHostBuilder UseEMQXUtility(this IHostBuilder hostBuilder, Action<EMQXManagementOptions> configure)
     {
         return hostBuilder.ConfigureServices((context, services) =>
         {

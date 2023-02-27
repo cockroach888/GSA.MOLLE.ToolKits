@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.EMQXUtility.GenericHost</RootNamespace>
 		<AssemblyName>EMQXUtility.GenericHost</AssemblyName>
-		<AssemblyVersion>7.0.0</AssemblyVersion>
-		<FileVersion>7.0.0</FileVersion>
+		<AssemblyVersion>7.0.1</AssemblyVersion>
+		<FileVersion>7.0.1</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -37,7 +37,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 EMQX消息服务工具集 EMQXUtility EMQ EMQX MQTT 消息服务 消息队列 消息队列服务</PackageTags>
-		<PackageReleaseNotes>本库为EMQX消息服务工具集(ToolKits.EMQXUtility)的扩展支持，提供与通用主机(GenericHost)的交互能力；本库支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;）。</PackageReleaseNotes>
+		<PackageReleaseNotes>修复重大命名失误！复制粘贴后未及时更名，更正名称为EMQXUtility命名</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>EMQXUtility.GenericHost</PackageId>
 	</PropertyGroup>
