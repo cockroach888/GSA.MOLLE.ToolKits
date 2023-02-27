@@ -47,7 +47,7 @@ public static class EMQXManagementHelperExtensions
     /// <param name="info">认证用户信息</param>
     /// <returns>创建结果</returns>
     /// <exception cref="ArgumentNullException">对不起！认证器 ID、用户名和密码均不能为空。</exception>
-    public static async Task<AuthenticationUserCreateResult?> CreateAuthenticationUser(this IEMQXManagementHelper helper, AuthenticationUserCreateModel info)
+    public static async Task<AuthenticationUserCreateResult?> CreateAuthenticationUserAsync(this IEMQXManagementHelper helper, AuthenticationUserCreateModel info)
     {
         if (string.IsNullOrWhiteSpace(info.AuthenticatorId) ||
             string.IsNullOrWhiteSpace(info.UserName) ||
@@ -69,7 +69,7 @@ public static class EMQXManagementHelperExtensions
     /// <param name="param">查询参数</param>
     /// <returns>查询结果</returns>
     /// <exception cref="ArgumentNullException">对不起！认证器 ID 和用户名均不能为空。</exception>
-    public static async Task<AuthenticationUserQueryResult?> QueryAuthenticationUser(this IEMQXManagementHelper helper, AuthenticationUserQueryParam param)
+    public static async Task<AuthenticationUserQueryResult?> QueryAuthenticationUserAsync(this IEMQXManagementHelper helper, AuthenticationUserQueryParam param)
     {
         if (string.IsNullOrWhiteSpace(param.AuthenticatorId) ||
             string.IsNullOrWhiteSpace(param.UserName))
