@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.EMQXUtility.GenericHost</RootNamespace>
 		<AssemblyName>EMQXUtility.GenericHost</AssemblyName>
-		<AssemblyVersion>7.0.1</AssemblyVersion>
-		<FileVersion>7.0.1</FileVersion>
+		<AssemblyVersion>7.0.2</AssemblyVersion>
+		<FileVersion>7.0.2</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
