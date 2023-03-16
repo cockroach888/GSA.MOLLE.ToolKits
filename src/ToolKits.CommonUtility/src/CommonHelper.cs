@@ -19,6 +19,7 @@
 // 修改内容：
 // ========================================================================
 using GSA.ToolKits.CommonUtility.Entity;
+using System.Text.RegularExpressions;
 
 namespace GSA.ToolKits.CommonUtility;
 
@@ -69,5 +70,55 @@ public static class CommonHelper
 #else        
         return arrays[new Random().Next(0, arrays.Length)];
 #endif
+    }
+
+    /// <summary>
+    /// 使用正则表达式从源字符串中提取匹配成功的内容
+    /// </summary>
+    /// <param name="sourceString">源字符串</param>
+    /// <param name="pattern">正则表达式，暂仅支持单一匹配形式。</param>
+    /// <returns>提取的内容，无匹配项时返回空字符串。</returns>
+    public static string UseRegularExtractingContent(string? sourceString, Regex? pattern)
+    {
+        if (string.IsNullOrWhiteSpace(sourceString) || pattern is null)
+        {
+            return string.Empty;
+        }
+
+        Match match = pattern.Match(sourceString);
+
+        if (match.Success && match.Groups.Count >= 2)
+        {
+            return match.Groups[1].Value;
+        }
+
+        return string.Empty;
+    }
+
+    /// <summary>
+    /// 使用多个正则表达式，从源字符串中按顺序提取首次匹配成功的内容。
+    /// </summary>
+    /// <param name="sourceString">源字符串</param>
+    /// <param name="patterns">正则表达式数组，暂仅支持单一匹配形式。</param>
+    /// <returns>提取的内容，无匹配项时返回空字符串。</returns>
+    public static string UseRegularExtractingContent(string? sourceString, params Regex[]? patterns)
+    {
+        if (string.IsNullOrWhiteSpace(sourceString) || patterns is null)
+        {
+            return string.Empty;
+        }
+
+        string result = string.Empty;
+        foreach (Regex pattern in patterns)
+        {
+            result = UseRegularExtractingContent(sourceString, pattern);
+
+            if (!string.IsNullOrWhiteSpace(result))
+            {
+                break;
+            }
+        }
+
+        return result;
     }
 }

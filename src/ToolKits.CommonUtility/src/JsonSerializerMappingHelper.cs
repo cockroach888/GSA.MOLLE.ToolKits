@@ -25,6 +25,7 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace GSA.ToolKits.CommonUtility;
 
@@ -43,8 +44,9 @@ public static class JsonSerializerMappingHelper
     /// <param name="keyNode">存储键名称的JSON节点</param>
     /// <param name="valuesNode">存储所有数据的JSON节点</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1, params Regex[]? patterns)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
     {
@@ -80,6 +82,16 @@ public static class JsonSerializerMappingHelper
                 else
                 {
                     keyName = node.GetValue<string>().ToUpperInvariant();
+                }
+
+                // 正则表达式提取键名称
+                if (patterns is not null)
+                {
+                    string tmpKeyName = CommonHelper.UseRegularExtractingContent(keyName, patterns);
+                    if (!string.IsNullOrWhiteSpace(tmpKeyName))
+                    {
+                        keyName = tmpKeyName;
+                    }
                 }
 
                 if (keyName is null)
@@ -142,10 +154,12 @@ public static class JsonSerializerMappingHelper
     /// <param name="keyNode">存储键名称的JSON节点</param>
     /// <param name="valuesNode">存储所有数据的JSON节点</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonNode? keyNode, JsonNode? valuesNode, int keyIndex = -1, params Regex[]? patterns)
         where TModel : class, new()
-        => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyNode, valuesNode, keyIndex).ConfigureAwait(false);
+        => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyNode, valuesNode, keyIndex, patterns).ConfigureAwait(false);
+
 
 
     /// <summary>
@@ -157,8 +171,9 @@ public static class JsonSerializerMappingHelper
     /// <param name="jsonKeyString">存储键名称的JSON字符串</param>
     /// <param name="jsonValuesString">存储所有数据的JSON字符串</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1, params Regex[]? patterns)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
     {
@@ -170,7 +185,7 @@ public static class JsonSerializerMappingHelper
         JsonNode? keyNode = JsonSerializer.SerializeToNode(jsonKeyString);
         JsonNode? valuesNode = JsonSerializer.SerializeToNode(jsonValuesString);
 
-        return await DeserializeMappingAsync<TModel, TIgnoreAttribute>(keyNode, valuesNode, keyIndex).ConfigureAwait(false);
+        return await DeserializeMappingAsync<TModel, TIgnoreAttribute>(keyNode, valuesNode, keyIndex, patterns).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -181,10 +196,12 @@ public static class JsonSerializerMappingHelper
     /// <param name="jsonKeyString">存储键名称的JSON字符串</param>
     /// <param name="jsonValuesString">存储所有数据的JSON字符串</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(string? jsonKeyString, string? jsonValuesString, int keyIndex = -1, params Regex[]? patterns)
         where TModel : class, new()
-        => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(jsonKeyString, jsonValuesString, keyIndex).ConfigureAwait(false);
+        => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(jsonKeyString, jsonValuesString, keyIndex, patterns).ConfigureAwait(false);
+
 
 
     /// <summary>
@@ -196,8 +213,9 @@ public static class JsonSerializerMappingHelper
     /// <param name="keyElement">存储键名称的JSON元素</param>
     /// <param name="valuesElement">存储所有数据的JSON元素</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel, TIgnoreAttribute>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1, params Regex[]? patterns)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
     {
@@ -227,6 +245,16 @@ public static class JsonSerializerMappingHelper
                 else
                 {
                     keyName = element.GetString()?.ToUpperInvariant();
+                }
+
+                // 正则表达式提取键名称
+                if (patterns is not null)
+                {
+                    string tmpKeyName = CommonHelper.UseRegularExtractingContent(keyName, patterns);
+                    if (!string.IsNullOrWhiteSpace(tmpKeyName))
+                    {
+                        keyName = tmpKeyName;
+                    }
                 }
 
                 if (keyName is null)
@@ -279,10 +307,11 @@ public static class JsonSerializerMappingHelper
     /// <param name="keyElement">存储键名称的JSON元素</param>
     /// <param name="valuesElement">存储所有数据的JSON元素</param>
     /// <param name="keyIndex">键名称为二维数组时，表示键的索引。（缺省-1，表示仅所有名称的数组。）</param>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1)
+    public static async Task<IEnumerable<TModel>?> DeserializeMappingAsync<TModel>(JsonElement? keyElement, JsonElement? valuesElement, int keyIndex = -1, params Regex[]? patterns)
         where TModel : class, new()
-        => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyElement, valuesElement, keyIndex).ConfigureAwait(false);
+        => await DeserializeMappingAsync<TModel, SpecialNullableTypeAttribute>(keyElement, valuesElement, keyIndex, patterns).ConfigureAwait(false);
 
 
     //public static Task SerializeMappingAsync<TValue>(TValue value)
