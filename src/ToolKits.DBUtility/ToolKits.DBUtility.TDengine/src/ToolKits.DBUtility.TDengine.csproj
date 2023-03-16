@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
         <AssemblyName>DBUtility.TDengine</AssemblyName>
-        <AssemblyVersion>7.2.1</AssemblyVersion>
-        <FileVersion>7.2.1</FileVersion>
+        <AssemblyVersion>7.3.0</AssemblyVersion>
+        <FileVersion>7.3.0</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -38,7 +38,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-        <PackageReleaseNotes>移除友元程序集配置，外部一律采用Provider调用，提升使用优雅度。</PackageReleaseNotes>
+        <PackageReleaseNotes>增加用于从存储键名称中提取出正确名称的正则表达式功能。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
     </PropertyGroup>
 
@@ -68,7 +68,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="RestSharp" Version="108.0.3" />
+        <PackageReference Include="RestSharp" Version="109.0.1" />
     </ItemGroup>
 
     <ItemGroup>

@@ -76,20 +76,22 @@ public sealed class TDengineResult
     /// </summary>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
     /// <typeparam name="TIgnoreAttribute">自定义属性泛型(忽略的)</typeparam>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public async Task<IEnumerable<TModel>?> ParseToTModelAsync<TModel, TIgnoreAttribute>()
+    public async Task<IEnumerable<TModel>?> ParseToTModelAsync<TModel, TIgnoreAttribute>(Regex[]? patterns = null)
         where TModel : class, new()
         where TIgnoreAttribute : Attribute
-        => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel, TIgnoreAttribute>(ColumnMeta, Data, 0).ConfigureAwait(false);
+        => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel, TIgnoreAttribute>(ColumnMeta, Data, 0, patterns).ConfigureAwait(false);
 
     /// <summary>
     /// 解析包含请求数据结果的JSON节点为相应的数据模型
     /// </summary>
     /// <typeparam name="TModel">数据模型泛型</typeparam>
+    /// <param name="patterns">用于从存储键名称中提取出正确名称的正则表达式，为空表示不使用。（例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"）</param>
     /// <returns>数据模型枚举列表</returns>
-    public async Task<IEnumerable<TModel>?> ParseToTModelAsync<TModel>()
+    public async Task<IEnumerable<TModel>?> ParseToTModelAsync<TModel>(Regex[]? patterns = null)
         where TModel : class, new()
-        => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel>(ColumnMeta, Data, 0).ConfigureAwait(false);
+        => await JsonSerializerMappingHelper.DeserializeMappingAsync<TModel>(ColumnMeta, Data, 0, patterns).ConfigureAwait(false);
 
     /// <summary>
     /// 解析请求数据结果为数据记录统计

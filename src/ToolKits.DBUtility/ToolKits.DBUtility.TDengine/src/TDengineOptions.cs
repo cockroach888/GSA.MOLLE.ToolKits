@@ -19,6 +19,7 @@
 // 修改内容：
 // ========================================================================
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace GSA.ToolKits.DBUtility.TDengine;
 
@@ -62,11 +63,40 @@ public sealed class TDengineOptions
     /// 版本选择器
     /// </summary>
     /// <remarks>缺省为 TDengine2.x 版本</remarks>
-    public TDengineVersion VersionSelector { get; set; } = TDengineVersion.V2;
+    public TDengineVersion VersionSelector { get; set; } = TDengineVersion.V3;
+
+    /// <summary>
+    /// 用于从存储键名称中提取出正确名称的正则表达式
+    /// </summary>
+    /// <remarks>例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"</remarks>
+    public string[]? KeyNameRegex { get; set; }
+
 
     /// <summary>
     /// 数据库连接URI标识符
     /// </summary>
     [JsonIgnore]
     internal Uri BaseUri => new UriBuilder($"http://{Host}:{Port}/rest/sql").Uri;
+
+
+    /// <summary>
+    /// 获得用于从存储键名称中提取出正确名称的正则表达式
+    /// </summary>
+    /// <returns></returns>
+    internal Regex[]? GetKeyNameRegex()
+    {
+        if (KeyNameRegex is null || KeyNameRegex.Length <= 0)
+        {
+            return default;
+        }
+
+        Regex[] result = new Regex[KeyNameRegex.Length];
+
+        for (int i = 0, iLen = KeyNameRegex.Length; i < iLen; i++)
+        {
+            result[i] = new Regex(KeyNameRegex[i], RegexOptions.IgnoreCase);
+        }
+
+        return result;
+    }
 }

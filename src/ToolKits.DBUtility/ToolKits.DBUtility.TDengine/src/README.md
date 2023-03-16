@@ -21,8 +21,14 @@
     "Port": 10101,
     "UserName": "root",
     "Password": "taosdata",
+    "TimeZone": "Asia/Shanghai",
     //"VersionSelector": "V2"
-    "VersionSelector": "V3"
+    "VersionSelector": "V3",
+    "KeyNameRegex": [
+        "last_row\\((.+?)\\)",
+        "last\\((.+?)\\)",
+        "first\\((.+?)\\)"
+    ]
 }
 ```
 
@@ -167,3 +173,7 @@
 
 ### 2023-02-24
 - 移除友元程序集配置，外部一律采用Provider调用，提升使用优雅度。
+
+### 2023-03-16
+- 更新第三方包引用版本；
+- 增加用于从存储键名称中提取出正确名称的正则表达式功能。

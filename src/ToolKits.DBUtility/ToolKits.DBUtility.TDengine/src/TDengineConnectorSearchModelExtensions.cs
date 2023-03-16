@@ -70,7 +70,7 @@ public static partial class TDengineConnectorExtensions
             throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
         }
 
-        return await result.ParseToTModelAsync<TModel, TIgnoreAttribute>().ConfigureAwait(false);
+        return await result.ParseToTModelAsync<TModel, TIgnoreAttribute>(connector.Options.GetKeyNameRegex()).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -116,6 +116,6 @@ public static partial class TDengineConnectorExtensions
             throw new Exception($"执行请求时出现错误。数据库名：{param.DBName}，SQL语句：{param.SqlString}，错误描述：{result.Desc}。");
         }
 
-        return await result.ParseToTModelAsync<TModel>().ConfigureAwait(false);
+        return await result.ParseToTModelAsync<TModel>(connector.Options.GetKeyNameRegex()).ConfigureAwait(false);
     }
 }
