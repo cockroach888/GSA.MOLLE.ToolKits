@@ -39,10 +39,12 @@ internal sealed class TDengineConnector : ITDengineConnector
     {
         Options = options ?? throw new ArgumentNullException(nameof(TDengineOptions));
 
-        _client = new(options.BaseUri)
+        RestClientOptions clientOptions = new(options.BaseUri)
         {
             Authenticator = new HttpBasicAuthenticator(options.UserName, options.Password)
         };
+
+        _client = new(clientOptions);
     }
 
 
