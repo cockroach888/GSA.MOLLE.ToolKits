@@ -41,6 +41,22 @@ public static class CommonHelper
     }
 
     /// <summary>
+    /// 获取多个GUID值
+    /// </summary>
+    /// <param name="number">数量</param>
+    /// <param name="type">格式化类型，缺省"N"。</param>
+    /// <param name="isUpper">是否为大写形式，缺省小写。</param>
+    /// <returns>GUID值枚举列表</returns>
+    public static IEnumerable<string> NewGUID(int number, GuidFormatType type = GuidFormatType.N, bool isUpper = false)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            yield return NewGUID(type, isUpper);
+        }
+    }
+
+
+    /// <summary>
     /// 随机获取某枚举定义中的某个枚举值
     /// </summary>
     /// <typeparam name="T">枚举泛型</typeparam>
