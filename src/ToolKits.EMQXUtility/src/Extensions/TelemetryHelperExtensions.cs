@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：GlobalUsingDefinition.cs
-// 项目名称：我是一个负责全局引用的类，没有其它功能。
-// 创建时间：2023-02-23 17:14:53
+// 文件名称：TelemetryHelperExtensions.cs
+// 项目名称：魂哥常用工具集
+// 创建时间：2023-03-16 23:11:53
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,7 +18,22 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-global using GSA.ToolKits.EMQXUtility.Entity;
-global using RestSharp;
-global using RestSharp.Authenticators;
-global using System.Text.Json.Serialization;
+namespace GSA.ToolKits.EMQXUtility;
+
+/// <summary>
+/// 类功能说明
+/// </summary>
+public static class TelemetryHelperExtensions
+{
+    /// <summary>
+    /// 获取遥测数据信息
+    /// </summary>
+    /// <param name="helper">EMQX 管理助手</param>
+    /// <returns>遥测数据信息</returns>
+    public static async Task<TelemetryDataModel?> GetDataAsync(this ITelemetryHelper helper)
+    {
+        TelemetryHelper innerHelper = (TelemetryHelper)helper;
+        RestRequest request = new("telemetry/data", method: Method.Get);
+        return await innerHelper.Client.GetAsync<TelemetryDataModel>(request).ConfigureAwait(false);
+    }
+}

@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：EMQXManagementHelperProvider.cs
-// 项目名称：EMQX消息服务工具集
-// 创建时间：2023-02-23 15:06:30
+// 文件名称：IStatusHelper.cs
+// 项目名称：魂哥常用工具集
+// 创建时间：2023-03-16 23:18:50
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,27 +21,9 @@
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
-/// EMQX 管理助手提供者
+/// 类功能说明
 /// </summary>
-public sealed class EMQXManagementHelperProvider
+public interface IStatusHelper
 {
-
-    #region 单例模式
-
-    private static readonly Lazy<EMQXManagementHelperProvider> _lazyInstance = new(() => new EMQXManagementHelperProvider());
-
-    /// <summary>
-    /// EMQX 管理助手提供者
-    /// </summary>
-    public static EMQXManagementHelperProvider Default => _lazyInstance.Value;
-
-    #endregion
-
-
-    /// <summary>
-    /// 创建 EMQX 管理助手实例
-    /// </summary>
-    /// <param name="options">选项参数</param>
-    /// <returns>EMQX 管理助手</returns>
-    public IEMQXManagementHelper Create(EMQXManagementOptions options) => new EMQXManagementHelper(options);
+    //do something.
 }

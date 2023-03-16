@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：EMQXManagementHelper.cs
-// 项目名称：EMQX消息服务工具集
-// 创建时间：2023-02-23 15:05:22
+// 文件名称：EMQXConnectorAbstract.cs
+// 项目名称：魂哥常用工具集
+// 创建时间：2023-03-16 22:39:00
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,24 +18,20 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using RestSharp;
-using RestSharp.Authenticators;
-
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
-/// EMQX 管理助手
+/// EMQX连接器基类
 /// </summary>
-internal sealed class EMQXManagementHelper : IEMQXManagementHelper
+internal abstract class EMQXConnectorAbstract : IDisposable
 {
-    private readonly RestClient _client;
+    private protected readonly RestClient _client;
 
 
     /// <summary>
-    /// EMQX 管理助手
+    /// EMQX连接器基类
     /// </summary>
-    /// <param name="options">选项参数</param>
-    public EMQXManagementHelper(EMQXManagementOptions options)
+    private protected EMQXConnectorAbstract(EMQXManagementOptions options)
     {
         if (string.IsNullOrWhiteSpace(options.BasedHost) ||
             string.IsNullOrWhiteSpace(options.APIKey) ||
@@ -54,30 +50,14 @@ internal sealed class EMQXManagementHelper : IEMQXManagementHelper
 
 
     /// <summary>
-    /// EMQX 管理助手内部编号
+    /// 内部编号
     /// </summary>
-    internal string Id { get; } = Guid.NewGuid().ToString("N");
+    protected internal string Id { get; } = Guid.NewGuid().ToString("N");
 
     /// <summary>
     /// EMQX RESTful API 客户端
     /// </summary>
-    internal RestClient Client => _client;
-
-
-    #region 接口实现[IEMQXManagementHelper]
-
-    /// <summary>
-    /// 获取EMQX服务状态(健康检查)
-    /// </summary>
-    /// <returns>状态信息</returns>
-    public async Task<string?> GetStatusAsync()
-    {
-        RestRequest request = new("status", method: Method.Get);
-        RestResponse response = await _client.GetAsync(request).ConfigureAwait(false);
-        return response.Content;
-    }
-
-    #endregion
+    protected internal RestClient Client => _client;
 
 
     /// <summary>
