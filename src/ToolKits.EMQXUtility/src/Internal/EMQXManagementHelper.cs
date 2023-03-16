@@ -44,10 +44,12 @@ internal sealed class EMQXManagementHelper : IEMQXManagementHelper
             throw new ArgumentNullException("对不起！EMQX 服务主机地址、API Key、Secret Key均不能为空。");
         }
 
-        _client = new(options.BasedHost)
+        RestClientOptions clientOptions = new(options.BasedHost)
         {
             Authenticator = new HttpBasicAuthenticator(options.APIKey, options.SecretKey)
         };
+
+        _client = new(clientOptions);
     }
 
 

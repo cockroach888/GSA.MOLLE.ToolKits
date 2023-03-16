@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.EMQXUtility</RootNamespace>
         <AssemblyName>EMQXUtility</AssemblyName>
-        <AssemblyVersion>7.0.1</AssemblyVersion>
-        <FileVersion>7.0.1</FileVersion>
+        <AssemblyVersion>7.0.3</AssemblyVersion>
+        <FileVersion>7.0.3</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 EMQX消息服务工具集 EMQXUtility EMQ EMQX MQTT 消息服务 消息队列 消息队列服务</PackageTags>
-        <PackageReleaseNotes>修正认证器相关操作方法命名规范问题。</PackageReleaseNotes>
+        <PackageReleaseNotes>为了提供更友好的、更便捷的功能封装库，决定根据官方API形态，对本封装库进行完全重构。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>EMQXUtility</PackageId>
     </PropertyGroup>
@@ -68,7 +68,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="RestSharp" Version="108.0.3" />
+        <PackageReference Include="RestSharp" Version="109.0.1" />
     </ItemGroup>
 
 </Project>
