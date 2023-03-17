@@ -21,33 +21,21 @@
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
-/// 类功能说明
+/// 服务节点状态信息助手
 /// </summary>
-public sealed class StatusHelper
+internal sealed class StatusHelper : EMQXConnectorAbstract, IStatusHelper
 {
     /// <summary>
-    /// 类功能说明
+    /// 服务节点状态信息助手
     /// </summary>
-    public StatusHelper()
-    {
-        //do something.
-    }
-
-    #region 成员变量
+    /// <param name="options">选项参数</param>
+    internal StatusHelper(EMQXManagementOptions options)
+        : base(options) { }
 
 
+    #region 接口实现[IStatusHelper]
 
-    #endregion
-
-    #region 成员属性
-
-
-
-    #endregion
-
-    #region 成员方法
-
-
+    // do something.
 
     #endregion
 

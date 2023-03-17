@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
-/// 类功能说明
+/// 服务节点状态信息助手提供者
 /// </summary>
 public sealed class StatusHelperProvider
 {
@@ -31,12 +31,17 @@ public sealed class StatusHelperProvider
     private static readonly Lazy<StatusHelperProvider> _lazyInstance = new(() => new StatusHelperProvider());
 
     /// <summary>
-    /// 类功能说明
+    /// 服务节点状态信息助手提供者
     /// </summary>
-    internal static StatusHelperProvider Default => _lazyInstance.Value;
+    public static StatusHelperProvider Default => _lazyInstance.Value;
 
     #endregion
 
 
-
+    /// <summary>
+    /// 创建服务节点状态信息助手提供者
+    /// </summary>
+    /// <param name="options">选项参数</param>
+    /// <returns>服务节点状态信息助手提供者</returns>
+    public IStatusHelper Create(EMQXManagementOptions options) => new StatusHelper(options);
 }

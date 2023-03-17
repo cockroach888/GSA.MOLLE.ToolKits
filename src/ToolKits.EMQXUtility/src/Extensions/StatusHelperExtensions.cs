@@ -21,18 +21,20 @@
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
-/// 类功能说明
+/// 服务节点状态信息助手扩展
 /// </summary>
 public static class StatusHelperExtensions
 {
     /// <summary>
-    /// 获取EMQX服务状态(健康检查)
+    /// 获取EMQX服务节点状态(健康检查)
     /// </summary>
+    /// <param name="helper">管理助手</param>
     /// <returns>状态信息</returns>
-    public static async Task<string?> GetStatusAsync()
+    public static async Task<string?> GetStatusAsync(this IStatusHelper helper)
     {
+        StatusHelper innerHelper = (StatusHelper)helper;
         RestRequest request = new("status", method: Method.Get);
-        RestResponse response = await _client.GetAsync(request).ConfigureAwait(false);
+        RestResponse response = await innerHelper.Client.GetAsync(request).ConfigureAwait(false);
         return response.Content;
     }
 }

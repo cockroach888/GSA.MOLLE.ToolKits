@@ -21,9 +21,9 @@
 namespace GSA.ToolKits.EMQXUtility;
 
 /// <summary>
-/// 类功能说明
+/// 服务节点状态信息助手接口
 /// </summary>
-public interface IStatusHelper
+public interface IStatusHelper : IDisposable
 {
     //do something.
 }
