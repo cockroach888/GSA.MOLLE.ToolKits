@@ -7,7 +7,7 @@
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
 // 文件名称：AuthenticationHelperExtensions.cs
-// 项目名称：魂哥常用工具集
+// 项目名称：EMQX消息服务工具集
 // 创建时间：2023-03-16 21:43:51
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
@@ -28,7 +28,7 @@ public static class AuthenticationHelperExtensions
     /// <summary>
     /// 为全局认证链上的指定认证器创建用户数据
     /// </summary>
-    /// <param name="helper">EMQX 管理助手</param>
+    /// <param name="helper">管理助手</param>
     /// <param name="info">认证用户信息</param>
     /// <returns>创建结果</returns>
     /// <exception cref="ArgumentNullException">对不起！认证器 ID、用户名和密码均不能为空。</exception>
@@ -50,7 +50,7 @@ public static class AuthenticationHelperExtensions
     /// <summary>
     /// 获取全局认证链上指定认证器中的指定用户数据
     /// </summary>
-    /// <param name="helper">EMQX 管理助手</param>
+    /// <param name="helper">管理助手</param>
     /// <param name="param">查询参数</param>
     /// <returns>查询结果</returns>
     /// <exception cref="ArgumentNullException">对不起！认证器 ID 和用户名均不能为空。</exception>
