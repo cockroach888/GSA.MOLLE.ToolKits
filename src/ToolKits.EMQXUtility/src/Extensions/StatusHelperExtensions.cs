@@ -33,7 +33,9 @@ public static class StatusHelperExtensions
     public static async Task<string?> GetStatusAsync(this IStatusHelper helper)
     {
         StatusHelper innerHelper = (StatusHelper)helper;
+
         RestRequest request = new("status", method: Method.Get);
+
         RestResponse response = await innerHelper.Client.GetAsync(request).ConfigureAwait(false);
         return response.Content;
     }
