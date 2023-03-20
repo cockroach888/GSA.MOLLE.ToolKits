@@ -2,15 +2,17 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 		<RootNamespace>GSA.ToolKits.DawnConsole</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
-	  <ProjectReference Include="..\..\..\ToolKits.EMQXUtility\src\ToolKits.EMQXUtility.csproj" />
-	  <ProjectReference Include="..\..\..\ToolKits.PagingUtility\src\ToolKits.PagingUtility.csproj" />
-	  <ProjectReference Include="..\..\..\ToolKits.PasswordUtility\src\ToolKits.PasswordUtility.csproj" />
+		<ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
+		<ProjectReference Include="..\..\..\ToolKits.EMQXUtility\src\ToolKits.EMQXUtility.csproj" />
+		<ProjectReference Include="..\..\..\ToolKits.PagingUtility\src\ToolKits.PagingUtility.csproj" />
+		<ProjectReference Include="..\..\..\ToolKits.PasswordUtility\src\ToolKits.PasswordUtility.csproj" />
 	</ItemGroup>
 
 </Project>
