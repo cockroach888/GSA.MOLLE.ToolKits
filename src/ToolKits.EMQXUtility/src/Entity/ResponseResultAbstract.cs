@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：TelemetryHelper.cs
+// 文件名称：ResponseResultAbstract.cs
 // 项目名称：EMQX消息服务工具集
-// 创建时间：2023-03-16 23:11:00
+// 创建时间：2023-03-20 11:25:27
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,25 +18,29 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace GSA.ToolKits.EMQXUtility;
+namespace GSA.ToolKits.EMQXUtility.Entity;
 
 /// <summary>
-/// 遥测管理助手
+/// 响应结果基类
 /// </summary>
-internal sealed class TelemetryHelper : EMQXConnectorAbstract, ITelemetryHelper
+public abstract class ResponseResultAbstract
 {
     /// <summary>
-    /// 遥测管理助手
+    /// 请求是否成功
     /// </summary>
-    /// <param name="options">选项参数</param>
-    internal TelemetryHelper(EMQXManagementOptions options)
-        : base(options) { }
+    /// <remarks>是否为成功的HTTP响应状态代码</remarks>
+    [JsonIgnore]
+    public bool IsSuccessStatusCode { get; set; } = false;
 
+    /// <summary>
+    /// 错误代码
+    /// </summary>
+    [JsonPropertyName("code")]
+    public string? ErrorCode { get; set; }
 
-    #region 接口实现[ITelemetryHelper]
-
-    // do something.
-
-    #endregion
-
+    /// <summary>
+    /// 错误信息
+    /// </summary>
+    [JsonPropertyName("message")]
+    public string? ErrorMessage { get; set; }
 }

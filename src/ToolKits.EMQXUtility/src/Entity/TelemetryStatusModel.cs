@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：TelemetryHelper.cs
+// 文件名称：TelemetryStatusModel.cs
 // 项目名称：EMQX消息服务工具集
-// 创建时间：2023-03-16 23:11:00
+// 创建时间：2023-03-19 20:25:38
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,25 +18,18 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-namespace GSA.ToolKits.EMQXUtility;
+namespace GSA.ToolKits.EMQXUtility.Entity;
 
 /// <summary>
-/// 遥测管理助手
+/// 遥测状态信息实体类
 /// </summary>
-internal sealed class TelemetryHelper : EMQXConnectorAbstract, ITelemetryHelper
+[Serializable]
+public sealed class TelemetryStatusModel : ResponseResultAbstract
 {
     /// <summary>
-    /// 遥测管理助手
+    /// 是否遥测启用
     /// </summary>
-    /// <param name="options">选项参数</param>
-    internal TelemetryHelper(EMQXManagementOptions options)
-        : base(options) { }
-
-
-    #region 接口实现[ITelemetryHelper]
-
-    // do something.
-
-    #endregion
-
+    /// <remarks>true 启用 / false 禁用</remarks>
+    [JsonPropertyName("enable")]
+    public bool Enable { get; set; }
 }
