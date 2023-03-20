@@ -38,7 +38,7 @@ public static class AuthenticationHelperExtensions
             string.IsNullOrWhiteSpace(info.UserName) ||
             string.IsNullOrWhiteSpace(info.Password))
         {
-            throw new ArgumentNullException("对不起！认证器 ID、用户名和密码均不能为空。");
+            throw new ArgumentNullException("AuthenticatorId & UserName & Password", "对不起！认证器 ID、用户名和密码均不能为空。");
         }
 
         AuthenticationHelper innerHelper = (AuthenticationHelper)helper;
@@ -59,7 +59,7 @@ public static class AuthenticationHelperExtensions
         if (string.IsNullOrWhiteSpace(param.AuthenticatorId) ||
             string.IsNullOrWhiteSpace(param.UserName))
         {
-            throw new ArgumentNullException("对不起！认证器 ID 和用户名均不能为空。");
+            throw new ArgumentNullException("AuthenticatorId & UserName", "对不起！认证器 ID 和用户名均不能为空。");
         }
 
         AuthenticationHelper innerHelper = (AuthenticationHelper)helper;
