@@ -40,24 +40,24 @@ public sealed class TDengineOptions
     public uint Port { get; set; } = 6041;
 
     /// <summary>
-    /// 用户名（缺省 root）
+    /// 用户名
     /// </summary>
-    public string UserName { get; set; } = "root";
+    public string? UserName { get; set; }
 
     /// <summary>
-    /// 密码（缺省 taosdata）
+    /// 密码
     /// </summary>
-    public string Password { get; set; } = "taosdata";
+    public string? Password { get; set; }
 
     /// <summary>
-    /// 时区（缺省 Asia/Shanghai）
+    /// 时区
     /// </summary>
     /// <remarks>
     /// 注意：
     /// <para>1.时区参数只在 TDEngine 3.x 版本才支持；</para>
     /// <para>2.时区参数只有带数据库名称时方可有效。</para>
     /// </remarks>
-    public string TimeZone { get; set; } = "Asia/Shanghai";
+    public string? TimeZone { get; set; }
 
     /// <summary>
     /// 版本选择器

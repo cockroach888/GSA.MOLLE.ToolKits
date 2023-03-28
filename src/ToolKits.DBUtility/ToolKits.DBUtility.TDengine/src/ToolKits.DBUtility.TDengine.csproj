@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
         <AssemblyName>DBUtility.TDengine</AssemblyName>
-        <AssemblyVersion>7.3.0</AssemblyVersion>
-        <FileVersion>7.3.0</FileVersion>
+        <AssemblyVersion>7.3.1</AssemblyVersion>
+        <FileVersion>7.3.1</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -38,7 +38,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-        <PackageReleaseNotes>增加用于从存储键名称中提取出正确名称的正则表达式功能。</PackageReleaseNotes>
+        <PackageReleaseNotes>去掉TDengine选项参数类中的用户名、密码、时区缺省值，以避免出现不必要的问题。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
     </PropertyGroup>
 
