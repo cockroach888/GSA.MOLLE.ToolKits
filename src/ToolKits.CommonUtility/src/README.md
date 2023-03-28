@@ -141,3 +141,7 @@
 - 增加使用正则表达式从源字符串中提取匹配成功的内容功能方法，同时支持正则表达式数组参数；
 - JSON序列化数据映射助手中增加用于从存储键名称中提取出正确名称的正则表达式；
 - 例如：exp1.@"LAST_ROW\((.+?)\)"   exp2.@"LAST\((.+?)\)"   exp3.@"FIRST\((.+?)\)"。
+
+### 2023-03-28
+- 变更原JsonTimestampConverter和JsonTimestampPlusConverter转换器中返回时间格式为正常DateTime格式；
+- 增加返回LocalTime格式的JsonTimestamp2LocalTimeConverter和JsonTimestampPlus2LocalTimeConverter转换器。

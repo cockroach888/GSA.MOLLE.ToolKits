@@ -4,11 +4,11 @@
 //**   脉脉含情的充满精神的高尚的小强精神
 //**   风幽思静繁花落；夜半楼台听江雨。（cockroach888@outlook.com）
 //=========================================================================
-//**   Copyright © 蟑螂·魂 2022 -- Support 华夏银河空间联盟
+//**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：JsonTimestampConverter.cs
+// 文件名称：JsonTimestamp2LocalTimeConverter.cs
 // 项目名称：魂哥常用工具集
-// 创建时间：2022-06-22 17:38:06
+// 创建时间：2023-03-28 10:29:23
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -27,10 +27,10 @@ namespace GSA.ToolKits.CommonUtility.Converters;
 /// 用于JSON序列化时，处理时间戳的自定义转换器。
 /// </summary>
 /// <remarks>
-/// <para>入参时为时间戳格式，并将其转换为DateTime格式。</para>
+/// <para>入参时为时间戳格式，并将其转换为DateTime的本地时间格式。</para>
 /// <para>出参时为DateTime格式，并将其转换为时间戳格式。</para>
 /// </remarks>
-public sealed class JsonTimestampConverter : JsonConverter<DateTime>
+public sealed class JsonTimestamp2LocalTimeConverter : JsonConverter<DateTime>
 {
     /// <summary>
     /// 将时间戳转换为 DateTime 类型
@@ -60,7 +60,7 @@ public sealed class JsonTimestampConverter : JsonConverter<DateTime>
             default: break;
         }
 
-        return DateTimeHelper.TryConvertToDateTime(value);
+        return DateTimeHelper.TryConvertToLocalTime(value);
     }
 
     /// <summary>
