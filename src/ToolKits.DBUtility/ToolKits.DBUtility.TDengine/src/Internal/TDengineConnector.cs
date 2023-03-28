@@ -39,6 +39,14 @@ internal sealed class TDengineConnector : ITDengineConnector
     {
         Options = options ?? throw new ArgumentNullException(nameof(TDengineOptions));
 
+        if (options.UserName is null ||
+            options.Password is null ||
+            string.IsNullOrWhiteSpace(options.UserName) ||
+            string.IsNullOrWhiteSpace(options.Password))
+        {
+            throw new ArgumentNullException("用于访问数据库的用户名和密码不能为空。");
+        }
+
         RestClientOptions clientOptions = new(options.BaseUri)
         {
             Authenticator = new HttpBasicAuthenticator(options.UserName, options.Password)
