@@ -67,6 +67,11 @@ public sealed class TDengineSearchParam
     public string FieldNames { get; set; } = "*";
 
     /// <summary>
+    /// 仅用于内部返回最终执行的SQL语句
+    /// </summary>
+    public string? SqlString { get; internal set; }
+
+    /// <summary>
     /// 查询条件字符串 (缺省 null)
     /// </summary>
     /// <remarks>

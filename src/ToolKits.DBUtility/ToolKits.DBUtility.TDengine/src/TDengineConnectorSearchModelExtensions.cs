@@ -51,6 +51,9 @@ public static partial class TDengineConnectorExtensions
         sqlString = TDengineCommons.OrderByJoinToSqlString(sqlString, searchParam.OrderByString);
         sqlString = TDengineCommons.PaginationJoinToSqlString(sqlString, searchParam.PageNumber, searchParam.PaginationSize);
 
+        // 返回执行的SQL语句
+        searchParam.SqlString = sqlString;
+
         TDengineQueryParam param = new(sqlString)
         {
             DBName = searchParam.DBName,
@@ -96,6 +99,9 @@ public static partial class TDengineConnectorExtensions
         sqlString = TDengineCommons.WhereStringValidateAndJoinToSqlString(sqlString, searchParam.WhereString);
         sqlString = TDengineCommons.OrderByJoinToSqlString(sqlString, searchParam.OrderByString);
         sqlString = TDengineCommons.PaginationJoinToSqlString(sqlString, searchParam.PageNumber, searchParam.PaginationSize);
+
+        // 返回执行的SQL语句
+        searchParam.SqlString = sqlString;
 
         TDengineQueryParam param = new(sqlString)
         {
