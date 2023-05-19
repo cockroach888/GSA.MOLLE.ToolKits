@@ -24,15 +24,20 @@ namespace TDengineEx.DataModel;
 /// 气象自动站信息实体类
 /// </summary>
 [Serializable]
+[Table("auto_station")]
+[Comment("气象自动站信息表")]
+//[Index(nameof(DeviceName), nameof(DeviceModel), nameof(ProductId), IsUnique = true)]
 public sealed class AutoStationModel
 {
     /// <summary>
     /// 时间戳
     /// </summary>
     /// <remarks>TDengine 数据库首列必须为时间戳</remarks>
+    [Column("ts")]
     [JsonIgnore]
-    [Column("tss")]
-    public DateTime Tss { get; set; }
+    [BuildSelectSqlStringIgnore]
+    [JsonPropertyName("Ts")]
+    public DateTime Ts { get; set; }
 
     /// <summary>
     /// 自动站编号

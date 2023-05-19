@@ -19,5 +19,6 @@
 // 修改内容：
 // ========================================================================
 global using GSA.ToolKits.CommonUtility.Schema;
+global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Text.Json.Serialization;
