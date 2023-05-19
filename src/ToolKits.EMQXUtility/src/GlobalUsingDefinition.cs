@@ -19,6 +19,7 @@
 // 修改内容：
 // ========================================================================
 global using GSA.ToolKits.EMQXUtility.Entity;
+global using GSA.ToolKits.EMQXUtility.Helper;
 global using RestSharp;
 global using RestSharp.Authenticators;
 global using System.Text.Json;

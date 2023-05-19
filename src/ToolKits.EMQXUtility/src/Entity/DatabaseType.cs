@@ -53,5 +53,10 @@ public enum DatabaseType
     /// <summary>
     /// HTTP 服务
     /// </summary>
-    HTTPServer
+    HTTPServer,
+
+    /// <summary>
+    /// 无
+    /// </summary>
+    NONE
 }
