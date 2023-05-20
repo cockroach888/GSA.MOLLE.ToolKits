@@ -145,3 +145,6 @@
 ### 2023-03-28
 - 变更原JsonTimestampConverter和JsonTimestampPlusConverter转换器中返回时间格式为正常DateTime格式；
 - 增加返回LocalTime格式的JsonTimestamp2LocalTimeConverter和JsonTimestampPlus2LocalTimeConverter转换器。
+
+### 2023-05-19
+- 增加反射特性应用助手类，暂提供属性和字段的反射赋值操作。

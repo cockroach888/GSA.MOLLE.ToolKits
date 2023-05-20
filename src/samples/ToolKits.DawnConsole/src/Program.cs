@@ -6,14 +6,16 @@ Console.WriteLine();
 Console.WriteLine();
 
 
-Program4CommonUtility.Default.FireInTheHole();
+//Program4CommonUtility.Default.FireInTheHole();
 //Program4CommonUtility.Default.HolsterThatWeapon();
 
 //Program4PagingUtility.Default.FireInTheHole();
 
-Program4EMQXUtility.Default.FireInTheHole();
+//Program4EMQXUtility.Default.FireInTheHole();
 //Program4EMQXUtility.Default.WeaponsHotPlus(true);
-Program4EMQXUtility.Default.WeaponsHot();
+//Program4EMQXUtility.Default.WeaponsHot();
+
+Program4ReflectionUtility.Default.FireInTheHole();
 
 
 Console.WriteLine();
