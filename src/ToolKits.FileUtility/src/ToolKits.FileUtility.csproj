@@ -1,77 +1,71 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net472;netcoreapp3.1;net5.0</TargetFrameworks>
-		<ApplicationIcon>Library.ico</ApplicationIcon>
-		<AssemblyName>FileUtility</AssemblyName>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-		<Version>5.0.0</Version>
-		<PackageLicenseExpression></PackageLicenseExpression>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageIcon>PackageIcon.jpg</PackageIcon>
-		<RepositoryType>git</RepositoryType>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>ToolKits.FileUtility.snk</AssemblyOriginatorKeyFile>
-		<DelaySign>false</DelaySign>
-		<PackageId>FileUtility</PackageId>
-		<Product>文件操作实用工具集</Product>
-		<Authors>蟑螂·魂</Authors>
-		<Company>华夏银河空间联盟</Company>
-		<Description>本类库提供了文件、目录、图片的操作辅助类，INI文件与XML文件的操作辅助类，同时提供了一个队列化的日志操作辅助类，自由随心让日志记录不留死角，月、日、时等多种存储方式，欢迎您的品尝；简单实用、舒心易用，是您开发中的必备利器。
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>Library.ico</ApplicationIcon>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>ToolKits.FileUtility.snk</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <RootNamespace>GSA.ToolKits.FileUtility</RootNamespace>
+        <AssemblyName>FileUtility</AssemblyName>
+        <AssemblyVersion>7.0.0</AssemblyVersion>
+        <FileVersion>7.0.0</FileVersion>
+        <LangVersion>latest</LangVersion>
+        <NoWarn>8603,8600</NoWarn>
+    </PropertyGroup>
 
-- 内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）。
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Authors>蟑螂·魂</Authors>
+        <Description>本库提供文件操作等实用的各种助手类合集，支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;）。包括但不限于如下功能类：CommonHelper (常见和通用的功能应用助手类)、CustomAttributeHelper (自定义属性助手类)、DateTimeHelper (日期与时间帮助类)、ExpressionVisitorToSQL (将条件表达式转换为字符串SQL语句)、JsonSerializerMappingHelper (JSON序列化数据映射助手类，键值分离JSON序列化)、MockDataHelper (数据模拟助手类)、NetworkHelper (网络与通信助手类)、TDataModelHelper (数据模型属性字段名称与值字符串拼接助手类)、UrlHackerHelper (Url相关操作与处理助手类)等。
 
-- NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
-		<PackageTags>魂哥常用工具集 文件操作实用工具集 文件操作 目录操作 图片操作 INI操作 XML操作 日志记录</PackageTags>
-		<PackageReleaseNotes>重新定义类库并变更命名空间，面向 .net 5.0 开发；建议重新引用本类库，对此给您造成的不变深表歉意！内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）让使用更便捷。</PackageReleaseNotes>
-		<Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
-		<PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<RootNamespace>GSA.ToolKits.FileUtility</RootNamespace>
-	</PropertyGroup>
+- 鄙人专注.NET技术，深入研习.NET 6|7+系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
+- 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
+        <Company>华夏银河空间联盟</Company>
+        <Product>文件操作实用工具集</Product>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
+        <PackageIcon>PackageIcon.jpg</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
+        <PackageTags>魂哥常用工具集 文件操作实用工具集 FileUtility 文件操作 目录操作 图片操作 INI操作 XML操作 日志记录</PackageTags>
+        <PackageReleaseNotes>增加反射特性应用助手类，暂提供属性和字段的反射赋值操作。</PackageReleaseNotes>
+        <Version>$(AssemblyVersion)</Version>
+        <PackageId>CommonsUtility</PackageId>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.FileUtility\src\bin\FileUtility.xml</DocumentationFile>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.FileUtility\src\bin\FileUtility.xml</DocumentationFile>
-		<DebugType>none</DebugType>
-		<DebugSymbols>false</DebugSymbols>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>none</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\..\..\LICENSE.txt">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-		<None Include="..\..\PackageIcon.jpg">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
-		<PackageReference Include="System.Drawing.Common">
-			<Version>5.0.0</Version>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-		<PackageReference Include="System.Drawing.Common">
-			<Version>5.0.0</Version>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-		<PackageReference Include="System.Drawing.Common">
-			<Version>5.0.0</Version>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="System.Web" />
-	</ItemGroup>
-
+    <ItemGroup>
+        <None Include="..\..\..\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="..\..\PackageIcon.jpg">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+    
 </Project>
