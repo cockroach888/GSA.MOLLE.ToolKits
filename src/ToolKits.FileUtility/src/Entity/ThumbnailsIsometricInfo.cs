@@ -25,6 +25,7 @@ namespace GSA.ToolKits.FileUtility.Entity;
 /// <summary>
 /// 按等比生成缩略图与图片水印参数实体类
 /// </summary>
+[Serializable]
 public sealed class ThumbnailsIsometricInfo
 {
     /// <summary>

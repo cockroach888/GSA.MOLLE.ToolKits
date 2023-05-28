@@ -23,6 +23,7 @@ namespace GSA.ToolKits.FileUtility.Entity;
 /// <summary>
 /// 图片附加图片水印参数实体类
 /// </summary>
+[Serializable]
 public sealed class WatermarkImageInfo
 {
     /// <summary>

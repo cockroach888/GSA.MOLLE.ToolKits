@@ -25,6 +25,7 @@ namespace GSA.ToolKits.FileUtility.Entity;
 /// <summary>
 /// 图片附加文本水印参数实体类
 /// </summary>
+[Serializable]
 public sealed class WatermarkTextInfo
 {
     /// <summary>

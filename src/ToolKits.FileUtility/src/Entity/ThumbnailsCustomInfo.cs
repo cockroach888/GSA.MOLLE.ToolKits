@@ -25,6 +25,7 @@ namespace GSA.ToolKits.FileUtility.Entity;
 /// <summary>
 /// 自定义缩略图裁剪与缩放参数实体类
 /// </summary>
+[Serializable]
 public sealed class ThumbnailsCustomInfo
 {
     /// <summary>

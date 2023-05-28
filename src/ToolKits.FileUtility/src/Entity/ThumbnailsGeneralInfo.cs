@@ -25,6 +25,7 @@ namespace GSA.ToolKits.FileUtility.Entity;
 /// <summary>
 /// 普通缩略图生成模式参数实体类
 /// </summary>
+[Serializable]
 public sealed class ThumbnailsGeneralInfo
 {
     /// <summary>
