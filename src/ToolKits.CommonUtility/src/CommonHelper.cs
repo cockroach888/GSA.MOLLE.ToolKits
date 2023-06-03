@@ -19,6 +19,7 @@
 // 修改内容：
 // ========================================================================
 using GSA.ToolKits.CommonUtility.Entity;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace GSA.ToolKits.CommonUtility;
@@ -120,5 +121,40 @@ public static class CommonHelper
         }
 
         return result;
+    }
+
+
+    /// <summary>
+    /// 将源字符串转换为Base64编码的字符串 (使用UTF8编码)
+    /// </summary>
+    /// <param name="sourceString">源字符串</param>
+    /// <param name="isPlusEscapes">是否使用加号(+)转义替换，默认true使用。 (将+号替换为%2B转义)</param>
+    /// <returns>Base64编码字符串</returns>
+    public static string ToBase64Encode(string sourceString, bool isPlusEscapes = true)
+    {
+        string base64String = Convert.ToBase64String(Encoding.UTF8.GetBytes(sourceString));
+
+        if (isPlusEscapes)
+        {
+            base64String = base64String.Replace("+", "%2B");
+        }
+
+        return base64String;
+    }
+
+    /// <summary>
+    /// 将Base64编码的字符串转换为源字符串 (使用UTF8编码)
+    /// </summary>
+    /// <param name="base64String">Base64编码字符串</param>
+    /// <param name="isPlusEscapes">是否使用加号(+)转义替换，默认true使用。 (将%2B转义替换为+号)</param>
+    /// <returns>源字符串</returns>
+    public static string FromBase64Decode(string base64String, bool isPlusEscapes = true)
+    {
+        if (isPlusEscapes)
+        {
+            base64String = base64String.Replace("%2B", "+");
+        }
+
+        return Encoding.UTF8.GetString(Convert.FromBase64String(base64String));
     }
 }
