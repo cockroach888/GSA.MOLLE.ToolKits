@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：PasswordHelperProvider.cs
-// 项目名称：魂哥常用工具集
-// 创建时间：2023-02-20 14:20:40
+// 文件名称：EncryptionOptions.cs
+// 项目名称：加解密集约工具集
+// 创建时间：2023-06-03 15:17:10
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,9 +21,12 @@
 namespace GSA.ToolKits.PasswordUtility;
 
 /// <summary>
-/// 加解密集约助手提供者
+/// 加密集约选项参数基类
 /// </summary>
-public static class PasswordHelperProvider
+public abstract class EncryptionOptions
 {
-    // do something.
+    /// <summary>
+    /// 需要加密的源字符串
+    /// </summary>
+    public string? SourceString { get; set; }
 }

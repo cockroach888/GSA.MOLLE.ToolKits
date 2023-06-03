@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：IPasswordHelper.cs
-// 项目名称：魂哥常用工具集
-// 创建时间：2023-02-20 14:18:07
+// 文件名称：DecryptionOptions.cs
+// 项目名称：加解密集约工具集
+// 创建时间：2023-06-03 15:17:19
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,9 +21,12 @@
 namespace GSA.ToolKits.PasswordUtility;
 
 /// <summary>
-/// 加解密集约助手类
+/// 解密集约选项参数基类
 /// </summary>
-public interface IPasswordHelper
+public abstract class DecryptionOptions
 {
-    // do something.
+    /// <summary>
+    /// 需要解密的源字符串
+    /// </summary>
+    public string? SourceString { get; set; }
 }

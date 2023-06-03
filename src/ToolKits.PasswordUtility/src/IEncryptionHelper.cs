@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：PasswordType.cs
-// 项目名称：魂哥常用工具集
-// 创建时间：2023-02-20 14:18:16
+// 文件名称：IEncryptionHelper.cs
+// 项目名称：加解密集约工具集
+// 创建时间：2023-06-03 15:15:49
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,14 +21,14 @@
 namespace GSA.ToolKits.PasswordUtility;
 
 /// <summary>
-/// 加解密集约类型枚举
+/// 加密集约助手类
 /// </summary>
-public enum PasswordType
+public interface IEncryptionHelper
 {
     /// <summary>
-    /// SHA512
+    /// 加密
     /// </summary>
-    SHA512,
-        
-    //Hash计算、md5计算、sha1计算、sha256计算、sha512计算、AES加密、DES加密、RC4加密、Rabbit加密、TripleDes加密
+    /// <param name="options">选项参数</param>
+    /// <returns>加密后的字符串</returns>
+    Task<string?> EncryptionAsync(EncryptionOptions options);
 }

@@ -7,7 +7,7 @@
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
 // 文件名称：SHA512Helper.cs
-// 项目名称：魂哥常用工具集
+// 项目名称：加解密集约工具集
 // 创建时间：2023-02-20 14:31:32
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
@@ -18,36 +18,54 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using System.Security.Cryptography;
+using System.Text;
+
 namespace GSA.ToolKits.PasswordUtility.Internal;
 
 /// <summary>
-/// 类功能说明
+/// SHA512助手类
 /// </summary>
-internal sealed class SHA512Helper : IPasswordHelper
+internal sealed class SHA512Helper : IEncryptionHelper
 {
+
+    #region 接口实现[IEncryptionHelper]
+
     /// <summary>
-    /// 类功能说明
+    /// 加密
     /// </summary>
-    public SHA512Helper()
+    /// <param name="options">选项参数</param>
+    /// <returns>加密后的字符串</returns>
+    public async Task<string?> EncryptionAsync(EncryptionOptions options)
     {
-        //do something.
+        await Task.Delay(0).ConfigureAwait(false);
+
+        if (options is not SHA512Options opts ||
+            string.IsNullOrWhiteSpace(opts.SourceString))
+        {
+            return default;
+        }
+
+        string source = opts.SourceString;
+
+        if (opts.IsUseSalt &&
+            !string.IsNullOrWhiteSpace(opts.Salt))
+        {
+            if (opts.UsePrefixesOrSuffixes)
+            {
+                source = $"{opts.Salt}{opts.SourceString}";
+            }
+            else
+            {
+                source = $"{opts.SourceString}{opts.Salt}";
+            }
+        }
+
+
+        SHA512 sha512 = SHA512.Create();
+        byte[] buffer = sha512.ComputeHash(Encoding.UTF8.GetBytes(source));
+        return BitConverter.ToString(buffer).Replace("-", string.Empty).ToLower();
     }
-
-    #region 成员变量
-
-
-
-    #endregion
-
-    #region 成员属性
-
-
-
-    #endregion
-
-    #region 成员方法
-
-
 
     #endregion
 
