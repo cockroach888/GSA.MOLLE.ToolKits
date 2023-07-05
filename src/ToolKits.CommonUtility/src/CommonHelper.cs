@@ -57,6 +57,41 @@ public static class CommonHelper
         }
     }
 
+    /// <summary>
+    /// 获取一个由新的GUID值转HashCode后的uint数值
+    /// </summary>
+    /// <remarks>理论上转换后的uint数值是唯一性的，建议使用时作再次比对。</remarks>
+    /// <returns>非负数的 uint 数值</returns>
+    public static uint NewGUIDtoUint()
+    {
+        Guid guid = Guid.NewGuid();
+        byte[] bytes = guid.ToByteArray();
+
+        uint hashCode = BitConverter.ToUInt32(bytes, 0);
+        if (hashCode == uint.MinValue)
+        {
+            hashCode = uint.MaxValue;
+        }
+
+        // 避免哈希码重复
+        HashSet<uint> hashSet = new();
+        while (!hashSet.Add(hashCode))
+        {
+            guid = Guid.NewGuid();
+            bytes = guid.ToByteArray();
+
+            hashCode = BitConverter.ToUInt32(bytes, 0);
+            if (hashCode == uint.MinValue)
+            {
+                hashCode = uint.MaxValue;
+            }
+        }
+
+        return hashCode;
+    }
+
+
+
 
     /// <summary>
     /// 随机获取某枚举定义中的某个枚举值
