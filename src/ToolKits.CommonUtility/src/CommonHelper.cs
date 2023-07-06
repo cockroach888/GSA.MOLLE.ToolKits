@@ -61,7 +61,7 @@ public static class CommonHelper
     /// 获取一个由新的GUID值转HashCode后的uint数值
     /// </summary>
     /// <remarks>理论上转换后的uint数值是唯一性的，建议使用时作再次比对。</remarks>
-    /// <returns>非负数的 uint 数值</returns>
+    /// <returns>无符号 uint 数值</returns>
     public static uint NewGUIDtoUint()
     {
         Guid guid = Guid.NewGuid();
@@ -90,6 +90,23 @@ public static class CommonHelper
         return hashCode;
     }
 
+    /// <summary>
+    /// 获取一个由新的GUID值转HashCode后的ulong数值
+    /// </summary>
+    /// <remarks>理论上转换后的ulong数值是唯一性的，建议使用时作再次比对。</remarks>
+    /// <returns>无符号 ulong 数值</returns>
+    public static ulong NewGUIDtoUlong()
+    {
+        Guid guid = Guid.NewGuid();
+        byte[] bytes = guid.ToByteArray();
+
+        // 将字节数组转换为无符号整数数组
+        ulong[] ulongArray = new ulong[2];
+        Buffer.BlockCopy(bytes, 0, ulongArray, 0, 16);
+
+        // 将无符号整数数组进行位异或操作
+        return ulongArray[0] ^ ulongArray[1];
+    }
 
 
 
