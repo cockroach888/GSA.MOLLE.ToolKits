@@ -30,5 +30,5 @@ public interface IEncryptionHelper
     /// </summary>
     /// <param name="options">选项参数</param>
     /// <returns>加密后的字符串</returns>
-    Task<string?> EncryptionAsync(EncryptionOptions options);
+    Task<string> EncryptionAsync(EncryptionOptions options);
 }

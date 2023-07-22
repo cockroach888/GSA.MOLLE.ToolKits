@@ -28,5 +28,5 @@ public abstract class EncryptionOptions
     /// <summary>
     /// 需要加密的源字符串
     /// </summary>
-    public string? SourceString { get; set; }
+    public string SourceString { get; set; } = string.Empty;
 }

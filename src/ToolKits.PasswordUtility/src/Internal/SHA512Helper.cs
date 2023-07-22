@@ -36,20 +36,18 @@ internal sealed class SHA512Helper : IEncryptionHelper
     /// </summary>
     /// <param name="options">选项参数</param>
     /// <returns>加密后的字符串</returns>
-    public async Task<string?> EncryptionAsync(EncryptionOptions options)
+    public async Task<string> EncryptionAsync(EncryptionOptions options)
     {
         await Task.Delay(0).ConfigureAwait(false);
 
-        if (options is not SHA512Options opts ||
-            string.IsNullOrWhiteSpace(opts.SourceString))
+        if (options is not SHA512Options opts)
         {
-            return default;
+            throw new ArgumentNullException(nameof(options), "对不起！你传入的加密集约选项参数，并非SHA512所支持的类型。");
         }
 
         string source = opts.SourceString;
 
-        if (opts.IsUseSalt &&
-            !string.IsNullOrWhiteSpace(opts.Salt))
+        if (opts.IsUseSalt && !string.IsNullOrWhiteSpace(opts.Salt))
         {
             if (opts.UsePrefixesOrSuffixes)
             {
@@ -60,7 +58,6 @@ internal sealed class SHA512Helper : IEncryptionHelper
                 source = $"{opts.SourceString}{opts.Salt}";
             }
         }
-
 
         SHA512 sha512 = SHA512.Create();
         byte[] buffer = sha512.ComputeHash(Encoding.UTF8.GetBytes(source));

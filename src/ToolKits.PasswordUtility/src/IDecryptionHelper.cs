@@ -30,5 +30,5 @@ public interface IDecryptionHelper
     /// </summary>
     /// <param name="options">选项参数</param>
     /// <returns>解密后的源字符串</returns>
-    Task<string?> DecryptionAsync(DecryptionOptions options);
+    Task<string> DecryptionAsync(DecryptionOptions options);
 }

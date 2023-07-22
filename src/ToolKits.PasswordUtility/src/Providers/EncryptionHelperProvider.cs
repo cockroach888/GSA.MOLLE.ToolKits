@@ -56,13 +56,18 @@ public sealed class EncryptionHelperProvider
     /// <param name="type">加密类型</param>
     /// <param name="options">选项参数</param>
     /// <returns>加密结果</returns>
-    public async Task<string?> ExecuteAsync(EncryptionType type, EncryptionOptions options)
+    public async Task<string> ExecuteAsync(EncryptionType type, EncryptionOptions options)
     {
-        if (_helpers.ContainsKey(type))
+        if (!_helpers.ContainsKey(type))
         {
-            return await _helpers[type].EncryptionAsync(options).ConfigureAwait(false);
+            throw new InvalidOperationException("对不起！您使用的加密类型暂未支持，敬请期待！为此带来的不便，深表歉意！");
         }
 
-        return default;
+        if (string.IsNullOrWhiteSpace(options.SourceString))
+        {
+            throw new ArgumentNullException(nameof(options.SourceString), "对不起！需要加密的源字符串不能为空。");
+        }
+
+        return await _helpers[type].EncryptionAsync(options).ConfigureAwait(false);
     }
 }

@@ -28,5 +28,5 @@ public abstract class DecryptionOptions
     /// <summary>
     /// 需要解密的源字符串
     /// </summary>
-    public string? SourceString { get; set; }
+    public string SourceString { get; set; } = string.Empty;
 }
