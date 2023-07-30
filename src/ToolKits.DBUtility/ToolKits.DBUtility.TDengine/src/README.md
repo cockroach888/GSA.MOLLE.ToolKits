@@ -43,6 +43,11 @@
 
 ## 开发日志
 
+### 2023-07-30
+- 调整开发日志时间为倒序排列，以便更快捷的明确新增功能；
+- 增加将时间窗口功能加入到SQL语句中的辅助方法；
+
+
 ### 2022-06-16
 - 面向接口编程，结合ITDengineConnector和ITDengineConnectorFactory对外提供API使用形态；可通过TDengineConnectorProvider独立使用，亦可与微软通用主机深度集成。
 

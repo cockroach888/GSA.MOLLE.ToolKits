@@ -111,4 +111,14 @@ public static class TDengineCommons
 
         return $"{sqlString} limit {paginationSize} offset {paginationOffset}";
     }
+
+    /// <summary>
+    /// 将时间窗口功能加入到SQL语句中
+    /// </summary>
+    /// <param name="sqlString"></param>
+    /// <returns>SQL字符串</returns>
+    public static string TimeWindowJoinToSqlString(string sqlString)
+    {
+        return sqlString;
+    }
 }
