@@ -72,6 +72,17 @@ public sealed class TDengineSearchParam
     public string? SqlString { get; internal set; }
 
     /// <summary>
+    /// 用于查询时使用的原生SQL语句字符串
+    /// </summary>
+    /// <remarks>
+    /// 注意：
+    /// <para>1.当使用原生SQL字符串时，将不会组织查询字段和数据表名称。</para>
+    /// <para>2.使用原生SQL字符串时，仅需要到 from 数据表名称即可。</para>
+    /// <para>3.无论何种SQL语句来源的方式，均会自动组织查询条件、排序方式、分页检索。</para>
+    /// </remarks>
+    public string? BasedSqlString { get; set; }
+
+    /// <summary>
     /// 查询条件字符串 (缺省 null)
     /// </summary>
     /// <remarks>

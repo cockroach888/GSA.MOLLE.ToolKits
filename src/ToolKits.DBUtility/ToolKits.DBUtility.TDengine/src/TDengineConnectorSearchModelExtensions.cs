@@ -96,6 +96,12 @@ public static partial class TDengineConnectorExtensions
         }
 
         string sqlString = $"select {searchParam.FieldNames} from {searchParam.TableName}";
+        if (string.IsNullOrWhiteSpace(searchParam.BasedSqlString) &&
+            searchParam.BasedSqlString is not null)
+        {
+            sqlString = searchParam.BasedSqlString;
+        }
+
         sqlString = TDengineCommons.WhereStringValidateAndJoinToSqlString(sqlString, searchParam.WhereString);
         sqlString = TDengineCommons.OrderByJoinToSqlString(sqlString, searchParam.OrderByString);
         sqlString = TDengineCommons.PaginationJoinToSqlString(sqlString, searchParam.PageNumber, searchParam.PaginationSize);

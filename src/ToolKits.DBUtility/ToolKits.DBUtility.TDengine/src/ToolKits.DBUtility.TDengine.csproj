@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.DBUtility.TDengine</RootNamespace>
         <AssemblyName>DBUtility.TDengine</AssemblyName>
-        <AssemblyVersion>7.4.0</AssemblyVersion>
-        <FileVersion>7.4.0</FileVersion>
+        <AssemblyVersion>7.5.0</AssemblyVersion>
+        <FileVersion>7.5.0</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -38,7 +38,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-        <PackageReleaseNotes>增加仅用于内部返回最终执行的SQL语句，以便于应用过程中的调测等。</PackageReleaseNotes>
+        <PackageReleaseNotes>完成时间窗口功能的编码实现，增加用于查询时使用的原生SQL语句字符串属性定义及其应用。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
     </PropertyGroup>
 

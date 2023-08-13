@@ -32,8 +32,7 @@ public static class TDengineCommons
     /// <returns>验证后的查询条件字符串</returns>
     public static string? WhereStringValidate(string? whereString)
     {
-        if (string.IsNullOrWhiteSpace(whereString) ||
-            whereString is null)
+        if (string.IsNullOrWhiteSpace(whereString))
         {
             return default;
         }
@@ -64,8 +63,7 @@ public static class TDengineCommons
     {
         whereString = WhereStringValidate(whereString);
 
-        if (string.IsNullOrWhiteSpace(whereString) ||
-            whereString is null)
+        if (string.IsNullOrWhiteSpace(whereString))
         {
             return sqlString;
         }
@@ -83,8 +81,7 @@ public static class TDengineCommons
     /// <returns>SQL字符串</returns>
     public static string OrderByJoinToSqlString(string sqlString, string? orderbyString)
     {
-        if (string.IsNullOrWhiteSpace(orderbyString) ||
-            orderbyString is null)
+        if (string.IsNullOrWhiteSpace(orderbyString))
         {
             return sqlString;
         }
@@ -113,12 +110,54 @@ public static class TDengineCommons
     }
 
     /// <summary>
-    /// 将时间窗口功能加入到SQL语句中
+    /// 将滑动时间窗口功能加入到SQL语句中
+    /// 时间窗口又可分为滑动时间窗口和翻转时间窗口。
     /// </summary>
-    /// <param name="sqlString"></param>
+    /// <param name="sqlString">SQL字符串</param>
+    /// <param name="strInterval">时间窗口阈值 (由时间加单位组成，大家都是成年人了，值该怎么样才是合理的自己去看官方文档。如：10s 10m 1h等)</param>
+    /// <param name="strSliding">时间窗口向前滑动的时间 (由时间加单位组成，大家都是成年人了，值该怎么样才是合理的自己去看官方文档。如：10s 10m 1h等)</param>
+    /// <param name="strOffset">时间窗口阈值偏移量 (由时间加单位组成，大家都是成年人了，值该怎么样才是合理的自己去看官方文档。如：10s 10m 1h等)</param>
     /// <returns>SQL字符串</returns>
-    public static string TimeWindowJoinToSqlString(string sqlString)
+    public static string SlidingTimeWindowJoinToSqlString(string sqlString, string strInterval, string? strSliding = null, string? strOffset = null)
     {
-        return sqlString;
+        if (string.IsNullOrWhiteSpace(strInterval))
+        {
+            return sqlString;
+        }
+
+        // 不需要滑动时间
+        if (string.IsNullOrWhiteSpace(strSliding))
+        {
+            if (string.IsNullOrWhiteSpace(strOffset))
+            {
+                return $"{sqlString} interval({strInterval})";
+            }
+
+            return $"{sqlString} interval({strInterval},{strOffset})";
+        }
+
+        // 需要滑动时间
+        if (string.IsNullOrWhiteSpace(strOffset))
+        {
+            return $"{sqlString} interval({strInterval}) sliding({strSliding})";
+        }
+
+        return $"{sqlString} interval({strInterval},{strOffset}) sliding({strSliding})";
+    }
+
+    /// <summary>
+    /// 将翻转时间窗口功能加入到SQL语句中 (滑动时间与阈值相等时，即为翻转时间窗口。)
+    /// </summary>
+    /// <param name="sqlString">SQL字符串</param>
+    /// <param name="strInterval">时间窗口阈值 (由时间加单位组成，大家都是成年人了，值该怎么样才是合理的自己去看官方文档。如：10s 10m 1h等)</param>
+    /// <returns>SQL字符串</returns>
+    public static string FlipTimeWindowJoinToSqlString(string sqlString, string strInterval)
+    {
+        if (string.IsNullOrWhiteSpace(strInterval))
+        {
+            return sqlString;
+        }
+
+        return $"{sqlString} interval({strInterval}) sliding({strInterval})";
     }
 }
