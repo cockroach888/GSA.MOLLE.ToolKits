@@ -49,15 +49,19 @@ internal sealed class Program4ReflectionUtility
     {
         TestModel model = new();
 
-        ReflectionHelper.SetPropertyValue(model, "Name", "漂亮");
-        ReflectionHelper.SetPropertyValue(model, "Value", 111);
-        ReflectionHelper.SetPropertyValue(model, "Description", "这是描述");
+        ReflectionHelper.SetPropertyValue(model, "Name", "牛的牛的");
+        ReflectionHelper.SetPropertyValue(model, "Value", 999999999);
+        ReflectionHelper.SetPropertyValue(model, "Description", "尝试修改描述信息");
 
-        ReflectionHelper.SetFieldValue(model, "FieldName", "字段名");
-        ReflectionHelper.SetFieldValue(model, "FieldValue", "字段值");
+        ReflectionHelper.SetFieldValue(model, "FieldName", "可以的可以的");
+        ReflectionHelper.SetFieldValue(model, "FieldUintValue", 999887766);
+        ReflectionHelper.SetFieldValue(model, "FieldStringValue", "This is a test message.");
+        bool setResult = ReflectionHelper.SetFieldValue(model, "PrivateFieldValue", "This is a private message.");
 
         Console.WriteLine($"FieldName: {model.FieldName}");
-        Console.WriteLine($"FieldValue: {model.FieldValue}");
+        Console.WriteLine($"FieldUintValue: {model.FieldUintValue}");
+        Console.WriteLine($"FieldStringValue: {model.FieldStringValue}");
+        Console.WriteLine($"PrivateFieldValue: {setResult}");
 
         Console.WriteLine($"Name: {model.Name}");
         Console.WriteLine($"Value: {model.Value}");
@@ -65,6 +69,26 @@ internal sealed class Program4ReflectionUtility
 
         Console.WriteLine();
         Console.WriteLine();
+
+
+
+        ReflectionHelper.TryGetPropertyValue(model, "Name", out string? name);
+        ReflectionHelper.TryGetPropertyValue(model, "Value", out int value);
+        ReflectionHelper.TryGetPropertyValue(model, "Description", out string? desc);
+
+        ReflectionHelper.TryGetFieldValue(model, "FieldName", out string? fieldName);
+        ReflectionHelper.TryGetFieldValue(model, "FieldUintValue", out uint fieldUintValue);
+        ReflectionHelper.TryGetFieldValue(model, "FieldStringValue", out string? fieldStringValue);
+        bool getResult = ReflectionHelper.TryGetFieldValue(model, "PrivateFieldValue", out string? privateFieldValue);
+
+        Console.WriteLine($"GetFieldValue - FieldName: {fieldName}");
+        Console.WriteLine($"GetFieldValue - FieldUintValue: {fieldUintValue}");
+        Console.WriteLine($"GetFieldValue - FieldStringValue: {fieldStringValue}");
+        Console.WriteLine($"GetFieldValue - PrivateFieldValue: {getResult}");
+
+        Console.WriteLine($"GetPropertyValue - Name: {name}");
+        Console.WriteLine($"GetPropertyValue - Value: {value}");
+        Console.WriteLine($"GetPropertyValue - Description: {desc}");
     }
 
 
@@ -72,13 +96,17 @@ internal sealed class Program4ReflectionUtility
     {
         public string? FieldName;
 
-        public readonly string FieldValue = "FieldValue";
+        public uint FieldUintValue = 1;
+
+        public readonly string FieldStringValue = "我是只读的字段咧！";
+
+        private string PrivateFieldValue = "这是一个私有字段";
 
 
         public string? Name { get; set; }
 
         public int Value { get; set; }
 
-        public string? Description { get; }
+        public string? Description { get; } = "我是只读的属性咧！";
     }
 }

@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>7.5.0</AssemblyVersion>
-		<FileVersion>7.5.0</FileVersion>
+		<AssemblyVersion>7.6.0</AssemblyVersion>
+		<FileVersion>7.6.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 		<NoWarn>8603,8600</NoWarn>
 	</PropertyGroup>
@@ -38,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>增加将字符串转换为SQL所支持的单引号包裹格式功能实现。</PackageReleaseNotes>
+		<PackageReleaseNotes>优化反射特性应用助手，调整赋值方法，增加新的获取方法。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>

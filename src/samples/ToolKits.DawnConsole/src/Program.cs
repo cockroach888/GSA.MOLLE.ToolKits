@@ -16,9 +16,9 @@ Console.WriteLine();
 //Program4EMQXUtility.Default.WeaponsHotPlus(true);
 //Program4EMQXUtility.Default.WeaponsHot();
 
-//Program4ReflectionUtility.Default.FireInTheHole();
+Program4ReflectionUtility.Default.FireInTheHole();
 
-Program4TDengineUtility.Default.FireInTheHole();
+//Program4TDengineUtility.Default.FireInTheHole();
 
 
 
