@@ -28,15 +28,33 @@ public static class StatusHelperExtensions
     /// <summary>
     /// 获取EMQX服务节点状态(健康检查)
     /// </summary>
+    /// <remarks>返回文本格式</remarks>
     /// <param name="helper">管理助手</param>
     /// <returns>状态信息</returns>
-    public static async Task<string?> GetStatusAsync(this IStatusHelper helper)
+    public static async Task<string?> GetStatusToTextAsync(this IStatusHelper helper)
     {
         StatusHelper innerHelper = (StatusHelper)helper;
 
         RestRequest request = new("status", method: Method.Get);
+        request.AddQueryParameter("format", "text");
 
         RestResponse response = await innerHelper.Client.GetAsync(request).ConfigureAwait(false);
         return response.Content;
+    }
+
+    /// <summary>
+    /// 获取EMQX服务节点状态(健康检查)
+    /// </summary>
+    /// <remarks>返回JSON格式</remarks>
+    /// <param name="helper">管理助手</param>
+    /// <returns>状态信息</returns>
+    public static async Task<EMQStatusInfoModel?> GetStatusToJsonAsync(this IStatusHelper helper)
+    {
+        StatusHelper innerHelper = (StatusHelper)helper;
+
+        RestRequest request = new("status", method: Method.Get);
+        request.AddQueryParameter("format", "json");
+
+        return await innerHelper.Client.GetAsync<EMQStatusInfoModel>(request).ConfigureAwait(false);
     }
 }
