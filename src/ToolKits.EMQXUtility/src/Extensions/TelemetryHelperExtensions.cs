@@ -26,58 +26,61 @@ namespace GSA.ToolKits.EMQXUtility;
 public static class TelemetryHelperExtensions
 {
     /// <summary>
-    /// 获取遥测状态信息
+    /// 更新遥测状态
     /// </summary>
     /// <param name="helper">管理助手</param>
-    /// <returns>遥测状态信息</returns>
-    public static async Task<TelemetryStatusModel?> GetStatusAsync(this ITelemetryHelper helper)
-    {
-        TelemetryHelper innerHelper = (TelemetryHelper)helper;
-
-        RestRequest request = new("telemetry/status", method: Method.Get);
-
-        TelemetryStatusModel? result = await innerHelper.Client.GetAsync<TelemetryStatusModel>(request).ConfigureAwait(false);
-        result!.IsSuccessStatusCode = true;
-
-        return result;
-    }
-
-    /// <summary>
-    /// 更新遥测状态信息
-    /// </summary>
-    /// <param name="helper">管理助手</param>
-    /// <param name="info">遥测状态信息</param>
-    /// <returns>遥测状态信息</returns>
-    public static async Task<TelemetryStatusModel?> UpdateStatusAsync(this ITelemetryHelper helper, TelemetryStatusModel info)
+    /// <param name="info">遥测状态</param>
+    /// <returns>遥测状态</returns>
+    public static async Task<EMQTelemetryStatusModel?> UpdateStatusAsync(this ITelemetryHelper helper, EMQTelemetryStatusModel info)
     {
         TelemetryHelper innerHelper = (TelemetryHelper)helper;
 
         RestRequest request = new("telemetry/status", method: Method.Put);
         request.AddJsonBody(info);
 
-        TelemetryStatusModel? result = default;
+        EMQTelemetryStatusModel? result = default;
         RestResponse response = await innerHelper.Client.ExecutePutAsync(request).ConfigureAwait(false);
 
         if (!string.IsNullOrWhiteSpace(response.Content))
         {
-            result = JsonSerializer.Deserialize<TelemetryStatusModel>(response.Content);
-            result!.IsSuccessStatusCode = response.IsSuccessStatusCode;
+            result = JsonSerializer.Deserialize<EMQTelemetryStatusModel>(response.Content);
         }
 
         return result;
     }
 
     /// <summary>
-    /// 获取遥测数据信息
+    /// 获取遥测状态
     /// </summary>
     /// <param name="helper">管理助手</param>
-    /// <returns>遥测数据信息</returns>
-    public static async Task<TelemetryDataModel?> GetDataAsync(this ITelemetryHelper helper)
+    /// <returns>遥测状态</returns>
+    public static async Task<EMQTelemetryStatusModel?> GetStatusAsync(this ITelemetryHelper helper)
+    {
+        TelemetryHelper innerHelper = (TelemetryHelper)helper;
+
+        RestRequest request = new("telemetry/status", method: Method.Get);
+
+        return await innerHelper.Client.GetAsync<EMQTelemetryStatusModel>(request).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 获取遥测数据
+    /// </summary>
+    /// <param name="helper">管理助手</param>
+    /// <returns>遥测数据</returns>
+    public static async Task<EMQTelemetryDataModel?> GetDataAsync(this ITelemetryHelper helper)
     {
         TelemetryHelper innerHelper = (TelemetryHelper)helper;
 
         RestRequest request = new("telemetry/data", method: Method.Get);
 
-        return await innerHelper.Client.GetAsync<TelemetryDataModel>(request).ConfigureAwait(false);
+        EMQTelemetryDataModel? result = await innerHelper.Client.GetAsync<EMQTelemetryDataModel>(request).ConfigureAwait(false);
+
+        if (result is not null)
+        {
+            result.IsSuccessStatusCode = string.IsNullOrWhiteSpace(result.ErrorCode) ? false : true;
+        }
+
+        return result;
     }
 }

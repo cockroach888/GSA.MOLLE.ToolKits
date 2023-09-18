@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：TelemetryStatusModel.cs
+// 文件名称：EMQLicenseModel.cs
 // 项目名称：EMQX消息服务工具集
-// 创建时间：2023-03-19 20:25:38
+// 创建时间：2023-09-18 22:14:29
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,15 +21,14 @@
 namespace GSA.ToolKits.EMQXUtility.Entity;
 
 /// <summary>
-/// 遥测状态信息实体类
+/// EMQX许可证实体类
 /// </summary>
 [Serializable]
-public sealed class TelemetryStatusModel : ResponseResultAbstract
+public sealed class EMQLicenseModel
 {
     /// <summary>
-    /// 是否遥测启用
+    /// 版本代号
     /// </summary>
-    /// <remarks>true 启用 / false 禁用</remarks>
-    [JsonPropertyName("enable")]
-    public bool Enable { get; set; }
+    [JsonPropertyName("edition")]
+    public string? Edition { get; set; }
 }

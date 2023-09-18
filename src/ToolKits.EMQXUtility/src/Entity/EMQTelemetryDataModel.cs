@@ -6,7 +6,7 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：TelemetryDataModel.cs
+// 文件名称：EMQTelemetryDataModel.cs
 // 项目名称：EMQX消息服务工具集
 // 创建时间：2023-02-23 16:53:16
 // 创建人员：宋杰军
@@ -21,85 +21,85 @@
 namespace GSA.ToolKits.EMQXUtility.Entity;
 
 /// <summary>
-/// 遥测数据信息实体类
+/// EMQX遥测数据实体类
 /// </summary>
 [Serializable]
-public sealed class TelemetryDataModel
+public sealed class EMQTelemetryDataModel : ResponseResultAbstract
 {
     /// <summary>
-    /// 获取 emqx 版本
+    /// EMQX 版本
     /// </summary>
     [JsonPropertyName("emqx_version")]
-    public string? EmqxVersion { get; set; }
+    public string? EMQXVersion { get; set; }
 
     /// <summary>
-    /// 获取 license 信息
+    /// 许可证
     /// </summary>
     [JsonPropertyName("license")]
-    public object? License { get; set; }
+    public EMQLicenseModel? License { get; set; }
 
     /// <summary>
-    /// 获取操作系统名称
+    /// 操作系统名称
     /// </summary>
     [JsonPropertyName("os_name")]
     public string? OSName { get; set; }
 
     /// <summary>
-    /// 获取操作系统版本
+    /// 操作系统版本
     /// </summary>
     [JsonPropertyName("os_version")]
     public string? OSVersion { get; set; }
 
     /// <summary>
-    /// 获取 OTP 版本
+    /// OTP 版本
     /// </summary>
     [JsonPropertyName("otp_version")]
     public string? OTPVersion { get; set; }
 
     /// <summary>
-    /// 获取运行时间
+    /// 运行时间
     /// </summary>
     [JsonPropertyName("up_time")]
     public int UpTime { get; set; }
 
     /// <summary>
-    /// 获取 UUID
+    /// 当前节点 UUID
     /// </summary>
     [JsonPropertyName("uuid")]
     public string? UUID { get; set; }
 
     /// <summary>
-    /// 获取节点 UUID
+    /// 所有节点 UUID
     /// </summary>
     [JsonPropertyName("nodes_uuid")]
     public string[]? NodesUUID { get; set; }
 
     /// <summary>
-    /// 获取活跃插件
+    /// 激活的插件列表
     /// </summary>
     [JsonPropertyName("active_plugins")]
     public string[]? ActivePlugins { get; set; }
 
     /// <summary>
-    /// 获取活跃模块
+    /// 激活的模块列表
     /// </summary>
     [JsonPropertyName("active_modules")]
     public string[]? ActiveModules { get; set; }
 
     /// <summary>
-    /// 获取客户端数量
+    /// 客户端数量
     /// </summary>
     [JsonPropertyName("num_clients")]
     public int NumClients { get; set; }
 
     /// <summary>
-    /// 获取接收到的消息数量
+    /// 接收到的消息数量
     /// </summary>
     [JsonPropertyName("messages_received")]
     public int MessagesReceived { get; set; }
 
     /// <summary>
-    /// 获取发送的消息数量
+    /// 发送的消息数量
     /// </summary>
     [JsonPropertyName("messages_sent")]
     public int MessagesSent { get; set; }
