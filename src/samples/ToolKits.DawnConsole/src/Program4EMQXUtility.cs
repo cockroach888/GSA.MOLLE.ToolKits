@@ -20,6 +20,7 @@
 // ========================================================================
 using GSA.ToolKits.EMQXUtility;
 using GSA.ToolKits.EMQXUtility.Entity;
+using System.Reflection;
 using System.Text.Json;
 
 namespace GSA.ToolKits.DawnConsole;
@@ -50,14 +51,17 @@ internal sealed class Program4EMQXUtility
     };
 
 
+    #region EMQX服务节点状态
+
     /// <summary>
     /// 获取EMQX服务节点状态(健康检查)
     /// </summary>
     /// <remarks>返回文本格式</remarks>
-    public async Task GetStatusTextAsync()
+    public async Task GetStatusToTextAsync()
     {
         using IStatusHelper _helper = StatusHelperProvider.Default.Create(_options);
         string? statusString = await _helper.GetStatusToTextAsync().ConfigureAwait(false);
+
         Console.WriteLine($"EMQX服务节点状态：{statusString}");
         Console.WriteLine();
         Console.WriteLine();
@@ -70,15 +74,63 @@ internal sealed class Program4EMQXUtility
     public async Task GetStatusToJsonAsync()
     {
         using IStatusHelper _helper = StatusHelperProvider.Default.Create(_options);
-        EMQStatusInfoModel? model = await _helper.GetStatusToJsonAsync().ConfigureAwait(false);
+        EMQStatusModel? model = await _helper.GetStatusToJsonAsync().ConfigureAwait(false);
+
         Console.WriteLine($"EMQX服务节点状态：{JsonSerializer.Serialize(model)}");
         Console.WriteLine();
         Console.WriteLine();
     }
 
+    #endregion
 
 
+    #region 遥测状态
 
+    /// <summary>
+    /// 获取遥测状态
+    /// </summary>
+    public async Task GetTelemetryStatusAsync()
+    {
+        using ITelemetryHelper _helper = TelemetryHelperProvider.Default.Create(_options);
+        EMQTelemetryStatusModel? model = await _helper.GetStatusAsync().ConfigureAwait(false);
+
+        Console.WriteLine($"EMQX遥测状态：{JsonSerializer.Serialize(model)}");
+        Console.WriteLine();
+        Console.WriteLine();
+    }
+
+    /// <summary>
+    /// 获取遥测数据
+    /// </summary>
+    public async Task GetTelemetryDataAsync()
+    {
+        using ITelemetryHelper _helper = TelemetryHelperProvider.Default.Create(_options);
+        EMQTelemetryDataModel? model = await _helper.GetDataAsync().ConfigureAwait(false);
+
+        Console.WriteLine($"EMQX遥测数据：{JsonSerializer.Serialize(model)}");
+        Console.WriteLine();
+        Console.WriteLine();
+    }
+
+    /// <summary>
+    /// 更新遥测状态
+    /// </summary>
+    /// <param name="status">遥测状态</param>
+    public async Task UpdateTelemetryStatusAsync(bool status)
+    {
+        using ITelemetryHelper _helper = TelemetryHelperProvider.Default.Create(_options);
+        EMQTelemetryStatusModel info = new()
+        {
+            Enable = status
+        };
+        EMQTelemetryStatusModel? model = await _helper.UpdateStatusAsync(info).ConfigureAwait(false);
+
+        Console.WriteLine($"EMQX遥测状态：{JsonSerializer.Serialize(model)}");
+        Console.WriteLine();
+        Console.WriteLine();
+    }
+
+    #endregion
 
 
 
@@ -120,43 +172,4 @@ internal sealed class Program4EMQXUtility
     Console.WriteLine(JsonSerializer.Serialize(queryResult));
     Console.WriteLine();*/
 
-
-
-    /// <summary>
-    /// 武器发热
-    /// </summary>
-    /// <remarks>遥测管理</remarks>
-    public async void WeaponsHot()
-    {
-        using ITelemetryHelper _helper = TelemetryHelperProvider.Default.Create(_options);
-
-        TelemetryStatusModel? info = await _helper.GetStatusAsync().ConfigureAwait(false);
-        Console.WriteLine($"遥测状态：{info?.Enable}");
-        Console.WriteLine();
-
-
-        TelemetryDataModel? teleInfo = await _helper.GetDataAsync().ConfigureAwait(false);
-        Console.WriteLine(JsonSerializer.Serialize(teleInfo));
-        Console.WriteLine();
-
-        Console.WriteLine();
-        Console.WriteLine();
-    }
-
-    /// <summary>
-    /// 武器发热
-    /// </summary>
-    /// <param name="status">遥测启用状态</param>
-    /// <remarks>遥测管理</remarks>
-    public async void WeaponsHotPlus(bool status)
-    {
-        using ITelemetryHelper _helper = TelemetryHelperProvider.Default.Create(_options);
-
-        TelemetryStatusModel? model = await _helper.UpdateStatusAsync(new TelemetryStatusModel() { Enable = status }).ConfigureAwait(false);
-        Console.WriteLine($"遥测更新状态：{JsonSerializer.Serialize(model)}");
-        Console.WriteLine();
-
-        Console.WriteLine();
-        Console.WriteLine();
-    }
 }

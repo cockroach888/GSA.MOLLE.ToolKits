@@ -6,7 +6,7 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：StatusInfoModel.cs
+// 文件名称：EMQStatusModel.cs
 // 项目名称：EMQX消息服务工具集
 // 创建时间：2023-09-17 21:18:35
 // 创建人员：宋杰军
@@ -21,10 +21,10 @@
 namespace GSA.ToolKits.EMQXUtility.Entity;
 
 /// <summary>
-/// EMQX状态信息实体类
+/// EMQX状态实体类
 /// </summary>
 [Serializable]
-public sealed class EMQStatusInfoModel
+public sealed class EMQStatusModel
 {
     /// <summary>
     /// 发行版本

@@ -15,11 +15,16 @@ Console.WriteLine();
 //Program4PagingUtility.Default.FireInTheHole();
 
 
-await Program4EMQXUtility.Default.GetStatusTextAsync().ConfigureAwait(false);
+
+await Program4EMQXUtility.Default.GetStatusToTextAsync().ConfigureAwait(false);
 await Program4EMQXUtility.Default.GetStatusToJsonAsync().ConfigureAwait(false);
 
-//Program4EMQXUtility.Default.WeaponsHotPlus(true);
-//Program4EMQXUtility.Default.WeaponsHot();
+await Program4EMQXUtility.Default.GetTelemetryStatusAsync().ConfigureAwait(false);
+await Program4EMQXUtility.Default.GetTelemetryDataAsync().ConfigureAwait(false);
+
+await Program4EMQXUtility.Default.UpdateTelemetryStatusAsync(true).ConfigureAwait(false);
+await Program4EMQXUtility.Default.GetTelemetryStatusAsync().ConfigureAwait(false);
+await Program4EMQXUtility.Default.GetTelemetryDataAsync().ConfigureAwait(false);
 
 
 //Program4ReflectionUtility.Default.FireInTheHole();
