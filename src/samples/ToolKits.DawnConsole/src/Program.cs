@@ -8,28 +8,33 @@ Console.WriteLine();
 
 
 
+// Program4CommonUtility
 //Program4CommonUtility.Default.FireInTheHole();
 //Program4CommonUtility.Default.HolsterThatWeapon();
 
 
+// Program4PagingUtility
 //Program4PagingUtility.Default.FireInTheHole();
 
 
+// Program4EMQXUtility
+//await Program4EMQXUtility.Default.GetStatusToTextAsync().ConfigureAwait(false);
+//await Program4EMQXUtility.Default.GetStatusToJsonAsync().ConfigureAwait(false);
 
-await Program4EMQXUtility.Default.GetStatusToTextAsync().ConfigureAwait(false);
-await Program4EMQXUtility.Default.GetStatusToJsonAsync().ConfigureAwait(false);
+//await Program4EMQXUtility.Default.GetTelemetryStatusAsync().ConfigureAwait(false);
+//await Program4EMQXUtility.Default.GetTelemetryDataAsync().ConfigureAwait(false);
 
-await Program4EMQXUtility.Default.GetTelemetryStatusAsync().ConfigureAwait(false);
-await Program4EMQXUtility.Default.GetTelemetryDataAsync().ConfigureAwait(false);
-
-await Program4EMQXUtility.Default.UpdateTelemetryStatusAsync(true).ConfigureAwait(false);
-await Program4EMQXUtility.Default.GetTelemetryStatusAsync().ConfigureAwait(false);
-await Program4EMQXUtility.Default.GetTelemetryDataAsync().ConfigureAwait(false);
+//await Program4EMQXUtility.Default.UpdateTelemetryStatusAsync(true).ConfigureAwait(false);
+//await Program4EMQXUtility.Default.GetTelemetryStatusAsync().ConfigureAwait(false);
+//await Program4EMQXUtility.Default.GetTelemetryDataAsync().ConfigureAwait(false);
+//await Program4EMQXUtility.Default.UpdateTelemetryStatusAsync(false).ConfigureAwait(false);
 
 
+// Program4ReflectionUtility
 //Program4ReflectionUtility.Default.FireInTheHole();
 
 
+// Program4TDengineUtility
 //Program4TDengineUtility.Default.FireInTheHole();
 
 

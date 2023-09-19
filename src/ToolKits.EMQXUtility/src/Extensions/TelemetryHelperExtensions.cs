@@ -78,7 +78,7 @@ public static class TelemetryHelperExtensions
 
         if (result is not null)
         {
-            result.IsSuccessStatusCode = string.IsNullOrWhiteSpace(result.ErrorCode) ? false : true;
+            result.IsSuccessStatusCode = string.IsNullOrWhiteSpace(result.ErrorCode) ? true : false;
         }
 
         return result;
