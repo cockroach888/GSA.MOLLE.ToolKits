@@ -28,7 +28,7 @@ namespace GSA.ToolKits.CommonUtility.Converters;
 /// </summary>
 /// <remarks>
 /// <para>入参时为时间戳格式，并将其转换为DateTime的本地时间格式。</para>
-/// <para>出参时为DateTime格式，并将其转换为 yyyy-MM-dd HH:mm:ss.ffff 字符串。</para>
+/// <para>出参时为DateTime格式，并将其转换为 yyyy-MM-dd HH:mm:ss.fff 字符串。</para>
 /// </remarks>
 public sealed class JsonTimestampPlus2LocalTimeConverter : JsonConverter<DateTime>
 {
@@ -70,5 +70,5 @@ public sealed class JsonTimestampPlus2LocalTimeConverter : JsonConverter<DateTim
     /// <param name="value">The value to convert to JSON.</param>
     /// <param name="options">An object that specifies serialization options to use.</param>
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
-        => writer.WriteStringValue($"{value:yyyy-MM-dd HH:mm:ss.ffff}");
+        => writer.WriteStringValue($"{value:yyyy-MM-dd HH:mm:ss.fff}");
 }

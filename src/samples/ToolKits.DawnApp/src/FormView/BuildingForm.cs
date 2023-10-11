@@ -44,7 +44,7 @@ namespace GSA.ToolKits.DawnApp.FormView
 
         private void DtpDateTime_ValueChanged(object sender, EventArgs e)
         {
-            TxtDateTime.Text = $"{DtpDateTime.Value:yyyy-MM-dd HH:mm:ss.ffff}";
+            TxtDateTime.Text = $"{DtpDateTime.Value:yyyy-MM-dd HH:mm:ss.fff}";
         }
 
         private void BtnToTimestamp_Click(object sender, EventArgs e)

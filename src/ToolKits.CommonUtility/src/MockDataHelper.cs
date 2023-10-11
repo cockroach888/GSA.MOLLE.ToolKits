@@ -31,10 +31,10 @@ public static class MockDataHelper
     /// 获取指定偏移量与格式的日期时间字符串
     /// </summary>
     /// <param name="offsetDay">偏移量(缺省 0)</param>
-    /// <param name="formatString">格式(缺省 yyyy-MM-dd HH:mm:ss.ffff)</param>
+    /// <param name="formatString">格式(缺省 yyyy-MM-dd HH:mm:ss.fff)</param>
     /// <param name="kind">日期时间特征(缺省 Local 本地时间)</param>
     /// <returns>表示日期与时间的字符串</returns>
-    public static string MockDateTimeString(int offsetDay = 0, string formatString = "yyyy-MM-dd HH:mm:ss.ffff", DateTimeKind kind = DateTimeKind.Local)
+    public static string MockDateTimeString(int offsetDay = 0, string formatString = "yyyy-MM-dd HH:mm:ss.fff", DateTimeKind kind = DateTimeKind.Local)
         => kind switch
         {
             DateTimeKind.Utc => $"{DateTime.UtcNow.AddDays(offsetDay).ToString(formatString)}",

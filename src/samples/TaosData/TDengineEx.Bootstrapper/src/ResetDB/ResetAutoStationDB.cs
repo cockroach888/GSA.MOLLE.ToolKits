@@ -156,7 +156,7 @@ internal sealed class ResetAutoStationDB : IResetDB
               .Append($"{DBNAME}.{STABLENAME}_info")
               .Append(" values ")
               .Append('(')
-              .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffff}',")
+              .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}',")
               .Append($"'{id}',")
               .Append($"'{name}',")
               .Append($"{latitude},")
@@ -258,8 +258,8 @@ internal sealed class ResetAutoStationDB : IResetDB
                   .Append($"{DBNAME}.{STABLENAME}_{id}")
                   .Append(" values ")
                   .Append('(')
-                  .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffff}',") // tss timestamp
-                  .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffff}',") // report_time timestamp
+                  .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}',") // tss timestamp
+                  .Append($"'{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}',") // report_time timestamp
                   .Append($"{Random.Shared.Next(-70, 70)},") // temperature float
                   .Append($"{Random.Shared.Next(0, 1500)},") // air_pressure float
                   .Append($"{Random.Shared.Next(0, 100)},") // relative_humidity float

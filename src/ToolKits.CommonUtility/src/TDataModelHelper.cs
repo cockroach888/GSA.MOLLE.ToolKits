@@ -119,7 +119,7 @@ public static class TDataModelHelper
                     sbValue.Append($"'{value}',");
                     break;
                 case Type ttime when ttime == typeof(DateTime):
-                    sbValue.Append($"'{value:yyyy-MM-dd HH:mm:ss.ffff}',");
+                    sbValue.Append($"'{value:yyyy-MM-dd HH:mm:ss.fff}',");
                     break;
                 case Type tsbyte when tsbyte == typeof(sbyte):
                 case Type tbyte when tbyte == typeof(byte):
