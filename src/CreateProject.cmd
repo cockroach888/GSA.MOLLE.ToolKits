@@ -130,6 +130,21 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.EMQXUtility.CeriumXHost
 @echo.
 @echo.
 @echo.
+@echo\&echo  ---------- 应用程序类工具集 & Application 2 ----------
+
+dotnet new wpf -lang "C#" -f net7.0 -n ToolKits.AutomaticDeletionFiles -o APPXs/AutomaticDeletionFiles/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s APPXs APPXs/AutomaticDeletionFiles/src
+
+dotnet new wpf -lang "C#" -f net7.0 -n ToolKits.AutomaticMoveFiles -o APPXs/AutomaticMoveFiles/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s APPXs APPXs/AutomaticMoveFiles/src
+
+
+
+
+
+@echo.
+@echo.
+@echo.
 @echo\&echo  ---------- 数据库访问助手工具集 & DBUtility 10 ----------
 
 dotnet new classlib -lang "C#" -f net7.0 -n ToolKits.DBUtility.MongoDB -o ToolKits.DBUtility/ToolKits.DBUtility.MongoDB/src
