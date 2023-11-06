@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ToolKits.AutomaticMoveFiles
+namespace GSA.ToolKits.AutomaticMoveFiles
 {
     /// <summary>
     /// Interaction logic for App.xaml

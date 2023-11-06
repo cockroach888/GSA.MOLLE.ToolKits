@@ -1,14 +1,76 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+    <PropertyGroup>
+        <UseWPF>true</UseWPF>
+        <OutputType>WinExe</OutputType>
+        <TargetFrameworks>net7.0-windows</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>sys.ico</ApplicationIcon>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>ToolKits.AutomaticDeletionFiles.snk</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <RootNamespace>GSA.ToolKits.AutomaticDeletionFiles</RootNamespace>
+        <AssemblyName>AutomaticDeletionFiles</AssemblyName>
+        <AssemblyVersion>7.0.0</AssemblyVersion>
+        <FileVersion>7.0.0</FileVersion>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CeriumX.WebEngine.WebView2.GenericHost" Version="7.0.1" />
-  </ItemGroup>
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Authors>蟑螂·魂</Authors>
+        <Description>自动删除文件工具
+
+- 鄙人专注.NET技术，深入研习.NET 6|7+系列源码。本工具以提供快捷、便利、提升工作效率和业务能力为宗旨；
+- 本工具均由鄙人采用最新技术实践编码完成，主要实现自动删除文件的相关功能，以解决相应场景的需求；
+- 采用周期轮询的方式，既间隔一定时间后，进行前置时间外的文件删除处理，以及相关功能的实现；
+- 包括但不限于：日、时、分、秒的前置时间，轮询周期、是否涵盖子目录，及排除目录、文件、文件类型等功能。</Description>
+        <Company>华夏银河空间联盟</Company>
+        <Product>自动删除文件工具</Product>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
+        <PackageIcon>PackageIcon.jpg</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
+        <PackageTags>魂哥常用工具集 自动删除文件工具 自动删除 删除文件 Automatic Deletion Files</PackageTags>
+        <PackageReleaseNotes>初始化项目及其基础配置等工作。</PackageReleaseNotes>
+        <Version>$(AssemblyVersion)</Version>
+        <PackageId>AutomaticDeletionFiles</PackageId>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>none</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\..\..\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="..\..\..\PackageIcon.jpg">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CeriumX.WebEngine.WebView2.GenericHost" Version="7.0.1" />
+    </ItemGroup>
 
 </Project>

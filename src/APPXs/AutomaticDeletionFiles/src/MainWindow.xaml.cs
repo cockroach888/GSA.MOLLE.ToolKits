@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ToolKits.AutomaticDeletionFiles
+namespace GSA.ToolKits.AutomaticDeletionFiles
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

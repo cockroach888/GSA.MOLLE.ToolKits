@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ToolKits.AutomaticDeletionFiles
+namespace GSA.ToolKits.AutomaticDeletionFiles
 {
     /// <summary>
     /// Interaction logic for App.xaml
