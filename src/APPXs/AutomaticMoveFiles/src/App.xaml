@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:GSA.ToolKits.AutomaticMoveFiles"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>
