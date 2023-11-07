@@ -6,8 +6,8 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：MainWindow.cs
-// 项目名称：自动移动文件工具
+// 文件名称：GlobalUsingDefinition.cs
+// 项目名称：我是一个负责全局引用的类，没有其它功能。
 // 创建时间：2023-11-07 15:35:09
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
@@ -18,33 +18,4 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace GSA.ToolKits.AutomaticMoveFiles;
-
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
-{
-    /// <summary>
-    /// 
-    /// </summary>
-    public MainWindow()
-    {
-        InitializeComponent();
-    }
-}
+global using GSA.ToolKits.AutomaticMoveFiles.Entity;
