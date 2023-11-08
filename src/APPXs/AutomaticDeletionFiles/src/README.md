@@ -16,7 +16,9 @@
 ## 开发日志
 
 ### 2023-11-08
-- 集成Shoelace前端UI组件库(web components)、jQuery前端JS功能库、Knockout前端双向绑定功能库。
+- 集成Shoelace前端UI组件库(web components)、jQuery前端JS功能库、Knockout前端双向绑定功能库；
+- 去除Shoelace集成与应用，集成Bootstrap前端UI库、Flatpickr日期组件库、SweetAlert消息组件库、WenQue自研工具库等；
+- 完成通用主机和CeriumX.WebEngine.WebView2的集成，以及前端技术的应用与处理工作。
 
 ### 2023-11-07
 - 增加appsettings全局配置配套文件；
