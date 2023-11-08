@@ -21,6 +21,7 @@
 using CeriumX.WebEngine.WebView2.GenericHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Windows;
@@ -80,7 +81,7 @@ public partial class App : Application
             .ConfigureServices((services) =>
             {
                 // 注册控制器
-                //services.TryAddSingleton<AlarmAnalysisController>();
+                services.TryAddSingleton<MainWindowController>();
             })
             .ConfigureServices((services) =>
             {

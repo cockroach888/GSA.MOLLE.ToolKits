@@ -29,20 +29,26 @@ namespace GSA.ToolKits.AutomaticDeletionFiles;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private readonly WebView2EnvConfigure _config;
     private IWebWindow<UIElement>? _webWindow;
     private readonly IWebWindowFactory _webWindowFactory;
-    private readonly WebView2EnvConfigure _config;
+    private readonly MainWindowController _controller;
 
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// <param name="webFactory">浏览器窗口创建工厂</param>
     /// <param name="options">WebView2 环境配置选项</param>
-    public MainWindow(IWebWindowFactory webFactory, IOptions<WebView2EnvConfigure> options)
+    /// <param name="webFactory">浏览器窗口创建工厂</param>
+    /// <param name="controller">主窗体控制器</param>
+    public MainWindow(
+        IOptions<WebView2EnvConfigure> options,
+        IWebWindowFactory webFactory,
+        MainWindowController controller)
     {
-        _webWindowFactory = webFactory;
         _config = options.Value;
+        _webWindowFactory = webFactory;
+        _controller = controller;
 
         InitializeComponent();
     }
@@ -68,17 +74,16 @@ public partial class MainWindow : Window
                 {
                     _webWindow.Browser!.OnWebMessageReceived += Browser_OnWebMessageReceived;
                     _webWindow.Browser.AddVirtualHostNameToFolderMapping(_config.DomainName, _config.FullVirtualFolder, VirtualResourceAccessKind.DenyCors);
-                    //_webWindow.Browser.AddControllerToScript(_controller);
+                    _webWindow.Browser.AddControllerToScript(_controller);
 
-                    // TODO: 仅当调试时打开开发者管理窗口
-                    //_webWindow.Browser.OpenDevToolsWindow();
+                    _controller.TransmitDispatcher(Dispatcher);
                 }
             };
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message, "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
-        }        
+        }
     }
 
     /// <summary>
@@ -90,5 +95,18 @@ public partial class MainWindow : Window
     private void Browser_OnWebMessageReceived(object? sender, WebMessageReceivedWebArgs e)
     {
         // do something.
+    }
+
+    /// <summary>
+    /// 按键弹出事件
+    /// </summary>
+    /// <param name="sender">传递对象</param>
+    /// <param name="e">传递事件</param>
+    private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        if (e.Key is System.Windows.Input.Key.F12)
+        {
+            _webWindow?.Browser?.OpenDevToolsWindow();
+        }
     }
 }

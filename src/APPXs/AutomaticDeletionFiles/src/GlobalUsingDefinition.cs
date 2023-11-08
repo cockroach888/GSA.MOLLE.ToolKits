@@ -18,4 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+global using CeriumX.WebEngine.Abstractions;
+global using GSA.ToolKits.AutomaticDeletionFiles.Controllers;
 global using GSA.ToolKits.AutomaticDeletionFiles.Entity;
+global using System.Runtime.InteropServices;
+global using System.Windows;

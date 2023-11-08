@@ -20,12 +20,17 @@
     <div class="container-fluid">
         <div class="row mt-1">
             <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <img src="img/favicon.ico" class="card-img-top" alt="收藏夹">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Featured
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <button type="button" class="btn btn-primary" onclick="onMayday()">Go somewhere</button>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        2 days ago
                     </div>
                 </div>
             </div>
@@ -33,5 +38,21 @@
     </div>
 
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/sweetalert/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+        const controller = chrome.webview.hostObjects.mainWindow
+
+        async function onMayday() {
+            swal({
+                title: "系统提示",
+                text: "调用后台方法",
+                icon: "info",
+                button: "确定",
+            });
+
+            await controller.MaydayMaydayMayday('This is a test message.')
+        }
+    </script>
 </body>
 </html>
