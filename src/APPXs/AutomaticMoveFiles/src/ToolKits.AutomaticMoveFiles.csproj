@@ -87,6 +87,18 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="form.ico" />
+        <Resource Include="form.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="wwwroot\**" />
+        <Content Include="wwwroot\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="CeriumX.WebEngine.WebView2.GenericHost" Version="7.0.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     </ItemGroup>
