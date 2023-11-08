@@ -15,6 +15,9 @@
 
 ## 开发日志
 
+### 2023-11-08
+- 集成Shoelace前端UI组件库(web components)、jQuery前端JS功能库、Knockout前端双向绑定功能库。
+
 ### 2023-11-07
 - 增加appsettings全局配置配套文件；
 - 集成通用主机和CeriumX.WebEngine.WebView2组件等功能，及其相关的基础配置等工作。
