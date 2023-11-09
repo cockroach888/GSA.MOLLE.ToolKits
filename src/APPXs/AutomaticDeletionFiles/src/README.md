@@ -16,7 +16,8 @@
 ## 开发日志
 
 ### 2023-11-09
-- 集成bootstrap-icons前端图标库。
+- 集成bootstrap-icons前端图标库；
+- 完成主界面的功能设计和排版还原等工作。
 
 ### 2023-11-08
 - 集成Shoelace前端UI组件库(web components)、jQuery前端JS功能库、Knockout前端双向绑定功能库；
