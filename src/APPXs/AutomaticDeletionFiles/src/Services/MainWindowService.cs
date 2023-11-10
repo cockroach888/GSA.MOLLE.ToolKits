@@ -20,6 +20,8 @@
 // ========================================================================
 using System.Windows.Threading;
 using System.Collections.Concurrent;
+using System.Text.Json;
+using System.IO;
 
 namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 
@@ -107,12 +109,21 @@ internal sealed class MainWindowService
     /// <summary>
     /// 启动
     /// </summary>
-    public void Start()
+    /// <param name="paramString">参数字符串</param>
+    public void Start(string paramString)
     {
-        _dispatcher?.BeginInvoke(() =>
+        DeletionFilesParam? param = JsonSerializer.Deserialize<DeletionFilesParam>(paramString);
+
+        _dispatcher?.BeginInvoke((DeletionFilesParam info) =>
         {
-            //MessageBox.Show("启动", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
-        });
+            if (!Directory.Exists(info.MonitorDirectories))
+            {
+                MessageBox.Show("哥们儿！您逗我呢！！需要监视的目录都没有配置咧！！！", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
+        }, param);
     }
 
     /// <summary>

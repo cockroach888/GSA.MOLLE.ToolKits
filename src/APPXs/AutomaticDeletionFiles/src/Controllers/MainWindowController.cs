@@ -127,8 +127,9 @@ public sealed class MainWindowController : IWebController
     /// <summary>
     /// 启动
     /// </summary>
-    public void Start()
-        => _service?.Start();
+    /// <param name="paramString">参数字符串</param>
+    public void Start(string paramString)
+        => _service?.Start(paramString);
 
     /// <summary>
     /// 停止

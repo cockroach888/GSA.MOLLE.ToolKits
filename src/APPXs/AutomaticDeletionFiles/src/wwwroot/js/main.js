@@ -20,14 +20,14 @@ ko.applyBindings(viewModel)
 
 
 $(() => {
-    'use strict';
+    'use strict'
 
     swal({
         title: "警告",
         text: "所有参数和逻辑，未作任何校验，请按照正常思维使用，不要搞特殊。程序崩溃，小心让你电脑爆炸！（^_^）",
         icon: "warning",
         button: "No zuo no die. You can you up, no can no BB."
-    });
+    })
 })
 
 
@@ -145,7 +145,7 @@ function onIncludeAddin() {
             icon: "error",
             button: false,
             timer: 1000
-        });
+        })
     }
 }
 
@@ -171,7 +171,7 @@ function onExcludeAddin() {
             icon: "error",
             button: false,
             timer: 1000
-        });
+        })
     }
 }
 
@@ -206,9 +206,33 @@ function onExcludeRemove(value) {
 * @return {void}
 */
 async function onStart() {
+    const monitorPath = $('#txtMonitorDirectories').val().trim()
 
+    if (monitorPath.length <= 0) {
+        swal({
+            text: "哥们儿！您逗我呢！！需要监视的目录都没有配置咧！！！",
+            icon: "error",
+            button: "我知道了，马上改正。",
+            timer: 3000
+        })
 
-    await controller.Start()
+        return
+    }
+
+    const dataSource = {
+        'MonitorDirectories': monitorPath,
+        'IncludeSubdirectories': document.getElementById('chkIncludeSubdirectories').checked,
+        'ExcludeHiddenFiles': document.getElementById('chkExcludeHiddenFiles').checked,
+        'ExcludeSystemFiles': document.getElementById('chkExcludeSystemFiles').checked,
+        'CycleTimeDelay': $('#txtCycleTimeDelay').val().trim() * 1,
+        'LeadTime': $('#txtLeadTime').val().trim() * 1,
+        'LeadTimeUnit': leadTimeUnit,
+        'WorkerThreads': $('#txtWorkerThreads').val().trim() * 1
+    }
+
+    console.log(dataSource)
+
+    await controller.Start(JSON.stringify(dataSource))
 
     swal({
         //title: "系统提示",
@@ -216,7 +240,7 @@ async function onStart() {
         icon: "success",
         button: "确定",
         timer: 2000
-    });
+    })
 }
 
 /**
@@ -232,5 +256,5 @@ async function onStop() {
         icon: "warning",
         button: "确定",
         timer: 2000
-    });
+    })
 }
