@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：GlobalUsingDefinition.cs
-// 项目名称：我是一个负责全局引用的类，没有其它功能。
-// 创建时间：2023-11-07 15:34:53
+// 文件名称：LeadTimeType.cs
+// 项目名称：自动删除文件工具
+// 创建时间：2023-11-10 16:28:10
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -18,9 +18,30 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-global using CeriumX.WebEngine.Abstractions;
-global using GSA.ToolKits.AutomaticDeletionFiles.Controllers;
-global using GSA.ToolKits.AutomaticDeletionFiles.Entity;
-global using GSA.ToolKits.AutomaticDeletionFiles.Services;
-global using System.Runtime.InteropServices;
-global using System.Windows;
+namespace GSA.ToolKits.AutomaticDeletionFiles.Entity;
+
+/// <summary>
+/// 前置时间单位枚举类
+/// </summary>
+public enum LeadTimeType
+{
+    /// <summary>
+    /// 日
+    /// </summary>
+    Day,
+
+    /// <summary>
+    /// 小时
+    /// </summary>
+    Hour,
+
+    /// <summary>
+    /// 分钟
+    /// </summary>
+    Minute,
+
+    /// <summary>
+    /// 秒
+    /// </summary>
+    Second
+}

@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：MainWindowController.cs
+// 文件名称：MainWindowService.cs
 // 项目名称：自动删除文件工具
-// 创建时间：2023-11-08 15:54:04
+// 创建时间：2023-11-10 15:16:24
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -19,77 +19,37 @@
 // 修改内容：
 // ========================================================================
 using System.Windows.Threading;
+using System.Collections.Concurrent;
 
-namespace GSA.ToolKits.AutomaticDeletionFiles.Controllers;
+namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 
 /// <summary>
-/// 主窗体控制器
+/// 主窗体控服务
 /// </summary>
-[ClassInterface(ClassInterfaceType.AutoDual)]
-[ComVisible(true)]
-public sealed class MainWindowController : IWebController
+internal sealed class MainWindowService
 {
     private Dispatcher? _dispatcher;
-    private MainWindowService? _service;
+    private ConcurrentDictionary<DeleteContentType, List<string>> _dictIncludeList = new();
+    private ConcurrentDictionary<DeleteContentType, List<string>> _dictExcludeList = new();
 
 
     /// <summary>
-    /// 主窗体控制器
-    /// </summary>
-    public MainWindowController()
-    {
-        // do something.
-    }
-
-
-    #region 接口实现[IWebController]
-
-    /// <summary>
-    /// 将CSharp对象注册为JS对象的控制器名称
-    /// </summary>
-    public string ControllerName { get; } = "mainWindow";
-
-    /// <summary>
-    /// 资源释放
-    /// </summary>
-    public void Dispose()
-    {
-        // do something.
-    }
-
-    #endregion
-
-
-    /// <summary>
-    /// 传递调度器
+    /// 主窗体控服务
     /// </summary>
     /// <param name="dispatcher">调度器</param>
-    internal void TransmitDispatcher(Dispatcher dispatcher)
+    public MainWindowService(Dispatcher dispatcher)
     {
         _dispatcher = dispatcher;
-        _service = new(dispatcher);
+
+        _dictIncludeList[DeleteContentType.Folder] = new List<string>();
+        _dictIncludeList[DeleteContentType.FileName] = new List<string>();
+        _dictIncludeList[DeleteContentType.FileType] = new List<string>();
+
+        _dictExcludeList[DeleteContentType.Folder] = new List<string>();
+        _dictExcludeList[DeleteContentType.FileName] = new List<string>();
+        _dictExcludeList[DeleteContentType.FileType] = new List<string>();
     }
 
-
-    /// <summary>
-    /// 监视目录浏览
-    /// </summary>
-    /// <returns>需要监视的目录</returns>
-    public async Task<string?> BrowserDirectories()
-    {
-        return await _dispatcher!.InvokeAsync(() =>
-        {
-            string folderPath = string.Empty;
-            System.Windows.Forms.FolderBrowserDialog dialog = new();
-
-            if (dialog.ShowDialog() is System.Windows.Forms.DialogResult.OK)
-            {
-                folderPath = dialog.SelectedPath;
-            }
-
-            return folderPath;
-        });
-    }
 
     /// <summary>
     /// 添加要包含的内容
@@ -97,7 +57,12 @@ public sealed class MainWindowController : IWebController
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void IncludeAddin(string keyword, string value)
-        => _service?.IncludeAddin(keyword, value);
+    {
+        if (Enum.TryParse(keyword, out DeleteContentType type))
+        {
+            _dictIncludeList[type].Add(value);
+        }
+    }
 
     /// <summary>
     /// 添加要排除的内容
@@ -105,7 +70,12 @@ public sealed class MainWindowController : IWebController
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void ExcludeAddin(string keyword, string value)
-        => _service?.ExcludeAddin(keyword, value);
+    {
+        if (Enum.TryParse(keyword, out DeleteContentType type))
+        {
+            _dictExcludeList[type].Add(value);
+        }
+    }
 
     /// <summary>
     /// 移除要包含的内容
@@ -113,7 +83,12 @@ public sealed class MainWindowController : IWebController
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void IncludeRemove(string keyword, string value)
-        => _service?.IncludeRemove(keyword, value);
+    {
+        if (Enum.TryParse(keyword, out DeleteContentType type))
+        {
+            _dictIncludeList[type].Remove(value);
+        }
+    }
 
     /// <summary>
     /// 移除要排除的内容
@@ -121,18 +96,33 @@ public sealed class MainWindowController : IWebController
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void ExcludeRemove(string keyword, string value)
-        => _service?.ExcludeRemove(keyword, value);
+    {
+        if (Enum.TryParse(keyword, out DeleteContentType type))
+        {
+            _dictExcludeList[type].Remove(value);
+        }
+    }
 
 
     /// <summary>
     /// 启动
     /// </summary>
     public void Start()
-        => _service?.Start();
+    {
+        _dispatcher?.BeginInvoke(() =>
+        {
+            //MessageBox.Show("启动", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
+        });
+    }
 
     /// <summary>
     /// 停止
     /// </summary>
     public void Stop()
-        => _service?.Stop();
+    {
+        _dispatcher?.BeginInvoke(() =>
+        {
+            //MessageBox.Show("停止", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
+        });
+    }
 }

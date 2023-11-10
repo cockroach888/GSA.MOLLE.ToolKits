@@ -8,7 +8,8 @@
         Icon="/form.ico"
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
-        Title="自动删除文件" Height="660" Width="800" KeyUp="Window_KeyUp">
+        Height="660" Width="800"
+        KeyUp="Window_KeyUp" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="622*"/>

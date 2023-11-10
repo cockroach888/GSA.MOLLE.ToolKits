@@ -12,8 +12,8 @@
     <meta name="copyright" content="Copyright @蟑螂•魂 2023">
     <meta http-equiv="pragma" content="no-cache">
     <base target="_self">
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/touchicon.png">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/touchicon.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/bootstrap-icons/font/bootstrap-icons.css" />
 </head>
@@ -26,15 +26,15 @@
                     <div class="input-group">
                         <div class="form-floating">
                             <input class="form-control" type="text" placeholder="请选择需要执行自动删除文件的主目录..." aria-label="请选择需要执行自动删除文件的主目录..." aria-describedby="btnMonitorDirectories" id="txtMonitorDirectories">
-                            <label for="floatingInputGroup1">请选择需要执行自动删除文件的主目录...</label>
+                            <label for="txtMonitorDirectories">请选择需要执行自动删除文件的主目录...</label>
                         </div>
-                        <button class="btn btn-outline-secondary" type="button" id="btnMonitorDirectories">浏览...</button>
+                        <button class="btn btn-outline-secondary" type="button" id="btnMonitorDirectories" onclick="onBrowserDirectories()">浏览...</button>
                     </div>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="txtCycleTimeDelay" class="col-sm-auto col-form-label pt-0 invisible">含子目录</label>
+                <label for="chkIncludeSubdirectories" class="col-sm-auto col-form-label pt-0 invisible">含子目录</label>
                 <div class="col-sm-auto">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="chkIncludeSubdirectories" checked>
@@ -43,14 +43,14 @@
                 </div>
                 <div class="col-sm-auto">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="chkIncludeSubdirectories" checked>
-                        <label class="form-check-label" for="chkIncludeSubdirectories">排除隐藏文件和文件夹</label>
-                    </div>                    
+                        <input class="form-check-input" type="checkbox" role="switch" id="chkExcludeHiddenFiles" checked>
+                        <label class="form-check-label" for="chkExcludeHiddenFiles">排除隐藏文件和文件夹</label>
+                    </div>
                 </div>
                 <div class="col-sm-auto">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="chkIncludeSubdirectories" checked>
-                        <label class="form-check-label" for="chkIncludeSubdirectories">排除系统文件和文件夹</label>
+                        <input class="form-check-input" type="checkbox" role="switch" id="chkExcludeSystemFiles" checked>
+                        <label class="form-check-label" for="chkExcludeSystemFiles">排除系统文件和文件夹</label>
                     </div>
                 </div>
             </div>
@@ -61,114 +61,78 @@
                     <div class="input-group">
                         <div class="form-floating">
                             <input class="form-control" type="text" value="5" placeholder="距离上一次成功执行后，需要延迟执行的时间。" aria-label="距离上一次成功执行后，需要延迟执行的时间。" aria-describedby="lblCycleTimeDelay" id="txtCycleTimeDelay">
-                            <label for="floatingInputGroup1">下次需要延迟执行的时间</label>
+                            <label for="txtCycleTimeDelay">下次需要延迟执行的时间</label>
                         </div>
                         <span class="input-group-text" id="lblCycleTimeDelay">分钟</span>
                     </div>
                 </div>
 
-                <label for="txtCycleTimeDelay" class="col-sm-auto col-form-label">前置时间</label>
+                <label for="txtLeadTime" class="col-sm-auto col-form-label">前置时间</label>
                 <div class="col-sm">
                     <div class="input-group">
                         <div class="form-floating">
-                            <input class="form-control" type="text" value="30" placeholder="删除距离当前时间，前置多少时间之前的文件。" aria-label="删除距离当前时间，前置多少时间之前的文件。" aria-describedby="lblCycleTimeDelay" id="txtCycleTimeDelay">
-                            <label for="floatingInputGroup1">删除多少时间之前的文件</label>
+                            <input class="form-control" type="text" value="30" placeholder="删除距离当前时间，前置多少时间之前的文件。" aria-label="删除距离当前时间，前置多少时间之前的文件。" aria-describedby="btnLeadTime" id="txtLeadTime">
+                            <label for="txtLeadTime">删除多少时间之前的文件</label>
                         </div>
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">分</button>
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="btnLeadTime">分(min)</button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">日</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(1)">日(day)</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">时</a></li>
-                            <li><a class="dropdown-item" href="#">分</a></li>
-                            <li><a class="dropdown-item" href="#">秒</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(2)">时(hour)</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(3)">分(min)</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(4)">秒(sec)</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="txtCycleTimeDelay" class="col-sm-auto col-form-label">包含内容</label>
+                <label for="txtIncludeContent" class="col-sm-auto col-form-label">包含内容</label>
                 <div class="col-sm">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body p-2">
                             <div class="input-group mb-2">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">文件</button>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="sltIncludeContent">文件</button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">目录</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange(1)">目录</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">文件</a></li>
-                                    <li><a class="dropdown-item" href="#">文件类型</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange(2)">文件</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange(3)">类型</a></li>
                                 </ul>
-                                <input type="text" class="form-control" placeholder="要包含的内容..." aria-label="要包含的内容..." aria-describedby="button-addon2">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-hammer"></i></button>
+                                <input type="text" class="form-control" placeholder="要包含的内容..." aria-label="要包含的内容..." aria-describedby="btnIncludeContent" id="txtIncludeContent">
+                                <button class="btn btn-outline-secondary" type="button" id="btnIncludeContent" onclick="onIncludeAddin()"><i class="bi bi-hammer"></i></button>
                             </div>
-                            <ul class="list-group list-group-flush overflow-y-auto" style="height:245px; max-height:245px;">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A second list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A third list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A second list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A third list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A third list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
+                            <ul class="list-group list-group-flush overflow-y-auto" style="height:245px;" data-bind="foreach: dataIncludeList">
+                                <li class="list-group-item d-flex justify-content-between align-items-center ps-0 pe-0">
+                                    <p class="text-break" data-bind="text: $data"></p>
+                                    <button type="button" class="btn-close" aria-label="Close" data-bind="click: $parent.fireIncludeRemove"></button>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <label for="txtCycleTimeDelay" class="col-sm-auto col-form-label">排除内容</label>
+                <label for="txtExcludeContent" class="col-sm-auto col-form-label">排除内容</label>
                 <div class="col-sm">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body p-2">
                             <div class="input-group mb-2">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">文件</button>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="sltExcludeContent">文件</button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">目录</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange(1)">目录</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">文件</a></li>
-                                    <li><a class="dropdown-item" href="#">文件类型</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange(2)">文件</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange(3)">类型</a></li>
                                 </ul>
-                                <input type="text" class="form-control" placeholder="要排除的内容..." aria-label="要排除的内容..." aria-describedby="button-addon2">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-hammer"></i></button>
+                                <input type="text" class="form-control" placeholder="要排除的内容..." aria-label="要排除的内容..." aria-describedby="btnExcludeContent" id="txtExcludeContent">
+                                <button class="btn btn-outline-secondary" type="button" id="btnExcludeContent" onclick="onExcludeAddin()"><i class="bi bi-hammer"></i></button>
                             </div>
 
-                            <ul class="list-group list-group-flush overflow-y-auto" style="height:245px; max-height:245px;">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
+                            <ul class="list-group list-group-flush overflow-y-auto" style="height:245px;" data-bind="foreach: dataExcludeList">
+                                <li class="list-group-item d-flex justify-content-between align-items-center ps-0 pe-0">
+                                    <p class="text-break" data-bind="text: $data"></p>
+                                    <button type="button" class="btn-close" aria-label="Close" data-bind="click: $parent.fireExcludeRemove"></button>
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A second list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A third list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    A list item
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </li>                                
                             </ul>
                         </div>
                     </div>
@@ -182,38 +146,26 @@
             <div class="row me-3">
                 <div class="col-sm-6">
                     <div class="row">
-                        <label for="inputPassword" class="col-sm-auto col-form-label">工作线程</label>
+                        <label for="txtWorkerThreads" class="col-sm-auto col-form-label">工作线程</label>
                         <div class="col-sm">
-                            <input type="text" class="form-control w-25" value="3" id="inputPassword">
+                            <input type="text" class="form-control w-25" value="3" id="txtWorkerThreads">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <button type="button" class="btn btn-primary">开始</button>
+                    <button type="button" class="btn btn-primary" onclick="onStart()">启动</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <button type="button" class="btn btn-danger">停止</button>
+                    <button type="button" class="btn btn-danger" onclick="onStop()">停止</button>
                 </div>
             </div>
         </form>
     </div>
 
+    <script src="assets/jquery/jquery.slim.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/sweetalert/sweetalert.min.js"></script>
-
-    <script type="text/javascript">
-        const controller = chrome.webview.hostObjects.mainWindow
-
-        async function onMayday() {
-            swal({
-                title: "系统提示",
-                text: "调用后台方法",
-                icon: "info",
-                button: "确定",
-            });
-
-            await controller.MaydayMaydayMayday('This is a test message.')
-        }
-    </script>
+    <script src="assets/knockout/knockout-3.5.1.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

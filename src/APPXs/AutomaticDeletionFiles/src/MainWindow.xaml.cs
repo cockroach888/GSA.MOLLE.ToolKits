@@ -18,9 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using CeriumX.WebEngine.Abstractions;
 using Microsoft.Extensions.Options;
-using System.Windows;
+using System.Windows.Input;
 
 namespace GSA.ToolKits.AutomaticDeletionFiles;
 
@@ -50,6 +49,7 @@ public partial class MainWindow : Window
         _webWindowFactory = webFactory;
         _controller = controller;
 
+        Title = $"自动删除文件（F5 刷新、F12 开发者工具） - {DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
         InitializeComponent();
     }
 
@@ -64,7 +64,8 @@ public partial class MainWindow : Window
 
         try
         {
-            WebOptions options = WebOptions.Create($"{_config.DomainURL}/index.html");
+            WebOptions options = WebOptions.Create("file:///D:/CockroachDevOps/MOLLECollection/GSA.MOLLE.ToolKits/src/APPXs/AutomaticDeletionFiles/src/wwwroot/index.html");
+            //WebOptions options = WebOptions.Create($"{_config.DomainURL}/index.html");
             _webWindow = await _webWindowFactory.CreateAsync<UIElement>(options).ConfigureAwait(false);
             MainContent.Child = _webWindow.BrowserControl;
 
@@ -104,9 +105,14 @@ public partial class MainWindow : Window
     /// <param name="e">传递事件</param>
     private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
     {
-        if (e.Key is System.Windows.Input.Key.F12)
+        switch (e.Key)
         {
-            _webWindow?.Browser?.OpenDevToolsWindow();
+            case Key.F5:
+                _webWindow?.Browser?.Reload();
+                break;
+            case Key.F12:
+                _webWindow?.Browser?.OpenDevToolsWindow();
+                break;
         }
     }
 }
