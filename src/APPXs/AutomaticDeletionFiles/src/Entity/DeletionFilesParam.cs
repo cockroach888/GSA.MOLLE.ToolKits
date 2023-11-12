@@ -49,6 +49,11 @@ public sealed class DeletionFilesParam
     public bool ExcludeSystemFiles { get; set; }
 
     /// <summary>
+    /// 排除临时文件和文件夹
+    /// </summary>
+    public bool ExcludeTemporaryFiles { get; set; }
+
+    /// <summary>
     /// 轮循周期
     /// </summary>
     public int CycleTimeDelay { get; set; }

@@ -8,7 +8,7 @@
         Icon="/form.ico"
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
-        Height="660" Width="800"
+        Height="686" Width="900"
         KeyUp="Window_KeyUp" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>

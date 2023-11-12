@@ -224,14 +224,12 @@ async function onStart() {
         'IncludeSubdirectories': document.getElementById('chkIncludeSubdirectories').checked,
         'ExcludeHiddenFiles': document.getElementById('chkExcludeHiddenFiles').checked,
         'ExcludeSystemFiles': document.getElementById('chkExcludeSystemFiles').checked,
+        'ExcludeTemporaryFiles': document.getElementById('chkExcludeTemporaryFiles').checked,
         'CycleTimeDelay': $('#txtCycleTimeDelay').val().trim() * 1,
         'LeadTime': $('#txtLeadTime').val().trim() * 1,
         'LeadTimeUnit': leadTimeUnit,
         'WorkerThreads': $('#txtWorkerThreads').val().trim() * 1
     }
-
-    console.log(dataSource)
-
     await controller.Start(JSON.stringify(dataSource))
 
     swal({
