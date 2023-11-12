@@ -123,6 +123,19 @@ internal sealed class MainWindowService
             }
 
 
+            FileAttributes fileAttr = new();
+
+            if (info.ExcludeHiddenFiles)
+            {
+                fileAttr |= FileAttributes.Hidden;
+            }
+
+            EnumerationOptions option = new()
+            {
+                AttributesToSkip = FileAttributes.Hidden | FileAttributes.System | FileAttributes.Temporary
+            };
+
+            //Directory.EnumerateFiles(info.MonitorDirectories, "*.*"
         }, param);
     }
 
