@@ -125,17 +125,55 @@ internal sealed class MainWindowService
 
             FileAttributes fileAttr = new();
 
-            if (info.ExcludeHiddenFiles)
+            if (info.ExcludeHiddenFiles) // 是否排除隐藏文件和文件夹
             {
                 fileAttr |= FileAttributes.Hidden;
             }
 
+            if (info.ExcludeSystemFiles) // 排除系统文件和文件夹
+            {
+                fileAttr |= FileAttributes.System;
+            }
+
+            if (info.ExcludeTemporaryFiles) // 排除临时文件和文件夹
+            {
+                fileAttr |= FileAttributes.Temporary;
+            }
+
+
             EnumerationOptions option = new()
             {
-                AttributesToSkip = FileAttributes.Hidden | FileAttributes.System | FileAttributes.Temporary
+                // 要跳过的属性
+                AttributesToSkip = fileAttr,
+
+                // 建议的缓冲区大小（以字节为单位），默认值为 0（无建议）。
+                //BufferSize = 0,
+
+                // 是否在拒绝访问时跳过文件或目录，默认值为 true。
+                //IgnoreInaccessible = true,
+
+                // 大小写匹配行为。默认值是匹配平台默认值，这些默认值是从临时文件夹的区分大小写中收集的。
+                //MatchCasing = MatchCasing.PlatformDefault,
+
+                // 匹配类型，默认值为简单匹配，其中“*”始终为 0 个或多个字符，而“？”是单个字符。
+                // MatchType = MatchType.Simple,
+
+                // 要递归的最大目录深度，默认值为 Int32.MaxValue。
+                // 如果 MaxRecursionDepth 设置为负数，则使用默认值 MaxValue 。
+                // 如果 MaxRecursionDepth 设置为零，枚举将返回初始目录的内容。
+                //MaxRecursionDepth = int.MaxValue,
+
+                // 是否递归到子目录中
+                RecurseSubdirectories = info.IncludeSubdirectories,
+
+                // 是否返回特殊目录项“.”和“..”
+                ReturnSpecialDirectories = false
             };
 
-            //Directory.EnumerateFiles(info.MonitorDirectories, "*.*"
+            IEnumerable<string> files = Directory.EnumerateFiles(info.MonitorDirectories, "*.*", option);
+
+
+
         }, param);
     }
 
