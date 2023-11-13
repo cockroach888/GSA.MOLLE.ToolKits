@@ -22,6 +22,7 @@ using System.Windows.Threading;
 using System.Collections.Concurrent;
 using System.Text.Json;
 using System.IO;
+using System.Linq;
 
 namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 
@@ -30,9 +31,9 @@ namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 /// </summary>
 internal sealed class MainWindowService
 {
-    private Dispatcher? _dispatcher;
-    private ConcurrentDictionary<DeleteContentType, List<string>> _dictIncludeList = new();
-    private ConcurrentDictionary<DeleteContentType, List<string>> _dictExcludeList = new();
+    private readonly Dispatcher? _dispatcher;
+    private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictIncludeList = new();
+    private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictExcludeList = new();
 
 
     /// <summary>
@@ -62,6 +63,8 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
+            CheckValue(keyword, ref value);
+
             _dictIncludeList[type].Add(value);
         }
     }
@@ -75,6 +78,8 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
+            CheckValue(keyword, ref value);
+
             _dictExcludeList[type].Add(value);
         }
     }
@@ -88,6 +93,8 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
+            CheckValue(keyword, ref value);
+
             _dictIncludeList[type].Remove(value);
         }
     }
@@ -101,7 +108,18 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
+            CheckValue(keyword, ref value);
+
             _dictExcludeList[type].Remove(value);
+        }
+    }
+
+    private void CheckValue(string keyword, ref string value)
+    {
+        if (Enum.TryParse(keyword, out DeleteContentType type) &&
+            type is DeleteContentType.FileType)
+        {
+            value = value.Replace("*", "");
         }
     }
 
@@ -170,9 +188,75 @@ internal sealed class MainWindowService
                 ReturnSpecialDirectories = false
             };
 
+
             IEnumerable<string> files = Directory.EnumerateFiles(info.MonitorDirectories, "*.*", option);
 
+            if (files.Any() is false)
+            {
+                MessageBox.Show("当前监视目录中不存在任何文件。", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
 
+            // 要包含的内容
+            if (_dictIncludeList.Values.Any())
+            {
+                if (_dictIncludeList[DeleteContentType.Folder].Any())
+                {
+                    foreach (string item in _dictIncludeList[DeleteContentType.Folder])
+                    {
+                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
+                    }
+                }
+
+                if (_dictIncludeList[DeleteContentType.FileName].Any())
+                {
+                    foreach (string item in _dictIncludeList[DeleteContentType.FileName])
+                    {
+                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
+                    }
+                }
+
+                if (_dictIncludeList[DeleteContentType.FileType].Any())
+                {
+                    foreach (string item in _dictIncludeList[DeleteContentType.FileType])
+                    {
+                        files = files.Where(p => Path.GetExtension(p) == item);
+                    }
+                }
+            }
+
+            // 要排除的内容
+            if (_dictExcludeList.Values.Any())
+            {
+                if (_dictExcludeList[DeleteContentType.Folder].Any())
+                {
+                    foreach (string item in _dictExcludeList[DeleteContentType.Folder])
+                    {
+                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
+                    }
+                }
+
+                if (_dictExcludeList[DeleteContentType.FileName].Any())
+                {
+                    foreach (string item in _dictExcludeList[DeleteContentType.FileName])
+                    {
+                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
+                    }
+                }
+
+                if (_dictExcludeList[DeleteContentType.FileType].Any())
+                {
+                    foreach (string item in _dictExcludeList[DeleteContentType.FileType])
+                    {
+                        files = files.Where(p => Path.GetExtension(p) != item);
+                    }
+                }
+            }
+
+            foreach (string file in files)
+            {
+                File.Delete(file);
+            }
 
         }, param);
     }
