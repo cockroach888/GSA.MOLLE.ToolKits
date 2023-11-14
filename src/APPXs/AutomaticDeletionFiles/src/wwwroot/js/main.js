@@ -189,7 +189,8 @@ async function onStart() {
 
     const dataSource = {
         'MonitorDirectories': monitorPath,
-        'IncludeSubdirectories': document.getElementById('chkIncludeSubdirectories').checked,
+        'IsIncludeSubdirectories': document.getElementById('chkIncludeSubdirectories').checked,
+        'IsCleanEmptyFolder': document.getElementById('chkCleanEmptyFolder').checked,
         'ExcludeHiddenFiles': document.getElementById('chkExcludeHiddenFiles').checked,
         'ExcludeSystemFiles': document.getElementById('chkExcludeSystemFiles').checked,
         'ExcludeTemporaryFiles': document.getElementById('chkExcludeTemporaryFiles').checked,
@@ -198,6 +199,9 @@ async function onStart() {
         'WorkerThreads': $('#txtWorkerThreads').val() * 1
     }
     const result = await controller.StartAsync(JSON.stringify(dataSource))
+
+    $('#btnStart').attr('disabled', 'disabled')
+    $('#btnStop').removeAttr('disabled')
 
     swal({
         text: result[0],
@@ -212,6 +216,9 @@ async function onStart() {
 */
 async function onStop() {
     await controller.StopAsync()
+
+    $('#btnStop').attr('disabled', 'disabled')
+    $('#btnStart').removeAttr('disabled')
 
     swal({
         //title: "系统提示",

@@ -198,7 +198,7 @@ public sealed class MainWindowService
                 //MaxRecursionDepth = int.MaxValue,
 
                 // 是否递归到子目录中
-                RecurseSubdirectories = param.IncludeSubdirectories,
+                RecurseSubdirectories = param.IsIncludeSubdirectories,
 
                 // 是否返回特殊目录项“.”和“..”
                 ReturnSpecialDirectories = false
@@ -234,7 +234,7 @@ public sealed class MainWindowService
         {
             while (cancellation.IsCancellationRequested is false)
             {
-                IEnumerable<string> files = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*.*", option)
+                IEnumerable<string> files = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*", option)
                                             where (DateTime.Now - File.GetCreationTime(file)) > param.LeadTime
                                             select file;
 
@@ -296,10 +296,35 @@ public sealed class MainWindowService
                         }
                     }
 
-                    //foreach (string file in files)
-                    //{
-                    //    File.Delete(file);
-                    //}
+                    foreach (string file in files)
+                    {
+                        try
+                        {
+                            File.Delete(file);
+                        }
+                        catch (Exception ex)
+                        {
+                            // do something.
+                        }
+                    }
+                }
+
+                // 清理空目录
+                if (param.IsCleanEmptyFolder)
+                {
+                    IEnumerable<string> folders = Directory.EnumerateDirectories(param.MonitorDirectories, "*", option);
+
+                    foreach (string folder in folders)
+                    {
+                        try
+                        {
+                            Directory.Delete(folder);
+                        }
+                        catch (Exception ex)
+                        {
+                            // do something.
+                        }
+                    }
                 }
 
                 await Task.Delay(param.CycleTimeDelay);

@@ -34,7 +34,12 @@ public sealed class DeletionFilesParam
     /// <summary>
     /// 是否包含子目录
     /// </summary>
-    public bool IncludeSubdirectories { get; set; }
+    public bool IsIncludeSubdirectories { get; set; }
+
+    /// <summary>
+    /// 是否清理所有层级的空目录
+    /// </summary>
+    public bool IsCleanEmptyFolder { get; set; }
 
     /// <summary>
     /// 排除隐藏文件和文件夹
