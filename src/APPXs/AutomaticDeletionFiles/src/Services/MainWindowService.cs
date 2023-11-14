@@ -18,11 +18,10 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using System.Windows.Threading;
 using System.Collections.Concurrent;
-using System.Text.Json;
 using System.IO;
-using System.Linq;
+using System.Text.Json;
+using System.Windows.Threading;
 
 namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 
@@ -230,16 +229,18 @@ public sealed class MainWindowService
     {
         _isStarted = true;
 
-        Task.Run(async () =>
+        _ = Task.Run(async () =>
         {
             while (cancellation.IsCancellationRequested is false)
             {
-                IEnumerable<string> files = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*", option)
-                                            where (DateTime.Now - File.GetCreationTime(file)) > param.LeadTime
-                                            select file;
+                IEnumerable<string> sourceFiles = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*", option)
+                                                  where (DateTime.Now - File.GetCreationTime(file)) > param.LeadTime
+                                                  select file;
 
-                if (files.Any())
+                if (sourceFiles.Any())
                 {
+                    IEnumerable<string> includeFiles = Enumerable.Empty<string>();
+
                     // 要包含的内容
                     if (_dictIncludeList.Values.Any())
                     {
@@ -247,7 +248,7 @@ public sealed class MainWindowService
                         {
                             foreach (string item in _dictIncludeList[DeleteContentType.Folder])
                             {
-                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
+                                includeFiles = includeFiles.Concat(sourceFiles.Where(p => Path.GetDirectoryName(p)!.Contains(item)));
                             }
                         }
 
@@ -255,7 +256,7 @@ public sealed class MainWindowService
                         {
                             foreach (string item in _dictIncludeList[DeleteContentType.FileName])
                             {
-                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
+                                includeFiles = includeFiles.Concat(sourceFiles.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item)));
                             }
                         }
 
@@ -263,10 +264,12 @@ public sealed class MainWindowService
                         {
                             foreach (string item in _dictIncludeList[DeleteContentType.FileType])
                             {
-                                files = files.Where(p => Path.GetExtension(p) == item);
+                                includeFiles = includeFiles.Concat(sourceFiles.Where(p => Path.GetExtension(p) == item));
                             }
                         }
                     }
+
+                    IEnumerable<string> excludeFiles = Enumerable.Empty<string>();
 
                     // 要排除的内容
                     if (_dictExcludeList.Values.Any())
@@ -275,7 +278,7 @@ public sealed class MainWindowService
                         {
                             foreach (string item in _dictExcludeList[DeleteContentType.Folder])
                             {
-                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
+                                excludeFiles = excludeFiles.Concat(includeFiles.Where(p => Path.GetDirectoryName(p)!.Contains(item) is false));
                             }
                         }
 
@@ -283,7 +286,7 @@ public sealed class MainWindowService
                         {
                             foreach (string item in _dictExcludeList[DeleteContentType.FileName])
                             {
-                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
+                                excludeFiles = excludeFiles.Concat(includeFiles.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false));
                             }
                         }
 
@@ -291,10 +294,12 @@ public sealed class MainWindowService
                         {
                             foreach (string item in _dictExcludeList[DeleteContentType.FileType])
                             {
-                                files = files.Where(p => Path.GetExtension(p) != item);
+                                excludeFiles = excludeFiles.Concat(includeFiles.Where(p => Path.GetExtension(p) != item));
                             }
                         }
                     }
+
+                    IEnumerable<string> files = excludeFiles.Any() ? excludeFiles : includeFiles.Any() ? includeFiles : sourceFiles;
 
                     foreach (string file in files)
                     {

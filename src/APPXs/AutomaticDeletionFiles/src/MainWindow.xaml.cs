@@ -58,8 +58,7 @@ public partial class MainWindow : Window
 
         try
         {
-            WebOptions options = WebOptions.Create("file:///D:/CockroachDevOps/MOLLECollection/GSA.MOLLE.ToolKits/src/APPXs/AutomaticDeletionFiles/src/wwwroot/index.html");
-            //WebOptions options = WebOptions.Create($"{_config.DomainURL}/index.html");
+            WebOptions options = WebOptions.Create($"{_config.DomainURL}/index.html");
             _webWindow = await _webWindowFactory.CreateAsync<UIElement>(options).ConfigureAwait(false);
             MainContent.Child = _webWindow.BrowserControl;
 
