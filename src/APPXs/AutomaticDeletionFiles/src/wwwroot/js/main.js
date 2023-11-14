@@ -127,7 +127,7 @@ function onExcludeUnitChange(unitIdent) {
 * 添加要包含的内容
 * @return {void}
 */
-function onIncludeAddin() {
+async function onIncludeAddin() {
     const value = $('#txtIncludeContent').val().trim()
     $('#txtIncludeContent').val('')
 
@@ -137,7 +137,7 @@ function onIncludeAddin() {
 
     if (viewModel.dataIncludeList.indexOf(value) === -1) {
         viewModel.dataIncludeList.push(value)
-        controller.IncludeAddin(includeKeyword, value)
+        await controller.IncludeAddin(includeKeyword, value)
     }
     else {
         swal({
@@ -153,7 +153,7 @@ function onIncludeAddin() {
 * 添加要排除的内容
 * @return {void}
 */
-function onExcludeAddin() {
+async function onExcludeAddin() {
     const value = $('#txtExcludeContent').val().trim()
     $('#txtExcludeContent').val('')
 
@@ -163,7 +163,7 @@ function onExcludeAddin() {
 
     if (viewModel.dataExcludeList.indexOf(value) === -1) {
         viewModel.dataExcludeList.push(value)
-        controller.ExcludeAddin(excludeKeyword, value)
+        await controller.ExcludeAddin(excludeKeyword, value)
     }
     else {
         swal({
@@ -180,11 +180,11 @@ function onExcludeAddin() {
 * @param {string} value 值
 * @return {void}
 */
-function onIncludeRemove(value) {
+async function onIncludeRemove(value) {
     if (value.length > 0 &&
         viewModel.dataIncludeList.indexOf(value) !== -1) {
         viewModel.dataIncludeList.remove(value)
-        controller.IncludeRemove(includeKeyword, value)
+        await controller.IncludeRemove(includeKeyword, value)
     }
 }
 
@@ -193,11 +193,11 @@ function onIncludeRemove(value) {
 * @param {string} value 值
 * @return {void}
 */
-function onExcludeRemove(value) {
+async function onExcludeRemove(value) {
     if (value.length > 0 &&
         viewModel.dataExcludeList.indexOf(value) !== -1) {
         viewModel.dataExcludeList.remove(value)
-        controller.ExcludeRemove(excludeKeyword, value)
+        await controller.ExcludeRemove(excludeKeyword, value)
     }
 }
 
@@ -225,19 +225,17 @@ async function onStart() {
         'ExcludeHiddenFiles': document.getElementById('chkExcludeHiddenFiles').checked,
         'ExcludeSystemFiles': document.getElementById('chkExcludeSystemFiles').checked,
         'ExcludeTemporaryFiles': document.getElementById('chkExcludeTemporaryFiles').checked,
-        'CycleTimeDelay': $('#txtCycleTimeDelay').val().trim() * 1,
-        'LeadTime': $('#txtLeadTime').val().trim() * 1,
+        'CycleTimeDelay': $('#txtCycleTimeDelay').val() * 1,
+        'LeadTime': `${$('#txtLeadDay').val()}.${$('#txtLeadTime').val()}`,
         'LeadTimeUnit': leadTimeUnit,
-        'WorkerThreads': $('#txtWorkerThreads').val().trim() * 1
+        'WorkerThreads': $('#txtWorkerThreads').val() * 1
     }
-    await controller.Start(JSON.stringify(dataSource))
+    const result = await controller.StartAsync(JSON.stringify(dataSource))
 
     swal({
-        //title: "系统提示",
-        text: "自动化删除文件启动",
-        icon: "success",
-        button: "确定",
-        timer: 2000
+        text: result,
+        icon: "info",
+        button: "确定"
     })
 }
 
@@ -246,7 +244,7 @@ async function onStart() {
 * @return {void}
 */
 async function onStop() {
-    await controller.Stop()
+    await controller.StopAsync()
 
     swal({
         //title: "系统提示",

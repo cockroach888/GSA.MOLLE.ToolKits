@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="apple-touch-icon" href="img/touchicon.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
     <div class="container-fluid">
@@ -25,7 +25,7 @@
                 <div class="col-sm">
                     <div class="input-group">
                         <div class="form-floating">
-                            <input class="form-control" type="text" placeholder="请选择需要执行自动删除文件的主目录..." aria-label="请选择需要执行自动删除文件的主目录..." aria-describedby="btnMonitorDirectories" id="txtMonitorDirectories">
+                            <input class="form-control" type="text" placeholder="请选择需要执行自动删除文件的主目录..." aria-label="请选择需要执行自动删除文件的主目录..." aria-describedby="btnMonitorDirectories" id="txtMonitorDirectories" required>
                             <label for="txtMonitorDirectories">请选择需要执行自动删除文件的主目录...</label>
                         </div>
                         <button class="btn btn-outline-secondary" type="button" id="btnMonitorDirectories" onclick="onBrowserDirectories()">浏览...</button>
@@ -70,7 +70,7 @@
                 <div class="col-sm">
                     <div class="input-group">
                         <div class="form-floating">
-                            <input class="form-control" type="text" value="5" placeholder="距离上一次成功执行后，需要延迟执行的时间。" aria-label="距离上一次成功执行后，需要延迟执行的时间。" aria-describedby="lblCycleTimeDelay" id="txtCycleTimeDelay">
+                            <input class="form-control" type="number" value="5" min="1" placeholder="距离上一次成功执行后，需要延迟执行的时间。" aria-label="距离上一次成功执行后，需要延迟执行的时间。" aria-describedby="lblCycleTimeDelay" id="txtCycleTimeDelay" required>
                             <label for="txtCycleTimeDelay">下次需要延迟执行的时间</label>
                         </div>
                         <span class="input-group-text" id="lblCycleTimeDelay">分钟</span>
@@ -80,18 +80,14 @@
                 <label for="txtLeadTime" class="col-sm-auto col-form-label">前置时间</label>
                 <div class="col-sm">
                     <div class="input-group">
-                        <div class="form-floating">
-                            <input class="form-control" type="text" value="30" placeholder="删除距离当前时间，前置多少时间之前的文件。" aria-label="删除距离当前时间，前置多少时间之前的文件。" aria-describedby="btnLeadTime" id="txtLeadTime">
-                            <label for="txtLeadTime">删除多少时间之前的文件</label>
+                        <div class="form-floating w-25">
+                            <input class="form-control" type="number" value="0" placeholder="几天前" aria-label="几天前" aria-describedby="lblLeadDay" id="txtLeadDay" required>
+                            <label for="txtLeadDay" id="lblLeadDay">几天前</label>
                         </div>
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="btnLeadTime">分(min)</button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(1)">日(day)</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(2)">时(hour)</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(3)">分(min)</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="onLeadTimeChange(4)">秒(sec)</a></li>
-                        </ul>
+                        <div class="form-floating w-75">
+                            <input class="form-control" type="time" value="00:30:00" step="1" min="00:00:10" placeholder="删除距离当前时间，前置多少时间之前的文件。" aria-label="删除距离当前时间，前置多少时间之前的文件。" aria-describedby="btnLeadTime" id="txtLeadTime" required>
+                            <label for="txtLeadTime">删除多少时间之前的</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,7 +106,11 @@
                                     <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange(3)">类型</a></li>
                                 </ul>
                                 <input type="text" class="form-control" placeholder="要包含的内容..." aria-label="要包含的内容..." aria-describedby="btnIncludeContent" id="txtIncludeContent">
-                                <button class="btn btn-outline-secondary" type="button" id="btnIncludeContent" onclick="onIncludeAddin()"><i class="bi bi-hammer"></i></button>
+                                <button class="btn btn-outline-secondary" type="button" id="btnIncludeContent" onclick="onIncludeAddin()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hammer" viewBox="0 0 16 16">
+                                        <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z" />
+                                    </svg>
+                                </button>
                             </div>
                             <ul class="list-group list-group-flush overflow-y-auto" style="height:245px;" data-bind="foreach: dataIncludeList">
                                 <li class="list-group-item d-flex justify-content-between align-items-center ps-0 pe-0">
@@ -135,7 +135,11 @@
                                     <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange(3)">类型</a></li>
                                 </ul>
                                 <input type="text" class="form-control" placeholder="要排除的内容..." aria-label="要排除的内容..." aria-describedby="btnExcludeContent" id="txtExcludeContent">
-                                <button class="btn btn-outline-secondary" type="button" id="btnExcludeContent" onclick="onExcludeAddin()"><i class="bi bi-hammer"></i></button>
+                                <button class="btn btn-outline-secondary" type="button" id="btnExcludeContent" onclick="onExcludeAddin()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hammer" viewBox="0 0 16 16">
+                                        <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z" />
+                                    </svg>
+                                </button>
                             </div>
 
                             <ul class="list-group list-group-flush overflow-y-auto" style="height:245px;" data-bind="foreach: dataExcludeList">
@@ -158,7 +162,7 @@
                     <div class="row">
                         <label for="txtWorkerThreads" class="col-sm-auto col-form-label">工作线程</label>
                         <div class="col-sm">
-                            <input type="text" class="form-control w-25" value="3" id="txtWorkerThreads">
+                            <input type="number" class="form-control w-25" value="3" min="1" max="20" id="txtWorkerThreads" required>
                         </div>
                     </div>
                 </div>
