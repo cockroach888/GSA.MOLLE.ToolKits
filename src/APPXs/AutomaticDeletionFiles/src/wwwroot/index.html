@@ -70,10 +70,9 @@
                 <div class="col-sm">
                     <div class="input-group">
                         <div class="form-floating">
-                            <input class="form-control" type="number" value="5" min="1" placeholder="距离上一次成功执行后，需要延迟执行的时间。" aria-label="距离上一次成功执行后，需要延迟执行的时间。" aria-describedby="lblCycleTimeDelay" id="txtCycleTimeDelay" required>
-                            <label for="txtCycleTimeDelay">下次需要延迟执行的时间</label>
+                            <input class="form-control" type="time" value="00:05:00" step="1" min="00:00:10" placeholder="距离上一次成功执行后，需要延迟执行的时间。" aria-label="距离上一次成功执行后，需要延迟执行的时间。" aria-describedby="lblCycleTimeDelay" id="txtCycleTimeDelay" required>
+                            <label for="txtCycleTimeDelay" id="lblCycleTimeDelay">下次需要延迟执行的时间</label>
                         </div>
-                        <span class="input-group-text" id="lblCycleTimeDelay">分钟</span>
                     </div>
                 </div>
 

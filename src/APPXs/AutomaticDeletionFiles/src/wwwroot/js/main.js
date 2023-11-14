@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 const controller = chrome.webview.hostObjects.mainWindow
-let leadTimeUnit = 'minute'
 let includeKeyword = 'FileName'
 let excludeKeyword = 'FileName'
 
@@ -38,37 +37,6 @@ $(() => {
 async function onBrowserDirectories() {
     const dirPath = await controller.BrowserDirectories()
     $('#txtMonitorDirectories').val(dirPath)
-}
-
-/**
-* 前置时间单位
-* @param {int} unitIdent 单位标识符
-*    1 - 日(day)
-*    2 - 时(hour)
-*    3 - 分(min)
-*    4 - 秒(sec)
-* @return {void}
-*/
-function onLeadTimeChange(unitIdent) {
-    switch (unitIdent) {
-        case 1:
-            $('#btnLeadTime').text('日(day)')
-            leadTimeUnit = 'day'
-            break
-        case 2:
-            $('#btnLeadTime').text('时(hour)')
-            leadTimeUnit = 'hour'
-            break
-        case 3:
-        default:
-            $('#btnLeadTime').text('分(min)')
-            leadTimeUnit = 'minute'
-            break
-        case 4:
-            $('#btnLeadTime').text('秒(sec)')
-            leadTimeUnit = 'second'
-            break
-    }
 }
 
 /**
@@ -225,16 +193,15 @@ async function onStart() {
         'ExcludeHiddenFiles': document.getElementById('chkExcludeHiddenFiles').checked,
         'ExcludeSystemFiles': document.getElementById('chkExcludeSystemFiles').checked,
         'ExcludeTemporaryFiles': document.getElementById('chkExcludeTemporaryFiles').checked,
-        'CycleTimeDelay': $('#txtCycleTimeDelay').val() * 1,
+        'CycleTimeDelay': $('#txtCycleTimeDelay').val(),
         'LeadTime': `${$('#txtLeadDay').val()}.${$('#txtLeadTime').val()}`,
-        'LeadTimeUnit': leadTimeUnit,
         'WorkerThreads': $('#txtWorkerThreads').val() * 1
     }
     const result = await controller.StartAsync(JSON.stringify(dataSource))
 
     swal({
-        text: result,
-        icon: "info",
+        text: result[0],
+        icon: result[1],
         button: "确定"
     })
 }
