@@ -29,9 +29,9 @@ namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 /// <summary>
 /// 主窗体控服务
 /// </summary>
-internal sealed class MainWindowService
+public sealed class MainWindowService
 {
-    private readonly Dispatcher? _dispatcher;
+    private readonly Dispatcher _dispatcher;
     private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictIncludeList = new();
     private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictExcludeList = new();
 
@@ -63,7 +63,7 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
-            CheckValue(keyword, ref value);
+            FormatInputValue(keyword, ref value);
 
             _dictIncludeList[type].Add(value);
         }
@@ -78,7 +78,7 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
-            CheckValue(keyword, ref value);
+            FormatInputValue(keyword, ref value);
 
             _dictExcludeList[type].Add(value);
         }
@@ -93,7 +93,7 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
-            CheckValue(keyword, ref value);
+            FormatInputValue(keyword, ref value);
 
             _dictIncludeList[type].Remove(value);
         }
@@ -108,13 +108,18 @@ internal sealed class MainWindowService
     {
         if (Enum.TryParse(keyword, out DeleteContentType type))
         {
-            CheckValue(keyword, ref value);
+            FormatInputValue(keyword, ref value);
 
             _dictExcludeList[type].Remove(value);
         }
     }
 
-    private void CheckValue(string keyword, ref string value)
+    /// <summary>
+    /// 格式化输入值
+    /// </summary>
+    /// <param name="keyword">关键字</param>
+    /// <param name="value">输入值</param>
+    private void FormatInputValue(string keyword, ref string value)
     {
         if (Enum.TryParse(keyword, out DeleteContentType type) &&
             type is DeleteContentType.FileType)
@@ -128,32 +133,36 @@ internal sealed class MainWindowService
     /// 启动
     /// </summary>
     /// <param name="paramString">参数字符串</param>
-    public void Start(string paramString)
+    public async Task<string> StartAsync(string paramString)
     {
         DeletionFilesParam? param = JsonSerializer.Deserialize<DeletionFilesParam>(paramString);
 
-        _dispatcher?.BeginInvoke((DeletionFilesParam info) =>
+        if (param is null)
         {
-            if (!Directory.Exists(info.MonitorDirectories))
+            return "哥们儿，请问：你是猴子请来的救兵吗？什么参数都没有配置，自己心里没点逼数！";
+        }
+
+        return await _dispatcher.InvokeAsync(() =>
+        {
+            if (!Directory.Exists(param.MonitorDirectories))
             {
-                MessageBox.Show("哥们儿！您逗我呢！！需要监视的目录都没有配置咧！！！", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return "哥们儿！您逗我呢！！需要监视的目录都没有配置！！！";
             }
 
 
             FileAttributes fileAttr = new();
 
-            if (info.ExcludeHiddenFiles) // 是否排除隐藏文件和文件夹
+            if (param.ExcludeHiddenFiles) // 是否排除隐藏文件和文件夹
             {
                 fileAttr |= FileAttributes.Hidden;
             }
 
-            if (info.ExcludeSystemFiles) // 排除系统文件和文件夹
+            if (param.ExcludeSystemFiles) // 排除系统文件和文件夹
             {
                 fileAttr |= FileAttributes.System;
             }
 
-            if (info.ExcludeTemporaryFiles) // 排除临时文件和文件夹
+            if (param.ExcludeTemporaryFiles) // 排除临时文件和文件夹
             {
                 fileAttr |= FileAttributes.Temporary;
             }
@@ -182,19 +191,18 @@ internal sealed class MainWindowService
                 //MaxRecursionDepth = int.MaxValue,
 
                 // 是否递归到子目录中
-                RecurseSubdirectories = info.IncludeSubdirectories,
+                RecurseSubdirectories = param.IncludeSubdirectories,
 
                 // 是否返回特殊目录项“.”和“..”
                 ReturnSpecialDirectories = false
             };
 
 
-            IEnumerable<string> files = Directory.EnumerateFiles(info.MonitorDirectories, "*.*", option);
+            IEnumerable<string> files = Directory.EnumerateFiles(param.MonitorDirectories, "*.*", option);
 
             if (files.Any() is false)
             {
-                MessageBox.Show("当前监视目录中不存在任何文件。", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+                return "当前监视目录中不存在任何文件。";
             }
 
             // 要包含的内容
@@ -253,22 +261,23 @@ internal sealed class MainWindowService
                 }
             }
 
-            foreach (string file in files)
-            {
-                File.Delete(file);
-            }
+            //foreach (string file in files)
+            //{
+            //    File.Delete(file);
+            //}
 
-        }, param);
+            return "开始执行自动删除文件操作，将进入轮询处置阶段。（你可以停止，但不一定管用，呵。 ^_^）";
+        });
     }
 
     /// <summary>
     /// 停止
     /// </summary>
-    public void Stop()
+    public async Task StopAsync()
     {
-        _dispatcher?.BeginInvoke(() =>
+        await _dispatcher.InvokeAsync(() =>
         {
-            //MessageBox.Show("停止", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
-        });
+            MessageBox.Show("停止", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
+        }).Task.ConfigureAwait(false);
     }
 }
