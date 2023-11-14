@@ -18,8 +18,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using System.Text.Json.Serialization;
-
 namespace GSA.ToolKits.AutomaticDeletionFiles.Entity;
 
 /// <summary>
@@ -61,13 +59,7 @@ public sealed class DeletionFilesParam
     /// <summary>
     /// 前置时间
     /// </summary>
-    public int LeadTime { get; set; }
-
-    /// <summary>
-    /// 前置时间单位
-    /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public LeadTimeType LeadTimeUnit { get; set; }
+    public TimeSpan LeadTime { get; set; }
 
     /// <summary>
     /// 工作线程
