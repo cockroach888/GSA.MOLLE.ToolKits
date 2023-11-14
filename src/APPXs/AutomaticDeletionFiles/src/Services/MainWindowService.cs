@@ -233,73 +233,79 @@ public sealed class MainWindowService
         {
             while (cancellation.IsCancellationRequested is false)
             {
-                IEnumerable<string> sourceFiles = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*", option)
+                IEnumerable<string> files = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*", option)
                                                   where (DateTime.Now - File.GetCreationTime(file)) > param.LeadTime
                                                   select file;
 
-                if (sourceFiles.Any())
+                if (files.Any())
                 {
-                    IEnumerable<string> includeFiles = Enumerable.Empty<string>();
-
                     // 要包含的内容
                     if (_dictIncludeList.Values.Any())
                     {
                         if (_dictIncludeList[DeleteContentType.Folder].Any())
                         {
+                            IEnumerable<string> tempFiles = Enumerable.Empty<string>();
                             foreach (string item in _dictIncludeList[DeleteContentType.Folder])
                             {
-                                includeFiles = includeFiles.Concat(sourceFiles.Where(p => Path.GetDirectoryName(p)!.Contains(item)));
+                                tempFiles = tempFiles.Concat(files.Where(p => Path.GetDirectoryName(p)!.Contains(item)));
                             }
+                            files = tempFiles;
                         }
 
                         if (_dictIncludeList[DeleteContentType.FileName].Any())
                         {
+                            IEnumerable<string> tempFiles = Enumerable.Empty<string>();
                             foreach (string item in _dictIncludeList[DeleteContentType.FileName])
                             {
-                                includeFiles = includeFiles.Concat(sourceFiles.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item)));
+                                tempFiles = tempFiles.Concat(files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item)));
                             }
+                            files = tempFiles;
                         }
 
                         if (_dictIncludeList[DeleteContentType.FileType].Any())
                         {
+                            IEnumerable<string> tempFiles = Enumerable.Empty<string>();
                             foreach (string item in _dictIncludeList[DeleteContentType.FileType])
                             {
-                                includeFiles = includeFiles.Concat(sourceFiles.Where(p => Path.GetExtension(p) == item));
+                                tempFiles = tempFiles.Concat(files.Where(p => Path.GetExtension(p) == item));
                             }
+                            files = tempFiles;
                         }
                     }
-
-                    IEnumerable<string> excludeFiles = Enumerable.Empty<string>();
 
                     // 要排除的内容
                     if (_dictExcludeList.Values.Any())
                     {
                         if (_dictExcludeList[DeleteContentType.Folder].Any())
                         {
+                            IEnumerable<string> tempFiles = Enumerable.Empty<string>();
                             foreach (string item in _dictExcludeList[DeleteContentType.Folder])
                             {
-                                excludeFiles = excludeFiles.Concat(includeFiles.Where(p => Path.GetDirectoryName(p)!.Contains(item) is false));
+                                tempFiles = tempFiles.Concat(files.Where(p => Path.GetDirectoryName(p)!.Contains(item) is false));
                             }
+                            files = tempFiles;
                         }
 
                         if (_dictExcludeList[DeleteContentType.FileName].Any())
                         {
+                            IEnumerable<string> tempFiles = Enumerable.Empty<string>();
                             foreach (string item in _dictExcludeList[DeleteContentType.FileName])
                             {
-                                excludeFiles = excludeFiles.Concat(includeFiles.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false));
+                                tempFiles = tempFiles.Concat(files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false));
                             }
+                            files = tempFiles;
                         }
 
                         if (_dictExcludeList[DeleteContentType.FileType].Any())
                         {
+                            IEnumerable<string> tempFiles = Enumerable.Empty<string>();
                             foreach (string item in _dictExcludeList[DeleteContentType.FileType])
                             {
-                                excludeFiles = excludeFiles.Concat(includeFiles.Where(p => Path.GetExtension(p) != item));
+                                tempFiles = tempFiles.Concat(files.Where(p => Path.GetExtension(p) != item));
                             }
+                            files = tempFiles;
                         }
                     }
-
-                    IEnumerable<string> files = excludeFiles.Any() ? excludeFiles : includeFiles.Any() ? includeFiles : sourceFiles;
 
                     foreach (string file in files)
                     {
