@@ -80,11 +80,6 @@ public partial class App : Application
             })
             .ConfigureServices((services) =>
             {
-                // 注册控制器
-                services.TryAddSingleton<MainWindowController>();
-            })
-            .ConfigureServices((services) =>
-            {
                 // 注册用户控件
                 //services.AddSingleton<ModuleControlAbstract, AlarmAnalysisControl>();
             })

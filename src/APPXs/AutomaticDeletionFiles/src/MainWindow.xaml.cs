@@ -31,7 +31,6 @@ public partial class MainWindow : Window
     private readonly WebView2EnvConfigure _config;
     private IWebWindow<UIElement>? _webWindow;
     private readonly IWebWindowFactory _webWindowFactory;
-    private readonly MainWindowController _controller;
 
 
     /// <summary>
@@ -39,15 +38,10 @@ public partial class MainWindow : Window
     /// </summary>
     /// <param name="options">WebView2 环境配置选项</param>
     /// <param name="webFactory">浏览器窗口创建工厂</param>
-    /// <param name="controller">主窗体控制器</param>
-    public MainWindow(
-        IOptions<WebView2EnvConfigure> options,
-        IWebWindowFactory webFactory,
-        MainWindowController controller)
+    public MainWindow(IOptions<WebView2EnvConfigure> options, IWebWindowFactory webFactory)
     {
         _config = options.Value;
         _webWindowFactory = webFactory;
-        _controller = controller;
 
         Title = $"自动删除文件（F5 刷新、F12 开发者工具） - {DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
         InitializeComponent();
@@ -75,9 +69,10 @@ public partial class MainWindow : Window
                 {
                     _webWindow.Browser!.OnWebMessageReceived += Browser_OnWebMessageReceived;
                     _webWindow.Browser.AddVirtualHostNameToFolderMapping(_config.DomainName, _config.FullVirtualFolder, VirtualResourceAccessKind.DenyCors);
-                    _webWindow.Browser.AddControllerToScript(_controller);
 
-                    _controller.TransmitDispatcher(Dispatcher);
+                    // 注入主窗体控制器到前端JS对象
+                    MainWindowController controller = new(_webWindow.Browser, Dispatcher);
+                    _webWindow.Browser.AddControllerToScript(controller);
                 }
             };
         }
@@ -103,7 +98,7 @@ public partial class MainWindow : Window
     /// </summary>
     /// <param name="sender">传递对象</param>
     /// <param name="e">传递事件</param>
-    private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+    private void Window_KeyUp(object sender, KeyEventArgs e)
     {
         switch (e.Key)
         {
