@@ -29,16 +29,23 @@ namespace GSA.ToolKits.AutomaticDeletionFiles.Controllers;
 [ComVisible(true)]
 public sealed class MainWindowController : IWebController
 {
-    private Dispatcher? _dispatcher;
-    private MainWindowService? _service;
+    private readonly IWebBrowser _browser;
+    private readonly Dispatcher _dispatcher;
+    private readonly MainWindowService _service;
 
 
     /// <summary>
     /// 主窗体控制器
     /// </summary>
-    public MainWindowController()
+    /// <param name="browser">浏览器</param>
+    /// <param name="dispatcher">调度器</param>
+    public MainWindowController(IWebBrowser browser, Dispatcher dispatcher)
     {
-        // do something.
+        _browser = browser;
+        _dispatcher = dispatcher;
+
+        _browser.OnWebMessageReceived += Browser_OnWebMessageReceived;
+        _service = new(dispatcher);
     }
 
 
@@ -61,13 +68,14 @@ public sealed class MainWindowController : IWebController
 
 
     /// <summary>
-    /// 传递调度器
+    /// 消息接收处理事件
     /// </summary>
-    /// <param name="dispatcher">调度器</param>
-    internal void TransmitDispatcher(Dispatcher dispatcher)
+    /// <param name="sender">事件对象</param>
+    /// <param name="e">事件参数</param>
+    /// <exception cref="NotImplementedException">当不存在指定导航目标时发生的异常</exception>
+    private void Browser_OnWebMessageReceived(object? sender, WebMessageReceivedWebArgs e)
     {
-        _dispatcher = dispatcher;
-        _service = new(dispatcher);
+        // do something.
     }
 
 
@@ -91,13 +99,14 @@ public sealed class MainWindowController : IWebController
         });
     }
 
+
     /// <summary>
     /// 添加要包含的内容
     /// </summary>
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void IncludeAddin(string keyword, string value)
-        => _service?.IncludeAddin(keyword, value);
+        => _service.IncludeAddin(keyword, value);
 
     /// <summary>
     /// 添加要排除的内容
@@ -105,7 +114,8 @@ public sealed class MainWindowController : IWebController
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void ExcludeAddin(string keyword, string value)
-        => _service?.ExcludeAddin(keyword, value);
+        => _service.ExcludeAddin(keyword, value);
+
 
     /// <summary>
     /// 移除要包含的内容
@@ -113,7 +123,7 @@ public sealed class MainWindowController : IWebController
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void IncludeRemove(string keyword, string value)
-        => _service?.IncludeRemove(keyword, value);
+        => _service.IncludeRemove(keyword, value);
 
     /// <summary>
     /// 移除要排除的内容
@@ -121,19 +131,19 @@ public sealed class MainWindowController : IWebController
     /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
     public void ExcludeRemove(string keyword, string value)
-        => _service?.ExcludeRemove(keyword, value);
+        => _service.ExcludeRemove(keyword, value);
 
 
     /// <summary>
     /// 启动
     /// </summary>
     /// <param name="paramString">参数字符串</param>
-    public void Start(string paramString)
-        => _service?.Start(paramString);
+    public async Task<string> StartAsync(string paramString)
+        => await _service.StartAsync(paramString).ConfigureAwait(false);
 
     /// <summary>
     /// 停止
     /// </summary>
-    public void Stop()
-        => _service?.Stop();
+    public async Task StopAsync()
+        => await _service.StopAsync().ConfigureAwait(false);
 }
