@@ -54,7 +54,7 @@ public sealed class DeletionFilesParam
     /// <summary>
     /// 轮循周期
     /// </summary>
-    public int CycleTimeDelay { get; set; }
+    public TimeSpan CycleTimeDelay { get; set; }
 
     /// <summary>
     /// 前置时间

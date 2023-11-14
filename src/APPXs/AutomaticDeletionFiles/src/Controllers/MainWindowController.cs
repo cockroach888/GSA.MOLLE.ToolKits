@@ -138,7 +138,7 @@ public sealed class MainWindowController : IWebController
     /// 启动
     /// </summary>
     /// <param name="paramString">参数字符串</param>
-    public async Task<string> StartAsync(string paramString)
+    public async Task<IEnumerable<string>> StartAsync(string paramString)
         => await _service.StartAsync(paramString).ConfigureAwait(false);
 
     /// <summary>

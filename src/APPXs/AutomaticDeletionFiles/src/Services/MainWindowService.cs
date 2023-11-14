@@ -27,17 +27,19 @@ using System.Linq;
 namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 
 /// <summary>
-/// 主窗体控服务
+/// 主窗体服务
 /// </summary>
 public sealed class MainWindowService
 {
     private readonly Dispatcher _dispatcher;
     private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictIncludeList = new();
     private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictExcludeList = new();
+    private CancellationTokenSource? _cts;
+    private bool _isStarted = false;
 
 
     /// <summary>
-    /// 主窗体控服务
+    /// 主窗体服务
     /// </summary>
     /// <param name="dispatcher">调度器</param>
     public MainWindowService(Dispatcher dispatcher)
@@ -133,20 +135,25 @@ public sealed class MainWindowService
     /// 启动
     /// </summary>
     /// <param name="paramString">参数字符串</param>
-    public async Task<string> StartAsync(string paramString)
+    public async Task<IEnumerable<string>> StartAsync(string paramString)
     {
+        if (_isStarted)
+        {
+            return new string[] { "对不起！当前已经开始执行自动删除文件操作，你可以停止，但请勿重复执行。", "warning" };
+        }
+
         DeletionFilesParam? param = JsonSerializer.Deserialize<DeletionFilesParam>(paramString);
 
         if (param is null)
         {
-            return "哥们儿，请问：你是猴子请来的救兵吗？什么参数都没有配置，自己心里没点逼数！";
+            return new string[] { "哥们儿，请问：你是猴子请来的救兵吗？什么参数都没有配置，自己心里没点逼数！", "error" };
         }
 
         return await _dispatcher.InvokeAsync(() =>
         {
             if (!Directory.Exists(param.MonitorDirectories))
             {
-                return "哥们儿！您逗我呢！！需要监视的目录都没有配置！！！";
+                return new string[] { "哥们儿！您逗我呢！！需要监视的目录都没有配置！！！", "warning" };
             }
 
 
@@ -197,76 +204,10 @@ public sealed class MainWindowService
                 ReturnSpecialDirectories = false
             };
 
+            _cts = new();
+            ExcuteDeleteFiles(param, option, _cts.Token);
 
-            IEnumerable<string> files = Directory.EnumerateFiles(param.MonitorDirectories, "*.*", option);
-
-            if (files.Any() is false)
-            {
-                return "当前监视目录中不存在任何文件。";
-            }
-
-            // 要包含的内容
-            if (_dictIncludeList.Values.Any())
-            {
-                if (_dictIncludeList[DeleteContentType.Folder].Any())
-                {
-                    foreach (string item in _dictIncludeList[DeleteContentType.Folder])
-                    {
-                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
-                    }
-                }
-
-                if (_dictIncludeList[DeleteContentType.FileName].Any())
-                {
-                    foreach (string item in _dictIncludeList[DeleteContentType.FileName])
-                    {
-                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
-                    }
-                }
-
-                if (_dictIncludeList[DeleteContentType.FileType].Any())
-                {
-                    foreach (string item in _dictIncludeList[DeleteContentType.FileType])
-                    {
-                        files = files.Where(p => Path.GetExtension(p) == item);
-                    }
-                }
-            }
-
-            // 要排除的内容
-            if (_dictExcludeList.Values.Any())
-            {
-                if (_dictExcludeList[DeleteContentType.Folder].Any())
-                {
-                    foreach (string item in _dictExcludeList[DeleteContentType.Folder])
-                    {
-                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
-                    }
-                }
-
-                if (_dictExcludeList[DeleteContentType.FileName].Any())
-                {
-                    foreach (string item in _dictExcludeList[DeleteContentType.FileName])
-                    {
-                        files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
-                    }
-                }
-
-                if (_dictExcludeList[DeleteContentType.FileType].Any())
-                {
-                    foreach (string item in _dictExcludeList[DeleteContentType.FileType])
-                    {
-                        files = files.Where(p => Path.GetExtension(p) != item);
-                    }
-                }
-            }
-
-            //foreach (string file in files)
-            //{
-            //    File.Delete(file);
-            //}
-
-            return "开始执行自动删除文件操作，将进入轮询处置阶段。（你可以停止，但不一定管用，呵。 ^_^）";
+            return new string[] { "开始执行自动删除文件操作，将进入轮询处置阶段。（你可以停止，但不一定管用，呵。 ^_^）", "success" };
         });
     }
 
@@ -277,7 +218,92 @@ public sealed class MainWindowService
     {
         await _dispatcher.InvokeAsync(() =>
         {
+            _cts?.Cancel();
+            _isStarted = false;
+
             MessageBox.Show("停止", "系统提示", MessageBoxButton.OK, MessageBoxImage.Information);
         }).Task.ConfigureAwait(false);
+    }
+
+
+    private void ExcuteDeleteFiles(DeletionFilesParam param, EnumerationOptions option, CancellationToken cancellation)
+    {
+        _isStarted = true;
+
+        Task.Run(async () =>
+        {
+            while (cancellation.IsCancellationRequested is false)
+            {
+                IEnumerable<string> files = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*.*", option)
+                                            where (DateTime.Now - File.GetCreationTime(file)) > param.LeadTime
+                                            select file;
+
+                if (files.Any())
+                {
+                    // 要包含的内容
+                    if (_dictIncludeList.Values.Any())
+                    {
+                        if (_dictIncludeList[DeleteContentType.Folder].Any())
+                        {
+                            foreach (string item in _dictIncludeList[DeleteContentType.Folder])
+                            {
+                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
+                            }
+                        }
+
+                        if (_dictIncludeList[DeleteContentType.FileName].Any())
+                        {
+                            foreach (string item in _dictIncludeList[DeleteContentType.FileName])
+                            {
+                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item));
+                            }
+                        }
+
+                        if (_dictIncludeList[DeleteContentType.FileType].Any())
+                        {
+                            foreach (string item in _dictIncludeList[DeleteContentType.FileType])
+                            {
+                                files = files.Where(p => Path.GetExtension(p) == item);
+                            }
+                        }
+                    }
+
+                    // 要排除的内容
+                    if (_dictExcludeList.Values.Any())
+                    {
+                        if (_dictExcludeList[DeleteContentType.Folder].Any())
+                        {
+                            foreach (string item in _dictExcludeList[DeleteContentType.Folder])
+                            {
+                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
+                            }
+                        }
+
+                        if (_dictExcludeList[DeleteContentType.FileName].Any())
+                        {
+                            foreach (string item in _dictExcludeList[DeleteContentType.FileName])
+                            {
+                                files = files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false);
+                            }
+                        }
+
+                        if (_dictExcludeList[DeleteContentType.FileType].Any())
+                        {
+                            foreach (string item in _dictExcludeList[DeleteContentType.FileType])
+                            {
+                                files = files.Where(p => Path.GetExtension(p) != item);
+                            }
+                        }
+                    }
+
+                    //foreach (string file in files)
+                    //{
+                    //    File.Delete(file);
+                    //}
+                }
+
+                await Task.Delay(param.CycleTimeDelay);
+            }
+        }, cancellation);
     }
 }
