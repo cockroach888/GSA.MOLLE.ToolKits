@@ -31,8 +31,8 @@ namespace GSA.ToolKits.AutomaticDeletionFiles.Services;
 public sealed class MainWindowService
 {
     private readonly Dispatcher _dispatcher;
-    private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictIncludeList = new();
-    private readonly ConcurrentDictionary<DeleteContentType, List<string>> _dictExcludeList = new();
+    private readonly ConcurrentDictionary<string, List<string>> _dictIncludeList = new();
+    private readonly ConcurrentDictionary<string, List<string>> _dictExcludeList = new();
     private CancellationTokenSource? _cts;
     private bool _isStarted = false;
 
@@ -45,13 +45,13 @@ public sealed class MainWindowService
     {
         _dispatcher = dispatcher;
 
-        _dictIncludeList[DeleteContentType.Folder] = new List<string>();
-        _dictIncludeList[DeleteContentType.FileName] = new List<string>();
-        _dictIncludeList[DeleteContentType.FileType] = new List<string>();
+        _dictIncludeList["目录"] = new List<string>();
+        _dictIncludeList["文件"] = new List<string>();
+        _dictIncludeList["类型"] = new List<string>();
 
-        _dictExcludeList[DeleteContentType.Folder] = new List<string>();
-        _dictExcludeList[DeleteContentType.FileName] = new List<string>();
-        _dictExcludeList[DeleteContentType.FileType] = new List<string>();
+        _dictExcludeList["目录"] = new List<string>();
+        _dictExcludeList["文件"] = new List<string>();
+        _dictExcludeList["类型"] = new List<string>();
     }
 
 
@@ -62,11 +62,11 @@ public sealed class MainWindowService
     /// <param name="value">值</param>
     public void IncludeAddin(string keyword, string value)
     {
-        if (Enum.TryParse(keyword, out DeleteContentType type))
-        {
-            FormatInputValue(keyword, ref value);
+        FormatInputValue(keyword, ref value);
 
-            _dictIncludeList[type].Add(value);
+        if (!_dictExcludeList[keyword].Contains(value))
+        {
+            _dictIncludeList[keyword].Add(value);
         }
     }
 
@@ -77,11 +77,11 @@ public sealed class MainWindowService
     /// <param name="value">值</param>
     public void ExcludeAddin(string keyword, string value)
     {
-        if (Enum.TryParse(keyword, out DeleteContentType type))
-        {
-            FormatInputValue(keyword, ref value);
+        FormatInputValue(keyword, ref value);
 
-            _dictExcludeList[type].Add(value);
+        if (!_dictExcludeList[keyword].Contains(value))
+        {
+            _dictExcludeList[keyword].Add(value);
         }
     }
 
@@ -92,12 +92,9 @@ public sealed class MainWindowService
     /// <param name="value">值</param>
     public void IncludeRemove(string keyword, string value)
     {
-        if (Enum.TryParse(keyword, out DeleteContentType type))
-        {
-            FormatInputValue(keyword, ref value);
+        FormatInputValue(keyword, ref value);
 
-            _dictIncludeList[type].Remove(value);
-        }
+        _dictIncludeList[keyword].Remove(value);
     }
 
     /// <summary>
@@ -107,12 +104,9 @@ public sealed class MainWindowService
     /// <param name="value">值</param>
     public void ExcludeRemove(string keyword, string value)
     {
-        if (Enum.TryParse(keyword, out DeleteContentType type))
-        {
-            FormatInputValue(keyword, ref value);
+        FormatInputValue(keyword, ref value);
 
-            _dictExcludeList[type].Remove(value);
-        }
+        _dictExcludeList[keyword].Remove(value);
     }
 
     /// <summary>
@@ -122,8 +116,7 @@ public sealed class MainWindowService
     /// <param name="value">输入值</param>
     private void FormatInputValue(string keyword, ref string value)
     {
-        if (Enum.TryParse(keyword, out DeleteContentType type) &&
-            type is DeleteContentType.FileType)
+        if (keyword == "类型")
         {
             value = value.Replace("*", "");
         }
@@ -234,38 +227,38 @@ public sealed class MainWindowService
             while (cancellation.IsCancellationRequested is false)
             {
                 IEnumerable<string> files = from file in Directory.EnumerateFiles(param.MonitorDirectories, "*", option)
-                                                  where (DateTime.Now - File.GetCreationTime(file)) > param.LeadTime
-                                                  select file;
+                                            where (DateTime.Now - File.GetCreationTime(file)) > param.LeadTime
+                                            select file;
 
                 if (files.Any())
                 {
                     // 要包含的内容
                     if (_dictIncludeList.Values.Any())
                     {
-                        if (_dictIncludeList[DeleteContentType.Folder].Any())
+                        if (_dictIncludeList["目录"].Any())
                         {
                             IEnumerable<string> tempFiles = Enumerable.Empty<string>();
-                            foreach (string item in _dictIncludeList[DeleteContentType.Folder])
+                            foreach (string item in _dictIncludeList["目录"])
                             {
                                 tempFiles = tempFiles.Concat(files.Where(p => Path.GetDirectoryName(p)!.Contains(item)));
                             }
                             files = tempFiles;
                         }
 
-                        if (_dictIncludeList[DeleteContentType.FileName].Any())
+                        if (_dictIncludeList["文件"].Any())
                         {
                             IEnumerable<string> tempFiles = Enumerable.Empty<string>();
-                            foreach (string item in _dictIncludeList[DeleteContentType.FileName])
+                            foreach (string item in _dictIncludeList["文件"])
                             {
                                 tempFiles = tempFiles.Concat(files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item)));
                             }
                             files = tempFiles;
                         }
 
-                        if (_dictIncludeList[DeleteContentType.FileType].Any())
+                        if (_dictIncludeList["类型"].Any())
                         {
                             IEnumerable<string> tempFiles = Enumerable.Empty<string>();
-                            foreach (string item in _dictIncludeList[DeleteContentType.FileType])
+                            foreach (string item in _dictIncludeList["类型"])
                             {
                                 tempFiles = tempFiles.Concat(files.Where(p => Path.GetExtension(p) == item));
                             }
@@ -276,30 +269,30 @@ public sealed class MainWindowService
                     // 要排除的内容
                     if (_dictExcludeList.Values.Any())
                     {
-                        if (_dictExcludeList[DeleteContentType.Folder].Any())
+                        if (_dictExcludeList["目录"].Any())
                         {
                             IEnumerable<string> tempFiles = Enumerable.Empty<string>();
-                            foreach (string item in _dictExcludeList[DeleteContentType.Folder])
+                            foreach (string item in _dictExcludeList["目录"])
                             {
                                 tempFiles = tempFiles.Concat(files.Where(p => Path.GetDirectoryName(p)!.Contains(item) is false));
                             }
                             files = tempFiles;
                         }
 
-                        if (_dictExcludeList[DeleteContentType.FileName].Any())
+                        if (_dictExcludeList["文件"].Any())
                         {
                             IEnumerable<string> tempFiles = Enumerable.Empty<string>();
-                            foreach (string item in _dictExcludeList[DeleteContentType.FileName])
+                            foreach (string item in _dictExcludeList["文件"])
                             {
                                 tempFiles = tempFiles.Concat(files.Where(p => Path.GetFileNameWithoutExtension(p).Contains(item) is false));
                             }
                             files = tempFiles;
                         }
 
-                        if (_dictExcludeList[DeleteContentType.FileType].Any())
+                        if (_dictExcludeList["类型"].Any())
                         {
                             IEnumerable<string> tempFiles = Enumerable.Empty<string>();
-                            foreach (string item in _dictExcludeList[DeleteContentType.FileType])
+                            foreach (string item in _dictExcludeList["类型"])
                             {
                                 tempFiles = tempFiles.Concat(files.Where(p => Path.GetExtension(p) != item));
                             }

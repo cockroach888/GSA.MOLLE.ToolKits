@@ -105,10 +105,10 @@
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="sltIncludeContent">文件</button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange(1)">目录</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange('目录')">目录</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange(2)">文件</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange(3)">类型</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange('文件')">文件</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onIncludeUnitChange('类型')">类型</a></li>
                                 </ul>
                                 <input type="text" class="form-control" placeholder="要包含的内容..." aria-label="要包含的内容..." aria-describedby="btnIncludeContent" id="txtIncludeContent">
                                 <button class="btn btn-outline-secondary" type="button" id="btnIncludeContent" onclick="onIncludeAddin()">
@@ -134,10 +134,10 @@
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="sltExcludeContent">文件</button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange(1)">目录</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange('目录')">目录</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange(2)">文件</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange(3)">类型</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange('文件')">文件</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="onExcludeUnitChange('类型')">类型</a></li>
                                 </ul>
                                 <input type="text" class="form-control" placeholder="要排除的内容..." aria-label="要排除的内容..." aria-describedby="btnExcludeContent" id="txtExcludeContent">
                                 <button class="btn btn-outline-secondary" type="button" id="btnExcludeContent" onclick="onExcludeAddin()">

@@ -1,8 +1,6 @@
 ﻿'use strict';
 
 const controller = chrome.webview.hostObjects.mainWindow
-let includeKeyword = 'FileName'
-let excludeKeyword = 'FileName'
 
 let viewModel = new function () {
     let self = this
@@ -41,54 +39,20 @@ async function onBrowserDirectories() {
 
 /**
 * 包含内容单位
-* @param {int} unitIdent 单位标识符
-*    1 - 目录
-*    2 - 文件
-*    3 - 类型
+* @param {string} unitIdent 单位名称
 * @return {void}
 */
 function onIncludeUnitChange(unitIdent) {
-    switch (unitIdent) {
-        case 1:
-            $('#sltIncludeContent').text('目录')
-            includeKeyword = 'Folder'
-            break
-        case 2:
-        default:
-            $('#sltIncludeContent').text('文件')
-            includeKeyword = 'FileName'
-            break
-        case 3:
-            $('#sltIncludeContent').text('类型')
-            includeKeyword = 'FileType'
-            break
-    }
+    $('#sltIncludeContent').text(unitIdent)
 }
 
 /**
 * 排除内容单位
-* @param {int} unitIdent 单位标识符
-*    1 - 目录
-*    2 - 文件
-*    3 - 类型
+* @param {string} unitIdent 单位名称
 * @return {void}
 */
 function onExcludeUnitChange(unitIdent) {
-    switch (unitIdent) {
-        case 1:
-            $('#sltExcludeContent').text('目录')
-            excludeKeyword = 'Folder'
-            break
-        case 2:
-        default:
-            $('#sltExcludeContent').text('文件')
-            excludeKeyword = 'FileName'
-            break
-        case 3:
-            $('#sltExcludeContent').text('类型')
-            excludeKeyword = 'FileType'
-            break
-    }
+    $('#sltExcludeContent').text(unitIdent)
 }
 
 /**
@@ -103,9 +67,12 @@ async function onIncludeAddin() {
         return
     }
 
-    if (viewModel.dataIncludeList.indexOf(value) === -1) {
-        viewModel.dataIncludeList.push(value)
-        await controller.IncludeAddin(includeKeyword, value)
+    const keyword = $('#sltIncludeContent').text()
+    const source = `${keyword}-${value}`
+
+    if (viewModel.dataIncludeList.indexOf(source) === -1) {
+        viewModel.dataIncludeList.push(source)
+        await controller.IncludeAddin(keyword, value)
     }
     else {
         swal({
@@ -129,9 +96,12 @@ async function onExcludeAddin() {
         return
     }
 
-    if (viewModel.dataExcludeList.indexOf(value) === -1) {
-        viewModel.dataExcludeList.push(value)
-        await controller.ExcludeAddin(excludeKeyword, value)
+    const keyword = $('#sltExcludeContent').text()
+    const source = `${keyword}-${value}`
+
+    if (viewModel.dataExcludeList.indexOf(source) === -1) {
+        viewModel.dataExcludeList.push(source)
+        await controller.ExcludeAddin(keyword, value)
     }
     else {
         swal({
@@ -149,10 +119,9 @@ async function onExcludeAddin() {
 * @return {void}
 */
 async function onIncludeRemove(value) {
-    if (value.length > 0 &&
-        viewModel.dataIncludeList.indexOf(value) !== -1) {
+    if (viewModel.dataIncludeList.indexOf(value) !== -1) {
         viewModel.dataIncludeList.remove(value)
-        await controller.IncludeRemove(includeKeyword, value)
+        await controller.IncludeRemove(value)
     }
 }
 
@@ -162,10 +131,9 @@ async function onIncludeRemove(value) {
 * @return {void}
 */
 async function onExcludeRemove(value) {
-    if (value.length > 0 &&
-        viewModel.dataExcludeList.indexOf(value) !== -1) {
+    if (viewModel.dataExcludeList.indexOf(value) !== -1) {
         viewModel.dataExcludeList.remove(value)
-        await controller.ExcludeRemove(excludeKeyword, value)
+        await controller.ExcludeRemove(value)
     }
 }
 

@@ -120,18 +120,30 @@ public sealed class MainWindowController : IWebController
     /// <summary>
     /// 移除要包含的内容
     /// </summary>
-    /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
-    public void IncludeRemove(string keyword, string value)
-        => _service.IncludeRemove(keyword, value);
+    public void IncludeRemove(string value)
+    {
+        string[] source = value.Split('-', StringSplitOptions.RemoveEmptyEntries);
+
+        if (source.Length >= 2)
+        {
+            _service.IncludeRemove(source[0], source[1]);
+        }
+    }
 
     /// <summary>
     /// 移除要排除的内容
     /// </summary>
-    /// <param name="keyword">关键字</param>
     /// <param name="value">值</param>
-    public void ExcludeRemove(string keyword, string value)
-        => _service.ExcludeRemove(keyword, value);
+    public void ExcludeRemove(string value)
+    {
+        string[] source = value.Split('-', StringSplitOptions.RemoveEmptyEntries);
+
+        if (source.Length >= 2)
+        {
+            _service.ExcludeRemove(source[0], source[1]);
+        }
+    }
 
 
     /// <summary>

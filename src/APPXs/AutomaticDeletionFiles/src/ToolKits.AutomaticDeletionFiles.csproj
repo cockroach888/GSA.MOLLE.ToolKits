@@ -3,7 +3,7 @@
     <PropertyGroup>
         <UseWPF>true</UseWPF>
         <OutputType>WinExe</OutputType>
-        <TargetFrameworks>net7.0-windows</TargetFrameworks>
+        <TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <ApplicationIcon>sys.ico</ApplicationIcon>
@@ -13,8 +13,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.AutomaticDeletionFiles</RootNamespace>
         <AssemblyName>AutomaticDeletionFiles</AssemblyName>
-        <AssemblyVersion>7.0.0</AssemblyVersion>
-        <FileVersion>7.0.0</FileVersion>
+        <AssemblyVersion>8.0.0</AssemblyVersion>
+        <FileVersion>8.0.0</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -39,7 +39,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 自动删除文件工具 自动删除 删除文件 Automatic Deletion Files</PackageTags>
-        <PackageReleaseNotes>初始化项目及其基础配置等工作。</PackageReleaseNotes>
+        <PackageReleaseNotes>升级项目到.NET 8.0版本，修复包含内容和排除内容的添加与移除问题，优化相关功能的编码实现。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>AutomaticDeletionFiles</PackageId>
     </PropertyGroup>
