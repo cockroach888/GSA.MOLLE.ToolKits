@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ApplicationIcon>sys.ico</ApplicationIcon>
 		<AssemblyName>魂哥工具集</AssemblyName>
@@ -13,7 +13,7 @@
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<Product>魂哥实用工具集</Product>
 		<PackageId>DawnTools</PackageId>
-		<Version>5.0.1</Version>
+		<Version>8.0.0</Version>
 		<Authors>蟑螂·魂</Authors>
 		<Company>华夏银河空间联盟</Company>
 		<Description>本类库其实是我自己编写的一个EXE应用程序，为了在开发过程中方便使用某些工具处理，如加解密字符串、生成GUID唯一编号、邮件收发测试、数据校验测试等，为了不给您添加麻烦，在您使用本类库时，请建立一个空的项目再添加引用，然后将项目下的“Dist”目录复制到某个位置，打开里面的“魂哥工具集.exe”开始使用。
