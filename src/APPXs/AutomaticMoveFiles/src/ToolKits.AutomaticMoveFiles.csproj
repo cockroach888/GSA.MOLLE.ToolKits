@@ -3,7 +3,7 @@
     <PropertyGroup>
         <UseWPF>true</UseWPF>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net7.0-windows</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ApplicationIcon>sys.ico</ApplicationIcon>
@@ -13,8 +13,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.AutomaticMoveFiles</RootNamespace>
 		<AssemblyName>AutomaticMoveFiles</AssemblyName>
-		<AssemblyVersion>7.0.0</AssemblyVersion>
-		<FileVersion>7.0.0</FileVersion>
+		<AssemblyVersion>8.0.0</AssemblyVersion>
+		<FileVersion>8.0.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
