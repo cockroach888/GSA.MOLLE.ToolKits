@@ -23,7 +23,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Windows;
 
 namespace GSA.ToolKits.AutomaticMoveFiles;
 
@@ -76,11 +75,6 @@ public partial class App : Application
             {
                 // 添加 WebView2 环境配置
                 services.Configure<WebView2EnvConfigure>(context.Configuration.GetSection(nameof(WebView2EnvConfigure)));
-            })
-            .ConfigureServices((services) =>
-            {
-                // 注册控制器
-                //services.TryAddSingleton<AlarmAnalysisController>();
             })
             .ConfigureServices((services) =>
             {

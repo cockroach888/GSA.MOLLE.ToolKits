@@ -18,9 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using CeriumX.WebEngine.Abstractions;
 using Microsoft.Extensions.Options;
-using System.Windows;
+using System.Windows.Input;
 
 namespace GSA.ToolKits.AutomaticMoveFiles;
 
@@ -29,21 +28,22 @@ namespace GSA.ToolKits.AutomaticMoveFiles;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private readonly WebView2EnvConfigure _config;
     private IWebWindow<UIElement>? _webWindow;
     private readonly IWebWindowFactory _webWindowFactory;
-    private readonly WebView2EnvConfigure _config;
 
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// <param name="webFactory">浏览器窗口创建工厂</param>
     /// <param name="options">WebView2 环境配置选项</param>
-    public MainWindow(IWebWindowFactory webFactory, IOptions<WebView2EnvConfigure> options)
+    /// <param name="webFactory">浏览器窗口创建工厂</param>
+    public MainWindow(IOptions<WebView2EnvConfigure> options, IWebWindowFactory webFactory)
     {
-        _webWindowFactory = webFactory;
         _config = options.Value;
+        _webWindowFactory = webFactory;
 
+        Title = $"自动移动文件（F5 刷新、F12 开发者工具） - {DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
         InitializeComponent();
     }
 
@@ -68,10 +68,10 @@ public partial class MainWindow : Window
                 {
                     _webWindow.Browser!.OnWebMessageReceived += Browser_OnWebMessageReceived;
                     _webWindow.Browser.AddVirtualHostNameToFolderMapping(_config.DomainName, _config.FullVirtualFolder, VirtualResourceAccessKind.DenyCors);
-                    //_webWindow.Browser.AddControllerToScript(_controller);
 
-                    // TODO: 仅当调试时打开开发者管理窗口
-                    //_webWindow.Browser.OpenDevToolsWindow();
+                    // 注入主窗体控制器到前端JS对象
+                    MainWindowController controller = new(_webWindow.Browser, Dispatcher);
+                    _webWindow.Browser.AddControllerToScript(controller);
                 }
             };
         }
@@ -90,5 +90,23 @@ public partial class MainWindow : Window
     private void Browser_OnWebMessageReceived(object? sender, WebMessageReceivedWebArgs e)
     {
         // do something.
+    }
+
+    /// <summary>
+    /// 按键弹出事件
+    /// </summary>
+    /// <param name="sender">传递对象</param>
+    /// <param name="e">传递事件</param>
+    private void Window_KeyUp(object sender, KeyEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case Key.F5:
+                _webWindow?.Browser?.Reload();
+                break;
+            case Key.F12:
+                _webWindow?.Browser?.OpenDevToolsWindow();
+                break;
+        }
     }
 }

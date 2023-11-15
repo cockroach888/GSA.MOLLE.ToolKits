@@ -18,4 +18,9 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+global using CeriumX.WebEngine.Abstractions;
+global using GSA.ToolKits.AutomaticMoveFiles.Controllers;
 global using GSA.ToolKits.AutomaticMoveFiles.Entity;
+global using GSA.ToolKits.AutomaticMoveFiles.Services;
+global using System.Runtime.InteropServices;
+global using System.Windows;

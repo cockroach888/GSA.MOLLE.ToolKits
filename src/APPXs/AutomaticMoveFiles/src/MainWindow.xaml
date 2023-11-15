@@ -8,9 +8,16 @@
         Icon="/form.ico"
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
-        Title="自动移动文件" Height="600" Width="800">
+        Height="686" Width="900"
+        KeyUp="Window_KeyUp" ResizeMode="CanMinimize">
     <Grid>
-        <Border x:Name="MainContent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="622*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
+        <Border x:Name="MainContent" Grid.ColumnSpan="4">
             <Label Content="加载中，请稍候..." HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft YaHei" FontSize="18" />
         </Border>
     </Grid>

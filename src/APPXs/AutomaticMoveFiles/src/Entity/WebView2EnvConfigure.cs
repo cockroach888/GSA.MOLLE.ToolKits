@@ -32,7 +32,7 @@ public sealed class WebView2EnvConfigure
     /// 虚拟主机域名
     /// </summary>
     /// <remarks>缺省：automaticdeletionfiles.ceriumx.vip</remarks>
-    public string DomainName { get; set; } = "automaticdeletionfiles.ceriumx.vip";
+    public string DomainName { get; set; } = "automaticmovefiles.ceriumx.vip";
 
     /// <summary>
     /// 虚拟主机目录
