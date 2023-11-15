@@ -21,10 +21,8 @@
 using CeriumX.WebEngine.WebView2.GenericHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Windows;
 
 namespace GSA.ToolKits.AutomaticDeletionFiles;
 

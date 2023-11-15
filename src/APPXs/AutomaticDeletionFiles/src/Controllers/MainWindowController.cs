@@ -27,6 +27,7 @@ namespace GSA.ToolKits.AutomaticDeletionFiles.Controllers;
 /// </summary>
 [ClassInterface(ClassInterfaceType.AutoDual)]
 [ComVisible(true)]
+[Obsolete]
 public sealed class MainWindowController : IWebController
 {
     private readonly IWebBrowser _browser;
