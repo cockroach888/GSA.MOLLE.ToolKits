@@ -38,7 +38,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-        <PackageReleaseNotes>完成时间窗口功能的编码实现，增加用于查询时使用的原生SQL语句字符串属性定义及其应用。</PackageReleaseNotes>
+        <PackageReleaseNotes>升级项目到.NET 8.0版本。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
     </PropertyGroup>
 

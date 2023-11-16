@@ -37,7 +37,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据库操作实用工具集 TDengine</PackageTags>
-		<PackageReleaseNotes>同步上游功能迭代，详情请参阅上游开发日志。</PackageReleaseNotes>
+		<PackageReleaseNotes>升级项目到.NET 8.0版本。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>DBUtility.TDengine.GenericHost</PackageId>
 	</PropertyGroup>
