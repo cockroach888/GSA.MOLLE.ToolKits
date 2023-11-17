@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.PagerUtility</RootNamespace>
 		<AssemblyName>PagerUtility</AssemblyName>
-		<AssemblyVersion>6.0.0</AssemblyVersion>
-		<FileVersion>6.0.0</FileVersion>
+		<AssemblyVersion>8.0.0</AssemblyVersion>
+		<FileVersion>8.0.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
@@ -36,7 +36,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据分页应用工具集 Pagination 数据分页 Bootstrap MVC分页 分页</PackageTags>
-		<PackageReleaseNotes>对整个封装库进行重大优化和调整，全面基于netstandard2.0、netstandard2.1、net5.0、net6.0及更高版本进行处置。</PackageReleaseNotes>
+		<PackageReleaseNotes>升级项目到.NET 8.0版本。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>PagerUtility</PackageId>
 	</PropertyGroup>

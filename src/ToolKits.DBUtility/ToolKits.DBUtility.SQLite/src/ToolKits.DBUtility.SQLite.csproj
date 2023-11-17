@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;netcoreapp3.1;net5.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;</TargetFrameworks>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
 		<AssemblyName>DBUtility.SQLite</AssemblyName>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
@@ -53,7 +53,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />
+		<PackageReference Include="System.Data.SQLite" Version="1.0.118" />
 	</ItemGroup>
 
 </Project>

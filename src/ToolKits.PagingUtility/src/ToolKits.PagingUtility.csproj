@@ -36,7 +36,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 数据分页应用工具集 Pagination 数据分页 Bootstrap MVC分页 分页</PackageTags>
-		<PackageReleaseNotes>全面进入.NET 7时代，将深入研习部分技术体系及源码，增加net7.0独立编译支持。</PackageReleaseNotes>
+		<PackageReleaseNotes>升级项目到.NET 8.0版本。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>PagingUtility</PackageId>
 	</PropertyGroup>

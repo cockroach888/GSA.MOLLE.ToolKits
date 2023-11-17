@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 EMQX消息服务工具集 EMQXUtility EMQ EMQX MQTT 消息服务 消息队列 消息队列服务</PackageTags>
-        <PackageReleaseNotes>正式开始本封闭库的重构之旅，欢迎大家参与与监督。</PackageReleaseNotes>
+        <PackageReleaseNotes>升级项目到.NET 8.0版本。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>EMQXUtility</PackageId>
     </PropertyGroup>
@@ -68,7 +68,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="RestSharp" Version="109.0.1" />
+        <PackageReference Include="RestSharp" Version="110.2.0" />
     </ItemGroup>
 
 </Project>

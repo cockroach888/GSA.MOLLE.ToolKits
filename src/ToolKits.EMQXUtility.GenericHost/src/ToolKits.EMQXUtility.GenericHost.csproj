@@ -37,7 +37,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 EMQX消息服务工具集 EMQXUtility EMQ EMQX MQTT 消息服务 消息队列 消息队列服务</PackageTags>
-		<PackageReleaseNotes>同步上游功能迭代，详情请参阅上游开发日志。</PackageReleaseNotes>
+		<PackageReleaseNotes>升级项目到.NET 8.0版本。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>EMQXUtility.GenericHost</PackageId>
 	</PropertyGroup>
@@ -68,8 +68,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
