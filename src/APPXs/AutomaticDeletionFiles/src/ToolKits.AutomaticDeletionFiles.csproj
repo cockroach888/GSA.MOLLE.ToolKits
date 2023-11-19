@@ -101,7 +101,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CeriumX.WebEngine.WebView2.GenericHost" Version="7.0.1" />
+        <PackageReference Include="CeriumX.WebEngine.WebView2.GenericHost" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     </ItemGroup>
 

@@ -306,7 +306,7 @@ public sealed class MainWindowService
                         {
                             File.Delete(file);
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             // do something.
                         }
@@ -324,7 +324,7 @@ public sealed class MainWindowService
                         {
                             Directory.Delete(folder);
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             // do something.
                         }
