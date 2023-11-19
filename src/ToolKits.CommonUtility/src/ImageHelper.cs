@@ -19,7 +19,6 @@
 // 修改内容：
 // ========================================================================
 using System.Drawing;
-using System.Drawing.Imaging;
 
 namespace GSA.ToolKits.CommonUtility;
 
@@ -37,50 +36,33 @@ public static class ImageHelper
     /// <para>不支持的图像格式，将不返回前缀。</para>
     /// </remarks>
     /// <param name="imageFullPath">源图像文件绝对路径</param>
-    /// <param name="format">图像格式</param>
     /// <returns>Base64字符串</returns>
-    public static string ImageToBase64IncludePrefix(string imageFullPath, ImageFormat format)
+    public static string ImageToBase64(string imageFullPath)
     {
-        string prefix = Path.GetExtension(imageFullPath) switch
-        {
-            ".png" => "data:image/png;base64,",
-            ".jgp" => "data:image/jgp;base64,",
-            ".jpg" => "data:image/jpg;base64,",
-            ".jpeg" => "data:image/jpeg;base64,",
-            _ => string.Empty
-        };
-
-        return $"{prefix}{ImageToBase64(imageFullPath, format)}";
+        string extString = Path.GetExtension(imageFullPath).Remove(0, 1);
+        string prefixString = $"data:image/{extString};base64,";
+        return $"{prefixString}{ImageToBase64WithoutPrefix(imageFullPath)}";
     }
 
     /// <summary>
-    /// 将图像转换为Base64字符串
+    /// 将图像转换为不包含前缀的Base64字符串
     /// </summary>
     /// <param name="imageFullPath">源图像文件绝对路径</param>
-    /// <param name="format">图像格式</param>
     /// <returns>Base64字符串</returns>
-    public static string ImageToBase64(string imageFullPath, ImageFormat format)
+    public static string ImageToBase64WithoutPrefix(string imageFullPath)
     {
-        using Bitmap bitmap = new(imageFullPath);
-        using MemoryStream ms = new();
-        bitmap.Save(ms, format);
-
-        byte[] buffer = new byte[ms.Length];
-        ms.Position = 0;
-        ms.Read(buffer, 0, (int)ms.Length);
-        ms.Close();
-
+        byte[] buffer = File.ReadAllBytes(imageFullPath);
         return Convert.ToBase64String(buffer);
     }
 
 
     /// <summary>
-    /// 将包含前缀的Base64字符串组成的数据转换为图像对象
+    /// 将包含前缀的Base64字符串转换为图像
     /// </summary>
     /// <remarks>例如：data:image/png;base64,</remarks>
     /// <param name="base64String">包含前缀的Base64字符串</param>
     /// <returns>图像对象 (外部使用完后必须释放)</returns>
-    public static Bitmap ImageFromBase64IncludePrefix(string base64String)
+    public static Image ImageFromBase64(string base64String)
     {
         int index = base64String.IndexOf(',');
 
@@ -93,24 +75,14 @@ public static class ImageHelper
     }
 
     /// <summary>
-    /// 将由Base64字符串组成的数据转换为图像对象
+    /// 将不包含前缀的Base64字符串转换为图像
     /// </summary>
-    /// <param name="base64String">Base64字符串</param>
+    /// <param name="base64String">不包含前缀的Base64字符串</param>
     /// <returns>图像对象 (外部使用完后必须释放)</returns>
-    public static Bitmap ImageFromBase64(string base64String)
+    public static Image ImageFromBase64WithoutPrefix(string base64String)
     {
         byte[] buffer = Convert.FromBase64String(base64String);
-        return ImageFromByteBuffer(buffer);
-    }
-
-    /// <summary>
-    /// 将由字节数组组成的数据转换为图像对象
-    /// </summary>
-    /// <param name="buffer">字节数组</param>
-    /// <returns>图像对象 (外部使用完后必须释放)</returns>
-    public static Bitmap ImageFromByteBuffer(byte[] buffer)
-    {
         using MemoryStream ms = new(buffer);
-        return new Bitmap(ms);
+        return Image.FromStream(ms);
     }
 }

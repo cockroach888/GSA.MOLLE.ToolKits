@@ -40,6 +40,16 @@ internal sealed class Program4CommonUtility
     #endregion
 
 
+    public void ImageToBase64String()
+    {
+        string imagePath = "C:\\Users\\Administrator\\Pictures\\Background.jpg";
+        string base64String = ImageHelper.ImageToBase64(imagePath);
+
+        Console.WriteLine(base64String);
+        Console.WriteLine();
+        Console.WriteLine();
+    }
+
     /// <summary>
     /// 小心手雷，洞中开火。
     /// </summary>

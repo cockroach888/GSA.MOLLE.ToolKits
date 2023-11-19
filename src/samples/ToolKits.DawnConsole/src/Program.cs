@@ -11,6 +11,7 @@ Console.WriteLine();
 // Program4CommonUtility
 //Program4CommonUtility.Default.FireInTheHole();
 //Program4CommonUtility.Default.HolsterThatWeapon();
+//Program4CommonUtility.Default.ImageToBase64String();
 
 
 // Program4PagingUtility
