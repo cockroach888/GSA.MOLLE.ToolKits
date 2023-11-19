@@ -38,6 +38,15 @@ async function onBrowserDirectories() {
 }
 
 /**
+* 目标目录浏览
+* @return {void}
+*/
+async function onBrowserTargetFolder() {
+    const dirPath = await controller.BrowserDirectories()
+    $('#txtTargetDirectories').val(dirPath)
+}
+
+/**
 * 包含内容单位
 * @param {string} unitIdent 单位名称
 * @return {void}
@@ -143,10 +152,12 @@ async function onExcludeRemove(value) {
 */
 async function onStart() {
     const monitorPath = $('#txtMonitorDirectories').val().trim()
+    const targetPath = $('#txtTargetDirectories').val().trim()
 
-    if (monitorPath.length <= 0) {
+    if (monitorPath.length <= 0 ||
+        targetPath.length <= 0) {
         swal({
-            text: "哥们儿！您逗我呢！！需要监视的目录都没有配置咧！！！",
+            text: "哥们儿！您逗我呢！！需要监视的目录或或目标目录都没有配置咧！！！",
             icon: "error",
             button: "我知道了，马上改正。",
             timer: 3000
@@ -157,6 +168,7 @@ async function onStart() {
 
     const dataSource = {
         'MonitorDirectories': monitorPath,
+        'TargetDirectories': targetPath,
         'IsIncludeSubdirectories': document.getElementById('chkIncludeSubdirectories').checked,
         'IsCleanEmptyFolder': document.getElementById('chkCleanEmptyFolder').checked,
         'ExcludeHiddenFiles': document.getElementById('chkExcludeHiddenFiles').checked,

@@ -25,8 +25,8 @@
                 <div class="col-sm">
                     <div class="input-group">
                         <div class="form-floating">
-                            <input class="form-control" type="text" placeholder="请选择需要执行自动移动文件的主目录..." aria-label="请选择需要执行自动移动文件的主目录..." aria-describedby="btnMonitorDirectories" id="txtMonitorDirectories" required>
-                            <label for="txtMonitorDirectories">请选择需要执行自动移动文件的主目录...</label>
+                            <input class="form-control" type="text" placeholder="请选择需要执行自动移动文件的监视目录..." aria-label="请选择需要执行自动移动文件的监视目录..." aria-describedby="btnMonitorDirectories" id="txtMonitorDirectories" required>
+                            <label for="txtMonitorDirectories">请选择需要执行自动移动文件的监视目录...</label>
                         </div>
                         <button class="btn btn-outline-secondary" type="button" id="btnMonitorDirectories" onclick="onBrowserDirectories()">浏览...</button>
                     </div>
@@ -45,6 +45,19 @@
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="chkCleanEmptyFolder" checked>
                         <label class="form-check-label" for="chkCleanEmptyFolder">是否清理所有层级的空目录</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="txtTargetDirectories" class="col-sm-auto col-form-label">目标目录</label>
+                <div class="col-sm">
+                    <div class="input-group">
+                        <div class="form-floating">
+                            <input class="form-control" type="text" placeholder="请选择需要执行自动移动文件的目标目录..." aria-label="请选择需要执行自动移动文件的目标目录..." aria-describedby="btnTargetDirectories" id="txtTargetDirectories" required>
+                            <label for="txtTargetDirectories">请选择需要执行自动移动文件的目标目录...</label>
+                        </div>
+                        <button class="btn btn-outline-secondary" type="button" id="btnTargetDirectories" onclick="onBrowserTargetFolder()">浏览...</button>
                     </div>
                 </div>
             </div>
@@ -167,7 +180,7 @@
                     <div class="row">
                         <label for="txtWorkerThreads" class="col-sm-auto col-form-label">工作线程</label>
                         <div class="col-sm">
-                            <input type="number" class="form-control w-25" value="3" min="1" max="20" id="txtWorkerThreads" required>
+                            <input type="number" class="form-control w-25" value="1" min="1" max="20" id="txtWorkerThreads" required disabled>
                         </div>
                     </div>
                 </div>

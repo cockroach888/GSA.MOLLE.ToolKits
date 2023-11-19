@@ -32,6 +32,11 @@ public sealed class MoveFilesParam
     public string MonitorDirectories { get; set; } = string.Empty;
 
     /// <summary>
+    /// 目标目录
+    /// </summary>
+    public string TargetDirectories { get; set; } = string.Empty;
+
+    /// <summary>
     /// 是否包含子目录
     /// </summary>
     public bool IsIncludeSubdirectories { get; set; }

@@ -25,9 +25,10 @@ namespace GSA.ToolKits.AutomaticMoveFiles.Controllers;
 /// <summary>
 /// 主窗体控制器
 /// </summary>
+#pragma warning disable CS0618
 [ClassInterface(ClassInterfaceType.AutoDual)]
+#pragma warning restore CS0618
 [ComVisible(true)]
-[Obsolete]
 public sealed class MainWindowController : IWebController
 {
     private readonly IWebBrowser _browser;

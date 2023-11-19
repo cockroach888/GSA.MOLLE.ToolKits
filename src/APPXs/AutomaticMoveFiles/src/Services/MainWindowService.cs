@@ -45,13 +45,13 @@ public sealed class MainWindowService
     {
         _dispatcher = dispatcher;
 
-        _dictIncludeList["目录"] = new List<string>();
-        _dictIncludeList["文件"] = new List<string>();
-        _dictIncludeList["类型"] = new List<string>();
+        _dictIncludeList["目录"] = [];
+        _dictIncludeList["文件"] = [];
+        _dictIncludeList["类型"] = [];
 
-        _dictExcludeList["目录"] = new List<string>();
-        _dictExcludeList["文件"] = new List<string>();
-        _dictExcludeList["类型"] = new List<string>();
+        _dictExcludeList["目录"] = [];
+        _dictExcludeList["文件"] = [];
+        _dictExcludeList["类型"] = [];
     }
 
 
@@ -114,7 +114,7 @@ public sealed class MainWindowService
     /// </summary>
     /// <param name="keyword">关键字</param>
     /// <param name="value">输入值</param>
-    private void FormatInputValue(string keyword, ref string value)
+    private static void FormatInputValue(string keyword, ref string value)
     {
         if (keyword == "类型")
         {
@@ -146,6 +146,11 @@ public sealed class MainWindowService
             if (!Directory.Exists(param.MonitorDirectories))
             {
                 return new string[] { "哥们儿！您逗我呢！！需要监视的目录都没有配置！！！", "warning" };
+            }
+
+            if (!Directory.Exists(param.TargetDirectories))
+            {
+                return new string[] { "哥们儿！您逗我呢！！移动文件的目标目录都没有配置！！！", "warning" };
             }
 
 
@@ -304,9 +309,17 @@ public sealed class MainWindowService
                     {
                         try
                         {
-                            File.Delete(file);
+                            string fileTargetPath = file.Replace(param.MonitorDirectories, param.TargetDirectories);
+                            string? fileBasePath = Path.GetDirectoryName(fileTargetPath);
+
+                            if (Directory.Exists(fileBasePath) is false)
+                            {
+                                Directory.CreateDirectory(fileBasePath!);
+                            }
+
+                            File.Move(file, fileTargetPath);
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             // do something.
                         }
@@ -324,7 +337,7 @@ public sealed class MainWindowService
                         {
                             Directory.Delete(folder);
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             // do something.
                         }
