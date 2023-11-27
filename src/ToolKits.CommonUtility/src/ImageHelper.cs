@@ -19,6 +19,7 @@
 // 修改内容：
 // ========================================================================
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace GSA.ToolKits.CommonUtility;
 
@@ -62,16 +63,16 @@ public static class ImageHelper
     /// <remarks>例如：data:image/png;base64,</remarks>
     /// <param name="base64String">包含前缀的Base64字符串</param>
     /// <returns>图像对象 (外部使用完后必须释放)</returns>
-    public static Image ImageFromBase64(string base64String)
+    public static Bitmap ImageFromBase64(string base64String)
     {
         int index = base64String.IndexOf(',');
 
         if (index > 0)
         {
-            base64String = base64String.Remove(0, index);
+            base64String = base64String.Remove(0, index + 1);
         }
 
-        return ImageFromBase64(base64String);
+        return ImageFromBase64WithoutPrefix(base64String);
     }
 
     /// <summary>
@@ -79,10 +80,139 @@ public static class ImageHelper
     /// </summary>
     /// <param name="base64String">不包含前缀的Base64字符串</param>
     /// <returns>图像对象 (外部使用完后必须释放)</returns>
-    public static Image ImageFromBase64WithoutPrefix(string base64String)
+    public static Bitmap ImageFromBase64WithoutPrefix(string base64String)
     {
         byte[] buffer = Convert.FromBase64String(base64String);
         using MemoryStream ms = new(buffer);
-        return Image.FromStream(ms);
+        return new Bitmap(ms);
     }
+
+
+    /// <summary>
+    /// 将包含前缀的Base64字符串转存储到指定路径下的图像文件
+    /// </summary>
+    /// <remarks>当存储目标文件存在时，将会在保存时自动覆盖。</remarks>
+    /// <param name="base64String">包含前缀的Base64字符串</param>
+    /// <param name="saveFullPath">保存图像的绝对路径</param>
+    /// <param name="imageFormat">图像格式化类型</param>
+    public static void SaveImageFromBase64(string base64String, string saveFullPath, ImageFormatTypes imageFormat)
+    {
+        using Bitmap bmpTemp = ImageFromBase64(base64String);
+        using Bitmap bmp = new(bmpTemp);
+        bmp.Save(saveFullPath, ConvertImageFormatType(imageFormat));
+    }
+
+    /// <summary>
+    /// 将不包含前缀的Base64字符串存储到指定路径下的图像文件
+    /// </summary>
+    /// <remarks>当存储目标文件存在时，将会在保存时自动覆盖。</remarks>
+    /// <param name="base64String">不包含前缀的Base64字符串</param>
+    /// <param name="saveFullPath">保存图像的绝对路径</param>
+    /// <param name="imageFormat">图像格式化类型</param>
+    public static void SaveImageFromBase64WithoutPrefix(string base64String, string saveFullPath, ImageFormatTypes imageFormat)
+    {
+        using Bitmap bmpTemp = ImageFromBase64WithoutPrefix(base64String);
+        using Bitmap bmp = new(bmpTemp);
+        bmp.Save(saveFullPath, ConvertImageFormatType(imageFormat));
+    }
+
+
+    /// <summary>
+    /// 将自定义图像格式化类型转换为内部使用的图像格式
+    /// </summary>
+    /// <param name="imageFormat">图像格式化类型</param>
+    /// <returns>图像格式</returns>
+    private static ImageFormat ConvertImageFormatType(ImageFormatTypes imageFormat)
+        => imageFormat switch
+        {
+            ImageFormatTypes.BMP => ImageFormat.Bmp,
+            ImageFormatTypes.EMF => ImageFormat.Emf,
+            ImageFormatTypes.Exif => ImageFormat.Exif,
+
+            ImageFormatTypes.GIF => ImageFormat.Gif,
+#if NET
+            ImageFormatTypes.HEIF => ImageFormat.Heif,
+#endif
+            ImageFormatTypes.Icon => ImageFormat.Icon,
+            ImageFormatTypes.JPEG => ImageFormat.Jpeg,
+            ImageFormatTypes.MemoryBmp => ImageFormat.MemoryBmp,
+            ImageFormatTypes.PNG => ImageFormat.Png,
+            ImageFormatTypes.TIFF => ImageFormat.Tiff,
+#if NET
+            ImageFormatTypes.WebP => ImageFormat.Webp,
+#endif
+            ImageFormatTypes.WMF => ImageFormat.Wmf,
+            _ => ImageFormat.Jpeg,
+        };
+}
+
+
+/// <summary>
+/// 图像格式化类型枚举
+/// </summary>
+public enum ImageFormatTypes
+{
+    /// <summary>
+    /// 位图（BMP）图像格式
+    /// </summary>
+    BMP,
+
+    /// <summary>
+    /// 增强元文件（EMF）图像格式
+    /// </summary>
+    EMF,
+
+    /// <summary>
+    /// 可交换图像文件（Exif）格式
+    /// </summary>
+    Exif,
+
+    /// <summary>
+    /// 图形交换格式 (GIF) 图像格式
+    /// </summary>
+    GIF,
+
+#if NET
+    /// <summary>
+    /// 高效图像格式（HEIF）
+    /// </summary>
+    HEIF,
+#endif
+
+    /// <summary>
+    /// Windows 图标图像格式
+    /// </summary>
+    Icon,
+
+    /// <summary>
+    /// 联合图像专家组（JPEG）图像格式
+    /// </summary>
+    JPEG,
+
+    /// <summary>
+    /// 内存中位图的格式
+    /// </summary>
+    MemoryBmp,
+
+    /// <summary>
+    /// W3C 便携式网络图形（PNG）图像格式
+    /// </summary>
+    PNG,
+
+    /// <summary>
+    /// 标记图像文件格式（TIFF）图像格式
+    /// </summary>
+    TIFF,
+
+#if NET
+    /// <summary>
+    /// WebP 图像格式
+    /// </summary>
+    WebP,
+#endif
+
+    /// <summary>
+    /// Windows 元文件 (WMF) 图像格式
+    /// </summary>
+    WMF
 }
