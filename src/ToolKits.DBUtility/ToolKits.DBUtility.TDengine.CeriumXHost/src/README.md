@@ -4,7 +4,7 @@
 
 ## 功能介绍
 
-**本库为TDengine RESTful API 连接器(ToolKits.DBUtility.TDengine)的扩展支持，提供与混合应用主机(CeriumXHost)的交互能力；本库支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;）。**
+**本库为TDengine RESTful API 连接器(ToolKits.DBUtility.TDengine)的扩展支持，提供与混合应用主机(CeriumXHost)的交互能力；本库支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;）。**
 
 - 鄙人专注.NET技术，深入研习.NET 8系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成，通过与混合应用主机(CeriumXHost)集成，以提供友好的服务与应用支持，谢谢；
