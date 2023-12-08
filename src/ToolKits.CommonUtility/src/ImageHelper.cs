@@ -18,6 +18,7 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -115,6 +116,21 @@ public static class ImageHelper
         using Bitmap bmp = new(bmpTemp);
         bmp.Save(saveFullPath, ConvertImageFormatType(imageFormat));
     }
+
+
+    /// <summary>
+    /// 将包含图像的数据流存储到指定路径下的图像文件
+    /// </summary>
+    /// <param name="imageStream">包含图像的数据流</param>
+    /// <param name="saveFullPath">保存图像的绝对路径</param>
+    /// <param name="imageFormat">图像格式化类型</param>
+    public static void SaveImageFromStream(Stream imageStream, string saveFullPath, ImageFormatTypes imageFormat)
+    {
+        using Bitmap bmpTemp = new(imageStream);
+        using Bitmap bmp = new(bmpTemp);
+        bmp.Save(saveFullPath, ConvertImageFormatType(imageFormat));
+    }
+
 
 
     /// <summary>

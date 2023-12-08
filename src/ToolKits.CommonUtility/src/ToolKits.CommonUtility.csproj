@@ -12,10 +12,10 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>8.1.0</AssemblyVersion>
-		<FileVersion>8.1.0</FileVersion>
+		<AssemblyVersion>8.1.1</AssemblyVersion>
+		<FileVersion>8.1.1</FileVersion>
 		<LangVersion>latest</LangVersion>
-		<NoWarn>8603,8600</NoWarn>
+		<NoWarn>8603,8600,CA1416</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -38,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>优化图像辅助操作与处理助手类，增加Base64字符串直接落盘存储功能。</PackageReleaseNotes>
+		<PackageReleaseNotes>增加将包含图像的数据流存储到指定路径下的图像文件功能。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
