@@ -14,6 +14,8 @@
 1. JsonSerializerMappingHelper (JSON序列化数据映射助手类，键值分离JSON序列化)
 1. MockDataHelper (数据模拟助手类)
 1. NetworkHelper (网络与通信助手类)
+1. ReflectionHelper (反射特性应用助手类)
+1. StringHackerHelper (字符串相关操作与处理助手类)
 1. TDataModelHelper (数据模型属性字段名称与值字符串拼接助手类)
 1. UrlHackerHelper (Url相关操作与处理助手类)
 
@@ -24,6 +26,10 @@
 <br>
 
 ## 开发日志
+
+### 2023-12-10
+- 为使本库更为有效的支持跨平台，将剔除相关非跨平台功能，或存在深远影响的所有封装，同时将剔除的功能变更为独立封装库；
+- 剔除图像辅助操作与处理助手类(ImageHelper)及其所有附带功能，迁移至ToolKits.PictureUtility封装库。
 
 ### 2023-12-08
 - 增加将包含图像的数据流存储到指定路径下的图像文件功能。

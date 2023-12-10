@@ -12,10 +12,10 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>8.1.1</AssemblyVersion>
-		<FileVersion>8.1.1</FileVersion>
+		<AssemblyVersion>8.2.0</AssemblyVersion>
+		<FileVersion>8.2.0</FileVersion>
 		<LangVersion>latest</LangVersion>
-		<NoWarn>8603,8600,CA1416</NoWarn>
+		<NoWarn>8603,8600</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -38,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>增加将包含图像的数据流存储到指定路径下的图像文件功能。</PackageReleaseNotes>
+		<PackageReleaseNotes>剔除图像辅助操作与处理助手类(ImageHelper)及其所有附带功能，迁移至ToolKits.PictureUtility封装库。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
@@ -73,10 +73,6 @@
 		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>
