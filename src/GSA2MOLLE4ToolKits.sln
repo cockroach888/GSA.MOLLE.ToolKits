@@ -83,6 +83,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.AutomaticDeletionF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.AutomaticMoveFiles", "APPXs\AutomaticMoveFiles\src\ToolKits.AutomaticMoveFiles.csproj", "{0F11FD1A-6005-405C-8C10-9B6EFACF7278}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.PictureUtility", "ToolKits.PictureUtility\src\ToolKits.PictureUtility.csproj", "{5FE76E07-794A-4D14-95FF-736CC61B06D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +235,10 @@ Global
 		{0F11FD1A-6005-405C-8C10-9B6EFACF7278}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F11FD1A-6005-405C-8C10-9B6EFACF7278}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F11FD1A-6005-405C-8C10-9B6EFACF7278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE76E07-794A-4D14-95FF-736CC61B06D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE76E07-794A-4D14-95FF-736CC61B06D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE76E07-794A-4D14-95FF-736CC61B06D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE76E07-794A-4D14-95FF-736CC61B06D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
