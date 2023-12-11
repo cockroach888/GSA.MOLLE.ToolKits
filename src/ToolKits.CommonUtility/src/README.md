@@ -11,6 +11,7 @@
 1. CustomAttributeHelper (自定义属性助手类)
 1. DateTimeHelper (日期与时间帮助类)
 1. ExpressionVisitorToSQL (将条件表达式转换为字符串SQL语句)
+1. ImageHelper (图像辅助操作与处理助手类)
 1. JsonSerializerMappingHelper (JSON序列化数据映射助手类，键值分离JSON序列化)
 1. MockDataHelper (数据模拟助手类)
 1. NetworkHelper (网络与通信助手类)
@@ -26,6 +27,9 @@
 <br>
 
 ## 开发日志
+
+### 2023-12-11
+- 经验仔细考量，保留ImageHelper助手类和图像文件转Base64功能，其它图像对象层面操作，则由ToolKits.PictureUtility承载。
 
 ### 2023-12-10
 - 为使本库更为有效的支持跨平台，将剔除相关非跨平台功能，或存在深远影响的所有封装，同时将剔除的功能变更为独立封装库；

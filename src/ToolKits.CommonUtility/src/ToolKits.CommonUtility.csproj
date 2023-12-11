@@ -38,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>剔除图像辅助操作与处理助手类(ImageHelper)及其所有附带功能，迁移至ToolKits.PictureUtility封装库。</PackageReleaseNotes>
+		<PackageReleaseNotes>迁移图像辅助操作与处理助手类(ImageHelper)中图像对象操作部分至ToolKits.PictureUtility封装库。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
