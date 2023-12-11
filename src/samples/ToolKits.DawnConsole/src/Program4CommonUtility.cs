@@ -42,10 +42,15 @@ internal sealed class Program4CommonUtility
 
     public void ImageToBase64String()
     {
-        string imagePath = "C:\\Users\\Administrator\\Pictures\\Background.jpg";
-        string base64String = ImageHelper.ImageToBase64(imagePath);
+        string imagePath = "D:\\TemporaryFiles\\PictureSource.bmp";
 
+        string base64String = ImageHelper.ImageToBase64(imagePath);
         Console.WriteLine(base64String);
+        Console.WriteLine();
+        Console.WriteLine();
+
+        string base64StringPrefix = ImageHelper.ImageToBase64WithoutPrefix(imagePath);
+        Console.WriteLine(base64StringPrefix);
         Console.WriteLine();
         Console.WriteLine();
     }
