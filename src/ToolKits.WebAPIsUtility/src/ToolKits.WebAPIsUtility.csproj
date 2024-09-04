@@ -11,7 +11,7 @@
         <DelaySign>false</DelaySign>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.WebAPIsUtility</RootNamespace>
-        <AssemblyName>CommonUtility</AssemblyName>
+        <AssemblyName>WebAPIsUtility</AssemblyName>
         <AssemblyVersion>8.0.0</AssemblyVersion>
         <FileVersion>8.0.0</FileVersion>
         <LangVersion>latest</LangVersion>
