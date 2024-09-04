@@ -102,13 +102,16 @@ dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.WebUtility/src
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- 迈向新起点再出发工具集 & Forever 7 ----------
+@echo\&echo  ---------- 迈向新起点再出发工具集 & Forever 8 ----------
 
 dotnet new classlib -lang "C#" -f net8.0 -n ToolKits.CommonUtility -o ToolKits.CommonUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.CommonUtility/src
 
 dotnet new classlib -lang "C#" -f net8.0 -n ToolKits.PictureUtility -o ToolKits.PictureUtility/src
 dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.PictureUtility/src
+
+dotnet new classlib -lang "C#" -f net8.0 -n ToolKits.WebAPIsUtility -o ToolKits.WebAPIsUtility/src
+dotnet sln GSA2MOLLE4ToolKits.sln add --in-root ToolKits.WebAPIsUtility/src
 
 
 dotnet new classlib -lang "C#" -f net8.0 -n ToolKits.PagingUtility -o ToolKits.PagingUtility/src
