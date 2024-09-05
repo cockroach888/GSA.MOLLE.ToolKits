@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.WebAPIsUtility</RootNamespace>
         <AssemblyName>WebAPIsUtility</AssemblyName>
-        <AssemblyVersion>8.0.1</AssemblyVersion>
-        <FileVersion>8.0.1</FileVersion>
+        <AssemblyVersion>8.0.2</AssemblyVersion>
+        <FileVersion>8.0.2</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
