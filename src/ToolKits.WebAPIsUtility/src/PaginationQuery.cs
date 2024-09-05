@@ -24,7 +24,7 @@ namespace GSA.ToolKits.WebAPIsUtility;
 /// 数据分页查询参数实体类
 /// </summary>
 [Serializable]
-public sealed class PaginationQuery
+public class PaginationQuery
 {
     /// <summary>
     /// 分页大小

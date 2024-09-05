@@ -25,7 +25,7 @@ namespace GSA.ToolKits.WebAPIsUtility;
 /// </summary>
 /// <typeparam name="TDataModel">数据模型泛型</typeparam>
 [Serializable]
-public sealed class DataListResult<TDataModel> where TDataModel : class
+public class DataListResult<TDataModel> where TDataModel : class
 {
     /// <summary>
     /// 响应状态码

@@ -24,7 +24,7 @@ namespace GSA.ToolKits.WebAPIsUtility;
 /// 数据分页信息实体类
 /// </summary>
 [Serializable]
-public sealed class PaginationModel
+public class PaginationModel
 {
     /// <summary>
     /// 总记录数
