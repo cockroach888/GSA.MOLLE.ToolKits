@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.WebAPIsUtility</RootNamespace>
         <AssemblyName>WebAPIsUtility</AssemblyName>
-        <AssemblyVersion>8.0.2</AssemblyVersion>
-        <FileVersion>8.0.2</FileVersion>
+        <AssemblyVersion>8.0.3</AssemblyVersion>
+        <FileVersion>8.0.3</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -22,7 +22,7 @@
         <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Authors>蟑螂·魂</Authors>
-        <Description>本库主要致力于提供在WebAPI项目中规范的抽象定义和数据实体定义等功能类合集，支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;）。包括但不限于如下功能类：IDataHelperAbstractions (数据访问助手基础接口)、PaginationModel (数据分页信息实体类)、DataListResult (数据列表请求结果实体类)、SingleDataResult (单一数据请求结果实体类)、PaginationQuery (数据分页查询参数实体类)等。
+        <Description>本库主要致力于提供在WebAPI项目中规范的抽象定义和数据实体定义等功能类合集，支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;）。包括但不限于如下功能类：IDataHelperAbstractions (数据访问助手基础接口)、PaginationModel (数据分页信息实体类)、DataListResult (数据列表请求结果实体类)、SingleDataResult (单一数据请求结果实体类)、PaginationQuery (数据分页查询参数实体类)、JWTOptions (JWT认证选项参数类)等。
 
 - 鄙人专注.NET技术，深入研习.NET 8系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成，根据工作中的业务实践需求封装成库，如有不明之处请告之，谢谢；
@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 接口辅助与应用工具集 WebAPIs</PackageTags>
-        <PackageReleaseNotes>增加数据分页查询参数实体类(PaginationQuery)编码实现。</PackageReleaseNotes>
+        <PackageReleaseNotes>新增JWT认证选项参数类，JWT安全认证令牌的基本信息。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>WebAPIsUtility</PackageId>
     </PropertyGroup>
