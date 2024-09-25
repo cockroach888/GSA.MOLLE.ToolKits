@@ -26,6 +26,10 @@ namespace GSA.ToolKits.WebAPIsUtility;
 [Serializable]
 public class PaginationModel
 {
+    private int _pageSize = 25;
+    private int _currentPage = 1;
+
+
     /// <summary>
     /// 总记录数
     /// </summary>
@@ -38,19 +42,51 @@ public class PaginationModel
     /// </summary>
     /// <remarks>表示每页显示的数据数量。</remarks>
     [JsonPropertyName("PageSize")]
-    public int PageSize { get; set; }
+    public int PageSize
+    {
+        get
+        {
+            return _pageSize;
+        }
+        set
+        {
+            // 当分页大小小于或等于零时，设定为默认25条/页记录。
+            if (value <= 0)
+            {
+                value = 25;
+            }
+
+            _pageSize = value;
+        }
+    }
 
     /// <summary>
     /// 当前页码
     /// </summary>
     /// <remarks>表示用户正在查看的页码。</remarks>
     [JsonPropertyName("CurrentPage")]
-    public int CurrentPage { get; set; }
+    public int CurrentPage
+    {
+        get
+        {
+            return _currentPage;
+        }
+        set
+        {
+            // 当页码小于或等于零时，自动跳转至第1页。
+            if (value <= 0)
+            {
+                value = 1;
+            }
+
+            _currentPage = value;
+        }
+    }
 
     /// <summary>
     /// 总页数
     /// </summary>
     /// <remarks>表示数据可以分成多少页。</remarks>
     [JsonPropertyName("TotalPages")]
-    public int TotalPages => (int)Math.Ceiling((double)TotalRecords / PageSize);
+    public int TotalPages => (int)Math.Ceiling((double)Math.Max(TotalRecords, 0) / PageSize);
 }

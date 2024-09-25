@@ -26,17 +26,53 @@ namespace GSA.ToolKits.WebAPIsUtility;
 [Serializable]
 public class PaginationQuery
 {
+    private int _pageSize = 25;
+    private int _pageNumber = 1;
+
+
     /// <summary>
     /// 分页大小
     /// </summary>
-    /// <remarks>表示每页显示的数据数量。</remarks>
+    /// <remarks>表示每页显示的数据数量，默认25。</remarks>
     [JsonPropertyName("PageSize")]
-    public int PageSize { get; set; }
+    public int PageSize
+    {
+        get
+        {
+            return _pageSize;
+        }
+        set
+        {
+            // 当分页大小小于或等于零时，设定为默认25条/页记录。
+            if (value <= 0)
+            {
+                value = 25;
+            }
+
+            _pageSize = value;
+        }
+    }
 
     /// <summary>
     /// 页码
     /// </summary>
-    /// <remarks>指定要显示的页码。</remarks>
+    /// <remarks>指定要显示的页码，默认1。</remarks>
     [JsonPropertyName("PageNumber")]
-    public int PageNumber { get; set; }
+    public int PageNumber
+    {
+        get
+        {
+            return _pageNumber;
+        }
+        set
+        {
+            // 当页码小于或等于零时，自动跳转至第1页。
+            if (value <= 0)
+            {
+                value = 1;
+            }
+
+            _pageNumber = value;
+        }
+    }
 }

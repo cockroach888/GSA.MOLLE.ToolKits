@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.WebAPIsUtility</RootNamespace>
         <AssemblyName>WebAPIsUtility</AssemblyName>
-        <AssemblyVersion>8.0.3</AssemblyVersion>
-        <FileVersion>8.0.3</FileVersion>
+        <AssemblyVersion>8.0.4</AssemblyVersion>
+        <FileVersion>8.0.4</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 接口辅助与应用工具集 WebAPIs</PackageTags>
-        <PackageReleaseNotes>新增JWT认证选项参数类，JWT安全认证令牌的基本信息。</PackageReleaseNotes>
+        <PackageReleaseNotes>优化数据分页查询参数实体类和数据分页信息实体类，增加小于零时的判断与处理。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>WebAPIsUtility</PackageId>
     </PropertyGroup>
