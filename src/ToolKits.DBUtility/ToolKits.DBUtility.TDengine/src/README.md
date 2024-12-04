@@ -4,11 +4,11 @@
 
 ## 功能介绍
 
-**基于官方提供的RESTful API接口，使用.NET 7等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的NuGet包供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。**
+**基于官方提供的RESTful API接口，使用.NET 9等前沿技术封装的TDengine连接器。本封装库提供友好统一的对外接口形态，让使用者更专注于自身业务的开发工作。通过通用主机和服务容器集成使用(也可以使用Provider直接创建)，同时提供了相应的NuGet包供直接引入到项目。本封装库诞生于公司自有业务应用场景，将会同步不断优化和支持。**
 
-- Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .NET 7. This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding NuGet package is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
+- Based on the officially provided RESTful API interface, TDengine connectors encapsulated by cutting-edge technologies such as .NET 9. This package library provides a friendly and unified external interface form, allowing users to focus more on their own business development. It is integrated and used through the common host and service container (it can also be created directly by using Provider), and the corresponding NuGet package is provided for direct introduction into the project. This package library was born in the company's own business application scenarios, and will be continuously optimized and supported synchronously.
 - 应用示例(samples)：https://github.com/cockroach888/GSA.MOLLE.ToolKits/tree/main/src/samples/TaosData
-- 鄙人专注.NET技术，深入研习.NET 8系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 鄙人专注.NET技术，深入研习.NET 9系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成；本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。
 
 <br>
@@ -18,11 +18,10 @@
 ```
 "TDengineOptions": {
     "Host": "127.0.0.1",
-    "Port": 10101,
+    "Port": 6041,
     "UserName": "root",
     "Password": "taosdata",
     "TimeZone": "Asia/Shanghai",
-    //"VersionSelector": "V2"
     "VersionSelector": "V3",
     "KeyNameRegex": [
         "last_row\\((.+?)\\)",
@@ -43,6 +42,10 @@
 - 在使用 RESTful API 接口服务时，同时可增加时区设置，可以同样避免时间问题。
 
 ## 开发日志
+
+### 2024-12-04
+- 近一年鄙人超级忙碌，往后会更为忙碌，一些自己想做的开源项目也都相继搁浅，但我会继续挤出时间前行，谢谢大家的支持；
+- 去掉net6.0;net7.0;的目标编译支持，增加net9.0;编译支持，开始实践.NET 9系列的相关技术体系，特别是Blazor的实践应用。
 
 ### 2023-11-15
 - 升级项目到.NET 8.0版本。
