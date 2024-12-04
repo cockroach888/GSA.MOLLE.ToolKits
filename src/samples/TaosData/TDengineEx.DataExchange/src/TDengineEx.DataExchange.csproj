@@ -2,15 +2,15 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>TDengineEx.DataExchange.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
-		<AssemblyVersion>8.0.0</AssemblyVersion>
-		<FileVersion>8.0.0</FileVersion>
+		<AssemblyVersion>9.0.0</AssemblyVersion>
+		<FileVersion>9.0.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
