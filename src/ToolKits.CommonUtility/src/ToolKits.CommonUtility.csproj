@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0;</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>8.2.0</AssemblyVersion>
-		<FileVersion>8.2.0</FileVersion>
+		<AssemblyVersion>9.0.0</AssemblyVersion>
+		<FileVersion>9.0.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 		<NoWarn>8603,8600</NoWarn>
 	</PropertyGroup>
@@ -23,9 +23,9 @@
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>蟑螂·魂</Authors>
-		<Description>本库提供常见和通用的各种助手类合集，支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;）。包括但不限于如下功能类：CommonHelper (常见和通用的功能应用助手类)、CustomAttributeHelper (自定义属性助手类)、DateTimeHelper (日期与时间帮助类)、ExpressionVisitorToSQL (将条件表达式转换为字符串SQL语句)、JsonSerializerMappingHelper (JSON序列化数据映射助手类，键值分离JSON序列化)、MockDataHelper (数据模拟助手类)、NetworkHelper (网络与通信助手类)、TDataModelHelper (数据模型属性字段名称与值字符串拼接助手类)、UrlHackerHelper (Url相关操作与处理助手类)等。
+		<Description>本库提供常见和通用的各种助手类合集，支持多种版本（netstandard2.0;netstandard2.1;net8.0;net9.0;）。包括但不限于如下功能类：CommonHelper (常见和通用的功能应用助手类)、CustomAttributeHelper (自定义属性助手类)、DateTimeHelper (日期与时间帮助类)、ExpressionVisitorToSQL (将条件表达式转换为字符串SQL语句)、JsonSerializerMappingHelper (JSON序列化数据映射助手类，键值分离JSON序列化)、MockDataHelper (数据模拟助手类)、NetworkHelper (网络与通信助手类)、TDataModelHelper (数据模型属性字段名称与值字符串拼接助手类)、UrlHackerHelper (Url相关操作与处理助手类)等。
 
-- 鄙人专注.NET技术，深入研习.NET 8系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 鄙人专注.NET技术，深入研习.NET 9系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
 - 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
 		<Company>华夏银河空间联盟</Company>
@@ -38,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>迁移图像辅助操作与处理助手类(ImageHelper)中图像对象操作部分至ToolKits.PictureUtility封装库。</PackageReleaseNotes>
+		<PackageReleaseNotes>去掉net6.0;net7.0;的目标编译支持，增加net9.0;编译支持，开始实践.NET 9系列的相关技术体系，特别是Blazor的实践应用。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
@@ -69,10 +69,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' or '$(TargetFramework)'=='netstandard2.1'">
-		<PackageReference Include="System.Text.Json" Version="8.0.0" />
-		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+		<PackageReference Include="System.Text.Json" Version="9.0.0" />
+		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.0" />
 	</ItemGroup>
 
 </Project>
