@@ -18,6 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using Minio.DataModel.Args;
+
 namespace GSA.ToolKits.MinIOUtility.Internal;
 
 /// <summary>
@@ -25,5 +27,52 @@ namespace GSA.ToolKits.MinIOUtility.Internal;
 /// </summary>
 internal partial class MinIOHelper : IBucketOpsHelper
 {
-    // do something.
+
+    #region 接口实现[IBucketOpsHelper]
+
+    /// <summary>
+    /// 判断存储桶是否存在
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>true 存在 / false 不存在</returns>
+    public async Task<bool> BucketExistsAsync(string bucketName)
+    {
+        var args = new BucketExistsArgs().WithBucket(bucketName);
+        return await _minioClient.BucketExistsAsync(args).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 判断存储桶是否存在，不存在则创建。
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>true 成功 / false 失败</returns>
+    public async Task<bool> BucketExistsAndCreateAsync(string bucketName)
+    {
+        if (await BucketExistsAsync(bucketName).ConfigureAwait(false) is false)
+        {
+            var args = new MakeBucketArgs().WithBucket(bucketName);
+            await _minioClient.MakeBucketAsync(args).ConfigureAwait(false);
+        }
+
+        return await BucketExistsAsync(bucketName).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 判断存储桶是否存在，存在则移除。
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>true 成功 / false 失败</returns>
+    public async Task<bool> BucketExistsAndRemoveAsync(string bucketName)
+    {
+        if (await BucketExistsAsync(bucketName).ConfigureAwait(false) is true)
+        {
+            var args = new RemoveBucketArgs().WithBucket(bucketName);
+            await _minioClient.RemoveBucketAsync(args).ConfigureAwait(false);
+        }
+
+        return !await BucketExistsAsync(bucketName).ConfigureAwait(false);
+    }
+
+    #endregion
+
 }

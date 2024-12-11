@@ -25,5 +25,24 @@ namespace GSA.ToolKits.MinIOUtility;
 /// </summary>
 public interface IBucketOpsHelper
 {
-    // do something.
+    /// <summary>
+    /// 判断存储桶是否存在
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>true 存在 / false 不存在</returns>
+    Task<bool> BucketExistsAsync(string bucketName);
+
+    /// <summary>
+    /// 判断存储桶是否存在，不存在则创建。
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>true 成功 / false 失败</returns>
+    Task<bool> BucketExistsAndCreateAsync(string bucketName);
+
+    /// <summary>
+    /// 判断存储桶是否存在，存在则移除。
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>true 成功 / false 失败</returns>
+    Task<bool> BucketExistsAndRemoveAsync(string bucketName);
 }
