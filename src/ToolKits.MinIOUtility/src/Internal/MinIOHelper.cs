@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.MinIOUtility.Internal;
 
 /// <summary>
-/// MinIO 对象存储助手
+/// MinIO 对象存储访问助手
 /// </summary>
 internal sealed class MinIOHelper : IMinIOHelper
 {

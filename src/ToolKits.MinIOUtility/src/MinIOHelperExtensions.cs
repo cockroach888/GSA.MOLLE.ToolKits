@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.MinIOUtility;
 
 /// <summary>
-/// MinIO 对象存储助手扩展
+/// MinIO 对象存储访问助手扩展
 /// </summary>
 public static class MinIOHelperExtensions
 {

@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.MinIOUtility;
 
 /// <summary>
-/// MinIO 对象存储助手接口
+/// MinIO 对象存储访问助手接口
 /// </summary>
 public interface IMinIOHelper
 {
