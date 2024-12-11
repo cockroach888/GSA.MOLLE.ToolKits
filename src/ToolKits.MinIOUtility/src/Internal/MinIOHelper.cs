@@ -33,8 +33,6 @@ internal partial class MinIOHelper(MinIOOptions options) : IMinIOHelper
         .Build();
 
 
-    #region 接口实现[IMinIOHelper]
-
     /// <summary>
     /// MinIO 存储桶辅助操作
     /// </summary>
@@ -49,8 +47,6 @@ internal partial class MinIOHelper(MinIOOptions options) : IMinIOHelper
     /// MinIO 存储预指定URL辅助操作
     /// </summary>
     public IPresignedOpsHelper PresignedOps => this;
-
-    #endregion
 
 
     /// <summary>

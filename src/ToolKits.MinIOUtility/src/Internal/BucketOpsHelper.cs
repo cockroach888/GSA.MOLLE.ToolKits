@@ -27,9 +27,6 @@ namespace GSA.ToolKits.MinIOUtility.Internal;
 /// </summary>
 internal partial class MinIOHelper : IBucketOpsHelper
 {
-
-    #region 接口实现[IBucketOpsHelper]
-
     /// <summary>
     /// 判断存储桶是否存在
     /// </summary>
@@ -72,7 +69,4 @@ internal partial class MinIOHelper : IBucketOpsHelper
 
         return !await BucketExistsAsync(bucketName).ConfigureAwait(false);
     }
-
-    #endregion
-
 }
