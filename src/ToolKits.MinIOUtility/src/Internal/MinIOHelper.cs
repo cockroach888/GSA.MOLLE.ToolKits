@@ -18,12 +18,47 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using Minio;
+
 namespace GSA.ToolKits.MinIOUtility.Internal;
 
 /// <summary>
 /// MinIO 对象存储访问助手
 /// </summary>
-internal sealed class MinIOHelper : IMinIOHelper
+internal partial class MinIOHelper(MinIOOptions options) : IMinIOHelper
 {
-    // do something.
+    internal readonly IMinioClient _minioClient = new MinioClient()
+        .WithEndpoint(options.MinioHost, options.MinioPort)
+        .WithCredentials(options.MinioAccessKey, options.MinioSecretKey)
+        .Build();
+
+
+    #region 接口实现[IMinIOHelper]
+
+    /// <summary>
+    /// MinIO 存储桶辅助操作
+    /// </summary>
+    public IBucketOpsHelper BucketOps => this;
+
+    /// <summary>
+    /// MinIO 存储对象辅助操作
+    /// </summary>
+    public IObjectOpsHelper ObjectOps => this;
+
+    /// <summary>
+    /// MinIO 存储预指定URL辅助操作
+    /// </summary>
+    public IPresignedOpsHelper PresignedOps => this;
+
+    #endregion
+
+
+    /// <summary>
+    /// 资源释放
+    /// </summary>
+    public void Dispose()
+    {
+        using (_minioClient) { }
+        GC.SuppressFinalize(this);
+    }
 }

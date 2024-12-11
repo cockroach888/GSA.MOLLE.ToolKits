@@ -25,5 +25,18 @@ namespace GSA.ToolKits.MinIOUtility;
 /// </summary>
 public interface IMinIOHelper : IDisposable
 {
-    // do something.
+    /// <summary>
+    /// MinIO 存储桶辅助操作
+    /// </summary>
+    IBucketOpsHelper BucketOps { get; }
+
+    /// <summary>
+    /// MinIO 存储对象辅助操作
+    /// </summary>
+    IObjectOpsHelper ObjectOps { get; }
+
+    /// <summary>
+    /// MinIO 存储预指定URL辅助操作
+    /// </summary>
+    IPresignedOpsHelper PresignedOps { get; }
 }
