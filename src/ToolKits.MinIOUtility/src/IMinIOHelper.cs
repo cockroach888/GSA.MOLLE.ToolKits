@@ -7,7 +7,7 @@
 //**   Copyright © 蟑螂·魂 2024 -- Support 华夏银河空间联盟
 //=========================================================================
 // 文件名称：IMinIOHelper.cs
-// 项目名称：魂哥常用工具集
+// 项目名称：MinIO对象存储辅助工具集
 // 创建时间：2024-12-11 10:20:11
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
@@ -23,7 +23,7 @@ namespace GSA.ToolKits.MinIOUtility;
 /// <summary>
 /// MinIO 对象存储访问助手接口
 /// </summary>
-public interface IMinIOHelper
+public interface IMinIOHelper : IDisposable
 {
     // do something.
 }
