@@ -12,7 +12,23 @@
 
 <br>
 
+### 配置文件示例
+
+```
+"MinIOOptions": {
+    "MinioHost": "127.0.0.1",
+    "MinioPort": 9000,
+    "MinioAccessKey": "28464f0fa8574aa6b955",
+    "MinioSecretKey": "f97565247c7ea8d72e92ff614a7584d143efa8f7",
+    "ImageExpiryThreshold": "7.00:00:00"
+}
+```
+
 ## 开发日志
+
+### 2024-12-11
+- 增加配置文件示例，可存放在appsettings.json全局配置文件或自定义配置文件；
+- 增加MinIO 对象存储选项参数类，用于自动匹配配置文件，或者创建时的传参；
 
 ### 2024-12-10
 - 创建MinIO对象存储辅助工具集(MinIOUtility)，专门用于处理.NET下对MinIO对象存储的辅助与应用需求，专注业务、降低耦合、提升工作效率；
