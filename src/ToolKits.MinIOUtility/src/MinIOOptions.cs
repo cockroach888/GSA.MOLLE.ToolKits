@@ -27,9 +27,9 @@ namespace GSA.ToolKits.MinIOUtility;
 /// <param name="minioPort">MinIO 端口号</param>
 /// <param name="minioAccessKey">MinIO Access Key</param>
 /// <param name="minioSecretKey">MinIO Secret Key</param>
-/// <param name="imageExpiryThreshold">MinIO 存储对象生成URL时的过期时间阈值</param>
+/// <param name="urlExpiryThreshold">MinIO 存储对象生成URL时的过期时间阈值</param>
 [Serializable]
-public sealed class MinIOOptions(string minioHost, int minioPort, string minioAccessKey, string minioSecretKey, TimeSpan? imageExpiryThreshold = null)
+public sealed class MinIOOptions(string minioHost, int minioPort, string minioAccessKey, string minioSecretKey, TimeSpan? urlExpiryThreshold = null)
 {
     /// <summary>
     /// MinIO 主机地址
@@ -55,5 +55,5 @@ public sealed class MinIOOptions(string minioHost, int minioPort, string minioAc
     /// MinIO 存储对象生成URL时的过期时间阈值
     /// </summary>
     /// <remarks>默认7天</remarks>
-    public TimeSpan ImageExpiryThreshold { get; set; } = imageExpiryThreshold ?? TimeSpan.FromDays(7);
+    public TimeSpan URLExpiryThreshold { get; set; } = urlExpiryThreshold ?? TimeSpan.FromDays(7);
 }

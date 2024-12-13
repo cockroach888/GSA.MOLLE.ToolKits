@@ -20,7 +20,7 @@
     "MinioPort": 9000,
     "MinioAccessKey": "28464f0fa8574aa6b955",
     "MinioSecretKey": "f97565247c7ea8d72e92ff614a7584d143efa8f7",
-    "ImageExpiryThreshold": "7.00:00:00"
+    "URLExpiryThreshold": "7.00:00:00"
 }
 ```
 
