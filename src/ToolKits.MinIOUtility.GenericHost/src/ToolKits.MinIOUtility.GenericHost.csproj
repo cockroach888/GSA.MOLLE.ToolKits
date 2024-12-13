@@ -1,9 +1,70 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0;</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>Library.ico</ApplicationIcon>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>ToolKits.MinIOUtility.GenericHost.snk</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <RootNamespace>GSA.ToolKits.MinIOUtility.GenericHost</RootNamespace>
+        <AssemblyName>MinIOUtility.GenericHost</AssemblyName>
+        <AssemblyVersion>9.0.0</AssemblyVersion>
+        <FileVersion>9.0.0</FileVersion>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Authors>蟑螂·魂</Authors>
+        <Description>本库主要致力于提供MinIO对象存储在.NET开发过程中的辅助与应用工具方法，使开发人员专注于业务逻辑与功能实现，降低项目耦合性，简化并提升工作效率，支持多种版本（netstandard2.0;netstandard2.1;net8.0;net9.0;）。**
+
+- 鄙人专注.NET技术，深入研习.NET 9系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
+- 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
+        <Company>华夏银河空间联盟</Company>
+        <Product>MinIO对象存储辅助工具集</Product>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
+        <PackageIcon>PackageIcon.jpg</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
+        <PackageTags>魂哥常用工具集 MinIO对象存储辅助工具集 MinIO 对象存储 MinIO对象存储</PackageTags>
+        <PackageReleaseNotes>创建MinIO对象存储辅助工具集(PictureUtility)，专门用于处理.NET下对MinIO对象存储的辅助与应用需求，专注业务、降低耦合、提升工作效率。</PackageReleaseNotes>
+        <Version>$(AssemblyVersion)</Version>
+        <PackageId>MinIOUtility.GenericHost</PackageId>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>none</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\..\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="..\..\PackageIcon.jpg">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
 
 </Project>
