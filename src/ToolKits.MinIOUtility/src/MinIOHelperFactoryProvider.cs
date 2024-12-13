@@ -18,6 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using GSA.ToolKits.MinIOUtility.Internal;
+
 namespace GSA.ToolKits.MinIOUtility;
 
 /// <summary>
@@ -25,5 +27,23 @@ namespace GSA.ToolKits.MinIOUtility;
 /// </summary>
 public sealed class MinIOHelperFactoryProvider
 {
-    // do something.
+
+    #region 单例模式
+
+    private static readonly Lazy<MinIOHelperFactoryProvider> _lazyInstance = new(() => new MinIOHelperFactoryProvider());
+
+    /// <summary>
+    /// MinIO 对象存储访问助手工厂提供者
+    /// </summary>
+    public static MinIOHelperFactoryProvider Default => _lazyInstance.Value;
+
+    #endregion
+
+
+    /// <summary>
+    /// 创建 MinIO 对象存储访问助手工厂
+    /// </summary>
+    /// <param name="options">选项参数</param>
+    /// <returns>MinIO对象存储访问助手工厂</returns>
+    public IMinIOHelperFactory New(MinIOOptions options) => new MinIOHelperFactory(options);
 }
