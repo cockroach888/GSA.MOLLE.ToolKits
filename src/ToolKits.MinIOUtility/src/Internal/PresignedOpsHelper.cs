@@ -32,7 +32,7 @@ internal partial class MinIOHelper : IPresignedOpsHelper
     /// <param name="objectName">对象路径与名称</param>
     /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
     /// <returns>预指定URL预览地址</returns>
-    public async Task<string> PresignedObjectGetAsync(string bucketName, string objectName, TimeSpan? expiryThreshold)
+    public async Task<string> PresignedObjectGetAsync(string bucketName, string objectName, TimeSpan? expiryThreshold = null)
     {
         var args = new PresignedGetObjectArgs().WithBucket(bucketName)
                                                .WithObject(objectName)
@@ -52,7 +52,7 @@ internal partial class MinIOHelper : IPresignedOpsHelper
     /// <param name="objectName">对象路径与名称</param>
     /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
     /// <returns>预指定URL推送地址</returns>
-    public async Task<string> PresignedObjectPutAsync(string bucketName, string objectName, TimeSpan? expiryThreshold)
+    public async Task<string> PresignedObjectPutAsync(string bucketName, string objectName, TimeSpan? expiryThreshold = null)
     {
         var args = new PresignedPutObjectArgs().WithBucket(bucketName)
                                                .WithObject(objectName)
@@ -66,7 +66,7 @@ internal partial class MinIOHelper : IPresignedOpsHelper
     /// </summary>
     /// <param name="timeSpan">TimeSpan 时间间隔</param>
     /// <returns>总秒数</returns>
-    private int GetTotalSeconds(TimeSpan? timeSpan)
+    private int GetTotalSeconds(TimeSpan? timeSpan = null)
     {
         if (timeSpan.HasValue is true && timeSpan > TimeSpan.Zero)
         {
