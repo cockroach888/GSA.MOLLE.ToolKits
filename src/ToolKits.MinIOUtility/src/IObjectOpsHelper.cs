@@ -39,24 +39,39 @@ public interface IObjectOpsHelper
     /// </summary>
     /// <param name="bucketName">存储桶名称</param>
     /// <param name="objectName">对象路径与名称</param>
+    /// <param name="stream">数据流</param>
+    /// <param name="mimeType">MIME类型</param>
     /// <returns>true 成功 / false 失败</returns>
-    Task<bool> ObjectPutAsync(string bucketName, string objectName);
+    Task<bool> ObjectPutAsync(string bucketName, string objectName, Stream stream, string mimeType);
 
     /// <summary>
     /// 判断存储桶中是否存在某存储对象，不存在则推送。
     /// </summary>
     /// <param name="bucketName">存储桶名称</param>
     /// <param name="objectName">对象路径与名称</param>
+    /// <param name="stream">数据流</param>
+    /// <param name="mimeType">MIME类型</param>
     /// <returns>true 成功 / false 失败</returns>
-    Task<bool> ObjectExistsAndPutAsync(string bucketName, string objectName);
+    Task<bool> ObjectExistsAndPutAsync(string bucketName, string objectName, Stream stream, string mimeType);
 
     /// <summary>
     /// 判断存储桶中是否存在某存储对象，存在则获取。
     /// </summary>
-    /// <param name="bucketName"></param>
-    /// <param name="objectName"></param>
-    /// <returns></returns>
-    Task<bool> ObjectExistsAndGetAsync(string bucketName, string objectName);
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="versionId">版本编号</param>
+    /// <returns>包含存储对象的数据流</returns>
+    Task<Stream?> ObjectExistsAndGetWithStreamAsync(string bucketName, string objectName, string? versionId = null);
+
+    /// <summary>
+    /// 判断存储桶中是否存在某存储对象，存在则获取。
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="fileSaveFullPath">用于保存存储对象到本地的全文件路径</param>
+    /// <param name="versionId">版本编号</param>
+    /// <returns>true 成功 / false 失败</returns>
+    Task<bool> ObjectExistsAndGetWithFileAsync(string bucketName, string objectName, string fileSaveFullPath, string? versionId = null);
 
     /// <summary>
     /// 判断存储桶中是否存在某存储对象，存在则移除。

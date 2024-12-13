@@ -57,31 +57,20 @@ internal partial class MinIOHelper : IObjectOpsHelper
     /// </summary>
     /// <param name="bucketName">存储桶名称</param>
     /// <param name="objectName">对象路径与名称</param>
+    /// <param name="stream">数据流</param>
+    /// <param name="mimeType">MIME类型</param>
     /// <returns>true 成功 / false 失败</returns>
-    public Task<bool> ObjectPutAsync(string bucketName, string objectName)
+    public async Task<bool> ObjectPutAsync(string bucketName, string objectName, Stream stream, string mimeType)
     {
+        var args = new PutObjectArgs().WithBucket(bucketName)
+                                      .WithObject(objectName)
+                                      .WithStreamData(stream)
+                                      .WithObjectSize(stream.Length)
+                                      .WithContentType(mimeType);
 
+        _ = await _minioClient.PutObjectAsync(args).ConfigureAwait(false);
 
-
-        /*ReadOnlyMemory<byte> bs = await File.ReadAllBytesAsync(fileName).ConfigureAwait(false);
-        Console.WriteLine("Running example for API: PutObjectAsync");
-        using var filestream = bs.AsStream();
-
-        var fileInfo = new FileInfo(fileName);
-        var metaData = new Dictionary<string, string>
-            (StringComparer.Ordinal) { { "Test-Metadata", "Test  Test" } };
-        var args = new PutObjectArgs()
-            .WithBucket(bucketName)
-            .WithObject(objectName)
-            .WithStreamData(filestream)
-            .WithObjectSize(filestream.Length)
-            .WithContentType("application/octet-stream")
-            .WithHeaders(metaData)
-            .WithProgress(progress)
-            .WithServerSideEncryption(sse);
-        _ = await minio.PutObjectAsync(args).ConfigureAwait(false);*/
-
-        return Task.FromResult(false);
+        return await ObjectExistsAsync(bucketName, objectName).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -89,33 +78,75 @@ internal partial class MinIOHelper : IObjectOpsHelper
     /// </summary>
     /// <param name="bucketName">存储桶名称</param>
     /// <param name="objectName">对象路径与名称</param>
+    /// <param name="stream">数据流</param>
+    /// <param name="mimeType">MIME类型</param>
     /// <returns>true 成功 / false 失败</returns>
-    public Task<bool> ObjectExistsAndPutAsync(string bucketName, string objectName)
+    public async Task<bool> ObjectExistsAndPutAsync(string bucketName, string objectName, Stream stream, string mimeType)
     {
+        if (await ObjectExistsAsync(bucketName, objectName).ConfigureAwait(false) is false)
+        {
+            return await ObjectPutAsync(bucketName, objectName, stream, mimeType).ConfigureAwait(false);
+        }
 
-
-
-        return Task.FromResult(false);
+        return true;
     }
 
     /// <summary>
     /// 判断存储桶中是否存在某存储对象，存在则获取。
     /// </summary>
-    /// <param name="bucketName"></param>
-    /// <param name="objectName"></param>
-    /// <returns></returns>
-    public Task<bool> ObjectExistsAndGetAsync(string bucketName, string objectName)
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="versionId">版本编号</param>
+    /// <returns>包含存储对象的数据流</returns>
+    public async Task<Stream?> ObjectExistsAndGetWithStreamAsync(string bucketName, string objectName, string? versionId = null)
     {
+        Stream? result = null;
 
+        if (await ObjectExistsAsync(bucketName, objectName, versionId).ConfigureAwait(false) is true)
+        {
+            var args = new GetObjectArgs().WithBucket(bucketName)
+                                          .WithObject(objectName)
+                                          .WithCallbackStream((s) =>
+                                          {
+                                              result = s;
+                                          });
 
+            if (string.IsNullOrWhiteSpace(versionId) is false)
+            {
+                args.WithVersionId(versionId);
+            }
 
-        /*var args = new GetObjectArgs()
-                .WithBucket(bucketName)
-                .WithObject(objectName)
-                .WithFile(fileName);
-        var stat = await minio.GetObjectAsync(args).ConfigureAwait(false);*/
+            _ = await _minioClient.GetObjectAsync(args).ConfigureAwait(false);
+        }
 
-        return Task.FromResult(false);
+        return result;
+    }
+
+    /// <summary>
+    /// 判断存储桶中是否存在某存储对象，存在则获取。
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="fileSaveFullPath">用于保存存储对象到本地的全文件路径</param>
+    /// <param name="versionId">版本编号</param>
+    /// <returns>true 成功 / false 失败</returns>
+    public async Task<bool> ObjectExistsAndGetWithFileAsync(string bucketName, string objectName, string fileSaveFullPath, string? versionId = null)
+    {
+        if (await ObjectExistsAsync(bucketName, objectName, versionId).ConfigureAwait(false) is true)
+        {
+            var args = new GetObjectArgs().WithBucket(bucketName)
+                                          .WithObject(objectName)
+                                          .WithFile(fileSaveFullPath);
+
+            if (string.IsNullOrWhiteSpace(versionId) is false)
+            {
+                args.WithVersionId(versionId);
+            }
+
+            _ = await _minioClient.GetObjectAsync(args).ConfigureAwait(false);
+        }
+
+        return File.Exists(fileSaveFullPath);
     }
 
     /// <summary>
