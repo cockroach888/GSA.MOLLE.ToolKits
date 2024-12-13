@@ -25,6 +25,7 @@ namespace GSA.ToolKits.MinIOUtility.Internal;
 /// <summary>
 /// MinIO 对象存储访问助手
 /// </summary>
+/// <param name="options">选项参数</param>
 internal partial class MinIOHelper(MinIOOptions options) : IMinIOHelper
 {
     internal readonly IMinioClient _minioClient = new MinioClient()
@@ -47,6 +48,12 @@ internal partial class MinIOHelper(MinIOOptions options) : IMinIOHelper
     /// MinIO 存储预指定URL辅助操作
     /// </summary>
     public IPresignedOpsHelper PresignedOps => this;
+
+
+    /// <summary>
+    /// 内部编号
+    /// </summary>
+    internal int Id { get; } = Guid.NewGuid().GetHashCode();
 
 
     /// <summary>

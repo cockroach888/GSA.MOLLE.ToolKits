@@ -25,5 +25,20 @@ namespace GSA.ToolKits.MinIOUtility;
 /// </summary>
 public interface IMinIOHelperFactory : IDisposable
 {
-    // do something.
+    /// <summary>
+    /// 创建一个新的MinIO对象存储访问助手
+    /// </summary>
+    /// <remarks>使用工厂创建时的选项参数</remarks>
+    /// <param name="oldHelper">旧的MinIO对象存储访问助手</param>
+    /// <returns>MinIO对象存储访问助手</returns>
+    IMinIOHelper New(IMinIOHelper? oldHelper = null);
+
+    /// <summary>
+    /// 创建一个新的MinIO对象存储访问助手
+    /// </summary>
+    /// <remarks>使用传入的选项参数</remarks>
+    /// <param name="option">选项参数</param>
+    /// <param name="oldHelper">旧的MinIO对象存储访问助手</param>
+    /// <returns>MinIO对象存储访问助手</returns>
+    IMinIOHelper New(MinIOOptions option, IMinIOHelper? oldHelper = null);
 }

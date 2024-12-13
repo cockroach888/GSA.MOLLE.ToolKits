@@ -18,12 +18,79 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using System.Collections.Concurrent;
+
 namespace GSA.ToolKits.MinIOUtility.Internal;
 
 /// <summary>
 /// MinIO 对象存储访问助手工厂
 /// </summary>
-internal sealed class MinIOHelperFactory : IMinIOHelperFactory
+/// <param name="options">选项参数</param>
+internal sealed class MinIOHelperFactory(MinIOOptions options) : IMinIOHelperFactory
 {
-    // do something.
+    private readonly ConcurrentDictionary<int, MinIOHelper> _helpers = new();
+
+
+    /// <summary>
+    /// 创建一个新的MinIO对象存储访问助手
+    /// </summary>
+    /// <remarks>使用工厂创建时的选项参数</remarks>
+    /// <param name="oldHelper">旧的MinIO对象存储访问助手</param>
+    /// <returns>MinIO对象存储访问助手</returns>
+    public IMinIOHelper New(IMinIOHelper? oldHelper = null)
+    {
+        TryRemove(oldHelper);
+
+        MinIOHelper helper = new(options);
+        _helpers[helper.Id] = helper;
+
+        return helper;
+    }
+
+    /// <summary>
+    /// 创建一个新的MinIO对象存储访问助手
+    /// </summary>
+    /// <remarks>使用传入的选项参数</remarks>
+    /// <param name="option">选项参数</param>
+    /// <param name="oldHelper">旧的MinIO对象存储访问助手</param>
+    /// <returns>MinIO对象存储访问助手</returns>
+    public IMinIOHelper New(MinIOOptions option, IMinIOHelper? oldHelper = null)
+    {
+        TryRemove(oldHelper);
+
+        MinIOHelper helper = new(option);
+        _helpers[helper.Id] = helper;
+
+        return helper;
+    }
+
+
+    /// <summary>
+    /// 尝试移除所匹配的MinIO对象存储访问助手实例
+    /// </summary>
+    /// <param name="outerHelper">MinIO对象存储访问助手</param>
+    private void TryRemove(IMinIOHelper? outerHelper)
+    {
+        if (outerHelper is MinIOHelper innerHelper)
+        {
+            if (_helpers.TryRemove(innerHelper.Id, out _))
+            {
+                using (innerHelper) { }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 资源释放
+    /// </summary>
+    public void Dispose()
+    {
+        foreach (MinIOHelper helper in _helpers.Values)
+        {
+            using (helper) { }
+        }
+
+        _helpers.Clear();
+        GC.SuppressFinalize(this);
+    }
 }
