@@ -25,5 +25,54 @@ namespace GSA.ToolKits.MinIOUtility.Internal;
 /// </summary>
 internal partial class MinIOHelper : IPresignedOpsHelper
 {
-    // do something.
+    /// <summary>
+    /// 获取用于某存储桶中某存储对象的预指定URL预览地址
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
+    /// <returns>预指定URL预览地址</returns>
+    public async Task<string> PresignedObjectGetAsync(string bucketName, string objectName, TimeSpan? expiryThreshold)
+    {
+        var args = new PresignedGetObjectArgs().WithBucket(bucketName)
+                                               .WithObject(objectName)
+                                               .WithExpiry(GetTotalSeconds(expiryThreshold))
+                                               .WithHeaders(new Dictionary<string, string>(StringComparer.Ordinal)
+                                               {
+                                                   { "response-content-type", "application/json" }
+                                               });
+
+        return await _minioClient.PresignedGetObjectAsync(args).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 获取用于某存储桶推送存储对象的预指定URL地址
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
+    /// <returns>预指定URL推送地址</returns>
+    public async Task<string> PresignedObjectPutAsync(string bucketName, string objectName, TimeSpan? expiryThreshold)
+    {
+        var args = new PresignedPutObjectArgs().WithBucket(bucketName)
+                                               .WithObject(objectName)
+                                               .WithExpiry(GetTotalSeconds(expiryThreshold));
+
+        return await _minioClient.PresignedPutObjectAsync(args).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 获取 TimeSpan 所表示的总秒数
+    /// </summary>
+    /// <param name="timeSpan">TimeSpan 时间间隔</param>
+    /// <returns>总秒数</returns>
+    private int GetTotalSeconds(TimeSpan? timeSpan)
+    {
+        if (timeSpan.HasValue is true && timeSpan > TimeSpan.Zero)
+        {
+            return (int)timeSpan.Value.TotalSeconds;
+        }
+
+        return (int)options.URLExpiryThreshold.TotalSeconds;
+    }
 }

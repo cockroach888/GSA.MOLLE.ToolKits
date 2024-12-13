@@ -25,5 +25,21 @@ namespace GSA.ToolKits.MinIOUtility;
 /// </summary>
 public interface IPresignedOpsHelper
 {
-    // do something.
+    /// <summary>
+    /// 获取用于某存储桶中某存储对象的预指定URL预览地址
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
+    /// <returns>预指定URL预览地址</returns>
+    Task<string> PresignedObjectGetAsync(string bucketName, string objectName, TimeSpan? expiryThreshold);
+
+    /// <summary>
+    /// 获取用于某存储桶推送存储对象的预指定URL地址
+    /// </summary>
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="objectName">对象路径与名称</param>
+    /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
+    /// <returns>预指定URL推送地址</returns>
+    Task<string> PresignedObjectPutAsync(string bucketName, string objectName, TimeSpan? expiryThreshold);
 }
