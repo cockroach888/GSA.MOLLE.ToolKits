@@ -12,6 +12,7 @@
 		<ProjectReference Include="..\..\..\ToolKits.CommonUtility\src\ToolKits.CommonUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.DBUtility\ToolKits.DBUtility.TDengine\src\ToolKits.DBUtility.TDengine.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.EMQXUtility\src\ToolKits.EMQXUtility.csproj" />
+		<ProjectReference Include="..\..\..\ToolKits.MinIOUtility\src\ToolKits.MinIOUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.PagingUtility\src\ToolKits.PagingUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.PasswordUtility\src\ToolKits.PasswordUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.PictureUtility\src\ToolKits.PictureUtility.csproj" />
