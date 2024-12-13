@@ -106,9 +106,13 @@ internal partial class MinIOHelper : IObjectOpsHelper
         {
             var args = new GetObjectArgs().WithBucket(bucketName)
                                           .WithObject(objectName)
-                                          .WithCallbackStream((s) =>
+                                          .WithCallbackStream(async (stream) =>
                                           {
-                                              result = s;
+                                              MemoryStream ms = new();
+                                              await stream.CopyToAsync(ms).ConfigureAwait(false);
+                                              ms.Position = 0;
+                                              result = ms;
+                                              using (stream) { }
                                           });
 
             if (string.IsNullOrWhiteSpace(versionId) is false)
