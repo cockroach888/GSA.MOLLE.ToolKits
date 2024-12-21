@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.MinIOUtility", "To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKits.MinIOUtility.GenericHost", "ToolKits.MinIOUtility.GenericHost\src\ToolKits.MinIOUtility.GenericHost.csproj", "{D2C28483-4535-46C6-B97D-06C6DA084169}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDengineEx.Appx4WinForm", "samples\TaosData\TDengineEx.Appx4WinForm\src\TDengineEx.Appx4WinForm.csproj", "{A005F2B1-D14C-4239-AD84-EF64A768055F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -257,6 +259,10 @@ Global
 		{D2C28483-4535-46C6-B97D-06C6DA084169}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C28483-4535-46C6-B97D-06C6DA084169}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C28483-4535-46C6-B97D-06C6DA084169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A005F2B1-D14C-4239-AD84-EF64A768055F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A005F2B1-D14C-4239-AD84-EF64A768055F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A005F2B1-D14C-4239-AD84-EF64A768055F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A005F2B1-D14C-4239-AD84-EF64A768055F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,6 +287,7 @@ Global
 		{5A7C21FA-A394-4300-8384-F8C534A187E8} = {94D61215-F782-456F-A009-350983C43010}
 		{AC590056-BB90-4045-83DC-FC95EEC6259B} = {C2C81576-AB20-4039-ABD2-9217DB4DE37C}
 		{0F11FD1A-6005-405C-8C10-9B6EFACF7278} = {C2C81576-AB20-4039-ABD2-9217DB4DE37C}
+		{A005F2B1-D14C-4239-AD84-EF64A768055F} = {D9DF76BE-23A9-45F6-A70A-2C2E55630ABA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8126D26C-AB0A-414D-8010-3B6CA26C34B8}

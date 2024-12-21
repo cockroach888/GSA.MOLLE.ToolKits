@@ -36,7 +36,7 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s samples samples/ToolKits.DawnApp/src
 @echo.
 @echo.
 @echo.
-@echo\&echo  ---------- TDengineDB 示例程序 & TaosData 4 ----------
+@echo\&echo  ---------- TDengineDB 示例程序 & TaosData 5 ----------
 
 dotnet new console -lang "C#" -f net9.0 -n TDengineEx.Bootstrapper -o samples/TaosData/TDengineEx.Bootstrapper/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDengineEx.Bootstrapper/src
@@ -49,6 +49,9 @@ dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDeng
 
 dotnet new classlib -lang "C#" -f net9.0 -n TDengineEx.DataExchange -o samples/TaosData/TDengineEx.DataExchange/src
 dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDengineEx.DataExchange/src
+
+dotnet new winforms -lang "C#" -f net9.0 --langVersion latest -n TDengineEx.Appx4WinForm -o samples/TaosData/TDengineEx.Appx4WinForm/src
+dotnet sln GSA2MOLLE4ToolKits.sln add -s samples/TaosData samples/TaosData/TDengineEx.Appx4WinForm/src
 
 
 
