@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.MinIOUtility.GenericHost</RootNamespace>
         <AssemblyName>MinIOUtility.GenericHost</AssemblyName>
-        <AssemblyVersion>9.0.0</AssemblyVersion>
-        <FileVersion>9.0.0</FileVersion>
+        <AssemblyVersion>9.0.1</AssemblyVersion>
+        <FileVersion>9.0.1</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 MinIO对象存储辅助工具集 MinIO 对象存储 MinIO对象存储</PackageTags>
-        <PackageReleaseNotes>创建MinIO对象存储辅助工具集(PictureUtility)，专门用于处理.NET下对MinIO对象存储的辅助与应用需求，专注业务、降低耦合、提升工作效率。</PackageReleaseNotes>
+        <PackageReleaseNotes>同步上游功能修正后的版本迭代。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>MinIOUtility.GenericHost</PackageId>
     </PropertyGroup>
