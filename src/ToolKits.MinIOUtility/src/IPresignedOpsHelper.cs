@@ -30,9 +30,10 @@ public interface IPresignedOpsHelper
     /// </summary>
     /// <param name="bucketName">存储桶名称</param>
     /// <param name="objectName">对象路径与名称</param>
+    /// <param name="mimeType">MIME类型</param>
     /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
     /// <returns>预指定URL预览地址</returns>
-    Task<string> PresignedObjectGetAsync(string bucketName, string objectName, TimeSpan? expiryThreshold = null);
+    Task<string> PresignedObjectGetAsync(string bucketName, string objectName, string mimeType, TimeSpan? expiryThreshold = null);
 
     /// <summary>
     /// 获取用于某存储桶推送存储对象的预指定URL地址

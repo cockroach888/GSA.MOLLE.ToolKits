@@ -30,16 +30,17 @@ internal partial class MinIOHelper : IPresignedOpsHelper
     /// </summary>
     /// <param name="bucketName">存储桶名称</param>
     /// <param name="objectName">对象路径与名称</param>
+    /// <param name="mimeType">MIME类型</param>
     /// <param name="expiryThreshold">预指定URL的过期时间阈值 (为空时使用配置值)</param>
     /// <returns>预指定URL预览地址</returns>
-    public async Task<string> PresignedObjectGetAsync(string bucketName, string objectName, TimeSpan? expiryThreshold = null)
+    public async Task<string> PresignedObjectGetAsync(string bucketName, string objectName, string mimeType, TimeSpan? expiryThreshold = null)
     {
         var args = new PresignedGetObjectArgs().WithBucket(bucketName)
                                                .WithObject(objectName)
                                                .WithExpiry(GetTotalSeconds(expiryThreshold))
                                                .WithHeaders(new Dictionary<string, string>(StringComparer.Ordinal)
                                                {
-                                                   { "response-content-type", "application/json" }
+                                                   { "response-content-type", mimeType }
                                                });
 
         return await _minioClient.PresignedGetObjectAsync(args).ConfigureAwait(false);
