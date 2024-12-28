@@ -27,7 +27,7 @@ namespace GSA.ToolKits.PagingUtility;
 public sealed class PagingOptions
 {
     private int _currentPage = 1;
-    private int _paginationSize = 25;
+    private int _paginationSize = 15;
     private long _totalRecords = 0;
     private int _digitalPageCount = 5;
 
@@ -37,7 +37,7 @@ public sealed class PagingOptions
     /// <summary>
     /// 无数据记录时提示信息
     /// </summary>
-    public string NoDataRecordedTips { get; set; } = "暂无数据，或未检索到任何数据，待加载数据。";
+    public string NoDataRecordedTips { get; set; } = "暂无数据，或未检索到任何数据。";
 
     /// <summary>
     /// 数据分页函数名称，首参数为当前页，次参数为分页大小。
@@ -51,14 +51,15 @@ public sealed class PagingOptions
     /// <remarks>
     /// 除首参数和次参数外，额外的自定义参数。
     /// <para>PS：请注意特殊字符转义问题，如果是字符串则必须加上单引号等。</para>
+    /// <para>建议使用 JSON 格式</para>
     /// </remarks>
     public string? ExtraParameters
     {
         get
         {
             if (_extraParameters is not null &&
-            !string.IsNullOrWhiteSpace(_extraParameters) &&
-            !_extraParameters.StartsWith(","))
+            string.IsNullOrWhiteSpace(_extraParameters) is false &&
+            _extraParameters.StartsWith(",") is false)
             {
                 return _extraParameters.Insert(0, ",");
             }
@@ -232,13 +233,13 @@ public sealed class PagingOptions
     /// <summary>
     /// 分页大小
     /// </summary>
-    /// <remarks>缺省为 25</remarks>
+    /// <remarks>缺省为 15</remarks>
     public int PaginationSize
     {
         get { return _paginationSize; }
         set
         {
-            PaginationSizeRange ??= new int[4] { 25, 50, 75, 100 };
+            PaginationSizeRange ??= [5, 15, 25, 50, 75, 100];
 
             _paginationSize = value;
 
@@ -250,8 +251,8 @@ public sealed class PagingOptions
             // 一顿操作猛如虎，结果值为特么零，那就 Color see see。
             if (_paginationSize <= 0)
             {
-                _paginationSize = 25;
-                PaginationSizeRange = new int[4] { 25, 50, 75, 100 };
+                _paginationSize = 15;
+                PaginationSizeRange = [5, 15, 25, 50, 75, 100];
             }
 
             DataCalculation();
@@ -261,8 +262,8 @@ public sealed class PagingOptions
     /// <summary>
     /// 分页大小范围
     /// </summary>
-    /// <remarks>缺省为 [25、50、75、100]</remarks>
-    public int[] PaginationSizeRange { get; set; } = new int[4] { 25, 50, 75, 100 };
+    /// <remarks>缺省为 [5, 15, 25, 50, 75, 100];</remarks>
+    public int[] PaginationSizeRange { get; set; } = [5, 15, 25, 50, 75, 100];
 
     /// <summary>
     /// 总记录数

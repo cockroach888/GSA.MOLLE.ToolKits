@@ -49,6 +49,6 @@ public static class PagingHelper
     /// <param name="options">数据分页选项(参数)</param>
     internal static void Validate(PagingOptions options)
     {
-        options.PaginationSizeRange ??= new int[4] { 25, 50, 75, 100 };
+        options.PaginationSizeRange ??= [5, 15, 25, 50, 75, 100];
     }
 }
