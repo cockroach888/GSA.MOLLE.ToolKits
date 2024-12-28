@@ -39,8 +39,6 @@ public static class PagingHelper
         => uIType switch
         {
             PagingUIType.Bootstrap_V5 => BootstrapV5UI.Create(options),
-            PagingUIType.Bootstrap_V4 => BootstrapV5UI.Create(options),
-            PagingUIType.Bootstrap_V3 => BootstrapV5UI.Create(options),
             PagingUIType.CustomUI => BootstrapV5UI.Create(options),
             _ => string.Empty
         };

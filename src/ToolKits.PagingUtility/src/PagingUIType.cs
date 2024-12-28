@@ -35,24 +35,6 @@ public enum PagingUIType
     Bootstrap_V5,
 
     /// <summary>
-    /// Bootstrap V4.x
-    /// </summary>
-    /// <remarks>
-    /// <para>Bootstrap is a powerful, feature-packed frontend toolkit.</para>
-    /// <para>Build anything—from prototype to production—in minutes.</para>
-    /// </remarks>
-    Bootstrap_V4,
-
-    /// <summary>
-    /// Bootstrap V3.x
-    /// </summary>
-    /// <remarks>
-    /// <para>Bootstrap is a powerful, feature-packed frontend toolkit.</para>
-    /// <para>Build anything—from prototype to production—in minutes.</para>
-    /// </remarks>
-    Bootstrap_V3,
-
-    /// <summary>
     /// 使用自定义样式
     /// </summary>
     /// <remarks>请传递相应参数，并添加相应的样式内容。</remarks>
