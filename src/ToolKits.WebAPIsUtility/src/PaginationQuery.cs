@@ -34,7 +34,6 @@ public class PaginationQuery
     /// 分页大小
     /// </summary>
     /// <remarks>表示每页显示的数据数量，默认25。</remarks>
-    [JsonPropertyName("PageSize")]
     public int PageSize
     {
         get
@@ -57,7 +56,6 @@ public class PaginationQuery
     /// 页码
     /// </summary>
     /// <remarks>指定要显示的页码，默认1。</remarks>
-    [JsonPropertyName("PageNumber")]
     public int PageNumber
     {
         get

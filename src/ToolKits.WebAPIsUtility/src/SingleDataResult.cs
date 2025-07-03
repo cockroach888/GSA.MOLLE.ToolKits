@@ -30,18 +30,15 @@ public class SingleDataResult<TDataModel> where TDataModel : class
     /// <summary>
     /// 响应状态码
     /// </summary>
-    [JsonPropertyName("Code")]
     public int Code { get; set; }
 
     /// <summary>
     /// 响应数据
     /// </summary>
-    [JsonPropertyName("Data")]
     public TDataModel? Data { get; set; }
 
     /// <summary>
     /// 描述信息
     /// </summary>
-    [JsonPropertyName("Desc")]
     public string? Desc { get; set; }
 }

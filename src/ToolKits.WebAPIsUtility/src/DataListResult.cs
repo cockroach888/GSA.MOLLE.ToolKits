@@ -30,24 +30,20 @@ public class DataListResult<TDataModel> where TDataModel : class
     /// <summary>
     /// 响应状态码
     /// </summary>
-    [JsonPropertyName("Code")]
     public int Code { get; set; }
 
     /// <summary>
     /// 响应数据
     /// </summary>
-    [JsonPropertyName("Data")]
     public IEnumerable<TDataModel>? Data { get; set; }
 
     /// <summary>
     /// 描述信息
     /// </summary>
-    [JsonPropertyName("Desc")]
     public string? Desc { get; set; }
 
     /// <summary>
-    /// 数据分页信息
+    /// 响应元数据
     /// </summary>
-    [JsonPropertyName("MetaData")]
     public PaginationModel? MetaData { get; set; }
 }

@@ -34,14 +34,12 @@ public class PaginationModel
     /// 总记录数
     /// </summary>
     /// <remarks>表示数据库中总共有多少条记录。</remarks>
-    [JsonPropertyName("TotalRecords")]
     public int TotalRecords { get; set; }
 
     /// <summary>
     /// 分页大小
     /// </summary>
     /// <remarks>表示每页显示的数据数量。</remarks>
-    [JsonPropertyName("PageSize")]
     public int PageSize
     {
         get
@@ -64,7 +62,6 @@ public class PaginationModel
     /// 当前页码
     /// </summary>
     /// <remarks>表示用户正在查看的页码。</remarks>
-    [JsonPropertyName("CurrentPage")]
     public int CurrentPage
     {
         get
@@ -87,6 +84,5 @@ public class PaginationModel
     /// 总页数
     /// </summary>
     /// <remarks>表示数据可以分成多少页。</remarks>
-    [JsonPropertyName("TotalPages")]
     public int TotalPages => (int)Math.Ceiling((double)Math.Max(TotalRecords, 0) / PageSize);
 }
