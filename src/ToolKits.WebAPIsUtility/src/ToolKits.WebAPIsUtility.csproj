@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.WebAPIsUtility</RootNamespace>
         <AssemblyName>WebAPIsUtility</AssemblyName>
-        <AssemblyVersion>9.0.0</AssemblyVersion>
-        <FileVersion>9.0.0</FileVersion>
+        <AssemblyVersion>9.1.0</AssemblyVersion>
+        <FileVersion>9.1.0</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 接口辅助与应用工具集 WebAPIs</PackageTags>
-        <PackageReleaseNotes>去掉net6.0;net7.0;的目标编译支持，增加net9.0;编译支持，开始实践.NET 9系列技术体系的实践应用。</PackageReleaseNotes>
+        <PackageReleaseNotes>优化数据查询结果类，去掉SingleDataResult和DataListResult两个类，增加QueryResult单一类。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>WebAPIsUtility</PackageId>
     </PropertyGroup>

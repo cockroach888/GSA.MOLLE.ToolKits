@@ -16,6 +16,7 @@
 		<ProjectReference Include="..\..\..\ToolKits.PagingUtility\src\ToolKits.PagingUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.PasswordUtility\src\ToolKits.PasswordUtility.csproj" />
 		<ProjectReference Include="..\..\..\ToolKits.PictureUtility\src\ToolKits.PictureUtility.csproj" />
+		<ProjectReference Include="..\..\..\ToolKits.WebAPIsUtility\src\ToolKits.WebAPIsUtility.csproj" />
 	</ItemGroup>
 
 </Project>

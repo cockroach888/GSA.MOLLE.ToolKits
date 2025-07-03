@@ -58,7 +58,7 @@ Console.WriteLine($"{value}");
 Console.WriteLine();*/
 
 
-
+/*
 MinIOOptions options = new(
     "127.0.0.1",
     15306,
@@ -142,8 +142,12 @@ Console.WriteLine($"$移除存储对象 {depsObjectName} 操作：{removeResult}
 
 
 
-string runtimeUrlString = await minIOHelper.PresignedOps.PresignedObjectGetAsync(bucketName, runtimeObjectName).ConfigureAwait(false);
+string runtimeUrlString = await minIOHelper.PresignedOps.PresignedObjectGetAsync(bucketName, runtimeObjectName, "image/jpeg").ConfigureAwait(false);
 Console.WriteLine($"$获取存储对象 {runtimeObjectName} 预指定URL操作：{runtimeUrlString}");
+*/
+
+
+
 
 
 

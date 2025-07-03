@@ -4,11 +4,11 @@
 //**   脉脉含情的充满精神的高尚的小强精神
 //**   风幽思静繁花落；夜半楼台听江雨。（cockroach888@outlook.com）
 //=========================================================================
-//**   Copyright © 蟑螂·魂 2024 -- Support 华夏银河空间联盟
+//**   Copyright © 蟑螂·魂 2025 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：DataListResult.cs
+// 文件名称：QueryResult.cs
 // 项目名称：WebAPI接口辅助与应用工具集
-// 创建时间：2024-09-05 10:04:53
+// 创建时间：2025-07-03 16:17:54
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,11 +21,12 @@
 namespace GSA.ToolKits.WebAPIsUtility;
 
 /// <summary>
-/// 数据列表请求结果实体类
+/// 数据查询结果实体类
 /// </summary>
-/// <typeparam name="TDataModel">数据模型泛型</typeparam>
+/// <typeparam name="TData">响应数据泛型</typeparam>
 [Serializable]
-public class DataListResult<TDataModel> where TDataModel : class
+public class QueryResult<TData>
+    where TData : class
 {
     /// <summary>
     /// 响应状态码
@@ -35,15 +36,27 @@ public class DataListResult<TDataModel> where TDataModel : class
     /// <summary>
     /// 响应数据
     /// </summary>
-    public IEnumerable<TDataModel>? Data { get; set; }
+    public TData? Data { get; set; }
 
     /// <summary>
-    /// 描述信息
+    /// 响应描述
     /// </summary>
     public string? Desc { get; set; }
+}
 
+
+/// <summary>
+/// 数据查询结果实体类
+/// </summary>
+/// <typeparam name="TData">响应数据泛型</typeparam>
+/// <typeparam name="TMetadata">响应元数据泛型</typeparam>
+[Serializable]
+public class QueryResult<TData, TMetadata> : QueryResult<TData>
+    where TData : class
+    where TMetadata : class
+{
     /// <summary>
     /// 响应元数据
     /// </summary>
-    public PaginationModel? MetaData { get; set; }
+    public TMetadata? Metadata { get; set; }
 }
