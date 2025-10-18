@@ -21,7 +21,7 @@
 namespace GSA.ToolKits.PictureUtility.Internal;
 
 /// <summary>
-/// 图像工具助手类
+/// 图像工具助手类tuple
 /// </summary>
 internal static class PictureCommonHelper
 {
@@ -47,13 +47,39 @@ internal static class PictureCommonHelper
         return new Size(image.Width, image.Height);
     }
 
+
+
+    /// <summary>
+    /// 获取图像文件的宽度和高度
+    /// </summary>
+    /// <param name="imageFileFullPath">图片文件全路径</param>
+    /// <returns>图像的宽度和高度</returns>
+    public static async Task<(int width, int height)> GetImageSizeByFileToTupleAsync(string imageFileFullPath)
+    {
+        using Image image = await Image.LoadAsync(imageFileFullPath).ConfigureAwait(false);
+        return (width: image.Width, height: image.Height);
+    }
+
+    /// <summary>
+    /// 获取图像流的宽度和高度
+    /// </summary>
+    /// <param name="imageStream">包含图像的数据流</param>
+    /// <returns>图像的宽度和高度</returns>
+    public static async Task<(int width, int height)> GetImageSizeByStreamToTupleAsync(Stream imageStream)
+    {
+        using Image image = await Image.LoadAsync(imageStream).ConfigureAwait(false);
+        return (width: image.Width, height: image.Height);
+    }
+
+
+
     /// <summary>
     /// 根据图片文件扩展名获取图像格式枚举
     /// </summary>
-    /// <param name="fileExtension"></param>
+    /// <param name="fileExtension">图像文件扩展名</param>
     /// <returns>图像格式枚举</returns>
     public static PictureFormat GetPictureFormatWithExtension(string fileExtension)
-        => fileExtension.ToLower() switch
+        => fileExtension.ToLowerInvariant() switch
         {
             ".jpg" or ".jpeg" => PictureFormat.JPEG,
             ".bmp" => PictureFormat.BMP,
@@ -65,5 +91,24 @@ internal static class PictureCommonHelper
             ".tif" or ".tiff" => PictureFormat.TIFF,
             ".webp" => PictureFormat.WebP,
             _ => PictureFormat.JPEG
+        };
+
+    /// <summary>
+    /// 根据图片文件扩展名获取图像MimeType枚举
+    /// </summary>
+    /// <param name="fileExtension">图像文件扩展名</param>
+    /// <returns>图像MimeType枚举</returns>
+    public static string GetMimeTypeWithExtension(string fileExtension)
+        => fileExtension.ToLowerInvariant() switch
+        {
+            ".jpg" or ".jpeg" => "image/jpeg",
+            ".bmp" => "image/bmp",
+            ".png" => "image/png",
+            ".gif" => "image/gif",
+            ".tif" or ".tiff" => "image/tiff",
+            ".webp" => "image/webp",
+            ".ico" => "image/x-icon",
+            ".svg" => "image/svg+xml",
+            _ => "application/octet-stream"
         };
 }

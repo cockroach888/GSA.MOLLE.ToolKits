@@ -37,7 +37,7 @@ internal static class PictureBase64Helper
 
         if (index > 0)
         {
-            base64String = base64String.Remove(0, index + 1);
+            base64String = base64String[(index + 1)..];
         }
 
         return await ImageFromBase64WithoutPrefixAsync(base64String).ConfigureAwait(false);
@@ -50,8 +50,65 @@ internal static class PictureBase64Helper
     /// <returns>图像对象 (外部使用完后必须释放)</returns>
     public static async Task<Image> ImageFromBase64WithoutPrefixAsync(string base64String)
     {
-        byte[] buffer = Convert.FromBase64String(base64String);
-        using MemoryStream ms = new(buffer);
-        return await Image.LoadAsync(ms).ConfigureAwait(false);
+        using Stream stream = await StreamFromBase64WithoutPrefixAsync(base64String).ConfigureAwait(false);
+        return await Image.LoadAsync(stream).ConfigureAwait(false);
     }
+
+
+
+    /// <summary>
+    /// 将包含前缀的Base64字符串转换为内存流
+    /// </summary>
+    /// <param name="base64String">包含前缀的Base64字符串</param>
+    /// <returns>图像内存流对象 (外部使用完后必须释放)</returns>
+    public static async Task<Stream> StreamFromBase64Async(string base64String)
+    {
+        int index = base64String.IndexOf(',');
+
+        if (index > 0)
+        {
+            base64String = base64String[(index + 1)..];
+        }
+
+        return await StreamFromBase64WithoutPrefixAsync(base64String).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 将不包含前缀的Base64字符串转换为内存流
+    /// </summary>
+    /// <param name="base64String">不包含前缀的Base64字符串</param>
+    /// <returns>图像内存流对象 (外部使用完后必须释放)</returns>
+    public static async Task<Stream> StreamFromBase64WithoutPrefixAsync(string base64String)
+    {
+        byte[] buffer = await DecodeBase64OptimizedAsync(base64String).ConfigureAwait(false);
+        return new MemoryStream(buffer);
+    }
+
+
+
+    /// <summary>
+    /// 解码检测图像Base64编码字符串
+    /// </summary>
+    /// <param name="base64String">检测图像Base64编码字符串</param>
+    /// <returns>检测图像数据流</returns>
+    private static async Task<byte[]> DecodeBase64OptimizedAsync(string base64String)
+    {
+        int bufferSize = GetBase64DecodeLength(base64String);
+        var buffer = new byte[bufferSize];
+
+        if (Convert.TryFromBase64String(base64String, buffer, out int bytesWritten))
+        {
+            return buffer.AsMemory(0, bytesWritten).ToArray();
+        }
+
+        return await Task.Run(() => Convert.FromBase64String(base64String)).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 获取Base64字符串数据长度
+    /// </summary>
+    /// <param name="base64String">检测图像Base64编码字符串</param>
+    /// <returns>检测图像Base64编码字符串长度</returns>
+    private static int GetBase64DecodeLength(string base64String)
+        => (base64String.Length * 3 / 4) - base64String.Count(c => c == '=');
 }

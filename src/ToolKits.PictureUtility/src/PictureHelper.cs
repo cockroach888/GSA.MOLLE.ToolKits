@@ -64,6 +64,7 @@ public static class PictureHelper
         => await PictureCroppingHelper.GetImageThumbnailAsync(image, thumbWidth, thumbHeight, imageFormat).ConfigureAwait(false);
 
 
+
     /// <summary>
     /// 获取图像文件的宽度和高度
     /// </summary>
@@ -81,12 +82,37 @@ public static class PictureHelper
         => await PictureCommonHelper.GetImageSizeByStreamAsync(imageStream).ConfigureAwait(false);
 
     /// <summary>
+    /// 获取图像文件的宽度和高度
+    /// </summary>
+    /// <param name="imageFileFullPath">图片文件全路径</param>
+    /// <returns>图像的宽度和高度</returns>
+    public static async Task<(int width, int height)> GetImageSizeByFileToTupleAsync(string imageFileFullPath)
+        => await PictureCommonHelper.GetImageSizeByFileToTupleAsync(imageFileFullPath).ConfigureAwait(false);
+
+    /// <summary>
+    /// 获取图像流的宽度和高度
+    /// </summary>
+    /// <param name="imageStream">包含图像的数据流</param>
+    /// <returns>图像的宽度和高度</returns>
+    public static async Task<(int width, int height)> GetImageSizeByStreamToTupleAsync(Stream imageStream)
+        => await PictureCommonHelper.GetImageSizeByStreamToTupleAsync(imageStream).ConfigureAwait(false);
+
+    /// <summary>
     /// 根据图片文件扩展名获取图像格式枚举
     /// </summary>
     /// <param name="fileExtension"></param>
     /// <returns>图像格式枚举</returns>
     public static PictureFormat GetPictureFormatWithExtension(string fileExtension)
         => PictureCommonHelper.GetPictureFormatWithExtension(fileExtension);
+
+    /// <summary>
+    /// 根据图片文件扩展名获取图像MimeType枚举
+    /// </summary>
+    /// <param name="fileExtension">图像文件扩展名</param>
+    /// <returns>图像MimeType枚举</returns>
+    public static string GetMimeTypeWithExtension(string fileExtension)
+        => PictureCommonHelper.GetMimeTypeWithExtension(fileExtension);
+
 
 
     /// <summary>
@@ -105,6 +131,23 @@ public static class PictureHelper
     /// <returns>图像对象 (外部使用完后必须释放)</returns>
     public static async Task<Image> ImageFromBase64WithoutPrefixAsync(string base64String)
         => await PictureBase64Helper.ImageFromBase64WithoutPrefixAsync(base64String).ConfigureAwait(false);
+
+    /// <summary>
+    /// 将包含前缀的Base64字符串转换为内存流
+    /// </summary>
+    /// <param name="base64String">包含前缀的Base64字符串</param>
+    /// <returns>图像内存流对象 (外部使用完后必须释放)</returns>
+    public static async Task<Stream> StreamFromBase64Async(string base64String)
+        => await PictureBase64Helper.StreamFromBase64Async(base64String).ConfigureAwait(false);
+
+    /// <summary>
+    /// 将不包含前缀的Base64字符串转换为内存流
+    /// </summary>
+    /// <param name="base64String">不包含前缀的Base64字符串</param>
+    /// <returns>图像内存流对象 (外部使用完后必须释放)</returns>
+    public static async Task<Stream> StreamFromBase64WithoutPrefixAsync(string base64String)
+        => await PictureBase64Helper.StreamFromBase64WithoutPrefixAsync(base64String).ConfigureAwait(false);
+
 
 
     /// <summary>
@@ -134,6 +177,7 @@ public static class PictureHelper
         => await PictureSaveHelper.SaveImageFromBase64WithoutPrefixAsync(base64String, saveFullPath, imageFormat).ConfigureAwait(false);
 
 
+
     /// <summary>
     /// 将包含图像的数据流存储到指定路径下的图像文件
     /// </summary>
@@ -144,6 +188,7 @@ public static class PictureHelper
     /// <returns>表示响应当前异步操作的支持对象</returns>
     public static async Task SaveImageFromStreamAsync(Stream imageStream, string saveFullPath, PictureFormat? imageFormat = null)
         => await PictureSaveHelper.SaveImageFromStreamAsync(imageStream, saveFullPath, imageFormat).ConfigureAwait(false);
+
 
 
     /// <summary>

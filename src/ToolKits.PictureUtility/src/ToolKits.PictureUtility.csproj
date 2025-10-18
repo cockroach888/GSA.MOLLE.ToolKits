@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.PictureUtility</RootNamespace>
         <AssemblyName>PictureUtility</AssemblyName>
-        <AssemblyVersion>9.1.0</AssemblyVersion>
-        <FileVersion>9.1.0</FileVersion>
+        <AssemblyVersion>9.2.0</AssemblyVersion>
+        <FileVersion>9.2.0</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 图像辅助与应用工具集 Image Picture 图像辅助 图像应用 图像转换</PackageTags>
-        <PackageReleaseNotes>调整PictureHelper文件结构，增加获取图像的宽度与高度和缩略图的功能方法。</PackageReleaseNotes>
+        <PackageReleaseNotes>优化图像从Base64编码字符串解码为字节数组的编码实现，并增加多个功能方法，具体请参阅开发日志。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>PictureUtility</PackageId>
     </PropertyGroup>
@@ -68,7 +68,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.6" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
     </ItemGroup>
 
 </Project>
