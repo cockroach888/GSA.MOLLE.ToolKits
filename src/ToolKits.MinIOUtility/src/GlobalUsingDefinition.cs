@@ -18,4 +18,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+global using GSA.ToolKits.MinIOUtility.Entity;
 global using Minio.DataModel.Args;
+global using Minio.DataModel.ILM;

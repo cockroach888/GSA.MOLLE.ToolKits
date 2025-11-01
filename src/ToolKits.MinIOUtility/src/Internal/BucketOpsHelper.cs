@@ -65,6 +65,6 @@ internal partial class MinIOHelper : IBucketOpsHelper
             await _minioClient.RemoveBucketAsync(args).ConfigureAwait(false);
         }
 
-        return !await BucketExistsAsync(bucketName).ConfigureAwait(false);
+        return await BucketExistsAsync(bucketName).ConfigureAwait(false) is false;
     }
 }

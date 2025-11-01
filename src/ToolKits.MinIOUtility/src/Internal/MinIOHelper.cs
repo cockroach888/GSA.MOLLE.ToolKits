@@ -49,6 +49,11 @@ internal partial class MinIOHelper(MinIOOptions options) : IMinIOHelper
     /// </summary>
     public IPresignedOpsHelper PresignedOps => this;
 
+    /// <summary>
+    /// MinIO 生命周期辅助操作
+    /// </summary>
+    public ILifecycleOpsHelper LifecycleOps => this;
+
 
     /// <summary>
     /// 内部编号

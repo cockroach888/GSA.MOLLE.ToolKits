@@ -173,6 +173,6 @@ internal partial class MinIOHelper : IObjectOpsHelper
             await _minioClient.RemoveObjectAsync(args).ConfigureAwait(false);
         }
 
-        return !await ObjectExistsAsync(bucketName, objectName, versionId).ConfigureAwait(false);
+        return await ObjectExistsAsync(bucketName, objectName, versionId).ConfigureAwait(false) is false;
     }
 }

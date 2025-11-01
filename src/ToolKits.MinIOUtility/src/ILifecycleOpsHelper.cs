@@ -4,11 +4,11 @@
 //**   脉脉含情的充满精神的高尚的小强精神
 //**   风幽思静繁花落；夜半楼台听江雨。（cockroach888@outlook.com）
 //=========================================================================
-//**   Copyright © 蟑螂·魂 2024 -- Support 华夏银河空间联盟
+//**   Copyright © 蟑螂·魂 2025 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：IMinIOHelper.cs
+// 文件名称：ILifecycleOpsHelper.cs
 // 项目名称：MinIO对象存储辅助工具集
-// 创建时间：2024-12-11 10:20:11
+// 创建时间：2025-11-01 10:15:46
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -21,27 +21,29 @@
 namespace GSA.ToolKits.MinIOUtility;
 
 /// <summary>
-/// MinIO 对象存储访问助手接口
+/// MinIO 生命周期辅助操作接口
 /// </summary>
-public interface IMinIOHelper : IDisposable
+public interface ILifecycleOpsHelper
 {
     /// <summary>
-    /// MinIO 存储桶辅助操作
+    /// 为存储桶设置生命周期规则
     /// </summary>
-    IBucketOpsHelper BucketOps { get; }
+    /// <param name="bucketName">存储桶名称</param>
+    /// <param name="lifecycleRule">生命周期规则定义</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    Task LifecycleSetAsync(string bucketName, LifecycleRuleModel lifecycleRule);
 
     /// <summary>
-    /// MinIO 存储对象辅助操作
+    /// 获取存储桶的生命周期规则配置信息
     /// </summary>
-    IObjectOpsHelper ObjectOps { get; }
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>生命周期配置信息</returns>
+    Task<LifecycleConfiguration> LifecycleGetAsync(string bucketName);
 
     /// <summary>
-    /// MinIO 存储预指定URL辅助操作
+    /// 移除存储桶的生命周期规则配置信息
     /// </summary>
-    IPresignedOpsHelper PresignedOps { get; }
-
-    /// <summary>
-    /// MinIO 生命周期辅助操作
-    /// </summary>
-    ILifecycleOpsHelper LifecycleOps { get; }
+    /// <param name="bucketName">存储桶名称</param>
+    /// <returns>表示响应当前异步操作的支持对象</returns>
+    Task LifecycleRemoveAsync(string bucketName);
 }
