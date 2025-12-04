@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.MinIOUtility</RootNamespace>
         <AssemblyName>MinIOUtility</AssemblyName>
-        <AssemblyVersion>9.1.0</AssemblyVersion>
-        <FileVersion>9.1.0</FileVersion>
+        <AssemblyVersion>9.1.1</AssemblyVersion>
+        <FileVersion>9.1.1</FileVersion>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
@@ -37,7 +37,7 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 MinIO对象存储辅助工具集 MinIO 对象存储 MinIO对象存储</PackageTags>
-        <PackageReleaseNotes>增加MinIO对象存储桶的生命周期辅助操作接口与实现。</PackageReleaseNotes>
+        <PackageReleaseNotes>判断并创建存储桶时，增加桶已存在的异处理，以避免异步高并发时出现此问题。</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>MinIOUtility</PackageId>
     </PropertyGroup>

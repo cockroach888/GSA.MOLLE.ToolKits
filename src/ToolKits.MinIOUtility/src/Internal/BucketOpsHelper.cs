@@ -18,6 +18,8 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
+using Minio.Exceptions;
+
 namespace GSA.ToolKits.MinIOUtility.Internal;
 
 /// <summary>
@@ -45,8 +47,20 @@ internal partial class MinIOHelper : IBucketOpsHelper
     {
         if (await BucketExistsAsync(bucketName).ConfigureAwait(false) is false)
         {
-            var args = new MakeBucketArgs().WithBucket(bucketName);
-            await _minioClient.MakeBucketAsync(args).ConfigureAwait(false);
+            try
+            {
+                var args = new MakeBucketArgs().WithBucket(bucketName);
+                await _minioClient.MakeBucketAsync(args).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToLowerInvariant();
+                if (message.Contains("bucketalready") is false ||
+                    message.Contains("bucket already") is false)
+                {
+                    throw new Exception(ex.Message, ex);
+                }
+            }
         }
 
         return await BucketExistsAsync(bucketName).ConfigureAwait(false);
