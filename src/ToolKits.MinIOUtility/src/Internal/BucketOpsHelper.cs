@@ -55,8 +55,9 @@ internal partial class MinIOHelper : IBucketOpsHelper
             catch (Exception ex)
             {
                 string message = ex.Message.ToLowerInvariant();
-                if (message.Contains("bucketalready") is false ||
-                    message.Contains("bucket already") is false)
+                if (message.Contains("bucketalready") is false &&
+                    message.Contains("bucket already") is false &&
+                    message.Contains("bucket already owned by you") is false)
                 {
                     throw new Exception(ex.Message, ex);
                 }
