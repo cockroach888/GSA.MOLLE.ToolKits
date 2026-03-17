@@ -17,8 +17,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-#if NETFRAMEWORK
-using System;
 using System.Web;
 
 namespace GSA.ToolKits.WebUtility
@@ -73,4 +71,3 @@ namespace GSA.ToolKits.WebUtility
         }
     }
 }
-#endif

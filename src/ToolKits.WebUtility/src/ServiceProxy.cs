@@ -17,10 +17,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-#if NETFRAMEWORK
-using System;
-using System.CodeDom;
-using System.CodeDom.Compiler;
 using System.Net;
 using System.Web.Services.Description;
 
@@ -172,4 +168,3 @@ namespace GSA.ToolKits.WebUtility
         }
     }
 }
-#endif

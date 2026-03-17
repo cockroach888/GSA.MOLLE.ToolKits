@@ -17,8 +17,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-#if NETFRAMEWORK
-using System;
 using System.Collections;
 using System.Web;
 using System.Web.Caching;
@@ -173,4 +171,3 @@ namespace GSA.ToolKits.WebUtility
 
     }
 }
-#endif

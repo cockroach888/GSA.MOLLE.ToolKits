@@ -17,9 +17,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-#if NETFRAMEWORK
-using System;
-using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -1245,4 +1242,3 @@ namespace GSA.ToolKits.WebUtility
 
     }
 }
-#endif
