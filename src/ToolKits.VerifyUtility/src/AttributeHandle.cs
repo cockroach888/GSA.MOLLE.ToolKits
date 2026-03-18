@@ -17,7 +17,6 @@
 // 修改人员：
 // 修改内容：
 // ========================================================================
-using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -38,56 +37,67 @@ namespace GSA.ToolKits.VerifyUtility
         /// <returns></returns>
         public static string GetValidateResult(object entityObject)
         {
-            if (entityObject == null) throw new ArgumentNullException("需要验证的实体对象不能为空！");
+#if NET8_0_OR_GREATER
+            ArgumentNullException.ThrowIfNull("需要验证的实体对象不能为空！");
+
+#else
+            if (entityObject is null)
+            {
+                throw new ArgumentNullException("需要验证的实体对象不能为空！");
+            }
+#endif
+
             Type type = entityObject.GetType();
             PropertyInfo[] properties = type.GetProperties();
-            string validateResult = string.Empty;
+
             foreach (PropertyInfo property in properties)
             {
                 //获取验证特性
                 object[] validateContent = property.GetCustomAttributes(typeof(ValidateAttribute), true);
-                if (validateContent != null)
+
+                if (validateContent is not null &&
+                    validateContent.Length != 0)
                 {
                     //获取属性的值
-                    object value = property.GetValue(entityObject, null);
-                    foreach (ValidateAttribute validateAttribute in validateContent)
+                    object? value = property.GetValue(entityObject, null);
+
+                    if (value is null ||
+                        string.IsNullOrWhiteSpace(value.ToString()) is true)
                     {
-                        switch (validateAttribute.ValidateType)
+                        return $"需要验证的属性“{property.Name}”不能为空！";
+                    }
+
+                    string validateValue = $"{value}";
+
+                    foreach (ValidateAttribute validateAttr in validateContent.Cast<ValidateAttribute>())
+                    {
+                        switch (validateAttr.ValidateType)
                         {
-                            //验证元素是否为空字串
-                            case ValidateType.IsEmpty:
-                                if (null == value || value.ToString().Length < 1)
-                                    validateResult = string.Format("元素 {0} 不能为空",
-                                        property.Name);
-                                break;
                             //验证元素的长度是否小于指定最小长度
                             case ValidateType.MinLength:
-                                if (null == value || value.ToString().Length < 1)
-                                    break;
-                                if (value.ToString().Length < validateAttribute.MinLength)
-                                    validateResult = string.Format(
-                                        "元素 {0} 的长度不能小于 {1}",
-                                        property.Name, validateAttribute.MinLength);
+                                if (validateValue.Length < validateAttr.MinLength)
+                                {
+                                    return $"属性“{property.Name}”的长度不能小于“{validateAttr.MinLength}”。";
+                                }
                                 break;
                             //验证元素的长度是否大于指定最大长度
                             case ValidateType.MaxLength:
-                                if (null == value || value.ToString().Length < 1)
-                                    break;
-                                if (value.ToString().Length > validateAttribute.MaxLength)
-                                    validateResult = string.Format("元素 {0} 的长度不能大于{1}",
-                                        property.Name, validateAttribute.MaxLength);
+                                if (validateValue.Length > validateAttr.MaxLength)
+                                {
+                                    return $"属性“{property.Name}”的长度不能大于“{validateAttr.MaxLength}”。";
+                                }
                                 break;
                             //验证元素的长度是否符合指定的最大长度和最小长度的范围
                             case ValidateType.MinLength | ValidateType.MaxLength:
                                 if (null == value || value.ToString().Length < 1)
                                     break;
-                                if (value.ToString().Length > validateAttribute.MaxLength
-                                    || value.ToString().Length < validateAttribute.MinLength)
+                                if (value.ToString().Length > validateAttr.MaxLength
+                                    || value.ToString().Length < validateAttr.MinLength)
                                     validateResult = string.Format(
                                         "元素 {0} 不符合指定的最小长度和最大长度的范围,应该在 {1} 与 {2} 之间",
                                         property.Name,
-                                        validateAttribute.MinLength,
-                                        validateAttribute.MaxLength);
+                                        validateAttr.MinLength,
+                                        validateAttr.MaxLength);
                                 break;
                             //验证元素的值是否为值类型
                             case ValidateType.IsNumber:
@@ -117,14 +127,14 @@ namespace GSA.ToolKits.VerifyUtility
                             case ValidateType.IsInCustomArray:
                                 if (null == value || value.ToString().Length < 1)
                                     break;
-                                if (null == validateAttribute.CustomArray
-                                    || validateAttribute.CustomArray.Length < 1)
+                                if (null == validateAttr.CustomArray
+                                    || validateAttr.CustomArray.Length < 1)
                                     validateResult = string.Format(
                                         "系统内部错误：元素 {0} 指定的数据源为空或没有数据",
                                         property.Name);
 
                                 bool isHas = Array.Exists<string>(
-                                    validateAttribute.CustomArray, delegate(string str)
+                                    validateAttr.CustomArray, delegate (string str)
                                     {
                                         return str == value.ToString();
                                     }
@@ -134,7 +144,7 @@ namespace GSA.ToolKits.VerifyUtility
                                     validateResult = string.Format(
                                         "元素 {0} 的值设定不正确 , 应该为 {1} 中的一种",
                                         property.Name,
-                                        string.Join(",", validateAttribute.CustomArray));
+                                        string.Join(",", validateAttr.CustomArray));
                                 break;
                             //验证元素的值是否为固定电话号码格式
                             case ValidateType.IsTelphone:
@@ -153,59 +163,17 @@ namespace GSA.ToolKits.VerifyUtility
                                     validateResult = string.Format(
                                         "元素 {0} 不是正确的手机号码格式", property.Name);
                                 break;
-                            //验证元素是否为空且符合指定的最小长度
-                            case ValidateType.IsEmpty | ValidateType.MinLength:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.MinLength;
-                            //验证元素是否为空且符合指定的最大长度
-                            case ValidateType.IsEmpty | ValidateType.MaxLength:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.MaxLength;
-                            //验证元素是否为空且符合指定的长度范围
-                            case ValidateType.IsEmpty | ValidateType.MinLength
-                                | ValidateType.MaxLength:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.MinLength | ValidateType.MaxLength;
-                            //验证元素是否为空且值为数值型
-                            case ValidateType.IsEmpty | ValidateType.IsNumber:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsNumber;
-                            //验证元素是否为空且值为浮点型
-                            case ValidateType.IsEmpty | ValidateType.IsDecimal:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsDecimal;
-                            //验证元素是否为空且值为时间类型
-                            case ValidateType.IsEmpty | ValidateType.IsDateTime:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsDateTime;
-                            //验证元素是否为空且值在指定的数据源中
-                            case ValidateType.IsEmpty | ValidateType.IsInCustomArray:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsInCustomArray;
-                            //验证元素是否为空且值为固定电话号码格式
-                            case ValidateType.IsEmpty | ValidateType.IsTelphone:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsTelphone;
-                            //验证元素是否为空且值为手机号码格式
-                            case ValidateType.IsEmpty | ValidateType.IsMobile:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsMobile;
-                            default:
-                                break;
+
                         }
                     }
                 }
-                if (!string.IsNullOrEmpty(validateResult)) break;
+
+                if (string.IsNullOrWhiteSpace(validateResult) is false)
+                {
+                    break;
+                }
             }
+
             return validateResult;
         }
     }

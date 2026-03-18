@@ -80,6 +80,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\ToolKits.PluginsUtility\src\ToolKits.PluginsUtility.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Reference Include="System.Management" />
 	</ItemGroup>
 
