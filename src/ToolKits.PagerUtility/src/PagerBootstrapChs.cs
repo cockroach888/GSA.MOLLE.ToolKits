@@ -197,7 +197,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outGoto">是否输出分页跳转功能代码</param>
         /// <param name="controlName">控件ID名称</param>
         /// <returns>HTML标签</returns>
-        public string ShowPager(string urlPath = @"/", string parameter = null, bool outCount = true, bool outGoto = true, string controlName = "panelPager")
+        public string ShowPager(string urlPath = @"/", string? parameter = null, bool outCount = true, bool outGoto = true, string controlName = "panelPager")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;

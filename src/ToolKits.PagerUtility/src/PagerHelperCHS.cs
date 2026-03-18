@@ -221,7 +221,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outPageGoto">是否输出分页跳转功能代码</param>
         /// <param name="outPageGotoFun">分页跳转功能函数名称</param>
         /// <returns>HTML</returns>
-        public string ShowPagerByForward(string urlPath = @"/", string pagerName = "pager", string parameter = null, bool outPageCount = true, bool showSelect = false, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoHref")
+        public string ShowPagerByForward(string urlPath = @"/", string pagerName = "pager", string? parameter = null, bool outPageCount = true, bool showSelect = false, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoHref")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;
@@ -326,7 +326,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outPageGoto">是否输出分页跳转功能代码</param>
         /// <param name="outPageGotoFun">分页跳转功能函数名称</param>
         /// <returns>HTML</returns>
-        public string ShowPagerByNumeric(string urlPath = @"/", string pagerName = "pager", string parameter = null, bool outPageCount = true, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoHref")
+        public string ShowPagerByNumeric(string urlPath = @"/", string pagerName = "pager", string? parameter = null, bool outPageCount = true, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoHref")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;
@@ -429,7 +429,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outPageGoto">是否输出分页跳转功能代码</param>
         /// <param name="outPageGotoFun">分页跳转功能函数名称</param>
         /// <returns>HTML</returns>
-        public string ShowPagerByScriptByForward(string urlPath = @"/", string parameter = null, bool outPageCount = true, bool showSelect = false, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGoto")
+        public string ShowPagerByScriptByForward(string urlPath = @"/", string? parameter = null, bool outPageCount = true, bool showSelect = false, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGoto")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;
@@ -548,7 +548,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outPageGoto">是否输出分页跳转功能代码</param>
         /// <param name="outPageGotoFun">分页跳转功能函数名称</param>
         /// <returns>HTML</returns>
-        public string ShowPagerByScriptByNumeric(string urlPath = @"/", string parameter = null, bool outPageCount = true, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGoto")
+        public string ShowPagerByScriptByNumeric(string urlPath = @"/", string? parameter = null, bool outPageCount = true, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGoto")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;
@@ -663,7 +663,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outPageGoto">是否输出分页跳转功能代码</param>
         /// <param name="outPageGotoFun">分页跳转功能函数名称</param>
         /// <returns>HTML</returns>
-        public string ShowPagerByScriptByForwardOf(string parameter = null, bool outPageCount = true, bool showSelect = false, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoOf")
+        public string ShowPagerByScriptByForwardOf(string? parameter = null, bool outPageCount = true, bool showSelect = false, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoOf")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;
@@ -781,7 +781,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outPageGoto">是否输出分页跳转功能代码</param>
         /// <param name="outPageGotoFun">分页跳转功能函数名称</param>
         /// <returns>HTML</returns>
-        public string ShowPagerByScriptByNumericOf(string parameter = null, bool outPageCount = true, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoOf")
+        public string ShowPagerByScriptByNumericOf(string? parameter = null, bool outPageCount = true, PagerType pagerType = PagerType.Mvc, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoOf")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;
@@ -897,7 +897,7 @@ namespace GSA.ToolKits.PagerUtility
         /// <param name="outPageGoto">是否输出分页跳转功能代码</param>
         /// <param name="outPageGotoFun">分页跳转功能函数名称</param>
         /// <returns>HTML</returns>
-        public string ShowPagerByScriptByCustomAt(string functionName = "DawnPagerHandlerOf", string parameter = null, bool outPageCount = true, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoOf")
+        public string ShowPagerByScriptByCustomAt(string functionName = "DawnPagerHandlerOf", string? parameter = null, bool outPageCount = true, bool outPageGoto = true, string outPageGotoFun = "DawnPagerGotoOf")
         {
             var tmpResult = this.BalefulToPager();
             if (!string.IsNullOrEmpty(tmpResult)) return tmpResult;
