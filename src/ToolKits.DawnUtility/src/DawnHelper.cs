@@ -208,7 +208,7 @@ namespace GSA.ToolKits.DawnUtility
 
         #endregion
 
-        #region 数据对象克隆
+        /*#region 数据对象克隆
 
         /// <summary>
         /// 利用序列化与反序列化完成引用对象的克隆
@@ -255,7 +255,7 @@ namespace GSA.ToolKits.DawnUtility
 		}
 #endif
 
-        #endregion
+        #endregion*/
 
         #region 文件哈希值比较
 
