@@ -343,7 +343,7 @@ public static class XMLHelper
         }
         else
         {
-            AddEveryNode(xDoc, parentNode, paras);
+            AppendChildToAny(xDoc, parentNode, paras);
         }
         xDoc.Save(fileFullName);
         return true;
@@ -364,7 +364,7 @@ public static class XMLHelper
         }
         else
         {
-            AddEveryNode(xDoc, parentNode, paras);
+            AppendChildToAny(xDoc, parentNode, paras);
         }
         return true;
     }
@@ -386,7 +386,7 @@ public static class XMLHelper
         }
         else
         {
-            AddEveryNode(xDoc, parentNode, paras);
+            AppendChildToAny(xDoc, parentNode, paras);
         }
         return true;
     }
@@ -409,7 +409,7 @@ public static class XMLHelper
         }
         else
         {
-            AddEveryNode(xDoc, parentNode, paras);
+            AppendChildToAny(xDoc, parentNode, paras);
         }
         xDoc.Save(fileFullName);
         return true;

@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Library</OutputType>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0;net10.0;</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <ApplicationIcon>Library.ico</ApplicationIcon>
@@ -12,8 +12,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <RootNamespace>GSA.ToolKits.FileUtility</RootNamespace>
         <AssemblyName>FileUtility</AssemblyName>
-        <AssemblyVersion>8.0.0</AssemblyVersion>
-        <FileVersion>8.0.0</FileVersion>
+        <AssemblyVersion>10.0.0</AssemblyVersion>
+        <FileVersion>10.0.0</FileVersion>
         <LangVersion>latest</LangVersion>
         <NoWarn>8603,8600</NoWarn>
     </PropertyGroup>
@@ -23,9 +23,9 @@
         <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Authors>蟑螂·魂</Authors>
-        <Description>本库提供文件操作等实用的各种助手类合集，支持多种版本（netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;）。包括但不限于如下功能类：xxxHelper (xxx助手类)等。
+        <Description>本库提供文件操作等实用的各种助手类合集，支持多种版本（netstandard2.0;netstandard2.1;net8.0;net9.0;net10.0;）。包括但不限于如下功能类：xxxHelper (xxx助手类)等。
 
-- 鄙人专注.NET技术，深入研习.NET 8系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
+- 鄙人专注.NET技术，深入研习.NET 10系列源码。本库通过长期实践工作积累落地成库，库中提供的所有功能均广泛应用于业务生产环境，同时会不间断地进行功能的优化和完善；
 - 本库均由鄙人采用最新技术实践编码完成，部分功能借鉴于互联网，如有不适请告之，谢谢；
 - 本库可同时满足大、中、小等各式项目的自由支配使用，以提供快捷、便利的工具方法，提升工作效率和业务能力为宗旨。</Description>
         <Company>华夏银河空间联盟</Company>
@@ -38,9 +38,10 @@
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
         <PackageTags>魂哥常用工具集 文件操作实用工具集 FileUtility 文件操作 目录操作 图片操作 INI操作 XML操作 日志记录</PackageTags>
-        <PackageReleaseNotes>将库提供至7.0版本，以及提升对.net框架的依赖支持。</PackageReleaseNotes>
+        <PackageReleaseNotes>实践.NET10系列技术体系</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
         <PackageId>CommonsUtility</PackageId>
+        <UserSecretsId>c45fdbb6-014f-4ab9-9383-50d61ba30bc2</UserSecretsId>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -69,7 +70,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+      <PackageReference Include="System.Drawing.Common" Version="10.*" />
     </ItemGroup>
-    
+
 </Project>

@@ -81,17 +81,6 @@ namespace GSA.ToolKits.FileUtility
                 return Directory.GetCurrentDirectory();
             }
         }
-        /// <summary>
-        /// 应用程序路径
-        /// <para>应用程序基目录的名称</para>
-        /// </summary>
-        public static string AppPathOfApplicationBase
-        {
-            get
-            {
-                return AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            }
-        }
 
         #endregion
 
