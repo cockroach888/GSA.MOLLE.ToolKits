@@ -1,42 +1,51 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0;net10.0;</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 		<ApplicationIcon>Library.ico</ApplicationIcon>
-		<AssemblyName>NuclearUtility</AssemblyName>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-		<Version>5.0.1</Version>
-		<PackageLicenseExpression></PackageLicenseExpression>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageIcon>PackageIcon.jpg</PackageIcon>
-		<RepositoryType>git</RepositoryType>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>ToolKits.NuclearUtility.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
-		<PackageId>NuclearUtility</PackageId>
-		<Product>原子能式的高深学问方法实用工具集</Product>
-		<Authors>蟑螂·魂</Authors>
-		<Company>华夏银河空间联盟</Company>
-		<Description>本类库暂只提供了电子邮件收发辅助类和FTP操作辅助类，优化并节约您的宝贵开发时间，提升开发效率，本类库我一直在用，您的选择没错；简单实用、舒心易用，是您开发中的必备利器。
-
-- 内置多个独立的版本（net20, net40, net45, net472, netcoreapp3.1, net5.0）。
-
-- NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
-		<PackageTags>魂哥常用工具集 原子能式的高深学问方法实用工具集 邮件收发 FTP 电子邮件 FTP操作</PackageTags>
-		<PackageReleaseNotes>重构 FTPHelper 类，重新定义了 FTP 的相关功能，增加了状态码和返回描述信息。注意使用时请自行捕获异常。</PackageReleaseNotes>
-		<Copyright>Copyright © Cockroach soulful, All Rights Reserved.</Copyright>
-		<PackageProjectUrl>https://cockroach888.github.io/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.NuclearUtility</RootNamespace>
+		<AssemblyName>NuclearUtility</AssemblyName>
+		<AssemblyVersion>10.0.0</AssemblyVersion>
+		<FileVersion>10.0.0</FileVersion>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Authors>蟑螂·魂</Authors>
+		<Description>本类库暂只提供了电子邮件收发辅助类和FTP操作辅助类，优化并节约您的宝贵开发时间，提升开发效率，本类库我一直在用，您的选择没错；简单实用、舒心易用，是您开发中的必备利器。
+- 内置多个独立的版本（netstandard2.0;netstandard2.1;net8.0;net9.0;net10.0;）。
+- NOTE: 本产品在长期的开发实践工作奋战中，或创作、或摘抄、或优化、或改善、或封装、或集成、或切面等等综合而成，如有雷同，纯属他人抄袭（^_^），不然就是我在抄袭（&gt;_&lt;）；本产品经过了精心的优化改良，同时还进行了适当的完善处理，对所有归集的成品进行了分门别类放置，以供不同场景的便利使用；本产品涵盖之广，运用之丰，可以满足大、中、小等项目的自由支配使用，方便快捷、合理舒心，在使用的过程中还请注重作者劳动成果，保留必要的注释或文字标识，谢谢。</Description>
+		<Company>华夏银河空间联盟</Company>
+		<Product>原子能式的高深学问方法实用工具集</Product>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://cockroach888.github.io</PackageProjectUrl>
+		<PackageIcon>PackageIcon.jpg</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/cockroach888/GSA.MOLLE.ToolKits</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
+		<PackageTags>魂哥常用工具集 原子能式的高深学问方法实用工具集 邮件收发 FTP 电子邮件 FTP操作</PackageTags>
+		<PackageReleaseNotes>实践.NET10系列技术体系</PackageReleaseNotes>
+		<Version>$(AssemblyVersion)</Version>
+		<PackageId>NuclearUtility</PackageId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.NuclearUtility\src\bin\NuclearUtility.xml</DocumentationFile>
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DocumentationFile>E:\CockroachSoulful\CockroachDevOps\MOLLECollection\GSA.MOLLE.ToolKits\src\ToolKits.NuclearUtility\src\bin\NuclearUtility.xml</DocumentationFile>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
@@ -50,6 +59,14 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentFTP" Version="53.*" />
 	</ItemGroup>
 
 </Project>

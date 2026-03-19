@@ -367,7 +367,7 @@ namespace GSA.ToolKits.DawnApp.FormView
 
             FTPOption option = new()
             {
-                Server = txtServer.Text.Trim(),
+                Host = txtServer.Text.Trim(),
                 Port = port,
                 UserName = txtUserName.Text.Trim(),
                 Password = txtPassword.Text.Trim(),
