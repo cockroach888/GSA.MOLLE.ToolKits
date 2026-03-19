@@ -40,7 +40,7 @@
         <PackageTags>魂哥常用工具集 文件操作实用工具集 FileUtility 文件操作 目录操作 图片操作 INI操作 XML操作 日志记录</PackageTags>
         <PackageReleaseNotes>实践.NET10系列技术体系</PackageReleaseNotes>
         <Version>$(AssemblyVersion)</Version>
-        <PackageId>CommonsUtility</PackageId>
+        <PackageId>FileUtility</PackageId>
         <UserSecretsId>c45fdbb6-014f-4ab9-9383-50d61ba30bc2</UserSecretsId>
     </PropertyGroup>
 
