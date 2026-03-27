@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>10.0.0</AssemblyVersion>
-		<FileVersion>10.0.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
+		<FileVersion>10.1.0</FileVersion>
 		<LangVersion>latest</LangVersion>
 		<NoWarn>8603,8600</NoWarn>
 	</PropertyGroup>
@@ -38,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>实践.NET10系列技术体系</PackageReleaseNotes>
+		<PackageReleaseNotes>增加DateTimeOffset带时间戳数据的JSON转换实现类。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>

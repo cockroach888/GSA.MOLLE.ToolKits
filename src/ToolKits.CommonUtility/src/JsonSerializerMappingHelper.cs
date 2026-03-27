@@ -57,7 +57,7 @@ public static class JsonSerializerMappingHelper
 
         return await Task.Run(() =>
         {
-            IList<JsonSerializerFieldMapping> mappings = new List<JsonSerializerFieldMapping>();
+            IList<JsonSerializerFieldMapping> mappings = [];
 
             Type type = typeof(TModel);
             PropertyInfo[] properties = type.GetProperties();
@@ -116,7 +116,7 @@ public static class JsonSerializerMappingHelper
                 return default;
             }
 
-            IList<TModel> result = new List<TModel>();
+            IList<TModel> result = [];
             JsonArray valuesArray = valuesNode.AsArray();
 
             foreach (JsonNode? node in valuesArray)
@@ -226,7 +226,7 @@ public static class JsonSerializerMappingHelper
 
         return await Task.Run(() =>
         {
-            IList<JsonSerializerFieldMapping> mappings = new List<JsonSerializerFieldMapping>();
+            IList<JsonSerializerFieldMapping> mappings = [];
 
             Type type = typeof(TModel);
             PropertyInfo[] properties = type.GetProperties();
@@ -279,7 +279,7 @@ public static class JsonSerializerMappingHelper
                 return default;
             }
 
-            IList<TModel> result = new List<TModel>();
+            IList<TModel> result = [];
             int valLength = valuesElement.Value.GetArrayLength();
 
             for (int index = 0; index < valLength; index++)

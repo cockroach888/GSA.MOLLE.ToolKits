@@ -65,7 +65,7 @@ public static class StringHackerHelper
     /// <returns>转换后的关键字枚举列表</returns>
     public static IEnumerable<string> ToSQLFormat(string originString, char separator)
     {
-        IEnumerable<string> keywords = originString.Split(new char[] { separator }, StringSplitOptions.RemoveEmptyEntries);
+        IEnumerable<string> keywords = originString.Split([separator], StringSplitOptions.RemoveEmptyEntries);
         return ToSQLFormat(keywords);
     }
 

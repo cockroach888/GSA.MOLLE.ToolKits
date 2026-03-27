@@ -81,7 +81,7 @@ public static class MockDataHelper
     private static object[] CreateRegionCode(int length)
     {
         // 十六进制字符编码元素
-        string[] character = new string[16] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
+        string[] character = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
 
         // 每获取1位区位码，更换一次随机数发生器种子，避免产生重复值。
         Random random = new();

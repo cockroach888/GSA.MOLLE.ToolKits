@@ -74,7 +74,7 @@ public static class CommonHelper
         }
 
         // 避免哈希码重复
-        HashSet<uint> hashSet = new();
+        HashSet<uint> hashSet = [];
         while (!hashSet.Add(hashCode))
         {
             guid = Guid.NewGuid();

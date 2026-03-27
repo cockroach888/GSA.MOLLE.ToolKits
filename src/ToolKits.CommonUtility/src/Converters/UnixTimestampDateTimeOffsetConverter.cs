@@ -4,11 +4,11 @@
 //**   脉脉含情的充满精神的高尚的小强精神
 //**   风幽思静繁花落；夜半楼台听江雨。（cockroach888@outlook.com）
 //=========================================================================
-//**   Copyright © 蟑螂·魂 2023 -- Support 华夏银河空间联盟
+//**   Copyright © 蟑螂·魂 2026 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：JsonTimestampPlus2LocalTimeConverter.cs
+// 文件名称：UnixTimestampDateTimeOffsetConverter.cs
 // 项目名称：魂哥常用工具集
-// 创建时间：2023-03-28 10:29:47
+// 创建时间：2026-03-27 10:44:15
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -24,51 +24,42 @@ using System.Text.Json.Serialization;
 namespace GSA.ToolKits.CommonUtility.Converters;
 
 /// <summary>
-/// 用于JSON序列化时，处理时间戳的自定义转换器增强版。
+/// 用于JSON序列化时，处理时间戳与DateTimeOffset转换的自定义转换器。
 /// </summary>
 /// <remarks>
-/// <para>入参时为时间戳格式，并将其转换为DateTime的本地时间格式。</para>
-/// <para>出参时为DateTime格式，并将其转换为 yyyy-MM-dd HH:mm:ss.fff 字符串。</para>
+/// <para>入参时为时间戳格式，并将其转换为DateTimeOffset的本地时间格式。</para>
+/// <para>出参时为DateTimeOffset格式。</para>
 /// </remarks>
-public sealed class JsonTimestampPlus2LocalTimeConverter : JsonConverter<DateTime>
+public class UnixTimestampDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
 {
     /// <summary>
-    /// 将时间戳转换为 DateTime 类型
+    /// 将时间戳转换为 DateTimeOffset 类型
     /// </summary>
     /// <param name="reader">The reader.</param>
     /// <param name="typeToConvert">The type to convert.</param>
     /// <param name="options">An object that specifies serialization options to use.</param>
     /// <returns>The converted value.</returns>
-    public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    /// <exception cref="JsonException">Defines a custom exception object that is thrown when invalid JSON text is encountered, when the defined maximum depth is passed, or the JSON text is not compatible with the type of a property on an object.</exception>
+    public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (reader.TokenType is JsonTokenType.Number and not JsonTokenType.String)
+        if (reader.TokenType == JsonTokenType.Number && reader.TryGetInt64(out long timestamp))
         {
-            long value = 0;
-
-            switch (reader.TokenType)
-            {
-                case JsonTokenType.Number:
-                    reader.TryGetInt64(out value);
-                    break;
-                case JsonTokenType.String:
-                    string? valueString = reader.GetString();
-                    value = InternalTypeHelper.TypeToInt64(valueString, 0);
-                    break;
-                default: break;
-            }
-
-            return DateTimeHelper.TryConvertToLocalTime(value);
+            if (timestamp > 1000000000000)
+                return DateTimeOffset.FromUnixTimeMilliseconds(timestamp).ToLocalTime();
+            else
+                return DateTimeOffset.FromUnixTimeSeconds(timestamp).ToLocalTime();
         }
-
-        return DateTime.MinValue;
+        throw new JsonException("Invalid timestamp format");
     }
 
     /// <summary>
-    /// 将 DateTime 转换为表示日期时间的字符串
+    /// 将 DateTimeOffset 转换为时间戳格式
     /// </summary>
     /// <param name="writer">The writer to write to.</param>
     /// <param name="value">The value to convert to JSON.</param>
     /// <param name="options">An object that specifies serialization options to use.</param>
-    public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
-        => writer.WriteStringValue($"{value:yyyy-MM-dd HH:mm:ss.fff}");
+    public override void Write(Utf8JsonWriter writer, DateTimeOffset value, JsonSerializerOptions options)
+    {
+        writer.WriteNumberValue(value.ToUnixTimeSeconds());
+    }
 }

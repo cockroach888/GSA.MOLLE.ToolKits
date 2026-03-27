@@ -38,7 +38,7 @@ namespace GSA.ToolKits.CommonUtility;
 /// </remarks>
 public sealed class ExpressionVisitorToSQL : ExpressionVisitor
 {
-    private readonly Stack<string> _sqlCondition = new Stack<string>();
+    private readonly Stack<string> _sqlCondition = new();
 
 
     /// <summary>
@@ -128,6 +128,6 @@ public sealed class ExpressionVisitorToSQL : ExpressionVisitor
     /// <returns>SQL条件拼接字符串</returns>
     public string GetSQLString()
     {
-        return string.Join(" ", _sqlCondition.ToArray());
+        return string.Join(" ", [.. _sqlCondition]);
     }
 }
