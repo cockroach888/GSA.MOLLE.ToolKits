@@ -29,7 +29,8 @@
 ## 开发日志
 
 ### 2026-03-24
-- 增加DateTimeOffset带时间戳数据的JSON转换实现类。
+- 增加DateTimeOffset带时间戳数据的JSON转换实现类；
+- 优化DateTimeOffset带时间戳数据的JSON转换实现。
 
 ### 2026-03-17
 - 实践.NET10系列技术体系。
