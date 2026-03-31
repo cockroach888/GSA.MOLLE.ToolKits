@@ -12,8 +12,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>GSA.ToolKits.CommonUtility</RootNamespace>
 		<AssemblyName>CommonUtility</AssemblyName>
-		<AssemblyVersion>10.1.1</AssemblyVersion>
-		<FileVersion>10.1.1</FileVersion>
+		<AssemblyVersion>10.1.2</AssemblyVersion>
+		<FileVersion>10.1.2</FileVersion>
 		<LangVersion>latest</LangVersion>
 		<NoWarn>8603,8600</NoWarn>
 	</PropertyGroup>
@@ -38,7 +38,7 @@
 		<RepositoryType>git</RepositoryType>
 		<Copyright>Copyright © Cockroach Soulful, All Rights Reserved.</Copyright>
 		<PackageTags>魂哥常用工具集 常见和通用功能集合工具集 Common</PackageTags>
-		<PackageReleaseNotes>优化DateTimeOffset带时间戳数据的JSON转换实现。</PackageReleaseNotes>
+		<PackageReleaseNotes>修正“将DateTimeOffset转换为时间戳格式”问题，由秒变更为毫秒。</PackageReleaseNotes>
 		<Version>$(AssemblyVersion)</Version>
 		<PackageId>CommonsUtility</PackageId>
 	</PropertyGroup>
