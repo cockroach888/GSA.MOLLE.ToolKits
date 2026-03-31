@@ -64,7 +64,7 @@ public sealed class JsonTimestampPlus2LocalTimeConverter : JsonConverter<DateTim
     }
 
     /// <summary>
-    /// 将 DateTime 转换为表示日期时间的字符串
+    /// 将 DateTime 转换为表示日期时间的字符串（yyyy-MM-dd HH:mm:ss.fff）
     /// </summary>
     /// <param name="writer">The writer to write to.</param>
     /// <param name="value">The value to convert to JSON.</param>

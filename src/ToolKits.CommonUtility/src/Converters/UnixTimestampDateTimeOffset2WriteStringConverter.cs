@@ -6,9 +6,9 @@
 //=========================================================================
 //**   Copyright © 蟑螂·魂 2026 -- Support 华夏银河空间联盟
 //=========================================================================
-// 文件名称：UnixTimestampDateTimeOffset2LocalTimeConverter.cs
+// 文件名称：UnixTimestampDateTimeOffset2WriteStringConverter.cs
 // 项目名称：魂哥常用工具集
-// 创建时间：2026-03-27 11:06:15
+// 创建时间：2026-03-31 17:29:20
 // 创建人员：宋杰军
 // 电子邮件：cockroach888@outlook.com
 // 负责人员：宋杰军
@@ -30,10 +30,10 @@ namespace GSA.ToolKits.CommonUtility.Converters;
 /// <para>入参时为时间戳格式，并将其转换为DateTimeOffset的本地时间格式。</para>
 /// <para>出参时为DateTimeOffset格式。</para>
 /// </remarks>
-public class UnixTimestampDateTimeOffset2LocalTimeConverter : JsonConverter<DateTimeOffset>
+public class UnixTimestampDateTimeOffset2WriteStringConverter : JsonConverter<DateTimeOffset>
 {
     /// <summary>
-    /// 将时间戳转换为 DateTimeOffset 类型的本地时
+    /// 将时间戳转换为 DateTimeOffset 类型
     /// </summary>
     /// <param name="reader">The reader.</param>
     /// <param name="typeToConvert">The type to convert.</param>
@@ -45,19 +45,19 @@ public class UnixTimestampDateTimeOffset2LocalTimeConverter : JsonConverter<Date
         if (reader.TokenType == JsonTokenType.Number && reader.TryGetInt64(out long timestamp))
         {
             if (timestamp > 1000000000000)
-                return DateTimeOffset.FromUnixTimeMilliseconds(timestamp).ToLocalTime();
+                return DateTimeOffset.FromUnixTimeMilliseconds(timestamp);
             else
-                return DateTimeOffset.FromUnixTimeSeconds(timestamp).ToLocalTime();
+                return DateTimeOffset.FromUnixTimeSeconds(timestamp);
         }
         throw new JsonException("Invalid timestamp format");
     }
 
     /// <summary>
-    /// 将 DateTimeOffset 的本地时转换为时间戳格式
+    /// 将 DateTimeOffset 转换为时间戳格式（yyyy-MM-dd HH:mm:ss.fff）
     /// </summary>
     /// <param name="writer">The writer to write to.</param>
     /// <param name="value">The value to convert to JSON.</param>
     /// <param name="options">An object that specifies serialization options to use.</param>
     public override void Write(Utf8JsonWriter writer, DateTimeOffset value, JsonSerializerOptions options)
-        => writer.WriteNumberValue(value.ToUnixTimeMilliseconds());
+        => writer.WriteStringValue($"{value:yyyy-MM-dd HH:mm:ss.fff}");
 }

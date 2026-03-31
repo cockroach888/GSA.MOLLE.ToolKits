@@ -29,7 +29,8 @@
 ## 开发日志
 
 ### 2026-03-31
-- 修正“将DateTimeOffset转换为时间戳格式”问题，由秒变更为毫秒。
+- 修正“将DateTimeOffset转换为时间戳格式”问题，由秒变更为毫秒；
+- 增加将DateTimeOffset转换为字符串格式独立功能类及实现。
 
 ### 2026-03-24
 - 增加DateTimeOffset带时间戳数据的JSON转换实现类；
